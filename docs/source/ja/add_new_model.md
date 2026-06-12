@@ -89,7 +89,7 @@ model.config  # model has access to its config
 
 新しいモデルをコーディングする際には、Transformersは意見があるライブラリであり、コードの書き方に関していくつかの独自の考え方があります :-)
 
-1. モデルのフォワードパスはモデリングファイルに完全に記述され、ライブラリ内の他のモデルとは完全に独立している必要があります。他のモデルからブロックを再利用したい場合、コードをコピーしてトップに`# Copied from`コメントを付けて貼り付けます（良い例は[こちら](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers/models/roberta/modeling_roberta.py#L160)、コピーに関する詳細なドキュメンテーションは[ここ](pr_checks#check-copies)を参照してください）。
+1. モデルのフォワードパスはモデリングファイルに完全に記述され、ライブラリ内の他のモデルとは完全に独立している必要があります。他のモデルからブロックを再利用したい場合、コードをコピーしてトップに`# Copied from`コメントを付けて貼り付けます（良い例は[こちら](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L160)、コピーに関する詳細なドキュメンテーションは[ここ](pr_checks#check-copies)を参照してください）。
 2. コードは完全に理解可能でなければなりません。これは記述的な変数名を選択し、省略形を避けるべきであることを意味します。例えば、`act`ではなく`activation`が好まれます。1文字の変数名は、forループ内のインデックスでない限り、強く非推奨です。
 3. より一般的に、魔法のような短いコードよりも長くて明示的なコードを好みます。
 4. PyTorchでは`nn.Sequential`をサブクラス化せずに、`nn.Module`をサブクラス化し、フォワードパスを記述し、コードを使用する他の人が簡単にデバッグできるようにします。プリントステートメントやブレークポイントを追加してデバッグできるようにします。
@@ -297,7 +297,7 @@ original_output = model.predict(input_ids)
 - 使用可能な最小の事前学習済みチェックポイントを使用します。チェックポイントが小さいほど、デバッグサイクルが速くなります。事前学習済みモデルがフォワードパスに10秒以上かかる場合、効率的ではありません。非常に大きなチェックポイントしか利用できない場合、新しい環境でランダムに初期化されたウェイトを持つダミーモデルを作成し、それらのウェイトを🤗 Transformersバージョンのモデルと比較する方が良いかもしれません。
 - 元のリポジトリでフォワードパスを呼び出す最も簡単な方法を使用していることを確認してください。理想的には、元のリポジトリで**単一のフォワードパス**を呼び出す関数を見つけたいです。これは通常「predict」、「evaluate」、「forward」、「__call__」と呼ばれます。複数回「forward」を呼び出す関数をデバッグしたくありません。例：テキストを生成するために「autoregressive_sample」、「generate」と呼ばれる関数。
 - トークナイゼーションとモデルの「フォワード」パスを分離しようとしてください。元のリポジトリが入力文字列を入力する必要がある例を示す場合、フォワードコール内で文字列入力が入力IDに変更される場所を特定し、このポイントから開始します。これは、スクリプトを自分で書くか、入力文字列ではなく入力IDを直接入力できるように元のコードを変更する必要があるかもしれません。
-- デバッグセットアップ内のモデルがトレーニングモードではないことを確認してください。トレーニングモードでは、モデル内の複数のドロップアウトレイヤーのためにランダムな出力が生成されることがあります。デバッグ環境のフォワードパスが**決定論的**であることを確認し、ドロップアウトレイヤーが使用されないようにします。または、新しい実装が同じフレームワーク内にある場合、*transformers.utils.set_seed*を使用してください。
+- デバッグセットアップ内のモデルがトレーニングモードではないことを確認してください。トレーニングモードでは、モデル内の複数のドロップアウトレイヤーのためにランダムな出力が生成されることがあります。デバッグ環境のフォワードパスが**決定論的**であることを確認し、ドロップアウトレイヤーが使用されないようにします。または、新しい実装が同じフレームワーク内にある場合、*transformers_openvla_oft.utils.set_seed*を使用してください。
 
 以下のセクションでは、*brand_new_bert*についてこれを具体的にどのように行うかについての詳細/ヒントを提供します。
 
@@ -381,22 +381,22 @@ PR上でのほとんどの質問はGitHub上で行うことをお勧めします
 **5. 生成されたモデルコードを"brand_new_bert"に適応させる**
 
 最初に、モデル自体に焦点を当て、トークナイザには気にしないでください。
-関連するコードは、生成されたファイル`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py`および`src/transformers/models/brand_new_bert/configuration_brand_new_bert.py`で見つかるはずです。
+関連するコードは、生成されたファイル`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py`および`src/transformers_openvla_oft/models/brand_new_bert/configuration_brand_new_bert.py`で見つかるはずです。
 
 さて、ついにコーディングを始めることができます :smile:。
-`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py`にある生成されたコードは、エンコーダーのみのモデルであればBERTと同じアーキテクチャを持っているか、エンコーダー-デコーダーモデルであればBARTと同じアーキテクチャを持っているはずです。
+`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py`にある生成されたコードは、エンコーダーのみのモデルであればBERTと同じアーキテクチャを持っているか、エンコーダー-デコーダーモデルであればBARTと同じアーキテクチャを持っているはずです。
 この段階では、モデルの理論的な側面について学んだことを思い出すべきです。つまり、「このモデルはBERTまたはBARTとどのように異なるのか？」ということです。
 これらの変更を実装しますが、これは通常、セルフアテンションレイヤー、正規化レイヤーの順序などを変更することを意味します。
 再び、あなたのモデルがどのように実装されるべきかをより良く理解するために、Transformers内に既存のモデルの類似アーキテクチャを見ることが役立つことがあります。
 
 この時点では、コードが完全に正確またはクリーンである必要はありません。
 むしろ、まずは必要なコードの最初の*クリーンでない*コピー＆ペーストバージョンを
-`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py`に追加し、必要なコードがすべて追加されていると感じるまで改善/修正を反復的に行うことがお勧めです。
+`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py`に追加し、必要なコードがすべて追加されていると感じるまで改善/修正を反復的に行うことがお勧めです。
 私たちの経験から、必要なコードの最初のバージョンを迅速に追加し、次のセクションで説明する変換スクリプトを使用してコードを繰り返し改善/修正する方が効率的であることが多いです。
 この時点で動作する必要があるのは、🤗 Transformersの"brand_new_bert"の実装をインスタンス化できることだけです。つまり、以下のコマンドが機能する必要があります：
 
 ```python
-from transformers import BrandNewBertModel, BrandNewBertConfig
+from transformers_openvla_oft import BrandNewBertModel, BrandNewBertConfig
 
 model = BrandNewBertModel(BrandNewBertConfig())
 ```
@@ -452,8 +452,8 @@ def _init_weights(self, module):
 通常、既存の変換スクリプトをコピーして、自分のユースケースにわずかに適応させることで十分です。
 Hugging Face チームに既存のモデルに類似した変換スクリプトを教えてもらうことも躊躇しないでください。
 
-- TensorFlowからPyTorchにモデルを移植している場合、良い出発点はBERTの変換スクリプトかもしれません [here](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers/models/bert/modeling_bert.py#L91)
-- PyTorchからPyTorchにモデルを移植している場合、良い出発点はBARTの変換スクリプトかもしれません [here](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
+- TensorFlowからPyTorchにモデルを移植している場合、良い出発点はBERTの変換スクリプトかもしれません [here](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers_openvla_oft/models/bert/modeling_bert.py#L91)
+- PyTorchからPyTorchにモデルを移植している場合、良い出発点はBARTの変換スクリプトかもしれません [here](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
 
 以下では、PyTorchモデルが層の重みをどのように保存し、層の名前を定義するかについて簡単に説明します。
 PyTorchでは、層の名前は層に与えるクラス属性の名前によって定義されます。
@@ -665,7 +665,7 @@ input_ids = model.tokenize(input_str)
 以下のように見えるべきです：
 
 ```python
-from transformers import BrandNewBertTokenizer
+from transformers_openvla_oft import BrandNewBertTokenizer
 
 input_str = "This is a long example input string containing special characters .$?-, numbers 2872 234 12 and words."
 
@@ -696,7 +696,7 @@ Cookiecutterが`docs/source/model_doc/brand_new_bert.md`というテンプレー
 モデルのユーザーは通常、モデルを使用する前にまずこのページを見ます。したがって、ドキュメンテーションは理解しやすく簡潔である必要があります。
 モデルの使用方法を示すためにいくつかの*Tips*を追加することはコミュニティにとって非常に役立ちます。ドキュメンテーションに関しては、Hugging Faceチームに問い合わせることをためらわないでください。
 
-次に、`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py`に追加されたドキュメンテーション文字列が正しいこと、およびすべての必要な入力および出力を含んでいることを確認してください。
+次に、`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py`に追加されたドキュメンテーション文字列が正しいこと、およびすべての必要な入力および出力を含んでいることを確認してください。
 ドキュメンテーションの書き方とドキュメンテーション文字列のフォーマットについて詳細なガイドが[こちら](writing-documentation)にあります。
 ドキュメンテーションは通常、コミュニティとモデルの最初の接触点であるため、コードと同じくらい注意深く扱うべきであることを常に念頭に置いてください。
 

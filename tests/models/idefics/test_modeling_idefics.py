@@ -18,8 +18,8 @@ import unittest
 
 from parameterized import parameterized
 
-from transformers import BitsAndBytesConfig, IdeficsConfig, is_torch_available, is_vision_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import BitsAndBytesConfig, IdeficsConfig, is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import (
     TestCasePlus,
     require_bitsandbytes,
     require_torch,
@@ -28,7 +28,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import cached_property
+from transformers_openvla_oft.utils import cached_property
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, floats_tensor, ids_tensor, random_attention_mask
@@ -38,9 +38,9 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import IdeficsForVisionText2Text, IdeficsModel, IdeficsProcessor
-    from transformers.models.idefics.configuration_idefics import IdeficsPerceiverConfig, IdeficsVisionConfig
-    from transformers.pytorch_utils import is_torch_greater_or_equal_than_2_0
+    from transformers_openvla_oft import IdeficsForVisionText2Text, IdeficsModel, IdeficsProcessor
+    from transformers_openvla_oft.models.idefics.configuration_idefics import IdeficsPerceiverConfig, IdeficsVisionConfig
+    from transformers_openvla_oft.pytorch_utils import is_torch_greater_or_equal_than_2_0
 else:
     is_torch_greater_or_equal_than_2_0 = False
 

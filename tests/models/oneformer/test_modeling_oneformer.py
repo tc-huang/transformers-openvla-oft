@@ -21,8 +21,8 @@ import unittest
 import numpy as np
 
 from tests.test_modeling_common import floats_tensor
-from transformers import OneFormerConfig, is_torch_available, is_vision_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import OneFormerConfig, is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import (
     require_torch,
     require_torch_accelerator,
     require_torch_fp16,
@@ -31,7 +31,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import cached_property
+from transformers_openvla_oft.utils import cached_property
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin
@@ -41,10 +41,10 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import OneFormerForUniversalSegmentation, OneFormerModel
+    from transformers_openvla_oft import OneFormerForUniversalSegmentation, OneFormerModel
 
     if is_vision_available():
-        from transformers import OneFormerProcessor
+        from transformers_openvla_oft import OneFormerProcessor
 
 if is_vision_available():
     from PIL import Image

@@ -18,8 +18,8 @@ import unittest
 
 from parameterized import parameterized
 
-from transformers import CohereConfig, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import CohereConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     require_bitsandbytes,
     require_torch,
     require_torch_multi_gpu,
@@ -37,10 +37,10 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import AutoTokenizer, CohereForCausalLM, CohereModel
+    from transformers_openvla_oft import AutoTokenizer, CohereForCausalLM, CohereModel
 
 
-# Copied from transformers.tests.models.llama.LlamaModelTester with Llama->Cohere
+# Copied from transformers_openvla_oft.tests.models.llama.LlamaModelTester with Llama->Cohere
 class CohereModelTester:
     def __init__(
         self,

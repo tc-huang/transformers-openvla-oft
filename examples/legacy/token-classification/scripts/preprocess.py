@@ -1,6 +1,6 @@
 import sys
 
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 
 dataset = sys.argv[1]

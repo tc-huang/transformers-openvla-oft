@@ -65,7 +65,7 @@ Wie Sie im folgenden Code sehen können, müssen Sie nur vier zusätzliche Codez
 
 ```diff
 + from accelerate import Accelerator
-  from transformers import AdamW, AutoModelForSequenceClassification, get_scheduler
+  from transformers_openvla_oft import AdamW, AutoModelForSequenceClassification, get_scheduler
 
 + accelerator = Accelerator()
 

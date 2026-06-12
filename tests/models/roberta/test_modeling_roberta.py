@@ -16,8 +16,8 @@
 
 import unittest
 
-from transformers import RobertaConfig, is_torch_available
-from transformers.testing_utils import TestCasePlus, require_torch, slow, torch_device
+from transformers_openvla_oft import RobertaConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import TestCasePlus, require_torch, slow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -28,7 +28,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         RobertaForCausalLM,
         RobertaForMaskedLM,
         RobertaForMultipleChoice,
@@ -37,7 +37,7 @@ if is_torch_available():
         RobertaForTokenClassification,
         RobertaModel,
     )
-    from transformers.models.roberta.modeling_roberta import (
+    from transformers_openvla_oft.models.roberta.modeling_roberta import (
         RobertaEmbeddings,
         create_position_ids_from_input_ids,
     )

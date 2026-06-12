@@ -27,7 +27,7 @@ and efficiency in a high-speed regime. Our work exploits recent findings in atte
 which are competitive on highly parallel processing hardware. We revisit principles from the extensive
 literature on convolutional neural networks to apply them to transformers, in particular activation maps
 with decreasing resolutions. We also introduce the attention bias, a new way to integrate positional information
-in vision transformers. As a result, we propose LeVIT: a hybrid neural network for fast inference image classification.
+in vision transformers_openvla_oft. As a result, we propose LeVIT: a hybrid neural network for fast inference image classification.
 We consider different measures of efficiency on different hardware platforms, so as to best reflect a wide range of
 application scenarios. Our extensive experiments empirically validate our technical choices and show they are suitable
 to most architectures. Overall, LeViT significantly outperforms existing convnets and vision transformers with respect

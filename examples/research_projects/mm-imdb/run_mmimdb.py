@@ -32,8 +32,8 @@ from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
 from utils_mmimdb import ImageEncoder, JsonlDataset, collate_fn, get_image_transforms, get_mmimdb_labels
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     WEIGHTS_NAME,
     AdamW,
     AutoConfig,
@@ -43,7 +43,7 @@ from transformers import (
     MMBTForClassification,
     get_linear_schedule_with_warmup,
 )
-from transformers.trainer_utils import is_main_process
+from transformers_openvla_oft.trainer_utils import is_main_process
 
 
 try:
@@ -484,9 +484,9 @@ def main():
     )
     # Set the verbosity to info of the Transformers logger (on main process only):
     if is_main_process(args.local_rank):
-        transformers.utils.logging.set_verbosity_info()
-        transformers.utils.logging.enable_default_handler()
-        transformers.utils.logging.enable_explicit_format()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.enable_default_handler()
+        transformers_openvla_oft.utils.logging.enable_explicit_format()
     # Set seed
     set_seed(args)
 

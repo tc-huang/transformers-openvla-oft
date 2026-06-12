@@ -81,7 +81,7 @@ pip install openai
 
 
 ```py
-from transformers import OpenAiAgent
+from transformers_openvla_oft import OpenAiAgent
 
 agent = OpenAiAgent(model="text-davinci-003", api_key="<your_api_key>")
 ```
@@ -97,7 +97,7 @@ login("<YOUR_TOKEN>")
 次に、エージェントをインスタンス化してください。
 
 ```py
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 # Starcoder
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
@@ -239,7 +239,7 @@ LLM（大規模言語モデル）は、コードの小さなサンプルを生�
 これらのツールはtransformersに統合されており、手動でも使用できます。たとえば、次のように使用できます：
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 tool = load_tool("text-to-speech")
 audio = tool("This is a text to speech tool")
@@ -272,7 +272,7 @@ agent.run("Draw me a picture of rivers and lakes", return_code=True)
 
 次のコードを返します
 ```python
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 image_generator = load_tool("huggingface-tools/text-to-image")
 

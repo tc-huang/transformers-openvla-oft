@@ -25,9 +25,9 @@ from pathlib import Path
 from huggingface_hub import HfFolder, delete_repo
 from requests.exceptions import HTTPError
 
-from transformers import AutoConfig, BertConfig, GPT2Config
-from transformers.configuration_utils import PretrainedConfig
-from transformers.testing_utils import TOKEN, USER, is_staging_test
+from transformers_openvla_oft import AutoConfig, BertConfig, GPT2Config
+from transformers_openvla_oft.configuration_utils import PretrainedConfig
+from transformers_openvla_oft.testing_utils import TOKEN, USER, is_staging_test
 
 
 sys.path.append(str(Path(__file__).parent.parent / "utils"))
@@ -274,7 +274,7 @@ class ConfigTestUtils(unittest.TestCase):
         # This repo has two configuration files, one for v4.0.0 and above with a different hidden size.
         repo = "hf-internal-testing/test-two-configs"
 
-        import transformers as new_transformers
+        import transformers_openvla_oft as new_transformers
 
         new_transformers.configuration_utils.__version__ = "v4.0.0"
         new_configuration, kwargs = new_transformers.models.auto.AutoConfig.from_pretrained(
@@ -285,7 +285,7 @@ class ConfigTestUtils(unittest.TestCase):
         self.assertDictEqual(kwargs, {})
 
         # Testing an older version by monkey-patching the version in the module it's used.
-        import transformers as old_transformers
+        import transformers_openvla_oft as old_transformers
 
         old_transformers.configuration_utils.__version__ = "v3.0.0"
         old_configuration = old_transformers.models.auto.AutoConfig.from_pretrained(repo)
@@ -294,7 +294,7 @@ class ConfigTestUtils(unittest.TestCase):
     def test_saving_config_with_custom_generation_kwargs_raises_warning(self):
         config = BertConfig(min_length=3)  # `min_length = 3` is a non-default generation kwarg
         with tempfile.TemporaryDirectory() as tmp_dir:
-            with self.assertLogs("transformers.configuration_utils", level="WARNING") as logs:
+            with self.assertLogs("transformers_openvla_oft.configuration_utils", level="WARNING") as logs:
                 config.save_pretrained(tmp_dir)
             self.assertEqual(len(logs.output), 1)
             self.assertIn("min_length", logs.output[0])

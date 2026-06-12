@@ -21,12 +21,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import transformers
-import transformers.models.auto
-from transformers.models.auto.configuration_auto import CONFIG_MAPPING, AutoConfig
-from transformers.models.bert.configuration_bert import BertConfig
-from transformers.models.roberta.configuration_roberta import RobertaConfig
-from transformers.testing_utils import DUMMY_UNKNOWN_IDENTIFIER, get_tests_dir
+import transformers_openvla_oft
+import transformers_openvla_oft.models.auto
+from transformers_openvla_oft.models.auto.configuration_auto import CONFIG_MAPPING, AutoConfig
+from transformers_openvla_oft.models.bert.configuration_bert import BertConfig
+from transformers_openvla_oft.models.roberta.configuration_roberta import RobertaConfig
+from transformers_openvla_oft.testing_utils import DUMMY_UNKNOWN_IDENTIFIER, get_tests_dir
 
 
 sys.path.append(str(Path(__file__).parent.parent.parent.parent / "utils"))
@@ -39,11 +39,11 @@ SAMPLE_ROBERTA_CONFIG = get_tests_dir("fixtures/dummy-config.json")
 
 class AutoConfigTest(unittest.TestCase):
     def setUp(self):
-        transformers.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
+        transformers_openvla_oft.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
 
     def test_module_spec(self):
-        self.assertIsNotNone(transformers.models.auto.__spec__)
-        self.assertIsNotNone(importlib.util.find_spec("transformers.models.auto"))
+        self.assertIsNotNone(transformers_openvla_oft.models.auto.__spec__)
+        self.assertIsNotNone(importlib.util.find_spec("transformers_openvla_oft.models.auto"))
 
     def test_config_from_model_shortcut(self):
         config = AutoConfig.from_pretrained("google-bert/bert-base-uncased")

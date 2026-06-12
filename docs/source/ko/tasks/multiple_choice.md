@@ -88,7 +88,7 @@ pip install transformers datasets evaluate
 다음 단계는 문장의 시작과 네 가지 가능한 구절을 처리하기 위해 BERT 토크나이저를 불러옵니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -131,7 +131,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 <pt>
 ```py
 >>> from dataclasses import dataclass
->>> from transformers.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
+>>> from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
 >>> from typing import Optional, Union
 >>> import torch
 
@@ -173,7 +173,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 <tf>
 ```py
 >>> from dataclasses import dataclass
->>> from transformers.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
+>>> from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
 >>> from typing import Optional, Union
 >>> import tensorflow as tf
 
@@ -251,7 +251,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 이제 모델 훈련을 시작할 준비가 되었습니다! [`AutoModelForMultipleChoice`]로 BERT를 로드합니다:
 
 ```py
->>> from transformers import AutoModelForMultipleChoice, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForMultipleChoice, TrainingArguments, Trainer
 
 >>> model = AutoModelForMultipleChoice.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -289,7 +289,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 >>> trainer.train()
 ```
 
-훈련이 완료되면 모든 사람이 모델을 사용할 수 있도록 [`~transformers.Trainer.push_to_hub`] 메소드를 사용하여 모델을 허브에 공유하세요:
+훈련이 완료되면 모든 사람이 모델을 사용할 수 있도록 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드를 사용하여 모델을 허브에 공유하세요:
 
 ```py
 >>> trainer.push_to_hub()
@@ -304,7 +304,7 @@ Keras로 모델을 미세 조정하는 데 익숙하지 않다면 기본 튜토�
 TensorFlow에서 모델을 미세 조정하려면 최적화 함수, 학습률 스케쥴 및 몇 가지 학습 하이퍼파라미터를 설정하는 것부터 시작하세요:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_train_epochs = 2
@@ -315,12 +315,12 @@ TensorFlow에서 모델을 미세 조정하려면 최적화 함수, 학습률 �
 그리고 [`TFAutoModelForMultipleChoice`]로 BERT를 가져올 수 있습니다:
 
 ```py
->>> from transformers import TFAutoModelForMultipleChoice
+>>> from transformers_openvla_oft import TFAutoModelForMultipleChoice
 
 >>> model = TFAutoModelForMultipleChoice.from_pretrained("google-bert/bert-base-uncased")
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`]을 사용하여 데이터 세트를 `tf.data.Dataset` 형식으로 변환합니다:
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]을 사용하여 데이터 세트를 `tf.data.Dataset` 형식으로 변환합니다:
 
 ```py
 >>> data_collator = DataCollatorForMultipleChoice(tokenizer=tokenizer)
@@ -347,18 +347,18 @@ TensorFlow에서 모델을 미세 조정하려면 최적화 함수, 학습률 �
 
 훈련을 시작하기 전에 설정해야 할 마지막 두 가지는 예측의 정확도를 계산하고 모델을 허브로 푸시하는 방법을 제공하는 것입니다. 이 두 가지 작업은 모두 [Keras 콜백](../main_classes/keras_callbacks)을 사용하여 수행할 수 있습니다.
 
-`compute_metrics`함수를 [`~transformers.KerasMetricCallback`]에 전달하세요:
+`compute_metrics`함수를 [`~transformers_openvla_oft.KerasMetricCallback`]에 전달하세요:
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_validation_set)
 ```
 
-모델과 토크나이저를 업로드할 위치를 [`~transformers.PushToHubCallback`]에서 지정하세요:
+모델과 토크나이저를 업로드할 위치를 [`~transformers_openvla_oft.PushToHubCallback`]에서 지정하세요:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="my_awesome_model",
@@ -408,7 +408,7 @@ TensorFlow에서 모델을 미세 조정하려면 최적화 함수, 학습률 �
 각 프롬프트와 후보 답변 쌍을 토큰화하여 PyTorch 텐서를 반환합니다. 또한 `labels`을 생성해야 합니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_swag_model")
 >>> inputs = tokenizer([[prompt, candidate1], [prompt, candidate2]], return_tensors="pt", padding=True)
@@ -418,7 +418,7 @@ TensorFlow에서 모델을 미세 조정하려면 최적화 함수, 학습률 �
 입력과 레이블을 모델에 전달하고 `logits`을 반환합니다:
 
 ```py
->>> from transformers import AutoModelForMultipleChoice
+>>> from transformers_openvla_oft import AutoModelForMultipleChoice
 
 >>> model = AutoModelForMultipleChoice.from_pretrained("my_awesome_swag_model")
 >>> outputs = model(**{k: v.unsqueeze(0) for k, v in inputs.items()}, labels=labels)
@@ -437,7 +437,7 @@ TensorFlow에서 모델을 미세 조정하려면 최적화 함수, 학습률 �
 각 프롬프트와 후보 답안 쌍을 토큰화하여 텐서플로 텐서를 반환합니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_swag_model")
 >>> inputs = tokenizer([[prompt, candidate1], [prompt, candidate2]], return_tensors="tf", padding=True)
@@ -446,7 +446,7 @@ TensorFlow에서 모델을 미세 조정하려면 최적화 함수, 학습률 �
 모델에 입력을 전달하고 `logits`를 반환합니다:
 
 ```py
->>> from transformers import TFAutoModelForMultipleChoice
+>>> from transformers_openvla_oft import TFAutoModelForMultipleChoice
 
 >>> model = TFAutoModelForMultipleChoice.from_pretrained("my_awesome_swag_model")
 >>> inputs = {k: tf.expand_dims(v, 0) for k, v in inputs.items()}

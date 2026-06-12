@@ -1,7 +1,7 @@
 import copy
 
-from transformers.configuration_utils import PretrainedConfig
-from transformers.utils import logging
+from transformers_openvla_oft.configuration_utils import PretrainedConfig
+from transformers_openvla_oft.utils import logging
 
 
 logger = logging.get_logger(__name__)
@@ -13,8 +13,8 @@ class HybridCLIPConfig(PretrainedConfig):
     :class:`~HybridCLIPModel`. It is used to instantiate HybridCLIPModel model according to the specified arguments,
     defining the text model and vision model configs.
 
-    Configuration objects inherit from :class:`~transformers.PretrainedConfig` and can be used to control the model
-    outputs. Read the documentation from :class:`~transformers.PretrainedConfig` for more information.
+    Configuration objects inherit from :class:`~transformers_openvla_oft.PretrainedConfig` and can be used to control the model
+    outputs. Read the documentation from :class:`~transformers_openvla_oft.PretrainedConfig` for more information.
 
     Args:
         text_config_dict (:obj:`dict`):
@@ -28,7 +28,7 @@ class HybridCLIPConfig(PretrainedConfig):
 
     Examples::
 
-        >>> from transformers import BertConfig, CLIPConfig, HybridCLIPConfig, FlaxHybridCLIP
+        >>> from transformers_openvla_oft import BertConfig, CLIPConfig, HybridCLIPConfig, FlaxHybridCLIP
 
         >>> # Initializing a BERT and CLIP configuration
         >>> config_text = BertConfig()
@@ -69,14 +69,14 @@ class HybridCLIPConfig(PretrainedConfig):
         text_model_type = text_config.pop("model_type")
         vision_model_type = vision_config.pop("model_type")
 
-        from transformers import AutoConfig
+        from transformers_openvla_oft import AutoConfig
 
         self.text_config = AutoConfig.for_model(text_model_type, **text_config)
 
         if vision_model_type == "clip":
             self.vision_config = AutoConfig.for_model(vision_model_type, **vision_config).vision_config
         elif vision_model_type == "clip_vision_model":
-            from transformers import CLIPVisionConfig
+            from transformers_openvla_oft import CLIPVisionConfig
 
             self.vision_config = CLIPVisionConfig(**vision_config)
         else:
@@ -100,7 +100,7 @@ class HybridCLIPConfig(PretrainedConfig):
     def to_dict(self):
         """
         Serializes this instance to a Python dictionary. Override the default
-        :meth:`~transformers.PretrainedConfig.to_dict`.
+        :meth:`~transformers_openvla_oft.PretrainedConfig.to_dict`.
 
         Returns:
             :obj:`Dict[str, any]`: Dictionary of all the attributes that make up this configuration instance,

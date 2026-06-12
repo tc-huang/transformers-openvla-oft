@@ -20,13 +20,13 @@
 import os
 import sys
 
-import transformers
+import transformers_openvla_oft
 
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 print("Python version:", sys.version)
-print("transformers version:", transformers.__version__)
+print("transformers version:", transformers_openvla_oft.__version__)
 
 try:
     import torch

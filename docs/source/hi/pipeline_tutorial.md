@@ -39,7 +39,7 @@ rendered properly in your Markdown viewer.
 1. एक [`pipeline`] बनाकर प्रारंभ करें और अनुमान कार्य निर्दिष्ट करें:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline(task="automatic-speech-recognition")
 ```
@@ -150,7 +150,7 @@ texts = transcriber(audio_filenames)
 ### कार्य विशिष्ट प्राचल
 
 सभी कार्य कार्य विशिष्ट प्राचल प्रदान करते हैं जो आपको अपना काम पूरा करने में मदद करने के लिए अतिरिक्त लचीलेपन और विकल्पों की अनुमति देते हैं।
-उदाहरण के लिए, [`transformers.AutomaticSpeechRecognitionPipeline.__call__`] विधि में एक `return_timestamps` प्राचल है जो वीडियो उपशीर्षक के लिए आशाजनक लगता है:
+उदाहरण के लिए, [`transformers_openvla_oft.AutomaticSpeechRecognitionPipeline.__call__`] विधि में एक `return_timestamps` प्राचल है जो वीडियो उपशीर्षक के लिए आशाजनक लगता है:
 
 
 ```py
@@ -162,7 +162,7 @@ texts = transcriber(audio_filenames)
 जैसा कि आप देख सकते हैं, मॉडल ने पाठ का अनुमान लगाया और **when** विभिन्न वाक्यों का उच्चारण किया गया तो आउटपुट भी दिया।
 
 प्रत्येक कार्य के लिए कई प्राचल उपलब्ध हैं, इसलिए यह देखने के लिए कि आप किसके साथ छेड़छाड़ कर सकते हैं, प्रत्येक कार्य का API संदर्भ देखें!
-उदाहरण के लिए, [`~transformers.AutomaticSpeechRecognitionPipeline`] में एक `chunk_length_s` प्राचल है जो सहायक है
+उदाहरण के लिए, [`~transformers_openvla_oft.AutomaticSpeechRecognitionPipeline`] में एक `chunk_length_s` प्राचल है जो सहायक है
 वास्तव में लंबी ऑडियो फ़ाइलों पर काम करने के लिए (उदाहरण के लिए, संपूर्ण फिल्मों या घंटे-लंबे वीडियो को उपशीर्षक देना) जो आमतौर पर एक मॉडल होता है
 अपने आप संभाल नहीं सकता:
 
@@ -203,7 +203,7 @@ for out in pipe(data()):
 
 ```py
 # KeyDataset is a util that will just output the item we're interested in.
-from transformers.pipelines.pt_utils import KeyDataset
+from transformers_openvla_oft.pipelines.pt_utils import KeyDataset
 from datasets import load_dataset
 
 pipe = pipeline(model="hf-internal-testing/tiny-random-wav2vec2", device=0)
@@ -232,7 +232,7 @@ for out in pipe(KeyDataset(dataset, "audio")):
 ![pipeline-cat-chonk](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vision_classifier = pipeline(model="google/vit-base-patch16-224")
 >>> preds = vision_classifier(
@@ -248,7 +248,7 @@ for out in pipe(KeyDataset(dataset, "audio")):
 NLP कार्यों के लिए [`pipeline`] का उपयोग करना व्यावहारिक रूप से समान है।
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> # This model is a `zero-shot-classification` model.
 >>> # It will classify text, except you are free to choose any label you might imagine
@@ -267,7 +267,7 @@ NLP कार्यों के लिए [`pipeline`] का उपयोग �
 उदाहरण के लिए, यदि आप इस [invoice image](https://huggingface.co/spaces/impira/docquery/resolve/2359223c1837a7587402bda0f2643382a6eefeab/invoice.png) का उपयोग करते हैं:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vqa = pipeline(model="impira/layoutlm-document-qa")
 >>> output = vqa(
@@ -299,7 +299,7 @@ pip install pytesseract
 ```py
 # pip install accelerate
 import torch
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline(model="facebook/opt-1.3b", torch_dtype=torch.bfloat16, device_map="auto")
 output = pipe("This is a cool example!", do_sample=True, top_p=0.95)
@@ -310,7 +310,7 @@ output = pipe("This is a cool example!", do_sample=True, top_p=0.95)
 ```py
 # pip install accelerate bitsandbytes
 import torch
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline(model="facebook/opt-1.3b", device_map="auto", model_kwargs={"load_in_8bit": True})
 output = pipe("This is a cool example!", do_sample=True, top_p=0.95)

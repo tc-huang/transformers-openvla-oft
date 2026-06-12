@@ -32,7 +32,7 @@ This model was contributed by [valhalla](https://huggingface.co/valhalla).
 The `generate()` method can be used to generate text using GPT Neo model.
 
 ```python
->>> from transformers import GPTNeoForCausalLM, GPT2Tokenizer
+>>> from transformers_openvla_oft import GPTNeoForCausalLM, GPT2Tokenizer
 
 >>> model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
 >>> tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B")
@@ -64,7 +64,7 @@ To load and run a model using Flash Attention 2, refer to the snippet below:
 
 ```python
 >>> import torch
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 >>> device = "cuda" # the device to load the model onto
 
 >>> model = AutoModelForCausalLM.from_pretrained("EleutherAI/gpt-neo-2.7B", torch_dtype=torch.float16, attn_implementation="flash_attention_2")

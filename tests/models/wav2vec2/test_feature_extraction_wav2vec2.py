@@ -20,8 +20,8 @@ import unittest
 
 import numpy as np
 
-from transformers import Wav2Vec2Config, Wav2Vec2FeatureExtractor
-from transformers.testing_utils import require_torch, slow
+from transformers_openvla_oft import Wav2Vec2Config, Wav2Vec2FeatureExtractor
+from transformers_openvla_oft.testing_utils import require_torch, slow
 
 from ...test_sequence_feature_extraction_common import SequenceFeatureExtractionTestMixin
 

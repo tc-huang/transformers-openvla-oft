@@ -192,7 +192,7 @@ RUN_SLOW=1 pytest -m accelerate_tests tests/models/opt/test_modeling_opt.py
 ### Dokumentationstests ausführen 
 
 Um zu testen, ob die Dokumentationsbeispiele korrekt sind, sollten Sie überprüfen, ob die `doctests` erfolgreich sind. 
-Lassen Sie uns als Beispiel den docstring von [WhisperModel.forward](https://github.com/huggingface/transformers/blob/main/src/transformers/models/whisper/modeling_whisper.py#L1017-L1035) verwenden: 
+Lassen Sie uns als Beispiel den docstring von [WhisperModel.forward](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/whisper/modeling_whisper.py#L1017-L1035) verwenden: 
 
 ```python 
 r"""
@@ -201,7 +201,7 @@ Returns:
 Example:
     ```python
     >>> import torch
-    >>> from transformers import WhisperModel, WhisperFeatureExtractor
+    >>> from transformers_openvla_oft import WhisperModel, WhisperFeatureExtractor
     >>> from datasets import load_dataset
 
     >>> model = WhisperModel.from_pretrained("openai/whisper-base")
@@ -506,7 +506,7 @@ Innerhalb von Tests:
 - Wie viele GPUs sind verfügbar:
 
 ```python
-from transformers.testing_utils import get_gpu_count
+from transformers_openvla_oft.testing_utils import get_gpu_count
 
 n_gpu = get_gpu_count()  # works with torch and tf
 ```
@@ -711,7 +711,7 @@ wie im vorherigen Beispiel.
 
 In Tests müssen wir oft wissen, wo sich Dinge relativ zur aktuellen Testdatei befinden, und das ist nicht trivial, da der Test
 von mehreren Verzeichnissen aus aufgerufen werden kann oder sich in Unterverzeichnissen mit unterschiedlicher Tiefe befinden kann. Eine Hilfsklasse
-`transformers.test_utils.TestCasePlus` löst dieses Problem, indem sie alle grundlegenden Pfade sortiert und einfache
+`transformers_openvla_oft.test_utils.TestCasePlus` löst dieses Problem, indem sie alle grundlegenden Pfade sortiert und einfache
 Zugriffsmöglichkeiten auf sie bietet:
 
 - `pathlib`-Objekte (alle vollständig aufgelöst):
@@ -733,10 +733,10 @@ Zugriffsmöglichkeiten auf sie bietet:
   - `src_dir_str`
 
 Um diese zu verwenden, müssen Sie lediglich sicherstellen, dass der Test in einer Unterklasse von
-`transformers.test_utils.TestCasePlus` befindet. Zum Beispiel:
+`transformers_openvla_oft.test_utils.TestCasePlus` befindet. Zum Beispiel:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class PathExampleTest(TestCasePlus):
@@ -748,7 +748,7 @@ Wenn Sie Pfade nicht über `pathlib` manipulieren müssen oder nur einen Pfad al
 `str()` auf das `pathlib`-Objekt anwenden oder die Accessoren mit der Endung `_str` verwenden. Zum Beispiel:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class PathExampleTest(TestCasePlus):
@@ -765,13 +765,13 @@ erstellt hat. Daher ist die Verwendung von Paketen wie `tempfile`, die diese Anf
 Beim Debuggen von Tests müssen Sie jedoch sehen können, was in der temporären Datei oder dem temporären Verzeichnis gespeichert wird und Sie möchten
 Sie müssen den genauen Pfad kennen und dürfen ihn nicht bei jedem neuen Testdurchlauf zufällig ändern.
 
-Für solche Zwecke ist die Hilfsklasse `transformers.test_utils.TestCasePlus` am besten geeignet. Sie ist eine Unterklasse von
+Für solche Zwecke ist die Hilfsklasse `transformers_openvla_oft.test_utils.TestCasePlus` am besten geeignet. Sie ist eine Unterklasse von
 Unittest.TestCase`, so dass wir in den Testmodulen einfach von ihr erben können.
 
 Hier ist ein Beispiel für die Verwendung dieser Klasse:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class ExamplesTests(TestCasePlus):
@@ -832,7 +832,7 @@ Kontextmanager `ExtendSysPath` verwenden. Beispiel:
 
 ```python
 import os
-from transformers.testing_utils import ExtendSysPath
+from transformers_openvla_oft.testing_utils import ExtendSysPath
 
 bindir = os.path.abspath(os.path.dirname(__file__))
 with ExtendSysPath(f"{bindir}/.."):
@@ -940,7 +940,7 @@ eine Stunde auf die Fertigstellung der Testsuite auf CI zu warten. Daher sollten
 wie im folgenden Beispiel markiert werden:
 
 ```python no-style
-from transformers.testing_utils import slow
+from transformers_openvla_oft.testing_utils import slow
 @slow
 def test_integration_foo():
 ```
@@ -1084,7 +1084,7 @@ Aber dann haben wir einen Hilfskontextmanager-Wrapper, der sich automatisch um a
 einige "*.*.*.*" enthält oder nicht:
 
 ```python
-from transformers.testing_utils import CaptureStdout
+from transformers_openvla_oft.testing_utils import CaptureStdout
 
 with CaptureStdout() as cs:
     function_that_writes_to_stdout()
@@ -1094,7 +1094,7 @@ print(cs.out)
 Hier ist ein vollständiges Testbeispiel:
 
 ```python
-from transformers.testing_utils import CaptureStdout
+from transformers_openvla_oft.testing_utils import CaptureStdout
 
 msg = "Secret message\r"
 final = "Hello World"
@@ -1106,7 +1106,7 @@ assert cs.out == final + "\n", f"captured: {cs.out}, expecting {final}"
 Wenn Sie `stderr` aufzeichnen möchten, verwenden Sie stattdessen die Klasse `CaptureStderr`:
 
 ```python
-from transformers.testing_utils import CaptureStderr
+from transformers_openvla_oft.testing_utils import CaptureStderr
 
 with CaptureStderr() as cs:
     function_that_writes_to_stderr()
@@ -1116,7 +1116,7 @@ print(cs.err)
 Wenn Sie beide Streams auf einmal erfassen müssen, verwenden Sie die übergeordnete Klasse `CaptureStd`:
 
 ```python
-from transformers.testing_utils import CaptureStd
+from transformers_openvla_oft.testing_utils import CaptureStd
 
 with CaptureStd() as cs:
     function_that_writes_to_stdout_and_stderr()
@@ -1132,12 +1132,12 @@ aus dem Kontext wieder.
 Wenn Sie die Ausgabe eines Loggers validieren müssen, können Sie `CaptureLogger` verwenden:
 
 ```python
-from transformers import logging
-from transformers.testing_utils import CaptureLogger
+from transformers_openvla_oft import logging
+from transformers_openvla_oft.testing_utils import CaptureLogger
 
 msg = "Testing 1, 2, 3"
 logging.set_verbosity_info()
-logger = logging.get_logger("transformers.models.bart.tokenization_bart")
+logger = logging.get_logger("transformers_openvla_oft.models.bart.tokenization_bart")
 with CaptureLogger(logger) as cl:
     logger.info(msg)
 assert cl.out, msg + "\n"
@@ -1146,10 +1146,10 @@ assert cl.out, msg + "\n"
 ### Testen mit Umgebungsvariablen
 
 Wenn Sie die Auswirkungen von Umgebungsvariablen für einen bestimmten Test testen möchten, können Sie einen Hilfsdekorator verwenden
-`transformers.testing_utils.mockenv`
+`transformers_openvla_oft.testing_utils.mockenv`
 
 ```python
-from transformers.testing_utils import mockenv
+from transformers_openvla_oft.testing_utils import mockenv
 
 
 class HfArgumentParserTest(unittest.TestCase):
@@ -1159,10 +1159,10 @@ class HfArgumentParserTest(unittest.TestCase):
 ```
 
 Manchmal muss ein externes Programm aufgerufen werden, was die Einstellung von `PYTHONPATH` in `os.environ` erfordert, um mehrere lokale Pfade einzuschließen.
-mehrere lokale Pfade. Eine Hilfsklasse `transformers.test_utils.TestCasePlus` hilft Ihnen dabei:
+mehrere lokale Pfade. Eine Hilfsklasse `transformers_openvla_oft.test_utils.TestCasePlus` hilft Ihnen dabei:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class EnvExampleTest(TestCasePlus):

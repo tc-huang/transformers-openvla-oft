@@ -36,7 +36,7 @@ Audio classification is a task that labels audio data from a predefined set of c
 * music classification: label music with a genre label ("metal", "hip-hop", "country")
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="audio-classification", model="superb/hubert-base-superb-er")
 >>> preds = classifier("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -55,7 +55,7 @@ Automatic speech recognition (ASR) transcribes speech into text. It is one of th
 But one of the key challenges Transformer architectures have helped with is in low-resource languages. By pretraining on large amounts of speech data, finetuning the model on only one hour of labeled speech data in a low-resource language can still produce high-quality results compared to previous ASR systems trained on 100x more labeled data.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline(task="automatic-speech-recognition", model="openai/whisper-small")
 >>> transcriber("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -81,7 +81,7 @@ Image classification labels an entire image from a predefined set of classes. Li
 * ecology: label images of animal or plant species to monitor wildlife populations or track endangered species
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="image-classification")
 >>> preds = classifier(
@@ -105,7 +105,7 @@ Unlike image classification, object detection identifies multiple objects within
 * defect detection: detect cracks or structural damage in buildings, and manufacturing defects
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> detector = pipeline(task="object-detection")
 >>> preds = detector(
@@ -128,7 +128,7 @@ Image segmentation is a pixel-level task that assigns every pixel in an image to
 Segmentation tasks are helpful in self-driving vehicles to create a pixel-level map of the world around them so they can navigate safely around pedestrians and other vehicles. It is also useful for medical imaging, where the task's finer granularity can help identify abnormal cells or organ features. Image segmentation can also be used in ecommerce to virtually try on clothes or create augmented reality experiences by overlaying objects in the real world through your camera.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> segmenter = pipeline(task="image-segmentation")
 >>> preds = segmenter(
@@ -151,7 +151,7 @@ There are two approaches to depth estimation:
 * monocular: depths are estimated from a single image
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> depth_estimator = pipeline(task="depth-estimation")
 >>> preds = depth_estimator(
@@ -171,7 +171,7 @@ Like classification tasks in any modality, text classification labels a sequence
 * content classification: label text according to some topic to help organize and filter information in news and social media feeds (`weather`, `sports`, `finance`, etc.)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="sentiment-analysis")
 >>> preds = classifier("Hugging Face is the best thing since sliced bread!")
@@ -190,7 +190,7 @@ Two common types of token classification are:
 * part-of-speech tagging (POS): label a token according to its part-of-speech like noun, verb, or adjective. POS is useful for helping translation systems understand how two identical words are grammatically different (bank as a noun versus bank as a verb).
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="ner")
 >>> preds = classifier("Hugging Face is a French company based in New York City.")
@@ -226,7 +226,7 @@ There are two common types of question answering:
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> question_answerer = pipeline(task="question-answering")
 >>> preds = question_answerer(
@@ -249,7 +249,7 @@ Like question answering, there are two types of summarization:
 * abstractive: generate the target summary (which may include new words not in the input document) from the original text; the [`SummarizationPipeline`] uses the abstractive approach
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> summarizer = pipeline(task="summarization")
 >>> summarizer(
@@ -265,7 +265,7 @@ Translation converts a sequence of text in one language to another. It is import
 In the early days, translation models were mostly monolingual, but recently, there has been increasing interest in multilingual models that can translate between many pairs of languages.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> text = "translate English to French: Hugging Face is a community-based open-source platform for machine learning."
 >>> translator = pipeline(task="translation", model="google-t5/t5-small")
@@ -282,7 +282,7 @@ There are two types of language modeling:
 * causal: the model's objective is to predict the next token in a sequence, and future tokens are masked
 
     ```py
-    >>> from transformers import pipeline
+    >>> from transformers_openvla_oft import pipeline
 
     >>> prompt = "Hugging Face is a community-based open-source platform for machine learning."
     >>> generator = pipeline(task="text-generation")
@@ -322,7 +322,7 @@ Although multimodal models work with different data types or modalities, interna
 Document question answering is a task that answers natural language questions from a document. Unlike a token-level question answering task which takes text as input, document question answering takes an image of a document as input along with a question about the document and returns an answer. Document question answering can be used to parse structured documents and extract key information from it. In the example below, the total amount and change due can be extracted from a receipt.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> from PIL import Image
 >>> import requests
 

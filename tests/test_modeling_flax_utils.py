@@ -19,8 +19,8 @@ import numpy as np
 from huggingface_hub import HfFolder, delete_repo, snapshot_download
 from requests.exceptions import HTTPError
 
-from transformers import BertConfig, BertModel, is_flax_available, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import BertConfig, BertModel, is_flax_available, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     TOKEN,
     USER,
     CaptureLogger,
@@ -30,7 +30,7 @@ from transformers.testing_utils import (
     require_safetensors,
     require_torch,
 )
-from transformers.utils import FLAX_WEIGHTS_NAME, SAFE_WEIGHTS_NAME, logging
+from transformers_openvla_oft.utils import FLAX_WEIGHTS_NAME, SAFE_WEIGHTS_NAME, logging
 
 
 if is_flax_available():
@@ -39,7 +39,7 @@ if is_flax_available():
     from flax.core.frozen_dict import unfreeze
     from flax.traverse_util import flatten_dict
 
-    from transformers import FlaxBertModel
+    from transformers_openvla_oft import FlaxBertModel
 
     os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.12"  # assumed parallelism: 8
 
@@ -368,7 +368,7 @@ class FlaxModelUtilsTest(unittest.TestCase):
     def test_safetensors_from_pt_bf16(self):
         # This should not raise; should be able to load bf16-serialized torch safetensors without issue
         # and without torch.
-        logger = logging.get_logger("transformers.modeling_flax_utils")
+        logger = logging.get_logger("transformers_openvla_oft.modeling_flax_utils")
 
         with CaptureLogger(logger) as cl:
             FlaxBertModel.from_pretrained("hf-internal-testing/tiny-bert-pt-safetensors-bf16")
@@ -388,7 +388,7 @@ class FlaxModelUtilsTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             model.save_pretrained(tmp_dir, safe_serialization=False)
 
-            logger = logging.get_logger("transformers.modeling_flax_utils")
+            logger = logging.get_logger("transformers_openvla_oft.modeling_flax_utils")
 
             with CaptureLogger(logger) as cl:
                 new_model = FlaxBertModel.from_pretrained("hf-internal-testing/tiny-bert-pt-safetensors-bf16")

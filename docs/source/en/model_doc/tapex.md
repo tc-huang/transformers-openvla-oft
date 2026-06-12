@@ -65,7 +65,7 @@ We use the [Auto API](auto), which will automatically instantiate the appropriat
 based on the configuration file of the checkpoint on the hub.
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 >>> import pandas as pd
 
 >>> tokenizer = AutoTokenizer.from_pretrained("microsoft/tapex-large-finetuned-wtq")
@@ -114,7 +114,7 @@ of a table), one can instantiate a [`BartForSequenceClassification`] model. TAPE
 benchmark for table fact checking (it achieves 84% accuracy). The code example below again leverages the [Auto API](auto).
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSequenceClassification
 
 >>> tokenizer = AutoTokenizer.from_pretrained("microsoft/tapex-large-finetuned-tabfact")
 >>> model = AutoModelForSequenceClassification.from_pretrained("microsoft/tapex-large-finetuned-tabfact")

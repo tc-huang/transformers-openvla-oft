@@ -15,7 +15,7 @@
 
 import unittest
 
-from transformers.image_processing_utils import get_size_dict
+from transformers_openvla_oft.image_processing_utils import get_size_dict
 
 
 class ImageProcessingUtilsTester(unittest.TestCase):

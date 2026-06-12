@@ -121,7 +121,7 @@ plot_images(sample_images_to_visualize, sample_captions)
 전처리 작업을 위해, 파인튜닝하려는 모델에 연결된 프로세서 클래스를 가져옵니다. 
 
 ```python
-from transformers import AutoProcessor
+from transformers_openvla_oft import AutoProcessor
 
 checkpoint = "microsoft/git-base"
 processor = AutoProcessor.from_pretrained(checkpoint)
@@ -150,7 +150,7 @@ test_ds.set_transform(transforms)
 
 
 ```python
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained(checkpoint)
 ```
@@ -188,7 +188,7 @@ def compute_metrics(eval_pred):
 
 
 ```python
-from transformers import TrainingArguments, Trainer
+from transformers_openvla_oft import TrainingArguments, Trainer
 
 model_name = checkpoint.split("/")[1]
 

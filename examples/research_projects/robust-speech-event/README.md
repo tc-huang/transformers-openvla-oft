@@ -231,7 +231,7 @@ To verify that all libraries are correctly installed, you can run the following 
 It verifies that both `transformers` and `datasets` have been correclty installed.
 
 ```python
-from transformers import AutoModelForCTC, AutoProcessor
+from transformers_openvla_oft import AutoModelForCTC, AutoProcessor
 from datasets import load_dataset
 
 dummy_dataset = load_dataset("common_voice", "ab", split="test")

@@ -54,7 +54,7 @@ pip install datasets
 
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 ```
@@ -277,7 +277,7 @@ array([[1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
 
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("facebook/wav2vec2-base")
 ```
@@ -381,7 +381,7 @@ array([[1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
 使用 [`AutoImageProcessor.from_pretrained`] 加载`image processor`：
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("google/vit-base-patch16-224")
 ```
@@ -516,7 +516,7 @@ array([[1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
 
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base-960h")
 ```

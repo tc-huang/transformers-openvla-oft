@@ -78,7 +78,7 @@ Wenn Sie an der grundlegenden Verwendung von LLMs interessiert sind, ist unsere 
 Zunächst müssen Sie das Modell laden.
 
 ```py
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained(
 ...     "openlm-research/open_llama_7b", device_map="auto", load_in_4bit=True
@@ -95,7 +95,7 @@ Es gibt noch andere Möglichkeiten, ein Modell zu initialisieren, aber dies ist 
 Als nächstes müssen Sie Ihre Texteingabe mit einem [tokenizer](tokenizer_summary) vorverarbeiten.
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("openlm-research/open_llama_7b")
 >>> model_inputs = tokenizer(["A list of colors: red, blue"], return_tensors="pt").to("cuda")
@@ -119,7 +119,7 @@ Und das war's! Mit ein paar Zeilen Code können Sie sich die Macht eines LLM zun
 Es gibt viele [Generierungsstrategien](generation_strategies), und manchmal sind die Standardwerte für Ihren Anwendungsfall vielleicht nicht geeignet. Wenn Ihre Ausgaben nicht mit dem übereinstimmen, was Sie erwarten, haben wir eine Liste der häufigsten Fallstricke erstellt und wie Sie diese vermeiden können.
 
 ```py
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("openlm-research/open_llama_7b")
 >>> tokenizer.pad_token = tokenizer.eos_token  # Llama has no pad token by default
@@ -153,7 +153,7 @@ Standardmäßig und sofern nicht in der Datei [`~generation.GenerationConfig`] a
 
 ```py
 >>> # Set seed or reproducibility -- you don't need this unless you want full reproducibility
->>> from transformers import set_seed
+>>> from transformers_openvla_oft import set_seed
 >>> set_seed(0)
 
 >>> model_inputs = tokenizer(["I am a cat."], return_tensors="pt").to("cuda")

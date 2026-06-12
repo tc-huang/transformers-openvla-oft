@@ -34,7 +34,7 @@ The StarCoder2 models can be found in the [HuggingFace hub](https://huggingface.
 These ready-to-use checkpoints can be downloaded and used via the HuggingFace Hub:
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> model = AutoModelForCausalLM.from_pretrained("bigcode/starcoder2-7b", device_map="auto")
 >>> tokenizer = AutoTokenizer.from_pretrained("bigcode/starcoder2-7b")

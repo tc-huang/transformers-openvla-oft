@@ -35,7 +35,7 @@ Si bien cada tarea tiene un [`pipeline`] asociado, es más sencillo usar la abst
 1. Comienza creando un [`pipeline`] y específica una tarea de inferencia:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline(task="text-generation")
 ```
@@ -72,7 +72,7 @@ Cualquier parámetro adicional para tu tarea también se puede incluir en el [`p
 El [`pipeline`] acepta cualquier modelo del [Model Hub](https://huggingface.co/models). Hay etiquetas en el Model Hub que te permiten filtrar por el modelo que te gustaría utilizar para tu tarea. Una vez que hayas elegido un modelo apropiado, cárgalo con la clase `AutoModelFor` y [`AutoTokenizer`] correspondientes. Por ejemplo, carga la clase [`AutoModelForCausalLM`] para una tarea de modelado de lenguaje causal:
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
@@ -81,7 +81,7 @@ El [`pipeline`] acepta cualquier modelo del [Model Hub](https://huggingface.co/m
 Crea un [`pipeline`] para tu tarea y específica el modelo y el tokenizador que cargaste:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline(task="text-generation", model=model, tokenizer=tokenizer)
 ```
@@ -100,7 +100,7 @@ La flexibilidad de [`pipeline`] significa que también se puede extender a tarea
 Por ejemplo, clasifiquemos la emoción de un breve fragmento del famoso discurso de John F. Kennedy ["We choose to go to the Moon"](https://en.wikipedia.org/wiki/We_choose_to_go_to_the_Moon). Encuentra un modelo de [audio classification](https://huggingface.co/models?pipeline_tag=audio-classification) para reconocimiento de emociones en el Model Hub y cárgalo en el [`pipeline`]:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> audio_classifier = pipeline(
 ...     task="audio-classification", model="ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"
@@ -127,7 +127,7 @@ Específica tu tarea de visión y pasa tu imagen al clasificador. La imagen pued
 ![pipeline-cat-chonk](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vision_classifier = pipeline(task="image-classification")
 >>> vision_classifier(

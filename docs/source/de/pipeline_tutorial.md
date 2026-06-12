@@ -35,7 +35,7 @@ Obwohl jede Aufgabe eine zugehörige [`pipeline`] hat, ist es einfacher, die all
 1. Beginnen Sie mit der Erstellung einer [`pipeline`] und geben Sie eine Inferenzaufgabe an:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline(task="text-generation")
 ```
@@ -74,7 +74,7 @@ Alle zusätzlichen Parameter für Ihre Aufgabe können auch in die [`pipeline`] 
 Die [`pipeline`] akzeptiert jedes Modell aus dem [Hub](https://huggingface.co/models). Auf dem Hub gibt es Tags, mit denen Sie nach einem Modell filtern können, das Sie für Ihre Aufgabe verwenden möchten. Sobald Sie ein passendes Modell ausgewählt haben, laden Sie es mit der entsprechenden `AutoModelFor` und [`AutoTokenizer`] Klasse. Laden Sie zum Beispiel die Klasse [`AutoModelForCausalLM`] für eine kausale Sprachmodellierungsaufgabe:
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
@@ -83,7 +83,7 @@ Die [`pipeline`] akzeptiert jedes Modell aus dem [Hub](https://huggingface.co/mo
 Erstellen Sie eine [`pipeline`] für Ihre Aufgabe, und geben Sie das Modell und den Tokenizer an, die Sie geladen haben:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline(task="text-generation", model=model, tokenizer=tokenizer)
 ```
@@ -115,7 +115,7 @@ Lassen Sie uns zum Beispiel die Emotion in diesem Audioclip klassifizieren:
 Finden Sie ein [Audioklassifikation](https://huggingface.co/models?pipeline_tag=audio-classification) Modell auf dem Model Hub für Emotionserkennung und laden Sie es in die [`pipeline`]:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> audio_classifier = pipeline(
 ...     task="audio-classification", model="ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"
@@ -140,7 +140,7 @@ Geben Sie Ihre Aufgabe an und übergeben Sie Ihr Bild an den Klassifikator. Das 
 ![pipeline-cat-chonk](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vision_classifier = pipeline(task="image-classification")
 >>> preds = vision_classifier(
@@ -165,7 +165,7 @@ Wenn Sie zum Beispiel das gleiche Bild wie in der obigen Vision-Pipeline verwend
 Erstellen Sie eine Pipeline für "vqa" und übergeben Sie ihr das Bild und die Frage:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vqa = pipeline(task="vqa")
 >>> preds = vqa(image=image, question=question)

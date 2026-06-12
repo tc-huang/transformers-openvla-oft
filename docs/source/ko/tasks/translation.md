@@ -86,7 +86,7 @@ pip install transformers datasets evaluate sacrebleu
 다음 단계로 영어-프랑스어 쌍을 처리하기 위해 T5 토크나이저를 가져오세요.
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> checkpoint = "google-t5/t5-small"
 >>> tokenizer = AutoTokenizer.from_pretrained(checkpoint)
@@ -122,7 +122,7 @@ pip install transformers datasets evaluate sacrebleu
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DataCollatorForSeq2Seq
+>>> from transformers_openvla_oft import DataCollatorForSeq2Seq
 
 >>> data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=checkpoint)
 ```
@@ -130,7 +130,7 @@ pip install transformers datasets evaluate sacrebleu
 <tf>
 
 ```py
->>> from transformers import DataCollatorForSeq2Seq
+>>> from transformers_openvla_oft import DataCollatorForSeq2Seq
 
 >>> data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=checkpoint, return_tensors="tf")
 ```
@@ -195,7 +195,7 @@ pip install transformers datasets evaluate sacrebleu
 모델을 훈련시킬 준비가 되었군요! [`AutoModelForSeq2SeqLM`]으로 T5를 로드하세요:
 
 ```py
->>> from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 ```
@@ -234,7 +234,7 @@ pip install transformers datasets evaluate sacrebleu
 >>> trainer.train()
 ```
 
-학습이 완료되면 [`~transformers.Trainer.push_to_hub`] 메서드로 모델을 Hub에 공유하세요. 이러면 누구나 모델을 사용할 수 있게 됩니다:
+학습이 완료되면 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메서드로 모델을 Hub에 공유하세요. 이러면 누구나 모델을 사용할 수 있게 됩니다:
 
 ```py
 >>> trainer.push_to_hub()
@@ -249,7 +249,7 @@ Keras로 모델을 파인튜닝하는 방법이 익숙하지 않다면, [여기]
 TensorFlow에서 모델을 파인튜닝하려면 우선 optimizer 함수, 학습률 스케줄 등의 훈련 하이퍼파라미터를 설정하세요:
 
 ```py
->>> from transformers import AdamWeightDecay
+>>> from transformers_openvla_oft import AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -257,12 +257,12 @@ TensorFlow에서 모델을 파인튜닝하려면 우선 optimizer 함수, 학습
 이제 [`TFAutoModelForSeq2SeqLM`]로 T5를 가져오세요:
 
 ```py
->>> from transformers import TFAutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import TFAutoModelForSeq2SeqLM
 
 >>> model = TFAutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`]로 데이터 세트를 `tf.data.Dataset` 형식으로 변환하세요:
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]로 데이터 세트를 `tf.data.Dataset` 형식으로 변환하세요:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -290,18 +290,18 @@ TensorFlow에서 모델을 파인튜닝하려면 우선 optimizer 함수, 학습
 
 훈련을 시작하기 전에 예측값으로부터 SacreBLEU 메트릭을 계산하는 방법과 모델을 Hub에 업로드하는 방법 두 가지를 미리 설정해둬야 합니다. 둘 다 [Keras callbacks](../main_classes/keras_callbacks)로 구현하세요.
 
-[`~transformers.KerasMetricCallback`]에 `compute_metrics` 함수를 전달하세요.
+[`~transformers_openvla_oft.KerasMetricCallback`]에 `compute_metrics` 함수를 전달하세요.
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_validation_set)
 ```
 
-모델과 토크나이저를 업로드할 위치를 [`~transformers.PushToHubCallback`]에서 지정하세요:
+모델과 토크나이저를 업로드할 위치를 [`~transformers_openvla_oft.PushToHubCallback`]에서 지정하세요:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="my_awesome_opus_books_model",
@@ -344,7 +344,7 @@ TensorFlow에서 모델을 파인튜닝하려면 우선 optimizer 함수, 학습
 파인튜닝된 모델로 추론하기에 제일 간단한 방법은 [`pipeline`]을 사용하는 것입니다. 해당 모델로 번역 `pipeline`을 만든 뒤, 텍스트를 전달하세요:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Change `xx` to the language of the input and `yy` to the language of the desired output. 
 # Examples: "en" for English, "fr" for French, "de" for German, "es" for Spanish, "zh" for Chinese, etc; translation_en_to_fr translates English to French
@@ -361,16 +361,16 @@ TensorFlow에서 모델을 파인튜닝하려면 우선 optimizer 함수, 학습
 텍스트를 토큰화하고 `input_ids`를 PyTorch 텐서로 반환하세요:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_opus_books_model")
 >>> inputs = tokenizer(text, return_tensors="pt").input_ids
 ```
 
-[`~transformers.generation_utils.GenerationMixin.generate`] 메서드로 번역을 생성하세요. 다양한 텍스트 생성 전략 및 생성을 제어하기 위한 매개변수에 대한 자세한 내용은 [Text Generation](../main_classes/text_generation) API를 살펴보시기 바랍니다.
+[`~transformers_openvla_oft.generation_utils.GenerationMixin.generate`] 메서드로 번역을 생성하세요. 다양한 텍스트 생성 전략 및 생성을 제어하기 위한 매개변수에 대한 자세한 내용은 [Text Generation](../main_classes/text_generation) API를 살펴보시기 바랍니다.
 
 ```py
->>> from transformers import AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("my_awesome_opus_books_model")
 >>> outputs = model.generate(inputs, max_new_tokens=40, do_sample=True, top_k=30, top_p=0.95)
@@ -387,16 +387,16 @@ TensorFlow에서 모델을 파인튜닝하려면 우선 optimizer 함수, 학습
 텍스트를 토큰화하고 `input_ids`를 TensorFlow 텐서로 반환하세요:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_opus_books_model")
 >>> inputs = tokenizer(text, return_tensors="tf").input_ids
 ```
 
-[`~transformers.generation_tf_utils.TFGenerationMixin.generate`] 메서드로 번역을 생성하세요. 다양한 텍스트 생성 전략 및 생성을 제어하기 위한 매개변수에 대한 자세한 내용은 [Text Generation](../main_classes/text_generation) API를 살펴보시기 바랍니다.
+[`~transformers_openvla_oft.generation_tf_utils.TFGenerationMixin.generate`] 메서드로 번역을 생성하세요. 다양한 텍스트 생성 전략 및 생성을 제어하기 위한 매개변수에 대한 자세한 내용은 [Text Generation](../main_classes/text_generation) API를 살펴보시기 바랍니다.
 
 ```py
->>> from transformers import TFAutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import TFAutoModelForSeq2SeqLM
 
 >>> model = TFAutoModelForSeq2SeqLM.from_pretrained("my_awesome_opus_books_model")
 >>> outputs = model.generate(inputs, max_new_tokens=40, do_sample=True, top_k=30, top_p=0.95)

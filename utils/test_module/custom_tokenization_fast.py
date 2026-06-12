@@ -1,4 +1,4 @@
-from transformers import BertTokenizerFast
+from transformers_openvla_oft import BertTokenizerFast
 
 from .custom_tokenization import CustomTokenizer
 

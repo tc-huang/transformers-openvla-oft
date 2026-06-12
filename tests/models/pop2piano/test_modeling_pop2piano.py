@@ -21,9 +21,9 @@ import unittest
 import numpy as np
 from datasets import load_dataset
 
-from transformers import Pop2PianoConfig
-from transformers.feature_extraction_utils import BatchFeature
-from transformers.testing_utils import (
+from transformers_openvla_oft import Pop2PianoConfig
+from transformers_openvla_oft.feature_extraction_utils import BatchFeature
+from transformers_openvla_oft.testing_utils import (
     require_essentia,
     require_librosa,
     require_onnx,
@@ -32,7 +32,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import is_essentia_available, is_librosa_available, is_scipy_available, is_torch_available
+from transformers_openvla_oft.utils import is_essentia_available, is_librosa_available, is_scipy_available, is_torch_available
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -43,7 +43,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import Pop2PianoForConditionalGeneration
+    from transformers_openvla_oft import Pop2PianoForConditionalGeneration
 
 
 @require_torch
@@ -699,7 +699,7 @@ class Pop2PianoModelIntegrationTests(unittest.TestCase):
     @require_scipy
     def test_full_model_integration(self):
         if is_librosa_available() and is_scipy_available() and is_essentia_available() and is_torch_available():
-            from transformers import Pop2PianoProcessor
+            from transformers_openvla_oft import Pop2PianoProcessor
 
             speech_input1 = np.zeros([1_000_000], dtype=np.float32)
             sampling_rate = 44_100
@@ -727,7 +727,7 @@ class Pop2PianoModelIntegrationTests(unittest.TestCase):
     @require_scipy
     def test_real_music(self):
         if is_librosa_available() and is_scipy_available() and is_essentia_available() and is_torch_available():
-            from transformers import Pop2PianoFeatureExtractor, Pop2PianoTokenizer
+            from transformers_openvla_oft import Pop2PianoFeatureExtractor, Pop2PianoTokenizer
 
             model = Pop2PianoForConditionalGeneration.from_pretrained("sweetcocoa/pop2piano")
             model.eval()

@@ -58,7 +58,7 @@ Existem dois campos neste dataset:
 Carregue o tokenizador do DistilBERT para processar o campo `text`:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -81,14 +81,14 @@ Use o [`DataCollatorWithPadding`] para criar um batch de exemplos. Ele também *
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DataCollatorWithPadding
+>>> from transformers_openvla_oft import DataCollatorWithPadding
 
 >>> data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DataCollatorWithPadding
+>>> from transformers_openvla_oft import DataCollatorWithPadding
 
 >>> data_collator = DataCollatorWithPadding(tokenizer=tokenizer, return_tensors="tf")
 ```
@@ -102,7 +102,7 @@ Use o [`DataCollatorWithPadding`] para criar um batch de exemplos. Ele também *
 Carregue o DistilBERT com [`AutoModelForSequenceClassification`] junto com o número de rótulos esperados:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification, TrainingArguments, Trainer
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased", num_labels=2)
 ```
@@ -175,7 +175,7 @@ Se você não estiver familiarizado com o fine-tuning de um modelo com o Keras, 
 Configure o otimizador e alguns hiperparâmetros de treinamento:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 >>> import tensorflow as tf
 
 >>> batch_size = 16
@@ -188,7 +188,7 @@ Configure o otimizador e alguns hiperparâmetros de treinamento:
 Carregue o DistilBERT com [`TFAutoModelForSequenceClassification`] junto com o número de rótulos esperados:
 
 ```py
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased", num_labels=2)
 ```

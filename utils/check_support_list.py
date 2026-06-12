@@ -41,9 +41,9 @@ def check_flash_support_list():
         doctext = doctext.split("FlashAttention-2 is currently supported for the following architectures:")[1]
         doctext = doctext.split("You can request to add FlashAttention-2 support")[0]
 
-    patterns = glob(os.path.join(REPO_PATH, "src/transformers/models/**/modeling_*.py"))
-    patterns_tf = glob(os.path.join(REPO_PATH, "src/transformers/models/**/modeling_tf_*.py"))
-    patterns_flax = glob(os.path.join(REPO_PATH, "src/transformers/models/**/modeling_flax_*.py"))
+    patterns = glob(os.path.join(REPO_PATH, "src/transformers_openvla_oft/models/**/modeling_*.py"))
+    patterns_tf = glob(os.path.join(REPO_PATH, "src/transformers_openvla_oft/models/**/modeling_tf_*.py"))
+    patterns_flax = glob(os.path.join(REPO_PATH, "src/transformers_openvla_oft/models/**/modeling_flax_*.py"))
     patterns = list(set(patterns) - set(patterns_tf) - set(patterns_flax))
     archs_supporting_fa2 = []
     for filename in patterns:
@@ -70,9 +70,9 @@ def check_sdpa_support_list():
         )[1]
         doctext = doctext.split("Note that FlashAttention can only be used for models using the")[0]
 
-    patterns = glob(os.path.join(REPO_PATH, "src/transformers/models/**/modeling_*.py"))
-    patterns_tf = glob(os.path.join(REPO_PATH, "src/transformers/models/**/modeling_tf_*.py"))
-    patterns_flax = glob(os.path.join(REPO_PATH, "src/transformers/models/**/modeling_flax_*.py"))
+    patterns = glob(os.path.join(REPO_PATH, "src/transformers_openvla_oft/models/**/modeling_*.py"))
+    patterns_tf = glob(os.path.join(REPO_PATH, "src/transformers_openvla_oft/models/**/modeling_tf_*.py"))
+    patterns_flax = glob(os.path.join(REPO_PATH, "src/transformers_openvla_oft/models/**/modeling_flax_*.py"))
     patterns = list(set(patterns) - set(patterns_tf) - set(patterns_flax))
     archs_supporting_sdpa = []
     for filename in patterns:

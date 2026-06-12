@@ -106,7 +106,7 @@ save the resulting model in `./agnews/distilled`.
 The resulting model can then be loaded and used like any other pre-trained classifier:
 
 ```python
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
+from transformers_openvla_oft import AutoModelForSequenceClassification, AutoTokenizer
 model = AutoModelForSequenceClassification.from_pretrained("./agnews/distilled")
 tokenizer = AutoTokenizer.from_pretrained("./agnews/distilled")
 ```

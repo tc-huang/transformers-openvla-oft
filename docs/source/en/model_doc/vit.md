@@ -42,7 +42,7 @@ alt="drawing" width="600"/>
 
 Following the original Vision Transformer, some follow-up works have been made:
 
-- [DeiT](deit) (Data-efficient Image Transformers) by Facebook AI. DeiT models are distilled vision transformers.
+- [DeiT](deit) (Data-efficient Image Transformers) by Facebook AI. DeiT models are distilled vision transformers_openvla_oft.
   The authors of DeiT also released more efficiently trained ViT models, which you can directly plug into [`ViTModel`] or
   [`ViTForImageClassification`]. There are 4 variants available (in 3 different sizes): *facebook/deit-tiny-patch16-224*,
   *facebook/deit-small-patch16-224*, *facebook/deit-base-patch16-224* and *facebook/deit-base-patch16-384*. Note that one should

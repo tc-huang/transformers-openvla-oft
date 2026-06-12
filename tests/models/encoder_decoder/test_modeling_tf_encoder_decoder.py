@@ -23,9 +23,9 @@ import unittest
 
 import numpy as np
 
-from transformers import is_tf_available, is_torch_available
-from transformers.testing_utils import is_pt_tf_cross_test, require_tf, require_torch, slow, torch_device
-from transformers.utils.generic import ModelOutput
+from transformers_openvla_oft import is_tf_available, is_torch_available
+from transformers_openvla_oft.testing_utils import is_pt_tf_cross_test, require_tf, require_torch, slow, torch_device
+from transformers_openvla_oft.utils.generic import ModelOutput
 
 from ...test_modeling_tf_common import ids_tensor
 from ..bert.test_modeling_tf_bert import TFBertModelTester
@@ -37,7 +37,7 @@ from ..roberta.test_modeling_tf_roberta import TFRobertaModelTester
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoConfig,
         AutoTokenizer,
         EncoderDecoderConfig,
@@ -52,12 +52,12 @@ if is_tf_available():
         TFRobertaForCausalLM,
         TFRobertaModel,
     )
-    from transformers.modeling_tf_outputs import TFBaseModelOutput
+    from transformers_openvla_oft.modeling_tf_outputs import TFBaseModelOutput
 
 if is_torch_available():
     import torch
 
-    from transformers import BertLMHeadModel, BertModel, EncoderDecoderModel
+    from transformers_openvla_oft import BertLMHeadModel, BertModel, EncoderDecoderModel
 
 
 @require_tf
@@ -764,7 +764,7 @@ class TFBertEncoderDecoderModelTest(TFEncoderDecoderMixin, unittest.TestCase):
     @slow
     @is_pt_tf_cross_test
     def test_bert2bert_summarization(self):
-        from transformers import EncoderDecoderModel
+        from transformers_openvla_oft import EncoderDecoderModel
 
         tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 
@@ -864,7 +864,7 @@ class TFGPT2EncoderDecoderModelTest(TFEncoderDecoderMixin, unittest.TestCase):
     @slow
     @is_pt_tf_cross_test
     def test_bert2gpt2_summarization(self):
-        from transformers import EncoderDecoderModel
+        from transformers_openvla_oft import EncoderDecoderModel
 
         tokenizer_in = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
         tokenizer_out = AutoTokenizer.from_pretrained("openai-community/gpt2")

@@ -17,8 +17,8 @@
 
 import unittest
 
-from transformers import EsmConfig, is_torch_available
-from transformers.testing_utils import TestCasePlus, require_torch, slow, torch_device
+from transformers_openvla_oft import EsmConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import TestCasePlus, require_torch, slow, torch_device
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, ids_tensor, random_attention_mask
@@ -28,7 +28,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers.models.esm.modeling_esmfold import EsmForProteinFolding
+    from transformers_openvla_oft.models.esm.modeling_esmfold import EsmForProteinFolding
 
 
 class EsmFoldModelTester:

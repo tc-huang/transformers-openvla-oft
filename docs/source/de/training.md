@@ -46,7 +46,7 @@ Laden Sie zunächst den Datensatz [Yelp Reviews](https://huggingface.co/datasets
 Wie Sie nun wissen, benötigen Sie einen Tokenizer, um den Text zu verarbeiten und eine Auffüll- und Abschneidungsstrategie einzubauen, um mit variablen Sequenzlängen umzugehen. Um Ihren Datensatz in einem Schritt zu verarbeiten, verwenden Sie die 🤗 Methode Datasets [`map`](https://huggingface.co/docs/datasets/process#map), um eine Vorverarbeitungsfunktion auf den gesamten Datensatz anzuwenden:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -84,7 +84,7 @@ klicken Sie einfach auf die Schaltfläche oben rechts im Block des jeweiligen Fr
 Beginnen Sie mit dem Laden Ihres Modells und geben Sie die Anzahl der erwarteten Labels an. Aus dem Yelp Review [dataset card](https://huggingface.co/datasets/yelp_review_full#data-fields) wissen Sie, dass es fünf Labels gibt:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -103,7 +103,7 @@ Als Nächstes erstellen Sie eine Klasse [`TrainingArguments`], die alle Hyperpar
 Geben Sie an, wo die Kontrollpunkte Ihres Trainings gespeichert werden sollen:
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(output_dir="test_trainer")
 ```
@@ -131,7 +131,7 @@ Rufen Sie [`~evaluate.compute`] auf `metric` auf, um die Genauigkeit Ihrer Vorhe
 Wenn Sie Ihre Bewertungsmetriken während der Feinabstimmung überwachen möchten, geben Sie den Parameter `evaluation_strategy` in Ihren Trainingsargumenten an, um die Bewertungsmetrik am Ende jeder Epoche zu ermitteln:
 
 ```py
->>> from transformers import TrainingArguments, Trainer
+>>> from transformers_openvla_oft import TrainingArguments, Trainer
 
 >>> training_args = TrainingArguments(output_dir="test_trainer", evaluation_strategy="epoch")
 ```
@@ -150,7 +150,7 @@ Erstellen Sie ein [`Trainer`]-Objekt mit Ihrem Modell, Trainingsargumenten, Trai
 ... )
 ```
 
-Anschließend können Sie Ihr Modell durch den Aufruf von [`~transformers.Trainer.train`] optimieren:
+Anschließend können Sie Ihr Modell durch den Aufruf von [`~transformers_openvla_oft.Trainer.train`] optimieren:
 
 ```py
 >>> trainer.train()
@@ -185,7 +185,7 @@ Als nächstes laden Sie einen Tokenizer und tokenisieren die Daten als NumPy-Arr
 Wir können sie also ohne Tokenisierung direkt in ein NumPy-Array konvertieren!
 
 ```py
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 tokenized_data = tokenizer(dataset["text"], return_tensors="np", padding=True)
@@ -198,7 +198,7 @@ labels = np.array(dataset["label"])  # Label is already an array of 0 and 1
 Schließlich laden, [`compile`](https://keras.io/api/models/model_training_apis/#compile-method) und [`fit`](https://keras.io/api/models/model_training_apis/#fit-method) Sie das Modell:
 
 ```py
-from transformers import TFAutoModelForSequenceClassification
+from transformers_openvla_oft import TFAutoModelForSequenceClassification
 from tensorflow.keras.optimizers import Adam
 
 # Load and compile our model
@@ -331,7 +331,7 @@ Erstellen Sie einen `DataLoader` für Ihre Trainings- und Testdatensätze, damit
 Laden Sie Ihr Modell mit der Anzahl der erwarteten Kennzeichnungen:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -349,7 +349,7 @@ Erstellen Sie einen Optimierer und einen Scheduler für die Lernrate, um das Mod
 Erstellen Sie den Standard-Lernratenplaner aus [`Trainer`]:
 
 ```py
->>> from transformers import get_scheduler
+>>> from transformers_openvla_oft import get_scheduler
 
 >>> num_epochs = 3
 >>> num_training_steps = num_epochs * len(train_dataloader)

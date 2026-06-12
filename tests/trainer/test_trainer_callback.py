@@ -17,7 +17,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from transformers import (
+from transformers_openvla_oft import (
     DefaultFlowCallback,
     IntervalStrategy,
     PrinterCallback,
@@ -27,11 +27,11 @@ from transformers import (
     TrainingArguments,
     is_torch_available,
 )
-from transformers.testing_utils import require_torch
+from transformers_openvla_oft.testing_utils import require_torch
 
 
 if is_torch_available():
-    from transformers.trainer import DEFAULT_CALLBACKS
+    from transformers_openvla_oft.trainer import DEFAULT_CALLBACKS
 
     from .test_trainer import RegressionDataset, RegressionModelConfig, RegressionPreTrainedModel
 
@@ -238,7 +238,7 @@ class TrainerCallbackTest(unittest.TestCase):
         self.assertEqual(events, self.get_expected_events(trainer))
 
         # warning should be emitted for duplicated callbacks
-        with patch("transformers.trainer_callback.logger.warning") as warn_mock:
+        with patch("transformers_openvla_oft.trainer_callback.logger.warning") as warn_mock:
             trainer = self.get_trainer(
                 callbacks=[MyTestTrainerCallback, MyTestTrainerCallback],
             )

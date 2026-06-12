@@ -38,7 +38,7 @@ configuraciones nos darán los diferentes tipos de ResNet que son posibles. Lueg
 después de verificar la validez de algunos de ellos.
 
 ```python
-from transformers import PretrainedConfig
+from transformers_openvla_oft import PretrainedConfig
 from typing import List
 
 
@@ -116,7 +116,7 @@ hacer antes de escribir esta clase es un mapeo entre los tipos de bloques y las 
 modelo desde la configuración pasando todo a la clase `ResNet`:
 
 ```py
-from transformers import PreTrainedModel
+from transformers_openvla_oft import PreTrainedModel
 from timm.models.resnet import BasicBlock, Bottleneck, ResNet
 from .configuration_resnet import ResnetConfig
 
@@ -317,7 +317,7 @@ obtener más información), pero aún debes revisar el código del modelo y el a
 en tu computadora. Configura `trust_remote_code=True` para usar un modelo con código personalizado:
 
 ```py
-from transformers import AutoModelForImageClassification
+from transformers_openvla_oft import AutoModelForImageClassification
 
 model = AutoModelForImageClassification.from_pretrained("sgugger/custom-resnet50d", trust_remote_code=True)
 ```
@@ -346,7 +346,7 @@ Siempre que tu configuración tenga un atributo `model_type` que sea diferente d
 clases modelo tengan los atributos `config_class` correctos, puedes agregarlos a las clases automáticas de la siguiente manera:
 
 ```py
-from transformers import AutoConfig, AutoModel, AutoModelForImageClassification
+from transformers_openvla_oft import AutoConfig, AutoModel, AutoModelForImageClassification
 
 AutoConfig.register("resnet", ResnetConfig)
 AutoModel.register(ResnetConfig, ResnetModel)

@@ -23,9 +23,9 @@ from huggingface_hub import HfFolder, delete_repo
 from parameterized import parameterized
 from requests.exceptions import HTTPError
 
-from transformers import AutoConfig, GenerationConfig
-from transformers.generation import GenerationMode
-from transformers.testing_utils import TOKEN, USER, is_staging_test
+from transformers_openvla_oft import AutoConfig, GenerationConfig
+from transformers_openvla_oft.generation import GenerationMode
+from transformers_openvla_oft.testing_utils import TOKEN, USER, is_staging_test
 
 
 class GenerationConfigTest(unittest.TestCase):

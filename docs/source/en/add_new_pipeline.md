@@ -31,7 +31,7 @@ Start by inheriting the base class `Pipeline` with the 4 methods needed to imple
 
 
 ```python
-from transformers import Pipeline
+from transformers_openvla_oft import Pipeline
 
 
 class MyPipeline(Pipeline):
@@ -121,7 +121,7 @@ of arguments for ease of use (audio files, which can be filenames, URLs or pure 
 To register your `new-task` to the list of supported tasks, you have to add it to the `PIPELINE_REGISTRY`:
 
 ```python
-from transformers.pipelines import PIPELINE_REGISTRY
+from transformers_openvla_oft.pipelines import PIPELINE_REGISTRY
 
 PIPELINE_REGISTRY.register_pipeline(
     "new-task",
@@ -150,7 +150,7 @@ python file. For instance, let's say we want to use a custom pipeline for senten
 ```py
 import numpy as np
 
-from transformers import Pipeline
+from transformers_openvla_oft import Pipeline
 
 
 def softmax(outputs):
@@ -188,8 +188,8 @@ a file named `pair_classification.py`, we can then import it and register it lik
 
 ```py
 from pair_classification import PairClassificationPipeline
-from transformers.pipelines import PIPELINE_REGISTRY
-from transformers import AutoModelForSequenceClassification, TFAutoModelForSequenceClassification
+from transformers_openvla_oft.pipelines import PIPELINE_REGISTRY
+from transformers_openvla_oft import AutoModelForSequenceClassification, TFAutoModelForSequenceClassification
 
 PIPELINE_REGISTRY.register_pipeline(
     "pair-classification",
@@ -203,7 +203,7 @@ Once this is done, we can use it with a pretrained model. For instance `sgugger/
 fine-tuned on the MRPC dataset, which classifies pairs of sentences as paraphrases or not.
 
 ```py
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 classifier = pipeline("pair-classification", model="sgugger/finetuned-bert-mrpc")
 ```
@@ -220,7 +220,7 @@ along with saving the model and tokenizer of the pipeline, before pushing everyt
 `trust_remote_code=True`:
 
 ```py
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 classifier = pipeline(model="{your_username}/test-dynamic-pipeline", trust_remote_code=True)
 ```

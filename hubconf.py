@@ -20,7 +20,7 @@ SRC_DIR = os.path.join(os.path.dirname(__file__), "src")
 sys.path.append(SRC_DIR)
 
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoConfig,
     AutoModel,
     AutoModelForCausalLM,

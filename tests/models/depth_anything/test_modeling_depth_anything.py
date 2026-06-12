@@ -17,9 +17,9 @@
 
 import unittest
 
-from transformers import DepthAnythingConfig, Dinov2Config
-from transformers.file_utils import is_torch_available, is_vision_available
-from transformers.testing_utils import require_torch, require_vision, slow, torch_device
+from transformers_openvla_oft import DepthAnythingConfig, Dinov2Config
+from transformers_openvla_oft.file_utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_torch, require_vision, slow, torch_device
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, floats_tensor, ids_tensor
@@ -29,13 +29,13 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import DepthAnythingForDepthEstimation
+    from transformers_openvla_oft import DepthAnythingForDepthEstimation
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import DPTImageProcessor
+    from transformers_openvla_oft import DPTImageProcessor
 
 
 class DepthAnythingModelTester:

@@ -106,7 +106,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티에
 다음 단계는 이미지를 텐서로 처리하기 위해 ViT 이미지 프로세서를 가져오는 것입니다:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> checkpoint = "google/vit-base-patch16-224-in21k"
 >>> image_processor = AutoImageProcessor.from_pretrained(checkpoint)
@@ -148,7 +148,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티에
 이제 [`DefaultDataCollator`]를 사용하여 예제 배치를 만듭니다. 🤗 Transformers의 다른 데이터 콜레이터와 달리, `DefaultDataCollator`는 패딩과 같은 추가적인 전처리를 적용하지 않습니다.
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
@@ -235,7 +235,7 @@ food["test"].set_transform(preprocess_val)
 `DefaultDataCollator`는 패딩과 같은 추가 전처리를 적용하지 않습니다.
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 ```
@@ -281,7 +281,7 @@ food["test"].set_transform(preprocess_val)
 이제 모델을 훈련시킬 준비가 되었습니다! [`AutoModelForImageClassification`]로 ViT를 가져옵니다. 예상되는 레이블 수, 레이블 매핑 및 레이블 수를 지정하세요:
 
 ```py
->>> from transformers import AutoModelForImageClassification, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForImageClassification, TrainingArguments, Trainer
 
 >>> model = AutoModelForImageClassification.from_pretrained(
 ...     checkpoint,
@@ -328,7 +328,7 @@ food["test"].set_transform(preprocess_val)
 >>> trainer.train()
 ```
 
-훈련이 완료되면, 모든 사람이 모델을 사용할 수 있도록 [`~transformers.Trainer.push_to_hub`] 메소드로 모델을 허브에 공유하세요:
+훈련이 완료되면, 모든 사람이 모델을 사용할 수 있도록 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드로 모델을 허브에 공유하세요:
 
 ```py
 >>> trainer.push_to_hub()
@@ -356,7 +356,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 하이퍼파라미터, 옵티마이저 및 학습률 스케쥴을 정의하는 것으로 시작합니다:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_epochs = 5
@@ -375,7 +375,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 그런 다음 레이블 매핑과 함께 [`TFAuto ModelForImageClassification`]으로 ViT를 가져옵니다:
 
 ```py
->>> from transformers import TFAutoModelForImageClassification
+>>> from transformers_openvla_oft import TFAutoModelForImageClassification
 
 >>> model = TFAutoModelForImageClassification.from_pretrained(
 ...     checkpoint,
@@ -412,7 +412,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 [PushToHubCallback](../main_classes/keras_callbacks#transformers.PushToHubCallback)을 사용하여 모델을 업로드합니다:
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback, PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback, PushToHubCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_eval_dataset)
 >>> push_to_hub_callback = PushToHubCallback(
@@ -469,7 +469,7 @@ Epoch 5/5
 미세 조정 모델로 추론을 시도하는 가장 간단한 방법은 [`pipeline`]을 사용하는 것입니다. 모델로 이미지 분류를 위한 `pipeline`을 인스턴스화하고 이미지를 전달합니다:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline("image-classification", model="my_awesome_food_model")
 >>> classifier(image)
@@ -487,7 +487,7 @@ Epoch 5/5
 이미지를 전처리하기 위해 이미지 프로세서를 가져오고 `input`을 PyTorch 텐서로 반환합니다:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 >>> import torch
 
 >>> image_processor = AutoImageProcessor.from_pretrained("my_awesome_food_model")
@@ -497,7 +497,7 @@ Epoch 5/5
 입력을 모델에 전달하고 logits을 반환합니다:
 
 ```py
->>> from transformers import AutoModelForImageClassification
+>>> from transformers_openvla_oft import AutoModelForImageClassification
 
 >>> model = AutoModelForImageClassification.from_pretrained("my_awesome_food_model")
 >>> with torch.no_grad():
@@ -519,7 +519,7 @@ Epoch 5/5
 이미지를 전처리하기 위해 이미지 프로세서를 가져오고 `input`을 TensorFlow 텐서로 반환합니다:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("MariaK/food_classifier")
 >>> inputs = image_processor(image, return_tensors="tf")
@@ -528,7 +528,7 @@ Epoch 5/5
 입력을 모델에 전달하고 logits을 반환합니다:
 
 ```py
->>> from transformers import TFAutoModelForImageClassification
+>>> from transformers_openvla_oft import TFAutoModelForImageClassification
 
 >>> model = TFAutoModelForImageClassification.from_pretrained("MariaK/food_classifier")
 >>> logits = model(**inputs).logits

@@ -22,15 +22,15 @@ import unittest
 import numpy as np
 import requests
 
-from transformers import CONFIG_MAPPING, Blip2Config, Blip2QFormerConfig, Blip2VisionConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft import CONFIG_MAPPING, Blip2Config, Blip2QFormerConfig, Blip2VisionConfig
+from transformers_openvla_oft.testing_utils import (
     require_torch,
     require_torch_multi_accelerator,
     require_vision,
     slow,
     torch_device,
 )
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -48,13 +48,13 @@ if is_torch_available():
     import torch
     from torch import nn
 
-    from transformers import Blip2ForConditionalGeneration, Blip2Model, Blip2VisionModel
+    from transformers_openvla_oft import Blip2ForConditionalGeneration, Blip2Model, Blip2VisionModel
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import Blip2Processor
+    from transformers_openvla_oft import Blip2Processor
 
 
 class Blip2VisionModelTester:

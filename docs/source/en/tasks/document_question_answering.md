@@ -164,7 +164,7 @@ The Document Question Answering task is a multimodal task, and you need to make 
 are preprocessed according to the model's expectations. Let's start by loading the [`LayoutLMv2Processor`], which internally combines an image processor that can handle image data and a tokenizer that can encode text data.
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained(model_checkpoint)
 ```
@@ -378,7 +378,7 @@ Training involves the following steps:
 * Call [`~Trainer.train`] to finetune your model.
 
 ```py
->>> from transformers import AutoModelForDocumentQuestionAnswering
+>>> from transformers_openvla_oft import AutoModelForDocumentQuestionAnswering
 
 >>> model = AutoModelForDocumentQuestionAnswering.from_pretrained(model_checkpoint)
 ```
@@ -388,7 +388,7 @@ If you wish to share your model with the community, set `push_to_hub` to `True` 
 In this case the `output_dir` will also be the name of the repo where your model checkpoint will be pushed.
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> # REPLACE THIS WITH YOUR REPO ID
 >>> repo_id = "MariaK/layoutlmv2-base-uncased_finetuned_docvqa"
@@ -410,7 +410,7 @@ In this case the `output_dir` will also be the name of the repo where your model
 Define a simple data collator to batch examples together.
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
@@ -418,7 +418,7 @@ Define a simple data collator to batch examples together.
 Finally, bring everything together, and call [`~Trainer.train`]:
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -459,7 +459,7 @@ Next, instantiate a pipeline for
 document question answering with your model, and pass the image + question combination to it.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> qa_pipeline = pipeline("document-question-answering", model="MariaK/layoutlmv2-base-uncased_finetuned_docvqa")
 >>> qa_pipeline(image, question)
@@ -479,8 +479,8 @@ which token is at the end of the answer. Both have shape (batch_size, sequence_l
 
 ```py
 >>> import torch
->>> from transformers import AutoProcessor
->>> from transformers import AutoModelForDocumentQuestionAnswering
+>>> from transformers_openvla_oft import AutoProcessor
+>>> from transformers_openvla_oft import AutoModelForDocumentQuestionAnswering
 
 >>> processor = AutoProcessor.from_pretrained("MariaK/layoutlmv2-base-uncased_finetuned_docvqa")
 >>> model = AutoModelForDocumentQuestionAnswering.from_pretrained("MariaK/layoutlmv2-base-uncased_finetuned_docvqa")

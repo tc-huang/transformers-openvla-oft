@@ -19,7 +19,7 @@ import pytest
 from datasets import Audio, load_dataset
 from huggingface_hub import hf_hub_download, snapshot_download
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_CTC_MAPPING,
     MODEL_FOR_SPEECH_SEQ_2_SEQ_MAPPING,
     AutoFeatureExtractor,
@@ -29,10 +29,10 @@ from transformers import (
     Wav2Vec2ForCTC,
     WhisperForConditionalGeneration,
 )
-from transformers.pipelines import AutomaticSpeechRecognitionPipeline, pipeline
-from transformers.pipelines.audio_utils import chunk_bytes_iter
-from transformers.pipelines.automatic_speech_recognition import _find_timestamp_sequence, chunk_iter
-from transformers.testing_utils import (
+from transformers_openvla_oft.pipelines import AutomaticSpeechRecognitionPipeline, pipeline
+from transformers_openvla_oft.pipelines.audio_utils import chunk_bytes_iter
+from transformers_openvla_oft.pipelines.automatic_speech_recognition import _find_timestamp_sequence, chunk_iter
+from transformers_openvla_oft.testing_utils import (
     is_pipeline_test,
     is_torch_available,
     nested_simplify,
@@ -1504,7 +1504,7 @@ class AutomaticSpeechRecognitionPipelineTests(unittest.TestCase):
     @slow
     @require_torch_accelerator
     def test_slow_unfinished_sequence(self):
-        from transformers import GenerationConfig
+        from transformers_openvla_oft import GenerationConfig
 
         pipe = pipeline(
             "automatic-speech-recognition",

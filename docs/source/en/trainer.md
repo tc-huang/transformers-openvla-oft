@@ -53,7 +53,7 @@ The [`Trainer`] class abstracts all of this code away so you don't have to worry
 If you want to specify any training options or hyperparameters, you can find them in the [`TrainingArguments`] class. For example, let's define where to save the model in `output_dir` and push the model to the Hub after training with `push_to_hub=True`.
 
 ```py
-from transformers import TrainingArguments
+from transformers_openvla_oft import TrainingArguments
 
 training_args = TrainingArguments(
     output_dir="your-model",
@@ -74,7 +74,7 @@ Pass `training_args` to the [`Trainer`] along with a model, dataset, something t
 Finally, call [`~Trainer.train`] to start training!
 
 ```py
-from transformers import Trainer
+from transformers_openvla_oft import Trainer
 
 trainer = Trainer(
     model=model,
@@ -127,7 +127,7 @@ For example, if you want to customize the [`~Trainer.compute_loss`] method to us
 
 ```py
 from torch import nn
-from transformers import Trainer
+from transformers_openvla_oft import Trainer
 
 class CustomTrainer(Trainer):
     def compute_loss(self, model, inputs, return_outputs=False):
@@ -148,7 +148,7 @@ Another option for customizing the [`Trainer`] is to use [callbacks](callbacks).
 For example, if you want to add an early stopping callback to the training loop after 10 steps.
 
 ```py
-from transformers import TrainerCallback
+from transformers_openvla_oft import TrainerCallback
 
 class EarlyStoppingCallback(TrainerCallback):
     def __init__(self, num_steps=10):
@@ -164,7 +164,7 @@ class EarlyStoppingCallback(TrainerCallback):
 Then pass it to the [`Trainer`]'s `callback` parameter.
 
 ```py
-from transformers import Trainer
+from transformers_openvla_oft import Trainer
 
 trainer = Trainer(
     model=model,
@@ -210,7 +210,7 @@ logging.basicConfig(
 log_level = training_args.get_process_log_level()
 logger.setLevel(log_level)
 datasets.utils.logging.set_verbosity(log_level)
-transformers.utils.logging.set_verbosity(log_level)
+transformers_openvla_oft.utils.logging.set_verbosity(log_level)
 
 trainer = Trainer(...)
 ```
@@ -244,7 +244,7 @@ my_app.py ... --log_level error --log_level_replica error --log_on_each_node 0
 [NEFTune](https://hf.co/papers/2310.05914) is a technique that can improve performance by adding noise to the embedding vectors during training. To enable it in [`Trainer`], set the `neftune_noise_alpha` parameter in [`TrainingArguments`] to control how much noise is added.
 
 ```py
-from transformers import TrainingArguments, Trainer
+from transformers_openvla_oft import TrainingArguments, Trainer
 
 training_args = TrainingArguments(..., neftune_noise_alpha=0.1)
 trainer = Trainer(..., args=training_args)
@@ -269,7 +269,7 @@ import torch
 import datasets
 import trl
 
-from transformers import TrainingArguments, AutoConfig, AutoTokenizer, AutoModelForCausalLM
+from transformers_openvla_oft import TrainingArguments, AutoConfig, AutoTokenizer, AutoModelForCausalLM
 
 train_dataset = datasets.load_dataset('imdb', split='train')
 
@@ -306,7 +306,7 @@ import torch
 import datasets
 import trl
 
-from transformers import TrainingArguments, AutoConfig, AutoTokenizer, AutoModelForCausalLM
+from transformers_openvla_oft import TrainingArguments, AutoConfig, AutoTokenizer, AutoModelForCausalLM
 
 train_dataset = datasets.load_dataset('imdb', split='train')
 
@@ -350,7 +350,7 @@ import torch
 import datasets
 import trl
 
-from transformers import TrainingArguments, AutoConfig, AutoTokenizer, AutoModelForCausalLM
+from transformers_openvla_oft import TrainingArguments, AutoConfig, AutoTokenizer, AutoModelForCausalLM
 
 train_dataset = datasets.load_dataset('imdb', split='train')
 

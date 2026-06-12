@@ -1,6 +1,6 @@
 import torch
 
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 
 class FSNERTokenizerUtils(object):
@@ -14,7 +14,7 @@ class FSNERTokenizerUtils(object):
             x (`List[str] or List[List[str]]`):
                 List of strings for query or list of lists of strings for supports.
         Returns:
-            `transformers.tokenization_utils_base.BatchEncoding` dict with additional keys and values for start_token_id, end_token_id and sizes of example lists for each entity type
+            `transformers_openvla_oft.tokenization_utils_base.BatchEncoding` dict with additional keys and values for start_token_id, end_token_id and sizes of example lists for each entity type
         """
 
         if isinstance(x, list) and all(isinstance(_x, list) for _x in x):

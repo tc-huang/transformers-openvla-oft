@@ -275,7 +275,7 @@ conda install -c conda-forge neptune
 Next, in your model training script, import `NeptuneCallback`:
 
 ```python
-from transformers.integrations import NeptuneCallback
+from transformers_openvla_oft.integrations import NeptuneCallback
 ```
 
 To enable Neptune logging, in your `TrainingArguments`, set the `report_to` argument to `"neptune"`:

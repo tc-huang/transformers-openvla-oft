@@ -16,8 +16,8 @@
 
 import unittest
 
-from transformers import Speech2Text2Config
-from transformers.testing_utils import is_torch_available, require_torch, torch_device
+from transformers_openvla_oft import Speech2Text2Config
+from transformers_openvla_oft.testing_utils import is_torch_available, require_torch, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -28,7 +28,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers.models.speech_to_text_2.modeling_speech_to_text_2 import (
+    from transformers_openvla_oft.models.speech_to_text_2.modeling_speech_to_text_2 import (
         Speech2Text2Decoder,
         Speech2Text2ForCausalLM,
     )

@@ -18,14 +18,14 @@ import unittest
 
 import numpy as np
 
-from transformers.file_utils import is_vision_available
-from transformers.testing_utils import require_torch, require_vision
+from transformers_openvla_oft.file_utils import is_vision_available
+from transformers_openvla_oft.testing_utils import require_torch, require_vision
 
 from ...test_image_processing_common import ImageProcessingTestMixin, prepare_image_inputs
 
 
 if is_vision_available():
-    from transformers import DPTImageProcessor
+    from transformers_openvla_oft import DPTImageProcessor
 
 
 class DPTImageProcessingTester(unittest.TestCase):

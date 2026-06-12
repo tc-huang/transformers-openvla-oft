@@ -85,7 +85,7 @@ optimum-cli export onnx --model local_path --task question-answering distilbert_
 그 결과로 생성된 `model.onnx` 파일은 ONNX 표준을 지원하는 많은 [가속기](https://onnx.ai/supported-tools.html#deployModel) 중 하나에서 실행할 수 있습니다. 예를 들어, [ONNX Runtime](https://onnxruntime.ai/)을 사용하여 모델을 로드하고 실행할 수 있습니다:
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> from optimum.onnxruntime import ORTModelForQuestionAnswering
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert_base_uncased_squad_onnx")
@@ -106,7 +106,7 @@ CLI 대신에 `optimum.onnxruntime`을 사용하여 프로그래밍 방식으로
 
 ```python
 >>> from optimum.onnxruntime import ORTModelForSequenceClassification
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> model_checkpoint = "distilbert_base_uncased_squad"
 >>> save_directory = "onnx/"
@@ -124,7 +124,7 @@ CLI 대신에 `optimum.onnxruntime`을 사용하여 프로그래밍 방식으로
 
 현재 내보낼 수 없는 모델을 지원하기 위해 기여하려면, 먼저 [`optimum.exporters.onnx`](https://huggingface.co/docs/optimum/exporters/onnx/overview)에서 지원되는지 확인한 후 지원되지 않는 경우에는 [🤗 Optimum에 기여](https://huggingface.co/docs/optimum/exporters/onnx/usage_guides/contribute)하세요.
 
-### `transformers.onnx`를 사용하여 모델 내보내기 [[exporting-a-model-with-transformersonnx]]
+### `transformers_openvla_oft.onnx`를 사용하여 모델 내보내기 [[exporting-a-model-with-transformersonnx]]
 
 <Tip warning={true}>
 
@@ -138,16 +138,16 @@ CLI 대신에 `optimum.onnxruntime`을 사용하여 프로그래밍 방식으로
 pip install transformers[onnx]
 ```
 
-`transformers.onnx` 패키지를 Python 모듈로 사용하여 준비된 구성을 사용하여 체크포인트를 내보냅니다:
+`transformers_openvla_oft.onnx` 패키지를 Python 모듈로 사용하여 준비된 구성을 사용하여 체크포인트를 내보냅니다:
 
 ```bash
-python -m transformers.onnx --model=distilbert/distilbert-base-uncased onnx/
+python -m transformers_openvla_oft.onnx --model=distilbert/distilbert-base-uncased onnx/
 ```
 
 이렇게 하면 `--model` 인수에 정의된 체크포인트의 ONNX 그래프가 내보내집니다. 🤗 Hub에서 제공하는 체크포인트나 로컬에 저장된 체크포인트를 전달할 수 있습니다. 결과로 생성된 `model.onnx` 파일은 ONNX 표준을 지원하는 많은 가속기 중 하나에서 실행할 수 있습니다. 예를 들어, 다음과 같이 ONNX Runtime을 사용하여 모델을 로드하고 실행할 수 있습니다:
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> from onnxruntime import InferenceSession
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
@@ -160,7 +160,7 @@ python -m transformers.onnx --model=distilbert/distilbert-base-uncased onnx/
 필요한 출력 이름(예: `["last_hidden_state"]`)은 각 모델의 ONNX 구성을 확인하여 얻을 수 있습니다. 예를 들어, DistilBERT의 경우 다음과 같습니다:
 
 ```python
->>> from transformers.models.distilbert import DistilBertConfig, DistilBertOnnxConfig
+>>> from transformers_openvla_oft.models.distilbert import DistilBertConfig, DistilBertOnnxConfig
 
 >>> config = DistilBertConfig()
 >>> onnx_config = DistilBertOnnxConfig(config)
@@ -171,11 +171,11 @@ python -m transformers.onnx --model=distilbert/distilbert-base-uncased onnx/
 Hub의 TensorFlow 체크포인트에 대해서도 동일한 프로세스가 적용됩니다. 예를 들어, 다음과 같이 순수한 TensorFlow 체크포인트를 내보냅니다:
 
 ```bash
-python -m transformers.onnx --model=keras-io/transformers-qa onnx/
+python -m transformers_openvla_oft.onnx --model=keras-io/transformers-qa onnx/
 ```
 
-로컬에 저장된 모델을 내보내려면 모델의 가중치 파일과 토크나이저 파일을 동일한 디렉토리에 저장한 다음, transformers.onnx 패키지의 --model 인수를 원하는 디렉토리로 지정하여 ONNX로 내보냅니다:
+로컬에 저장된 모델을 내보내려면 모델의 가중치 파일과 토크나이저 파일을 동일한 디렉토리에 저장한 다음, transformers_openvla_oft.onnx 패키지의 --model 인수를 원하는 디렉토리로 지정하여 ONNX로 내보냅니다:
 
 ```bash
-python -m transformers.onnx --model=local-pt-checkpoint onnx/
+python -m transformers_openvla_oft.onnx --model=local-pt-checkpoint onnx/
 ```

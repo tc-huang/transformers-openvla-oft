@@ -37,7 +37,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="audio-classification", model="superb/hubert-base-superb-er")
 >>> preds = classifier("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -57,7 +57,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline(task="automatic-speech-recognition", model="openai/whisper-small")
 >>> transcriber("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -85,7 +85,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="image-classification")
 >>> preds = classifier(
@@ -110,7 +110,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> detector = pipeline(task="object-detection")
 >>> preds = detector(
@@ -135,7 +135,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> segmenter = pipeline(task="image-segmentation")
 >>> preds = segmenter(
@@ -159,7 +159,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> depth_estimator = pipeline(task="depth-estimation")
 >>> preds = depth_estimator(
@@ -181,7 +181,7 @@ NLPタスクは、テキストが私たちにとって自然なコミュニケ�
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="sentiment-analysis")
 >>> preds = classifier("Hugging Face is the best thing since sliced bread!")
@@ -201,7 +201,7 @@ NLPタスクは、テキストが私たちにとって自然なコミュニケ�
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="ner")
 >>> preds = classifier("Hugging Face is a French company based in New York City.")
@@ -237,7 +237,7 @@ NLPタスクは、テキストが私たちにとって自然なコミュニケ�
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> question_answerer = pipeline(task="question-answering")
 >>> preds = question_answerer(
@@ -261,7 +261,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> summarizer = pipeline(task="summarization")
 >>> summarizer(
@@ -278,7 +278,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> text = "translate English to French: Hugging Face is a community-based open-source platform for machine learning."
 >>> translator = pipeline(task="translation", model="google-t5/t5-small")
@@ -295,7 +295,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 * 因果的：モデルの目標は、シーケンス内の次のトークンを予測することであり、将来のトークンはマスクされます。
 
     ```py
-    >>> from transformers import pipeline
+    >>> from transformers_openvla_oft import pipeline
 
     >>> prompt = "Hugging Face is a community-based open-source platform for machine learning."
     >>> generator = pipeline(task="text-generation")
@@ -336,7 +336,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> from PIL import Image
 >>> import requests
 

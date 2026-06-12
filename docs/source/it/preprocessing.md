@@ -43,7 +43,7 @@ Iniziamo subito caricando un tokenizer preaddestrato con la classe [`AutoTokeniz
 Carica un tokenizer preaddestrato con [`AutoTokenizer.from_pretrained`]:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 ```
@@ -258,7 +258,7 @@ Il prossimo passo è caricare un estrattore di caratteristiche per normalizzare 
 Carica l'estrattore delle caratteristiche con [`AutoFeatureExtractor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("facebook/wav2vec2-base")
 ```
@@ -342,7 +342,7 @@ Secondo passo, dai uno sguardo alle immagini usando la caratteristica [`Image`](
 Carica l'estrattore di caratteristiche [`AutoFeatureExtractor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("google/vit-base-patch16-224")
 ```
@@ -464,7 +464,7 @@ Ricorda dalla sezione precedente sull'elaborazione dei dati audio, tu dovresti s
 Un processor combina un estrattore di caratteristiche e un tokenizer. Carica un processor con [`AutoProcessor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base-960h")
 ```

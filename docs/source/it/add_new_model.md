@@ -106,7 +106,7 @@ Quando codifichi un nuovo modello, tieni presente che Transformers ha una sua st
 ci sono alcuni fatti da considerare su come scrivere un codice :-)
 
 1. Il forward pass del tuo modello dev'essere scritto completamente nel file del modello, mentre dev'essere indipendente 
-   da altri modelli nella libreria. Se vuoi riutilizzare un blocco di codice da un altro modello, copia e incolla il codice con un commento `# Copied from` in cima al codice (guarda [qui](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers/models/roberta/modeling_roberta.py#L160)
+   da altri modelli nella libreria. Se vuoi riutilizzare un blocco di codice da un altro modello, copia e incolla il codice con un commento `# Copied from` in cima al codice (guarda [qui](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L160)
    per un ottimo esempio).
 2. Il codice dev'essere interamente comprensibile, anche da persone che non parlano in inglese. Questo significa che le 
    variabili devono avere un nome descrittivo e bisogna evitare abbreviazioni. Per esempio, `activation` é molto meglio 
@@ -332,7 +332,7 @@ debug da questo punto. Questo vi garantisce un ottimo punto di partenza per scri
 gli input al modello, anziche delle stringhe in input. 
 - Assicuratevi che il debugging **non** sia in training mode. Spesso questo potra il modello a dare degli output random, per 
 via dei molteplici dropout layers. Assicuratevi che il forward pass nell'ambiente di debug sia **deterministico**, cosicche 
-i dropout non siano usati. Alternativamente, potete usare *transformers.utils.set_seed* se la vecchia e nuova implementazione 
+i dropout non siano usati. Alternativamente, potete usare *transformers_openvla_oft.utils.set_seed* se la vecchia e nuova implementazione 
 sono nello stesso framework.
 
 La seguente sezione vi da ulteriori dettagli e accorgimenti su come potete fare tutto questo per *brand_new_bert*.
@@ -424,11 +424,11 @@ di chiedere al team Hugging Face direttamente su slack o email.
 **5. Adattare i codici per brand_new_bert**
 
 Per prima cosa, ci focalizzeremo sul modello e non sui tokenizer. Tutto il codice relative dovrebbe trovarsi in  
-`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` e
-`src/transformers/models/brand_new_bert/configuration_brand_new_bert.py`.
+`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` e
+`src/transformers_openvla_oft/models/brand_new_bert/configuration_brand_new_bert.py`.
 
 Ora potete finalmente cominciare il codice :). Il codice generato in 
-`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` avrà sia la stessa architettura di BERT se é un 
+`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` avrà sia la stessa architettura di BERT se é un 
 modello encoder-only o BART se é encoder-decoder. A questo punto, ricordatevi cio che avete imparato all'inizio, riguardo 
 agli aspetti teorici del modello: *In che maniera il modello che sto implmementando é diverso da BERT o BART?*. Implementare 
 questi cambi  spesso vuol dire cambiare il layer *self-attention*, l'ordine dei layer di normalizzazione e così via... 
@@ -436,13 +436,13 @@ Ancora una volta ripetiamo, é molto utile vedere architetture simili di modelli
 un'idea migliore su come implementare il modello. 
 
 **Notate** che a questo punto non dovete avere subito un codice tutto corretto o pulito. Piuttosto, é consigliato cominciare con un 
-codice poco pulito, con copia-incolla del codice originale in `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` 
+codice poco pulito, con copia-incolla del codice originale in `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` 
 fino a che non avrete tutto il codice necessario. In base alla nostra esperienza, é molto meglio aggiungere una prima bozza 
 del codice richiesto e poi correggere e migliorare iterativamente. L'unica cosa essenziale che deve funzionare qui é la seguente 
 instanza: 
 
 ```python
-from transformers import BrandNewBertModel, BrandNewBertConfig
+from transformers_openvla_oft import BrandNewBertModel, BrandNewBertConfig
 
 model = BrandNewBertModel(BrandNewBertConfig())
 ```
@@ -459,8 +459,8 @@ lo script di conversione da zero, ma piuttosto cercate e guardate script gia esi
 uno simile al vostro modello. Di solito basta fare una copia di uno script gia esistente e adattarlo al vostro caso. 
 Non esistate a chiedre al team di Hugging Face a riguardo.
 
-- Se state convertendo un modello da TensorFlow a PyTorch, un ottimo inizio é vedere [questo script di conversione per BERT](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers/models/bert/modeling_bert.py#L91)
-- Se state convertendo un modello da PyTorch a PyTorch, [lo script di conversione di BART può esservi utile](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
+- Se state convertendo un modello da TensorFlow a PyTorch, un ottimo inizio é vedere [questo script di conversione per BERT](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers_openvla_oft/models/bert/modeling_bert.py#L91)
+- Se state convertendo un modello da PyTorch a PyTorch, [lo script di conversione di BART può esservi utile](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
 
 Qui di seguito spiegheremo come i modelli PyTorch salvano i weights per ogni layer e come i nomi dei layer sono definiti. In PyTorch, 
 il nomde del layer é definito dal nome della class attribute che date al layer. Definiamo un modello dummy in PyTorch, 
@@ -677,7 +677,7 @@ A volte capita di dover riscrivere il tokenizer nella repo originaria, di modo d
 A quel punto uno script analogo é necessario in 🤗 Transformers:
 
 ```python
-from transformers import BrandNewBertTokenizer
+from transformers_openvla_oft import BrandNewBertTokenizer
 
 input_str = "This is a long example input string containing special characters .$?-, numbers 2872 234 12 and words."
 
@@ -709,7 +709,7 @@ per usare il vostro modello sarà dare una bella lettura al doc. Quindi proponet
 utile per la community avere anche delle *Tips* per mostrare come il modello puo' essere usato. Non esitate a chiedere a Hugging Face 
 riguardo alle docstirng. 
 
-Quindi, assicuratevi che la docstring sia stata aggiunta a `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py`. 
+Quindi, assicuratevi che la docstring sia stata aggiunta a `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py`. 
 Assicuratevi che la docstring sia corretta e che includa tutti i necessari input e output. Abbiamo una guida dettagliata per 
 scrivere la documentazione e docstring.
 

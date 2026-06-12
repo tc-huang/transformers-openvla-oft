@@ -128,7 +128,7 @@ DatasetDict({
 다음 단계는 오디오 신호를 처리하기 위해 Wav2Vec2 특징 추출기를 가져오는 것입니다:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("facebook/wav2vec2-base")
 ```
@@ -203,7 +203,7 @@ MinDS-14 데이터 세트의 샘플링 속도는 8000khz이므로(이 정보는 
 이제 모델 훈련을 시작할 준비가 되었습니다! [`AutoModelForAudioClassification`]을 이용해서 Wav2Vec2를 불러옵니다. 예상되는 레이블 수와 레이블 매핑을 지정합니다:
 
 ```py
->>> from transformers import AutoModelForAudioClassification, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForAudioClassification, TrainingArguments, Trainer
 
 >>> num_labels = len(id2label)
 >>> model = AutoModelForAudioClassification.from_pretrained(
@@ -247,7 +247,7 @@ MinDS-14 데이터 세트의 샘플링 속도는 8000khz이므로(이 정보는 
 >>> trainer.train()
 ```
 
-훈련이 완료되면 모든 사람이 모델을 사용할 수 있도록 [`~transformers.Trainer.push_to_hub`] 메소드를 사용하여 모델을 허브에 공유하세요:
+훈련이 완료되면 모든 사람이 모델을 사용할 수 있도록 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드를 사용하여 모델을 허브에 공유하세요:
 
 ```py
 >>> trainer.push_to_hub()
@@ -279,7 +279,7 @@ For a more in-depth example of how to finetune a model for audio classification,
 추론을 위해 미세 조정한 모델을 시험해 보는 가장 간단한 방법은 [`pipeline`]에서 사용하는 것입니다. 모델을 사용하여 오디오 분류를 위한 `pipeline`을 인스턴스화하고 오디오 파일을 전달합니다:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline("audio-classification", model="stevhliu/my_awesome_minds_model")
 >>> classifier(audio_file)
@@ -299,7 +299,7 @@ For a more in-depth example of how to finetune a model for audio classification,
 특징 추출기를 가져와서 오디오 파일을 전처리하고 `입력`을 PyTorch 텐서로 반환합니다:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("stevhliu/my_awesome_minds_model")
 >>> inputs = feature_extractor(dataset[0]["audio"]["array"], sampling_rate=sampling_rate, return_tensors="pt")
@@ -308,7 +308,7 @@ For a more in-depth example of how to finetune a model for audio classification,
 모델에 입력을 전달하고 로짓을 반환합니다:
 
 ```py
->>> from transformers import AutoModelForAudioClassification
+>>> from transformers_openvla_oft import AutoModelForAudioClassification
 
 >>> model = AutoModelForAudioClassification.from_pretrained("stevhliu/my_awesome_minds_model")
 >>> with torch.no_grad():

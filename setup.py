@@ -55,8 +55,8 @@ To create the package for pypi.
    pip install -i https://testpypi.python.org/pypi transformers
 
    Check you can run the following commands:
-   python -c "from transformers import pipeline; classifier = pipeline('text-classification'); print(classifier('What a nice release'))"
-   python -c "from transformers import *"
+   python -c "from transformers_openvla_oft import pipeline; classifier = pipeline('text-classification'); print(classifier('What a nice release'))"
+   python -c "from transformers_openvla_oft import *"
    python utils/check_build.py --check_lib
 
    If making a patch release, double check the bug you are patching is indeed resolved.
@@ -75,8 +75,8 @@ from pathlib import Path
 from setuptools import Command, find_packages, setup
 
 
-# Remove stale transformers.egg-info directory to avoid https://github.com/pypa/pip/issues/5466
-stale_egg_info = Path(__file__).parent / "transformers.egg-info"
+# Remove stale transformers_openvla_oft.egg-info directory to avoid https://github.com/pypa/pip/issues/5466
+stale_egg_info = Path(__file__).parent / "transformers_openvla_oft.egg-info"
 if stale_egg_info.exists():
     print(
         (
@@ -93,7 +93,7 @@ if stale_egg_info.exists():
 
 # IMPORTANT:
 # 1. all dependencies should be listed here with their version requirements if any
-# 2. once modified, run: `make deps_table_update` to update src/transformers/dependency_versions_table.py
+# 2. once modified, run: `make deps_table_update` to update src/transformers_openvla_oft/dependency_versions_table.py
 _deps = [
     "Pillow>=10.0.1,<=15.0",
     "accelerate>=0.21.0",
@@ -195,10 +195,10 @@ _deps = [
 # some of the values are versioned whereas others aren't.
 deps = {b: a for a, b in (re.findall(r"^(([^!=<>~ ]+)(?:[!=<>~ ].*)?$)", x)[0] for x in _deps)}
 
-# since we save this data in src/transformers/dependency_versions_table.py it can be easily accessed from
+# since we save this data in src/transformers_openvla_oft/dependency_versions_table.py it can be easily accessed from
 # anywhere. If you need to quickly access the data from this table in a shell, you can do so easily with:
 #
-# python -c 'import sys; from transformers.dependency_versions_table import deps; \
+# python -c 'import sys; from transformers_openvla_oft.dependency_versions_table import deps; \
 # print(" ".join([ deps[x] for x in sys.argv[1:]]))' tokenizers datasets
 #
 # Just pass the desired package names to that script as it's shown with 2 packages above.
@@ -207,7 +207,7 @@ deps = {b: a for a, b in (re.findall(r"^(([^!=<>~ ]+)(?:[!=<>~ ].*)?$)", x)[0] f
 #
 # You can then feed this for example to `pip`:
 #
-# pip install -U $(python -c 'import sys; from transformers.dependency_versions_table import deps; \
+# pip install -U $(python -c 'import sys; from transformers_openvla_oft.dependency_versions_table import deps; \
 # print(" ".join([deps[x] for x in sys.argv[1:]]))' tokenizers datasets)
 #
 
@@ -225,7 +225,7 @@ class DepsTableUpdateCommand(Command):
     description = "build runtime dependency table"
     user_options = [
         # format: (long option, short option, description).
-        ("dep-table-update", None, "updates src/transformers/dependency_versions_table.py"),
+        ("dep-table-update", None, "updates src/transformers_openvla_oft/dependency_versions_table.py"),
     ]
 
     def initialize_options(self):
@@ -245,7 +245,7 @@ class DepsTableUpdateCommand(Command):
             "}",
             "",
         ]
-        target = "src/transformers/dependency_versions_table.py"
+        target = "src/transformers_openvla_oft/dependency_versions_table.py"
         print(f"updating {target}")
         with open(target, "w", encoding="utf-8", newline="\n") as f:
             f.write("\n".join(content))
@@ -413,7 +413,7 @@ extras["agents"] = deps_list(
     "diffusers", "accelerate", "datasets", "torch", "sentencepiece", "opencv-python", "Pillow"
 )
 
-# when modifying the following list, make sure to update src/transformers/dependency_versions_check.py
+# when modifying the following list, make sure to update src/transformers_openvla_oft/dependency_versions_check.py
 install_requires = [
     deps["filelock"],  # filesystem locks, e.g., to prevent parallel downloads
     deps["huggingface-hub"],
@@ -428,7 +428,7 @@ install_requires = [
 ]
 
 setup(
-    name="transformers",
+    name="transformers_openvla_oft",
     version="4.40.1",  # expected format is one of x.y.z.dev0, or x.y.z.rc1 or x.y.z (no to dashes, yes to dots)
     author="The Hugging Face team (past and future) with the help of all our contributors (https://github.com/huggingface/transformers/graphs/contributors)",
     author_email="transformers@huggingface.co",
@@ -444,7 +444,7 @@ setup(
     package_data={"": ["**/*.cu", "**/*.cpp", "**/*.cuh", "**/*.h", "**/*.pyx"]},
     zip_safe=False,
     extras_require=extras,
-    entry_points={"console_scripts": ["transformers-cli=transformers.commands.transformers_cli:main"]},
+    entry_points={"console_scripts": ["transformers-cli=transformers_openvla_oft.commands.transformers_cli:main"]},
     python_requires=">=3.8.0",
     install_requires=list(install_requires),
     classifiers=[

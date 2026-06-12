@@ -24,7 +24,7 @@ import re
 import tensorflow as tf
 from packaging.version import parse
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoConfig,
     AutoTokenizer,
     DataCollatorForLanguageModeling,

@@ -19,9 +19,9 @@ import unittest
 
 import numpy as np
 
-from transformers import BlipTextConfig
-from transformers.testing_utils import require_tf, slow
-from transformers.utils import is_tf_available
+from transformers_openvla_oft import BlipTextConfig
+from transformers_openvla_oft.testing_utils import require_tf, slow
+from transformers_openvla_oft.utils import is_tf_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_tf_common import TFModelTesterMixin, ids_tensor, random_attention_mask
@@ -30,7 +30,7 @@ from ...test_modeling_tf_common import TFModelTesterMixin, ids_tensor, random_at
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import TFBlipTextModel
+    from transformers_openvla_oft import TFBlipTextModel
 
 
 class BlipTextModelTester:

@@ -20,7 +20,7 @@ import unittest
 
 import requests
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoProcessor,
     AutoTokenizer,
     LlavaConfig,
@@ -28,7 +28,7 @@ from transformers import (
     is_torch_available,
     is_vision_available,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     require_bitsandbytes,
     require_torch,
     require_torch_gpu,

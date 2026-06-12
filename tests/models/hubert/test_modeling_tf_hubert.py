@@ -26,8 +26,8 @@ import unittest
 import numpy as np
 import pytest
 
-from transformers import is_tf_available
-from transformers.testing_utils import is_pt_tf_cross_test, require_soundfile, require_tf, slow
+from transformers_openvla_oft import is_tf_available
+from transformers_openvla_oft.testing_utils import is_pt_tf_cross_test, require_soundfile, require_tf, slow
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_tf_common import TFModelTesterMixin, ids_tensor
@@ -37,8 +37,8 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import HubertConfig, TFHubertForCTC, TFHubertModel, Wav2Vec2Processor
-    from transformers.models.hubert.modeling_tf_hubert import _compute_mask_indices
+    from transformers_openvla_oft import HubertConfig, TFHubertForCTC, TFHubertModel, Wav2Vec2Processor
+    from transformers_openvla_oft.models.hubert.modeling_tf_hubert import _compute_mask_indices
 
 
 @require_tf
@@ -343,7 +343,7 @@ class TFHubertModelTest(TFModelTesterMixin, PipelineTesterMixin, unittest.TestCa
         # the default labels and frequently overflows to inf or exceeds numerical tolerances between TF/PT
         import torch
 
-        import transformers
+        import transformers_openvla_oft
 
         for model_class in self.all_model_classes:
             config, inputs_dict = self.model_tester.prepare_config_and_inputs_for_common()
@@ -366,10 +366,10 @@ class TFHubertModelTest(TFModelTesterMixin, PipelineTesterMixin, unittest.TestCa
             tf_inputs_dict = self._prepare_for_class(inputs_dict, model_class)
 
             # Check we can load pt model in tf and vice-versa with model => model functions
-            tf_model = transformers.load_pytorch_model_in_tf2_model(
+            tf_model = transformers_openvla_oft.load_pytorch_model_in_tf2_model(
                 tf_model, pt_model, tf_inputs=tf_inputs_dict, allow_missing_keys=allow_missing_keys
             )
-            pt_model = transformers.load_tf2_model_in_pytorch_model(
+            pt_model = transformers_openvla_oft.load_tf2_model_in_pytorch_model(
                 pt_model, tf_model, allow_missing_keys=allow_missing_keys
             )
 
@@ -380,13 +380,13 @@ class TFHubertModelTest(TFModelTesterMixin, PipelineTesterMixin, unittest.TestCa
             with tempfile.TemporaryDirectory() as tmpdirname:
                 pt_checkpoint_path = os.path.join(tmpdirname, "pt_model.bin")
                 torch.save(pt_model.state_dict(), pt_checkpoint_path)
-                tf_model = transformers.load_pytorch_checkpoint_in_tf2_model(
+                tf_model = transformers_openvla_oft.load_pytorch_checkpoint_in_tf2_model(
                     tf_model, pt_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
                 tf_checkpoint_path = os.path.join(tmpdirname, "tf_model.h5")
                 tf_model.save_weights(tf_checkpoint_path)
-                pt_model = transformers.load_tf2_checkpoint_in_pytorch_model(
+                pt_model = transformers_openvla_oft.load_tf2_checkpoint_in_pytorch_model(
                     pt_model, tf_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
@@ -524,7 +524,7 @@ class TFHubertRobustModelTest(TFModelTesterMixin, unittest.TestCase):
         # the default labels and frequently overflows to inf or exceeds numerical tolerances between TF/PT
         import torch
 
-        import transformers
+        import transformers_openvla_oft
 
         for model_class in self.all_model_classes:
             config, inputs_dict = self.model_tester.prepare_config_and_inputs_for_common()
@@ -547,10 +547,10 @@ class TFHubertRobustModelTest(TFModelTesterMixin, unittest.TestCase):
             tf_inputs_dict = self._prepare_for_class(inputs_dict, model_class)
 
             # Check we can load pt model in tf and vice-versa with model => model functions
-            tf_model = transformers.load_pytorch_model_in_tf2_model(
+            tf_model = transformers_openvla_oft.load_pytorch_model_in_tf2_model(
                 tf_model, pt_model, tf_inputs=tf_inputs_dict, allow_missing_keys=allow_missing_keys
             )
-            pt_model = transformers.load_tf2_model_in_pytorch_model(
+            pt_model = transformers_openvla_oft.load_tf2_model_in_pytorch_model(
                 pt_model, tf_model, allow_missing_keys=allow_missing_keys
             )
 
@@ -561,13 +561,13 @@ class TFHubertRobustModelTest(TFModelTesterMixin, unittest.TestCase):
             with tempfile.TemporaryDirectory() as tmpdirname:
                 pt_checkpoint_path = os.path.join(tmpdirname, "pt_model.bin")
                 torch.save(pt_model.state_dict(), pt_checkpoint_path)
-                tf_model = transformers.load_pytorch_checkpoint_in_tf2_model(
+                tf_model = transformers_openvla_oft.load_pytorch_checkpoint_in_tf2_model(
                     tf_model, pt_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
                 tf_checkpoint_path = os.path.join(tmpdirname, "tf_model.h5")
                 tf_model.save_weights(tf_checkpoint_path)
-                pt_model = transformers.load_tf2_checkpoint_in_pytorch_model(
+                pt_model = transformers_openvla_oft.load_tf2_checkpoint_in_pytorch_model(
                     pt_model, tf_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 

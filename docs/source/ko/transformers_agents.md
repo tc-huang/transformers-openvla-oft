@@ -82,7 +82,7 @@ pip install openai
 
 
 ```py
-from transformers import OpenAiAgent
+from transformers_openvla_oft import OpenAiAgent
 
 agent = OpenAiAgent(model="text-davinci-003", api_key="<your_api_key>")
 ```
@@ -98,7 +98,7 @@ login("<YOUR_TOKEN>")
 그런 다음 에이전트를 인스턴스화합니다.
 
 ```py
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 # Starcoder
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
@@ -284,7 +284,7 @@ Hugging Face 도구로 제한되어 있다면 안전할 것입니다.
 이러한 도구는 트랜스포머에 통합되어 있으며, 예를 들어 수동으로도 사용할 수 있습니다:
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 tool = load_tool("text-to-speech")
 audio = tool("This is a text to speech tool")
@@ -318,7 +318,7 @@ agent.run("Draw me a picture of rivers and lakes", return_code=True)
 다음 코드를 반환합니다.
 
 ```python
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 image_generator = load_tool("huggingface-tools/text-to-image")
 

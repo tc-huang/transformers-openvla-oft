@@ -20,7 +20,7 @@ import argparse
 
 import torch
 
-from transformers import GPT2LMHeadModel, RobertaForMaskedLM
+from transformers_openvla_oft import GPT2LMHeadModel, RobertaForMaskedLM
 
 
 if __name__ == "__main__":

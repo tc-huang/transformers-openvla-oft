@@ -52,7 +52,7 @@ If you plan on using a pretrained model, it's important to use the associated pr
 Get started by loading a pretrained tokenizer with the [`AutoTokenizer.from_pretrained`] method. This downloads the *vocab* a model was pretrained with:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 ```
@@ -273,7 +273,7 @@ Next, load a feature extractor to normalize and pad the input. When padding text
 Load the feature extractor with [`AutoFeatureExtractor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("facebook/wav2vec2-base")
 ```
@@ -373,7 +373,7 @@ Next, take a look at the image with 🤗 Datasets [`Image`](https://huggingface.
 Load the image processor with [`AutoImageProcessor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("google/vit-base-patch16-224")
 ```
@@ -509,7 +509,7 @@ Remember you should always [resample](preprocessing#audio) your audio dataset's 
 Load a processor with [`AutoProcessor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base-960h")
 ```

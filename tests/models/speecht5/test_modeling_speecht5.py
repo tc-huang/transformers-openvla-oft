@@ -19,8 +19,8 @@ import inspect
 import tempfile
 import unittest
 
-from transformers import SpeechT5Config, SpeechT5HifiGanConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft import SpeechT5Config, SpeechT5HifiGanConfig
+from transformers_openvla_oft.testing_utils import (
     is_torch_available,
     require_sentencepiece,
     require_tokenizers,
@@ -28,8 +28,8 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.trainer_utils import set_seed
-from transformers.utils import cached_property
+from transformers_openvla_oft.trainer_utils import set_seed
+from transformers_openvla_oft.utils import cached_property
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import (
@@ -45,7 +45,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         SpeechT5ForSpeechToSpeech,
         SpeechT5ForSpeechToText,
         SpeechT5ForTextToSpeech,

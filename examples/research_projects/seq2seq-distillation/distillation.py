@@ -14,8 +14,8 @@ from finetune import main as ft_main
 from make_student import create_student_by_copying_alternating_layers, get_layers_to_supervise
 from torch import nn
 
-from transformers import AutoModelForSeq2SeqLM, MBartTokenizer, T5ForConditionalGeneration
-from transformers.models.bart.modeling_bart import shift_tokens_right
+from transformers_openvla_oft import AutoModelForSeq2SeqLM, MBartTokenizer, T5ForConditionalGeneration
+from transformers_openvla_oft.models.bart.modeling_bart import shift_tokens_right
 from utils import calculate_bleu, check_output_dir, freeze_params, label_smoothed_nll_loss, use_task_specific_params
 
 

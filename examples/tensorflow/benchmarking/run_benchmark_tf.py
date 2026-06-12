@@ -16,7 +16,7 @@
 # limitations under the License.
 """ Benchmarking the library on inference and training in TensorFlow"""
 
-from transformers import HfArgumentParser, TensorFlowBenchmark, TensorFlowBenchmarkArguments
+from transformers_openvla_oft import HfArgumentParser, TensorFlowBenchmark, TensorFlowBenchmarkArguments
 
 
 def main():

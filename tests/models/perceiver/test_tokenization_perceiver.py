@@ -21,8 +21,8 @@ import tempfile
 import unittest
 from typing import Tuple
 
-from transformers import AddedToken, BatchEncoding, PerceiverTokenizer
-from transformers.utils import cached_property, is_tf_available, is_torch_available
+from transformers_openvla_oft import AddedToken, BatchEncoding, PerceiverTokenizer
+from transformers_openvla_oft.utils import cached_property, is_tf_available, is_torch_available
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

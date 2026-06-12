@@ -15,8 +15,8 @@
 
 import unittest
 
-from transformers import SPIECE_UNDERLINE, XLNetTokenizer, XLNetTokenizerFast
-from transformers.testing_utils import get_tests_dir, require_sentencepiece, require_tokenizers, slow
+from transformers_openvla_oft import SPIECE_UNDERLINE, XLNetTokenizer, XLNetTokenizerFast
+from transformers_openvla_oft.testing_utils import get_tests_dir, require_sentencepiece, require_tokenizers, slow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

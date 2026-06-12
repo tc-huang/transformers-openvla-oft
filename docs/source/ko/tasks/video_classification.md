@@ -149,7 +149,7 @@ UCF101_subset/
 사전 훈련된 체크포인트와 체크포인트에 연관된 이미지 프로세서를 사용하여 영상 분류 모델을 인스턴스화합니다. 모델의 인코더에는 미리 학습된 매개변수가 제공되며, 분류 헤드(데이터를 분류하는 마지막 레이어)는 무작위로 초기화됩니다. 데이터 세트의 전처리 파이프라인을 작성할 때는 이미지 프로세서가 유용합니다.
 
 ```py 
->>> from transformers import VideoMAEImageProcessor, VideoMAEForVideoClassification
+>>> from transformers_openvla_oft import VideoMAEImageProcessor, VideoMAEForVideoClassification
 
 >>> model_ckpt = "MCG-NJU/videomae-base"
 >>> image_processor = VideoMAEImageProcessor.from_pretrained(model_ckpt)
@@ -349,7 +349,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 대부분의 훈련 인수는 따로 설명할 필요는 없습니다. 하지만 여기에서 중요한 인수는 `remove_unused_columns=False` 입니다. 이 인자는 모델의 호출 함수에서 사용되지 않는 모든 속성 열(columns)을 삭제합니다. 기본값은 일반적으로 True입니다. 이는 사용되지 않는 기능 열을 삭제하는 것이 이상적이며, 입력을 모델의 호출 함수로 풀기(unpack)가 쉬워지기 때문입니다. 하지만 이 경우에는 `pixel_values`(모델의 입력으로 필수적인 키)를 생성하기 위해 사용되지 않는 기능('video'가 특히 그렇습니다)이 필요합니다. 따라서 remove_unused_columns을 False로 설정해야 합니다.
 
 ```py 
->>> from transformers import TrainingArguments, Trainer
+>>> from transformers_openvla_oft import TrainingArguments, Trainer
 
 >>> model_name = model_ckpt.split("/")[-1]
 >>> new_model_name = f"{model_name}-finetuned-ucf101-subset"
@@ -425,7 +425,7 @@ def compute_metrics(eval_pred):
 >>> train_results = trainer.train()
 ```
 
-학습이 완료되면, 모델을 [`~transformers.Trainer.push_to_hub`] 메소드를 사용하여 허브에 공유하여 누구나 모델을 사용할 수 있도록 합니다:
+학습이 완료되면, 모델을 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드를 사용하여 허브에 공유하여 누구나 모델을 사용할 수 있도록 합니다:
 ```py
 >>> trainer.push_to_hub()
 ```
@@ -446,7 +446,7 @@ def compute_metrics(eval_pred):
 미세 조정된 모델을 추론에 사용하는 가장 간단한 방법은 [`pipeline`](https://huggingface.co/docs/transformers/main/en/main_classes/pipelines#transformers.VideoClassificationPipeline)에서 모델을 사용하는 것입니다. 모델로 영상 분류를 하기 위해 `pipeline`을 인스턴스화하고 영상을 전달하세요:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> video_cls = pipeline(model="my_awesome_video_cls_model")
 >>> video_cls("https://huggingface.co/datasets/sayakpaul/ucf101-subset/resolve/main/v_BasketballDunk_g14_c06.avi")

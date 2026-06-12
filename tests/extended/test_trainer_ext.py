@@ -22,7 +22,7 @@ from unittest.mock import patch
 
 from parameterized import parameterized
 
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     CaptureStderr,
     ExtendSysPath,
     TestCasePlus,
@@ -38,8 +38,8 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.trainer_callback import TrainerState
-from transformers.trainer_utils import set_seed
+from transformers_openvla_oft.trainer_callback import TrainerState
+from transformers_openvla_oft.trainer_utils import set_seed
 
 
 bindir = os.path.abspath(os.path.dirname(__file__))
@@ -182,7 +182,7 @@ class TestTrainerExt(TestCasePlus):
     @slow
     @require_bitsandbytes
     def test_run_seq2seq_bnb(self):
-        from transformers.training_args import OptimizerNames
+        from transformers_openvla_oft.training_args import OptimizerNames
 
         def train_and_return_metrics(optim: str) -> Tuple[int, float]:
             extra_args = "--skip_memory_metrics 0"

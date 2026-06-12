@@ -148,7 +148,7 @@ To load and run a model using Flash Attention 2, refer to the snippet below:
 
 ```python
 >>> import torch
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> device = "cuda" # the device to load the model onto
 

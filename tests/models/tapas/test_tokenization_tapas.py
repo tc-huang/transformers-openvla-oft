@@ -22,8 +22,8 @@ from typing import List
 import numpy as np
 import pandas as pd
 
-from transformers import AddedToken, is_torch_available
-from transformers.models.tapas.tokenization_tapas import (
+from transformers_openvla_oft import AddedToken, is_torch_available
+from transformers_openvla_oft.models.tapas.tokenization_tapas import (
     VOCAB_FILES_NAMES,
     BasicTokenizer,
     TapasTokenizer,
@@ -32,7 +32,7 @@ from transformers.models.tapas.tokenization_tapas import (
     _is_punctuation,
     _is_whitespace,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     is_pt_tf_cross_test,
     require_pandas,
     require_tensorflow_probability,
@@ -45,7 +45,7 @@ from ...test_tokenization_common import TokenizerTesterMixin, filter_non_english
 
 
 if is_torch_available():
-    from transformers.pytorch_utils import is_torch_greater_or_equal_than_1_12
+    from transformers_openvla_oft.pytorch_utils import is_torch_greater_or_equal_than_1_12
 else:
     is_torch_greater_or_equal_than_1_12 = False
 
@@ -150,7 +150,7 @@ class TapasTokenizationTest(TokenizerTesterMixin, unittest.TestCase):
     @require_tensorflow_probability
     @slow
     def test_tf_encode_plus_sent_to_model(self):
-        from transformers import TF_MODEL_MAPPING, TOKENIZER_MAPPING
+        from transformers_openvla_oft import TF_MODEL_MAPPING, TOKENIZER_MAPPING
 
         MODEL_TOKENIZER_MAPPING = merge_model_tokenizer_mappings(TF_MODEL_MAPPING, TOKENIZER_MAPPING)
 
@@ -1043,7 +1043,7 @@ class TapasTokenizationTest(TokenizerTesterMixin, unittest.TestCase):
     def test_torch_encode_plus_sent_to_model(self):
         import torch
 
-        from transformers import MODEL_MAPPING, TOKENIZER_MAPPING
+        from transformers_openvla_oft import MODEL_MAPPING, TOKENIZER_MAPPING
 
         MODEL_TOKENIZER_MAPPING = merge_model_tokenizer_mappings(MODEL_MAPPING, TOKENIZER_MAPPING)
 

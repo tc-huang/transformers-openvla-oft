@@ -77,7 +77,7 @@ If you're interested in basic LLM usage, our high-level [`Pipeline`](pipeline_tu
 First, you need to load the model.
 
 ```py
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained(
 ...     "mistralai/Mistral-7B-v0.1", device_map="auto", load_in_4bit=True
@@ -94,7 +94,7 @@ There are other ways to initialize a model, but this is a good baseline to begin
 Next, you need to preprocess your text input with a [tokenizer](tokenizer_summary).
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1", padding_side="left")
 >>> model_inputs = tokenizer(["A list of colors: red, blue"], return_tensors="pt").to("cuda")
@@ -131,7 +131,7 @@ And that's it! In a few lines of code, you can harness the power of an LLM.
 There are many [generation strategies](generation_strategies), and sometimes the default values may not be appropriate for your use case. If your outputs aren't aligned with what you're expecting, we've created a list of the most common pitfalls and how to avoid them.
 
 ```py
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1")
 >>> tokenizer.pad_token = tokenizer.eos_token  # Most LLMs don't have a pad token by default
@@ -165,7 +165,7 @@ By default, and unless specified in the [`~generation.GenerationConfig`] file, `
 
 ```py
 >>> # Set seed or reproducibility -- you don't need this unless you want full reproducibility
->>> from transformers import set_seed
+>>> from transformers_openvla_oft import set_seed
 >>> set_seed(42)
 
 >>> model_inputs = tokenizer(["I am a cat."], return_tensors="pt").to("cuda")

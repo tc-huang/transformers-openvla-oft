@@ -18,8 +18,8 @@ import unittest
 
 from huggingface_hub import hf_hub_download
 
-from transformers import AutoModelForCausalLM, OPTForCausalLM
-from transformers.testing_utils import (
+from transformers_openvla_oft import AutoModelForCausalLM, OPTForCausalLM
+from transformers_openvla_oft.testing_utils import (
     require_bitsandbytes,
     require_peft,
     require_torch,
@@ -27,7 +27,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import is_torch_available
+from transformers_openvla_oft.utils import is_torch_available
 
 
 if is_torch_available():
@@ -442,7 +442,7 @@ class PeftIntegrationTester(unittest.TestCase, PeftTesterMixin):
         """
         Simple test that tests the basic usage of PEFT model + pipeline
         """
-        from transformers import pipeline
+        from transformers_openvla_oft import pipeline
 
         for model_id in self.peft_test_model_ids:
             pipe = pipeline("text-generation", model_id)

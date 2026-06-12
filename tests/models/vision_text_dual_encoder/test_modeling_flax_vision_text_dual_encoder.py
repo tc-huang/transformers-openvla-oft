@@ -21,7 +21,7 @@ import unittest
 
 import numpy as np
 
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     is_pt_flax_cross_test,
     require_flax,
     require_torch,
@@ -29,7 +29,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import is_flax_available, is_torch_available, is_vision_available
+from transformers_openvla_oft.utils import is_flax_available, is_torch_available, is_vision_available
 
 from ...test_modeling_flax_common import floats_tensor, ids_tensor, random_attention_mask
 from ..bert.test_modeling_flax_bert import FlaxBertModelTester
@@ -38,7 +38,7 @@ from ..vit.test_modeling_flax_vit import FlaxViTModelTester
 
 
 if is_flax_available():
-    from transformers import (
+    from transformers_openvla_oft import (
         FlaxBertModel,
         FlaxCLIPVisionModel,
         FlaxVisionTextDualEncoderModel,
@@ -46,7 +46,7 @@ if is_flax_available():
         VisionTextDualEncoderConfig,
         VisionTextDualEncoderProcessor,
     )
-    from transformers.modeling_flax_pytorch_utils import (
+    from transformers_openvla_oft.modeling_flax_pytorch_utils import (
         convert_pytorch_state_dict_to_flax,
         load_flax_weights_in_pytorch_model,
     )
@@ -55,7 +55,7 @@ if is_flax_available():
 if is_torch_available():
     import torch
 
-    from transformers import VisionTextDualEncoderModel
+    from transformers_openvla_oft import VisionTextDualEncoderModel
 
 if is_vision_available():
     from PIL import Image

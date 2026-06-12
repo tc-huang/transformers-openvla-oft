@@ -80,7 +80,7 @@ LLM（Language Model）による自己回帰生成の重要な側面の1つは�
 
 
 ```py
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained(
 ...     "openlm-research/open_llama_7b", device_map="auto", load_in_4bit=True
@@ -98,7 +98,7 @@ LLM（Language Model）による自己回帰生成の重要な側面の1つは�
 
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("openlm-research/open_llama_7b")
 >>> model_inputs = tokenizer(["A list of colors: red, blue"], return_tensors="pt").to("cuda")
@@ -123,7 +123,7 @@ LLM（Language Model）による自己回帰生成の重要な側面の1つは�
 [生成戦略](generation_strategies)はたくさんあり、デフォルトの値があなたのユースケースに適していないことがあります。出力が期待通りでない場合、最も一般的な落とし穴とその回避方法のリストを作成しました。
 
 ```py
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("openlm-research/open_llama_7b")
 >>> tokenizer.pad_token = tokenizer.eos_token  # Llama has no pad token by default
@@ -156,7 +156,7 @@ LLM（Language Model）による自己回帰生成の重要な側面の1つは�
 
 ```py
 >>> # Set seed or reproducibility -- you don't need this unless you want full reproducibility
->>> from transformers import set_seed
+>>> from transformers_openvla_oft import set_seed
 >>> set_seed(0)
 
 >>> model_inputs = tokenizer(["I am a cat."], return_tensors="pt").to("cuda")

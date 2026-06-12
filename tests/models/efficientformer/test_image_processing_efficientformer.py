@@ -16,14 +16,14 @@
 
 import unittest
 
-from transformers.testing_utils import require_torch, require_vision
-from transformers.utils import is_vision_available
+from transformers_openvla_oft.testing_utils import require_torch, require_vision
+from transformers_openvla_oft.utils import is_vision_available
 
 from ...test_image_processing_common import ImageProcessingTestMixin, prepare_image_inputs
 
 
 if is_vision_available():
-    from transformers import ViTImageProcessor
+    from transformers_openvla_oft import ViTImageProcessor
 
 
 class EfficientFormerImageProcessorTester(unittest.TestCase):

@@ -103,11 +103,11 @@ where you can form (almost) arbitrarily long complex words by stringing together
 
 Subword tokenization allows the model to have a reasonable vocabulary size while being able to learn meaningful
 context-independent representations. In addition, subword tokenization enables the model to process words it has never
-seen before, by decomposing them into known subwords. For instance, the [`~transformers.BertTokenizer`] tokenizes
+seen before, by decomposing them into known subwords. For instance, the [`~transformers_openvla_oft.BertTokenizer`] tokenizes
 `"I have a new GPU!"` as follows:
 
 ```py
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> tokenizer.tokenize("I have a new GPU!")
@@ -118,10 +118,10 @@ Because we are considering the uncased model, the sentence was lowercased first.
 tokenizer splits `"gpu"` into known subwords: `["gp" and "##u"]`. `"##"` means that the rest of the token should
 be attached to the previous one, without space (for decoding or reversal of the tokenization).
 
-As another example, [`~transformers.XLNetTokenizer`] tokenizes our previously exemplary text as follows:
+As another example, [`~transformers_openvla_oft.XLNetTokenizer`] tokenizes our previously exemplary text as follows:
 
 ```py
->>> from transformers import XLNetTokenizer
+>>> from transformers_openvla_oft import XLNetTokenizer
 
 >>> tokenizer = XLNetTokenizer.from_pretrained("xlnet/xlnet-base-cased")
 >>> tokenizer.tokenize("Don't you love 🤗 Transformers? We sure do.")

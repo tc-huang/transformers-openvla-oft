@@ -144,7 +144,7 @@ limitations under the License.
 ఇచ్చిన ఇన్‌పుట్ (టెక్స్ట్, ఇమేజ్, ఆడియో, ...)పై తక్షణమే మోడల్‌ను ఉపయోగించడానికి, మేము `pipeline` API ని అందిస్తాము. పైప్‌లైన్‌లు ఆ మోడల్ శిక్షణ సమయంలో ఉపయోగించిన ప్రీప్రాసెసింగ్‌తో కూడిన ప్రీట్రైన్డ్ మోడల్‌ను సమూహపరుస్తాయి. సానుకూల మరియు ప్రతికూల పాఠాలను వర్గీకరించడానికి పైప్‌లైన్‌ను త్వరగా ఎలా ఉపయోగించాలో ఇక్కడ ఉంది:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Allocate a pipeline for sentiment-analysis
 >>> classifier = pipeline('sentiment-analysis')
@@ -159,7 +159,7 @@ limitations under the License.
 ``` python
 >>> import requests
 >>> from PIL import Image
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Download an image with cute cats
 >>> url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/coco_sample.png"
@@ -197,7 +197,7 @@ limitations under the License.
 
 `pipeline`తో పాటు, మీరు ఇచ్చిన టాస్క్‌లో ఏదైనా ప్రీట్రైన్డ్ మోడల్‌లను డౌన్‌లోడ్ చేయడానికి మరియు ఉపయోగించడానికి, దీనికి మూడు లైన్ల కోడ్ సరిపోతుంది. ఇక్కడ PyTorch వెర్షన్ ఉంది:
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -208,7 +208,7 @@ limitations under the License.
 
 మరియు TensorFlow కి సమానమైన కోడ్ ఇక్కడ ఉంది:
 ```python
->>> from transformers import AutoTokenizer, TFAutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

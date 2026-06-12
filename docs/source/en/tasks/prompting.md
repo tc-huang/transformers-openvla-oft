@@ -58,7 +58,7 @@ the following guides:
 
 ### Types of models 
 
-The majority of modern LLMs are decoder-only transformers. Some examples include: [LLaMA](../model_doc/llama), 
+The majority of modern LLMs are decoder-only transformers_openvla_oft. Some examples include: [LLaMA](../model_doc/llama), 
 [Llama2](../model_doc/llama2), [Falcon](../model_doc/falcon), [GPT2](../model_doc/gpt2). However, you may encounter
 encoder-decoder transformer LLMs as well, for instance, [Flan-T5](../model_doc/flan-t5) and [BART](../model_doc/bart).
 
@@ -71,7 +71,7 @@ they use different pipelines.
 Run inference with decoder-only models with the `text-generation` pipeline:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> import torch
 
 >>> torch.manual_seed(0) # doctest: +IGNORE_RESULT
@@ -117,7 +117,7 @@ pip install -q transformers accelerate
 Next, let's load the model with the appropriate pipeline (`"text-generation"`): 
 
 ```python
->>> from transformers import pipeline, AutoTokenizer
+>>> from transformers_openvla_oft import pipeline, AutoTokenizer
 >>> import torch
 
 >>> torch.manual_seed(0) # doctest: +IGNORE_RESULT

@@ -45,7 +45,7 @@ RUN python3 -m pip uninstall -y deepspeed
 RUN DS_BUILD_CPU_ADAM=1 DS_BUILD_FUSED_ADAM=1 python3 -m pip install deepspeed --global-option="build_ext" --global-option="-j8" --no-cache -v --disable-pip-version-check 2>&1
 
 # When installing in editable mode, `transformers` is not recognized as a package.
-# this line must be added in order for python to be aware of transformers.
+# this line must be added in order for python to be aware of transformers_openvla_oft.
 RUN cd transformers && python3 setup.py develop
 
 # The base image ships with `pydantic==1.8.2` which is not working - i.e. the next command fails

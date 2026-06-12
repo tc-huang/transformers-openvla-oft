@@ -19,9 +19,9 @@ import inspect
 import math
 import unittest
 
-from transformers import ConditionalDetrConfig, ResNetConfig, is_torch_available, is_vision_available
-from transformers.testing_utils import require_timm, require_torch, require_vision, slow, torch_device
-from transformers.utils import cached_property
+from transformers_openvla_oft import ConditionalDetrConfig, ResNetConfig, is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_timm, require_torch, require_vision, slow, torch_device
+from transformers_openvla_oft.utils import cached_property
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -32,7 +32,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         ConditionalDetrForObjectDetection,
         ConditionalDetrForSegmentation,
         ConditionalDetrModel,
@@ -42,7 +42,7 @@ if is_torch_available():
 if is_vision_available():
     from PIL import Image
 
-    from transformers import ConditionalDetrImageProcessor
+    from transformers_openvla_oft import ConditionalDetrImageProcessor
 
 
 class ConditionalDetrModelTester:

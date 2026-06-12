@@ -17,8 +17,8 @@
 
 import unittest
 
-from transformers.testing_utils import require_detectron2, require_torch, require_torch_multi_gpu, slow, torch_device
-from transformers.utils import is_detectron2_available, is_torch_available
+from transformers_openvla_oft.testing_utils import require_detectron2, require_torch, require_torch_multi_gpu, slow, torch_device
+from transformers_openvla_oft.utils import is_detectron2_available, is_torch_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, _config_zero_init, ids_tensor, random_attention_mask
@@ -29,7 +29,7 @@ if is_torch_available():
     import torch
     import torch.nn.functional as F
 
-    from transformers import (
+    from transformers_openvla_oft import (
         LayoutLMv2Config,
         LayoutLMv2ForQuestionAnswering,
         LayoutLMv2ForSequenceClassification,

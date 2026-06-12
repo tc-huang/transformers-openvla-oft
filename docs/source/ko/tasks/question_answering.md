@@ -97,7 +97,7 @@ pip install transformers datasets evaluate
 다음 단계에서는 `question` 및 `context` 항목을 처리하기 위해 DistilBERT 토크나이저를 가져옵니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -174,14 +174,14 @@ pip install transformers datasets evaluate
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 ```
@@ -201,7 +201,7 @@ pip install transformers datasets evaluate
 이제 모델 훈련을 시작할 준비가 되었습니다! [`AutoModelForQuestionAnswering`]으로 DistilBERT를 가져옵니다:
 
 ```py
->>> from transformers import AutoModelForQuestionAnswering, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForQuestionAnswering, TrainingArguments, Trainer
 
 >>> model = AutoModelForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -236,7 +236,7 @@ pip install transformers datasets evaluate
 >>> trainer.train()
 ```
 
-훈련이 완료되면, [`~transformers.Trainer.push_to_hub`] 매소드를 사용해 모델을 Hub에 공유해서 모든 사람들이 사용할 수 있게 공유해주세요:
+훈련이 완료되면, [`~transformers_openvla_oft.Trainer.push_to_hub`] 매소드를 사용해 모델을 Hub에 공유해서 모든 사람들이 사용할 수 있게 공유해주세요:
 
 ```py
 >>> trainer.push_to_hub()
@@ -251,7 +251,7 @@ Keras로 모델을 미세 조정하는 것에 익숙하지 않다면, [여기](.
 TensorFlow를 이용한 모델을 미세 조정하려면 옵티마이저 함수, 학습률 스케쥴 및 몇 가지 훈련 하이퍼파라미터를 설정하는 것부터 시작해야합니다:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_epochs = 2
@@ -266,12 +266,12 @@ TensorFlow를 이용한 모델을 미세 조정하려면 옵티마이저 함수,
 그 다음 [`TFAutoModelForQuestionAnswering`]으로 DistilBERT를 가져옵니다:
 
 ```py
->>> from transformers import TFAutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import TFAutoModelForQuestionAnswering
 
 >>> model = TFAutoModelForQuestionAnswering("distilbert/distilbert-base-uncased")
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`]을 사용해서 데이터 세트를 `tf.data.Dataset` 형식으로 변환합니다:
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]을 사용해서 데이터 세트를 `tf.data.Dataset` 형식으로 변환합니다:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -297,10 +297,10 @@ TensorFlow를 이용한 모델을 미세 조정하려면 옵티마이저 함수,
 >>> model.compile(optimizer=optimizer)
 ```
 
-마지막으로 모델을 Hub로 푸시할 방법을 설정합니다. [`~transformers.PushToHubCallback`]에서 모델과 토크나이저를 푸시할 경로를 설정합니다:
+마지막으로 모델을 Hub로 푸시할 방법을 설정합니다. [`~transformers_openvla_oft.PushToHubCallback`]에서 모델과 토크나이저를 푸시할 경로를 설정합니다:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> callback = PushToHubCallback(
 ...     output_dir="my_awesome_qa_model",
@@ -343,7 +343,7 @@ TensorFlow를 이용한 모델을 미세 조정하려면 옵티마이저 함수,
 추론을 위해 미세 조정한 모델을 테스트하는 가장 쉬운 방법은 [`pipeline`]을 사용하는 것 입니다. 모델을 사용해 질의 응답을 하기 위해서 `pipeline`을 인스턴스화하고 텍스트를 입력합니다:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> question_answerer = pipeline("question-answering", model="my_awesome_qa_model")
 >>> question_answerer(question=question, context=context)
@@ -360,7 +360,7 @@ TensorFlow를 이용한 모델을 미세 조정하려면 옵티마이저 함수,
 텍스트를 토큰화해서 PyTorch 텐서를 반환합니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_qa_model")
 >>> inputs = tokenizer(question, context, return_tensors="pt")
@@ -369,7 +369,7 @@ TensorFlow를 이용한 모델을 미세 조정하려면 옵티마이저 함수,
 모델에 입력을 전달하고 `logits`을 반환합니다:
 
 ```py
->>> from transformers import AutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import AutoModelForQuestionAnswering
 
 >>> model = AutoModelForQuestionAnswering.from_pretrained("my_awesome_qa_model")
 >>> with torch.no_grad():
@@ -395,7 +395,7 @@ TensorFlow를 이용한 모델을 미세 조정하려면 옵티마이저 함수,
 텍스트를 토큰화해서 TensorFlow 텐서를 반환합니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_qa_model")
 >>> inputs = tokenizer(question, text, return_tensors="tf")
@@ -404,7 +404,7 @@ TensorFlow를 이용한 모델을 미세 조정하려면 옵티마이저 함수,
 모델에 입력을 전달하고 `logits`을 반환합니다:
 
 ```py
->>> from transformers import TFAutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import TFAutoModelForQuestionAnswering
 
 >>> model = TFAutoModelForQuestionAnswering.from_pretrained("my_awesome_qa_model")
 >>> outputs = model(**inputs)

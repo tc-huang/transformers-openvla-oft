@@ -29,7 +29,7 @@ model on any pair of 200 languages at a minor cost to supervised performance.*
 Previous behaviour:
 
 ```python
->>> from transformers import NllbTokenizer
+>>> from transformers_openvla_oft import NllbTokenizer
 
 >>> tokenizer = NllbTokenizer.from_pretrained("facebook/nllb-200-distilled-600M")
 >>> tokenizer("How was your day?").input_ids
@@ -41,7 +41,7 @@ Previous behaviour:
 New behaviour
 
 ```python
->>> from transformers import NllbTokenizer
+>>> from transformers_openvla_oft import NllbTokenizer
 
 >>> tokenizer = NllbTokenizer.from_pretrained("facebook/nllb-200-distilled-600M")
 >>> tokenizer("How was your day?").input_ids
@@ -50,7 +50,7 @@ New behaviour
 
 Enabling the old behaviour can be done as follows:
 ```python
->>> from transformers import NllbTokenizer
+>>> from transformers_openvla_oft import NllbTokenizer
 
 >>> tokenizer = NllbTokenizer.from_pretrained("facebook/nllb-200-distilled-600M", legacy_behaviour=True)
 ```
@@ -92,7 +92,7 @@ Note that we're using the BCP-47 code for French `fra_Latn`. See [here](https://
 for the list of all BCP-47 in the Flores 200 dataset.
 
 ```python
->>> from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-200-distilled-600M")
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M")
@@ -115,7 +115,7 @@ you should specify the BCP-47 code in the `src_lang` keyword argument of the tok
 See example below for a translation from romanian to german:
 
 ```py
->>> from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained(
 ...     "facebook/nllb-200-distilled-600M", token=True, src_lang="ron_Latn"
@@ -166,7 +166,7 @@ To load a model using Flash Attention 2, we can pass the argument `attn_implemen
 
 ```python
 >>> import torch
->>> from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M", torch_dtype=torch.float16, attn_implementation="flash_attention_2").to("cuda").eval()
 >>> tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-200-distilled-600M")

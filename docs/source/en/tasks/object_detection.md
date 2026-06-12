@@ -192,7 +192,7 @@ to replicate when doing inference or finetuning a pre-trained image model.
 Instantiate the image processor from the same checkpoint as the model you want to finetune.
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> checkpoint = "facebook/detr-resnet-50"
 >>> image_processor = AutoImageProcessor.from_pretrained(checkpoint)
@@ -340,7 +340,7 @@ When loading the model from the same checkpoint that you used for the preprocess
 and `id2label` maps that you created earlier from the dataset's metadata. Additionally, we specify `ignore_mismatched_sizes=True` to replace the existing classification head with a new one.
 
 ```py
->>> from transformers import AutoModelForObjectDetection
+>>> from transformers_openvla_oft import AutoModelForObjectDetection
 
 >>> model = AutoModelForObjectDetection.from_pretrained(
 ...     checkpoint,
@@ -357,7 +357,7 @@ If you wish to share your model by pushing to the Hub, set `push_to_hub` to `Tru
 Face to upload your model).
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(
 ...     output_dir="detr-resnet-50_finetuned_cppe5",
@@ -374,10 +374,10 @@ Face to upload your model).
 ... )
 ```
 
-Finally, bring everything together, and call [`~transformers.Trainer.train`]:
+Finally, bring everything together, and call [`~transformers_openvla_oft.Trainer.train`]:
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -391,7 +391,7 @@ Finally, bring everything together, and call [`~transformers.Trainer.train`]:
 ```
 
 If you have set `push_to_hub` to `True` in the `training_args`, the training checkpoints are pushed to the
-Hugging Face Hub. Upon training completion, push the final model to the Hub as well by calling the [`~transformers.Trainer.push_to_hub`] method.
+Hugging Face Hub. Upon training completion, push the final model to the Hub as well by calling the [`~transformers_openvla_oft.Trainer.push_to_hub`] method.
 
 ```py
 >>> trainer.push_to_hub()
@@ -546,7 +546,7 @@ IoU metric: bbox
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.323
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.590
 ```
-These results can be further improved by adjusting the hyperparameters in [`~transformers.TrainingArguments`]. Give it a go!
+These results can be further improved by adjusting the hyperparameters in [`~transformers_openvla_oft.TrainingArguments`]. Give it a go!
 
 ## Inference
 Now that you have finetuned a DETR model, evaluated it, and uploaded it to the Hugging Face Hub, you can use it for inference.
@@ -554,7 +554,7 @@ The simplest way to try out your finetuned model for inference is to use it in a
 for object detection with your model, and pass an image to it:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> import requests
 
 >>> url = "https://i.imgur.com/2lnWoly.jpg"

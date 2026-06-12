@@ -22,8 +22,8 @@ import warnings
 import numpy as np
 from parameterized import parameterized
 
-from transformers import is_torch_available, pipeline, set_seed
-from transformers.testing_utils import (
+from transformers_openvla_oft import is_torch_available, pipeline, set_seed
+from transformers_openvla_oft.testing_utils import (
     is_flaky,
     require_accelerate,
     require_torch,
@@ -39,7 +39,7 @@ from .test_framework_agnostic import GenerationIntegrationTestsMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoModelForCausalLM,
         AutoModelForSeq2SeqLM,
         AutoModelForSpeechSeq2Seq,
@@ -53,8 +53,8 @@ if is_torch_available():
         ImageGPTForCausalImageModeling,
         SpeechEncoderDecoderModel,
     )
-    from transformers.cache_utils import DynamicCache
-    from transformers.generation import (
+    from transformers_openvla_oft.cache_utils import DynamicCache
+    from transformers_openvla_oft.generation import (
         BeamSampleDecoderOnlyOutput,
         BeamSampleEncoderDecoderOutput,
         BeamSearchDecoderOnlyOutput,
@@ -75,7 +75,7 @@ if is_torch_available():
         StoppingCriteria,
         StoppingCriteriaList,
     )
-    from transformers.generation.utils import _speculative_sampling
+    from transformers_openvla_oft.generation.utils import _speculative_sampling
 
 
 class GenerationTesterMixin:

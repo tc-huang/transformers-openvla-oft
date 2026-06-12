@@ -56,7 +56,7 @@ para manejar qualquer tamanho varíavel de sequência. Para processar o seu data
 todo o dataset.
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -91,7 +91,7 @@ A partir do [Card Dataset](https://huggingface.co/datasets/yelp_review_full#data
 sabemos ter 5 labels usamos o seguinte código:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -116,7 +116,7 @@ porém, sinta-se livre para experimentar com eles e encontrar uma configuração
 Especifique onde salvar os checkpoints do treinamento:
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(output_dir="test_trainer")
 ```
@@ -150,7 +150,7 @@ Se quiser controlar as suas métricas de avaliação durante o fine-tuning, espe
 nos seus argumentos de treinamento para que o modelo considere a métrica de avaliação ao final de cada época:
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(output_dir="test_trainer", evaluation_strategy="epoch")
 ```
@@ -169,7 +169,7 @@ Crie um objeto [`Trainer`] com o seu modelo, argumentos de treinamento, conjunto
 ... )
 ```
 
-Em seguida, aplique o fine-tuning a seu modelo chamado [`~transformers.Trainer.train`]:
+Em seguida, aplique o fine-tuning a seu modelo chamado [`~transformers_openvla_oft.Trainer.train`]:
 
 ```py
 >>> trainer.train()
@@ -190,7 +190,7 @@ O [`DefaultDataCollator`] junta os tensores em um batch para que o modelo possa 
 Assegure-se de especificar os `return_tensors` para retornar os tensores do TensorFlow:
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 ```
@@ -230,7 +230,7 @@ Carregue um modelo do TensorFlow com o número esperado de rótulos:
 
 ```py
 >>> import tensorflow as tf
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -309,7 +309,7 @@ Crie um `DataLoader` para os seus datasets de treinamento e de teste para poder 
 Carregue seu modelo com o número de labels esperados:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -328,7 +328,7 @@ Iremos utilizar o otimizador [`AdamW`](https://pytorch.org/docs/stable/generated
 Defina o learning rate do [`Trainer`]:
 
 ```py
->>> from transformers import get_scheduler
+>>> from transformers_openvla_oft import get_scheduler
 
 >>> num_epochs = 3
 >>> num_training_steps = num_epochs * len(train_dataloader)

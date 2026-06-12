@@ -58,5 +58,5 @@ If you're interested in submitting a resource to be included here, please feel f
 
 ## Swinv2ForImageClassification
 
-[[autodoc]] transformers.Swinv2ForImageClassification
+[[autodoc]] transformers_openvla_oft.Swinv2ForImageClassification
     - forward

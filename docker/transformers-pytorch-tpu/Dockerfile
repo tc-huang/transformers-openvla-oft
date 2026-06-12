@@ -57,7 +57,7 @@ RUN git clone https://github.com/huggingface/transformers.git && \
     pip install pytest
 
 RUN python -c "import torch_xla; print(torch_xla.__version__)"
-RUN python -c "import transformers as trf; print(trf.__version__)"
+RUN python -c "import transformers_openvla_oft as trf; print(trf.__version__)"
 RUN conda init bash
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh

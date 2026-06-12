@@ -34,7 +34,7 @@ This model was contributed by [dqnguyen](https://huggingface.co/dqnguyen). The o
 
 ```python
 >>> import torch
->>> from transformers import AutoModel, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModel, AutoTokenizer
 
 >>> phobert = AutoModel.from_pretrained("vinai/phobert-base")
 >>> tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
@@ -48,7 +48,7 @@ This model was contributed by [dqnguyen](https://huggingface.co/dqnguyen). The o
 ...     features = phobert(input_ids)  # Models outputs are now tuples
 
 >>> # With TensorFlow 2.0+:
->>> # from transformers import TFAutoModel
+>>> # from transformers_openvla_oft import TFAutoModel
 >>> # phobert = TFAutoModel.from_pretrained("vinai/phobert-base")
 ```
 

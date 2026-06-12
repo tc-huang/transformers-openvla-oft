@@ -21,16 +21,16 @@ import unittest
 import numpy as np
 import pytest
 
-from transformers import CLIPTokenizer, CLIPTokenizerFast
-from transformers.models.clip.tokenization_clip import VOCAB_FILES_NAMES
-from transformers.testing_utils import require_vision
-from transformers.utils import IMAGE_PROCESSOR_NAME, is_vision_available
+from transformers_openvla_oft import CLIPTokenizer, CLIPTokenizerFast
+from transformers_openvla_oft.models.clip.tokenization_clip import VOCAB_FILES_NAMES
+from transformers_openvla_oft.testing_utils import require_vision
+from transformers_openvla_oft.utils import IMAGE_PROCESSOR_NAME, is_vision_available
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import OwlViTImageProcessor, OwlViTProcessor
+    from transformers_openvla_oft import OwlViTImageProcessor, OwlViTProcessor
 
 
 @require_vision

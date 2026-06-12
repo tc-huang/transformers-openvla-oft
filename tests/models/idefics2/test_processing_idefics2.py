@@ -18,9 +18,9 @@ from io import BytesIO
 
 import requests
 
-from transformers import Idefics2Processor
-from transformers.testing_utils import require_torch, require_vision
-from transformers.utils import is_vision_available
+from transformers_openvla_oft import Idefics2Processor
+from transformers_openvla_oft.testing_utils import require_torch, require_vision
+from transformers_openvla_oft.utils import is_vision_available
 
 
 if is_vision_available():

@@ -21,14 +21,14 @@ import unittest
 import numpy as np
 from parameterized import parameterized
 
-from transformers import is_tf_available
-from transformers.testing_utils import require_tf
+from transformers_openvla_oft import is_tf_available
+from transformers_openvla_oft.testing_utils import require_tf
 
 
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers.generation import (
+    from transformers_openvla_oft.generation import (
         TFForcedBOSTokenLogitsProcessor,
         TFForcedEOSTokenLogitsProcessor,
         TFForceTokensLogitsProcessor,

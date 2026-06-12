@@ -16,8 +16,8 @@
 
 import unittest
 
-from transformers.testing_utils import require_pytesseract, require_torch
-from transformers.utils import is_pytesseract_available
+from transformers_openvla_oft.testing_utils import require_pytesseract, require_torch
+from transformers_openvla_oft.utils import is_pytesseract_available
 
 from ...test_image_processing_common import ImageProcessingTestMixin, prepare_image_inputs
 
@@ -25,7 +25,7 @@ from ...test_image_processing_common import ImageProcessingTestMixin, prepare_im
 if is_pytesseract_available():
     from PIL import Image
 
-    from transformers import LayoutLMv2ImageProcessor
+    from transformers_openvla_oft import LayoutLMv2ImageProcessor
 
 
 class LayoutLMv2ImageProcessingTester(unittest.TestCase):

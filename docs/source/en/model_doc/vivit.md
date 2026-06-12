@@ -39,5 +39,5 @@ This model was contributed by [jegormeister](https://huggingface.co/jegormeister
 
 ## VivitForVideoClassification
 
-[[autodoc]] transformers.VivitForVideoClassification
+[[autodoc]] transformers_openvla_oft.VivitForVideoClassification
     - forward

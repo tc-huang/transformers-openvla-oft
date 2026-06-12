@@ -19,8 +19,8 @@ import unittest
 import pytest
 from parameterized import parameterized
 
-from transformers import AutoModelForCausalLM, AutoTokenizer, GemmaConfig, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, GemmaConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     is_flaky,
     require_bitsandbytes,
     require_flash_attn,
@@ -41,7 +41,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import GemmaForCausalLM, GemmaForSequenceClassification, GemmaModel
+    from transformers_openvla_oft import GemmaForCausalLM, GemmaForSequenceClassification, GemmaModel
 
 
 class GemmaModelTester:

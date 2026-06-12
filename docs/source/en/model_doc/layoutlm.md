@@ -48,7 +48,7 @@ understanding (from 70.72 to 79.27), receipt understanding (from 94.02 to 95.24)
 
 ## Usage tips
 
-- In addition to *input_ids*, [`~transformers.LayoutLMModel.forward`] also expects the input `bbox`, which are
+- In addition to *input_ids*, [`~transformers_openvla_oft.LayoutLMModel.forward`] also expects the input `bbox`, which are
   the bounding boxes (i.e. 2D-positions) of the input tokens. These can be obtained using an external OCR engine such
   as Google's [Tesseract](https://github.com/tesseract-ocr/tesseract) (there's a [Python wrapper](https://pypi.org/project/pytesseract/) available). Each bounding box should be in (x0, y0, x1, y1) format, where
   (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the

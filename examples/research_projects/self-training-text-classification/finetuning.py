@@ -32,7 +32,7 @@ from datasets import load_dataset, load_metric
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 
-from transformers import (
+from transformers_openvla_oft import (
     AdamW,
     AutoConfig,
     AutoModelForSequenceClassification,
@@ -42,8 +42,8 @@ from transformers import (
     get_scheduler,
     set_seed,
 )
-from transformers.file_utils import ExplicitEnum
-from transformers.trainer_utils import IntervalStrategy
+from transformers_openvla_oft.file_utils import ExplicitEnum
+from transformers_openvla_oft.trainer_utils import IntervalStrategy
 
 
 logger = logging.getLogger(__name__)

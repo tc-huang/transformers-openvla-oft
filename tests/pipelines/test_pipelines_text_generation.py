@@ -14,14 +14,14 @@
 
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_CAUSAL_LM_MAPPING,
     TF_MODEL_FOR_CAUSAL_LM_MAPPING,
     TextGenerationPipeline,
     logging,
     pipeline,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     CaptureLogger,
     is_pipeline_test,
     require_accelerate,
@@ -459,9 +459,9 @@ class TextGenerationPipelineTests(unittest.TestCase):
         prompt = """Hello world"""
         text_generator = pipeline("text-generation", model="hf-internal-testing/tiny-random-gpt2")
         if text_generator.model.framework == "tf":
-            logger = logging.get_logger("transformers.generation.tf_utils")
+            logger = logging.get_logger("transformers_openvla_oft.generation.tf_utils")
         else:
-            logger = logging.get_logger("transformers.generation.utils")
+            logger = logging.get_logger("transformers_openvla_oft.generation.utils")
         logger_msg = "Both `max_new_tokens`"  # The beggining of the message to be checked in this test
 
         # Both are set by the user -> log warning

@@ -102,7 +102,7 @@ pip install -q datasets transformers evaluate
 다음 단계는 모델에 사용할 이미지와 주석을 준비하기 위해 SegFormer 이미지 프로세서를 불러오는 것입니다. 우리가 사용하는 데이터 세트와 같은 일부 데이터 세트는 배경 클래스로 제로 인덱스를 사용합니다. 하지만 배경 클래스는 150개의 클래스에 실제로는 포함되지 않기 때문에 `reduce_labels=True` 를 설정해 모든 레이블에서 배경 클래스를 제거해야 합니다. 제로 인덱스는 `255`로 대체되므로 SegFormer의 손실 함수에서 무시됩니다:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> checkpoint = "nvidia/mit-b0"
 >>> image_processor = AutoImageProcessor.from_pretrained(checkpoint, reduce_labels=True)
@@ -298,7 +298,7 @@ pip install -q datasets transformers evaluate
 이제 모델 학습을 시작할 준비가 되었습니다! [`AutoModelForSemanticSegmentation`]로 SegFormer를 불러오고, 모델에 레이블 ID와 레이블 클래스 간의 매핑을 전달합니다:
 
 ```py
->>> from transformers import AutoModelForSemanticSegmentation, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForSemanticSegmentation, TrainingArguments, Trainer
 
 >>> model = AutoModelForSemanticSegmentation.from_pretrained(checkpoint, id2label=id2label, label2id=label2id)
 ```
@@ -337,7 +337,7 @@ pip install -q datasets transformers evaluate
 
 >>> trainer.train()
 ```
-학습이 완료되면, 누구나 모델을 사용할 수 있도록 [`~transformers.Trainer.push_to_hub`] 메서드를 사용해 Hub에 모델을 공유하세요:
+학습이 완료되면, 누구나 모델을 사용할 수 있도록 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메서드를 사용해 Hub에 모델을 공유하세요:
 
 ```py
 >>> trainer.push_to_hub()
@@ -364,7 +364,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 하이퍼파라미터, 옵티마이저, 학습률 스케쥴러를 정의하는 것으로 시작하세요:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 2
 >>> num_epochs = 50
@@ -383,7 +383,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 그런 다음 레이블 매핑과 함께 [`TFAutoModelForSemanticSegmentation`]을 사용하여 SegFormer를 불러오고 옵티마이저로 컴파일합니다. 트랜스포머 모델은 모두 디폴트로 태스크 관련 손실 함수가 있으므로 원치 않으면 지정할 필요가 없습니다:
 
 ```py
->>> from transformers import TFAutoModelForSemanticSegmentation
+>>> from transformers_openvla_oft import TFAutoModelForSemanticSegmentation
 
 >>> model = TFAutoModelForSemanticSegmentation.from_pretrained(
 ...     checkpoint,
@@ -396,7 +396,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 [`~datasets.Dataset.to_tf_dataset`] 와 [`DefaultDataCollator`]를 사용해 데이터 세트를 `tf.data.Dataset` 포맷으로 변환하세요:
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 
@@ -418,7 +418,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 예측으로 정확도를 계산하고 모델을 🤗 Hub로 푸시하려면 [Keras callbacks](../main_classes/keras_callbacks)를 사용하세요. `compute_metrics` 함수를 [`KerasMetricCallback`]에 전달하고, 모델 업로드를 위해 [`PushToHubCallback`]를 사용하세요:
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback, PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback, PushToHubCallback
 
 >>> metric_callback = KerasMetricCallback(
 ...     metric_fn=compute_metrics, eval_dataset=tf_eval_dataset, batch_size=batch_size, label_cols=["labels"]
@@ -467,7 +467,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 추론을 위해 미세 조정한 모델을 시험해 보는 가장 간단한 방법은 [`pipeline`]에서 사용하는 것입니다. 모델을 사용하여 이미지 분할을 위한 `pipeline`을 인스턴스화하고 이미지를 전달합니다:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> segmenter = pipeline("image-segmentation", model="my_awesome_seg_model")
 >>> segmenter(image)
@@ -534,7 +534,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 이미지 프로세서를 로드하여 이미지를 전처리하고 입력을 TensorFlow 텐서로 반환합니다:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("MariaK/scene_segmentation")
 >>> inputs = image_processor(image, return_tensors="tf")
@@ -543,7 +543,7 @@ TensorFlow에서 모델을 미세 조정하려면 다음 단계를 따르세요:
 모델에 입력을 전달하고 `logits`를 반환합니다:
 
 ```py
->>> from transformers import TFAutoModelForSemanticSegmentation
+>>> from transformers_openvla_oft import TFAutoModelForSemanticSegmentation
 
 >>> model = TFAutoModelForSemanticSegmentation.from_pretrained("MariaK/scene_segmentation")
 >>> logits = model(**inputs).logits

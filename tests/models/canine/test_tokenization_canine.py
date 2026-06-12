@@ -19,10 +19,10 @@ import shutil
 import tempfile
 import unittest
 
-from transformers import BatchEncoding, CanineTokenizer
-from transformers.testing_utils import require_tokenizers, require_torch
-from transformers.tokenization_utils import AddedToken
-from transformers.utils import cached_property
+from transformers_openvla_oft import BatchEncoding, CanineTokenizer
+from transformers_openvla_oft.testing_utils import require_tokenizers, require_torch
+from transformers_openvla_oft.tokenization_utils import AddedToken
+from transformers_openvla_oft.utils import cached_property
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

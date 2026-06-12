@@ -14,16 +14,16 @@
 
 import unittest
 
-from transformers import AutoConfig, AutoTokenizer, BertConfig, TensorType, is_flax_available
-from transformers.testing_utils import DUMMY_UNKNOWN_IDENTIFIER, require_flax, slow
+from transformers_openvla_oft import AutoConfig, AutoTokenizer, BertConfig, TensorType, is_flax_available
+from transformers_openvla_oft.testing_utils import DUMMY_UNKNOWN_IDENTIFIER, require_flax, slow
 
 
 if is_flax_available():
     import jax
 
-    from transformers.models.auto.modeling_flax_auto import FlaxAutoModel
-    from transformers.models.bert.modeling_flax_bert import FlaxBertModel
-    from transformers.models.roberta.modeling_flax_roberta import FlaxRobertaModel
+    from transformers_openvla_oft.models.auto.modeling_flax_auto import FlaxAutoModel
+    from transformers_openvla_oft.models.bert.modeling_flax_bert import FlaxBertModel
+    from transformers_openvla_oft.models.roberta.modeling_flax_roberta import FlaxRobertaModel
 
 
 @require_flax

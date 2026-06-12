@@ -31,7 +31,7 @@ Weiterleiten", "Nachbearbeitung" und "Parameter säubern".
 
 
 ```python
-from transformers import Pipeline
+from transformers_openvla_oft import Pipeline
 
 
 class MyPipeline(Pipeline):
@@ -121,7 +121,7 @@ von Argumenten zu unterstützen (Audiodateien, die Dateinamen, URLs oder reine B
 Um Ihre `neue Aufgabe` in die Liste der unterstützten Aufgaben aufzunehmen, müssen Sie sie zur `PIPELINE_REGISTRY` hinzufügen:
 
 ```python
-from transformers.pipelines import PIPELINE_REGISTRY
+from transformers_openvla_oft.pipelines import PIPELINE_REGISTRY
 
 PIPELINE_REGISTRY.register_pipeline(
     "new-task",
@@ -150,7 +150,7 @@ Python-Datei speichern. Nehmen wir zum Beispiel an, Sie möchten eine benutzerde
 ```py
 import numpy as np
 
-from transformers import Pipeline
+from transformers_openvla_oft import Pipeline
 
 
 def softmax(outputs):
@@ -188,8 +188,8 @@ einer Datei namens `pair_classification.py` gespeichert haben, können wir sie i
 
 ```py
 from pair_classification import PairClassificationPipeline
-from transformers.pipelines import PIPELINE_REGISTRY
-from transformers import AutoModelForSequenceClassification, TFAutoModelForSequenceClassification
+from transformers_openvla_oft.pipelines import PIPELINE_REGISTRY
+from transformers_openvla_oft import AutoModelForSequenceClassification, TFAutoModelForSequenceClassification
 
 PIPELINE_REGISTRY.register_pipeline(
     "pair-classification",
@@ -203,7 +203,7 @@ Sobald dies geschehen ist, können wir es mit einem vortrainierten Modell verwen
 auf den MRPC-Datensatz abgestimmt, der Satzpaare als Paraphrasen oder nicht klassifiziert.
 
 ```py
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 classifier = pipeline("pair-classification", model="sgugger/finetuned-bert-mrpc")
 ```
@@ -220,7 +220,7 @@ und speichert das Modell und den Tokenizer der Pipeline, bevor Sie alles in das 
 `trust_remote_code=True` angeben:
 
 ```py
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 classifier = pipeline(model="{your_username}/test-dynamic-pipeline", trust_remote_code=True)
 ```

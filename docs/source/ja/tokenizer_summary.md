@@ -70,11 +70,11 @@ rendered properly in your Markdown viewer.
 
 サブワードトークン化アルゴリズムは、頻繁に使用される単語をより小さなサブワードに分割すべきではないが、珍しい単語は意味のあるサブワードに分解されるという原則に依存しています。たとえば、「"annoyingly"」は珍しい単語と見なされ、その単語は「"annoying"」と「"ly"」に分解されるかもしれません。独立した「"annoying"」と「"ly"」はより頻繁に現れますが、「"annoyingly"」の意味は「"annoying"」と「"ly"」の合成的な意味によって保持されます。これは特にトルコ語などの結合言語で役立ちます。ここではサブワードを連結して（ほぼ）任意の長い複雑な単語を形成できます。
 
-サブワードトークン化により、モデルは合理的な語彙サイズを持つことができ、意味のあるコンテキスト独立の表現を学習できます。さらに、サブワードトークン化により、モデルは以前に見たことのない単語を処理し、それらを既知のサブワードに分解することができます。例えば、[`~transformers.BertTokenizer`]は`"I have a new GPU!"`を以下のようにトークン化します：
+サブワードトークン化により、モデルは合理的な語彙サイズを持つことができ、意味のあるコンテキスト独立の表現を学習できます。さらに、サブワードトークン化により、モデルは以前に見たことのない単語を処理し、それらを既知のサブワードに分解することができます。例えば、[`~transformers_openvla_oft.BertTokenizer`]は`"I have a new GPU!"`を以下のようにトークン化します：
 
 
 ```py
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> tokenizer.tokenize("I have a new GPU!")
@@ -83,10 +83,10 @@ rendered properly in your Markdown viewer.
 
 「uncased」モデルを考慮しているため、まず文を小文字に変換しました。トークナイザの語彙に「["i", "have", "a", "new"]」という単語が存在することがわかりますが、「"gpu"」という単語は存在しません。したがって、トークナイザは「"gpu"」を既知のサブワード「["gp"、"##u"]」に分割します。ここで「"##"」は、トークンのデコードまたはトークナイゼーションの逆転のために、トークンの前の部分にスペースなしで接続する必要があることを意味します。
 
-別の例として、[`~transformers.XLNetTokenizer`]は以下のように以前のサンプルテキストをトークン化します：
+別の例として、[`~transformers_openvla_oft.XLNetTokenizer`]は以下のように以前のサンプルテキストをトークン化します：
 
 ```py
->>> from transformers import XLNetTokenizer
+>>> from transformers_openvla_oft import XLNetTokenizer
 
 >>> tokenizer = XLNetTokenizer.from_pretrained("xlnet/xlnet-base-cased")
 >>> tokenizer.tokenize("Don't you love 🤗 Transformers? We sure do.")

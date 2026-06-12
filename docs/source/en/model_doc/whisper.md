@@ -36,7 +36,7 @@ The original code can be found [here](https://github.com/openai/whisper).
 - To convert the model and the processor, we recommend using the following:
 
 ```bash
-python src/transformers/models/whisper/convert_openai_to_hf.py --checkpoint_path "" --pytorch_dump_folder_path "Arthur/whisper-3" --convert_preprocessor True
+python src/transformers_openvla_oft/models/whisper/convert_openai_to_hf.py --checkpoint_path "" --pytorch_dump_folder_path "Arthur/whisper-3" --convert_preprocessor True
 ```
 The script will automatically determine all necessary parameters from the OpenAI checkpoint. A `tiktoken` library needs to be installed
 to perform the conversion of the OpenAI tokenizer to the `tokenizers` version.
@@ -47,7 +47,7 @@ Here is a step-by-step guide to transcribing an audio sample using a pre-trained
 
 ```python
 >>> from datasets import load_dataset
->>> from transformers import WhisperProcessor, WhisperForConditionalGeneration
+>>> from transformers_openvla_oft import WhisperProcessor, WhisperForConditionalGeneration
 
 >>> # Select an audio file and read it:
 >>> ds = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
@@ -78,7 +78,7 @@ Here is a step-by-step guide to transcribing an audio sample using a pre-trained
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with Whisper. If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
 
-- A fork with a script to [convert a Whisper model in Hugging Face format to OpenAI format](https://github.com/zuazo-forks/transformers/blob/convert_hf_to_openai/src/transformers/models/whisper/convert_hf_to_openai.py). 🌎
+- A fork with a script to [convert a Whisper model in Hugging Face format to OpenAI format](https://github.com/zuazo-forks/transformers/blob/convert_hf_to_openai/src/transformers_openvla_oft/models/whisper/convert_hf_to_openai.py). 🌎
 Usage example:
 ```bash
 pip install -U openai-whisper

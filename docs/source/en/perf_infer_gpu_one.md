@@ -96,7 +96,7 @@ To enable FlashAttention-2, pass the argument `attn_implementation="flash_attent
 
 ```python
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
 
 model_id = "tiiuae/falcon-7b"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -122,7 +122,7 @@ FlashAttention-2 can be combined with other optimization techniques like quantiz
 
 ```py
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
 
 model_id = "tiiuae/falcon-7b"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -214,7 +214,7 @@ By default, SDPA selects the most performant kernel available but you can check 
 
 ```diff
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("facebook/opt-350m")
 model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m", torch_dtype=torch.float16).to("cuda")
@@ -294,7 +294,7 @@ pip install transformers
 To load a model in 4-bit for inference, use the `load_in_4bit` parameter. The `device_map` parameter is optional, but we recommend setting it to `"auto"` to allow 🤗 Accelerate to automatically and efficiently allocate the model given the available resources in the environment.
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_name = "bigscience/bloom-2b5"
 model_4bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_4bit=True)
@@ -321,16 +321,16 @@ If you're curious and interested in learning more about the concepts underlying 
 To load a model in 8-bit for inference, use the `load_in_8bit` parameter. The `device_map` parameter is optional, but we recommend setting it to `"auto"` to allow 🤗 Accelerate to automatically and efficiently allocate the model given the available resources in the environment:
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_name = "bigscience/bloom-2b5"
 model_8bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_8bit=True)
 ```
 
-If you're loading a model in 8-bit for text generation, you should use the [`~transformers.GenerationMixin.generate`] method instead of the [`Pipeline`] function which is not optimized for 8-bit models and will be slower. Some sampling strategies, like nucleus sampling, are also not supported by the [`Pipeline`] for 8-bit models. You should also place all inputs on the same device as the model:
+If you're loading a model in 8-bit for text generation, you should use the [`~transformers_openvla_oft.GenerationMixin.generate`] method instead of the [`Pipeline`] function which is not optimized for 8-bit models and will be slower. Some sampling strategies, like nucleus sampling, are also not supported by the [`Pipeline`] for 8-bit models. You should also place all inputs on the same device as the model:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model_name = "bigscience/bloom-2b5"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -384,7 +384,7 @@ Now you're free to use the model for inference:
 
 ```py
 from optimum.pipelines import pipeline
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased-finetuned-sst-2-english")
 
@@ -398,7 +398,7 @@ It is often possible to combine several of the optimization techniques described
 
 ```py
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 # load model in 4-bit
 quantization_config = BitsAndBytesConfig(

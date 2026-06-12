@@ -63,8 +63,8 @@ GPU. If it doesn't don't hesitate to create an issue.
 
 ```python
 import datasets
-from transformers import pipeline
-from transformers.pipelines.pt_utils import KeyDataset
+from transformers_openvla_oft import pipeline
+from transformers_openvla_oft.pipelines.pt_utils import KeyDataset
 from tqdm.auto import tqdm
 
 pipe = pipeline("automatic-speech-recognition", model="facebook/wav2vec2-base-960h", device=0)
@@ -83,7 +83,7 @@ For ease of use, a generator is also possible:
 
 
 ```python
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline("text-classification")
 
@@ -113,8 +113,8 @@ All pipelines can use batching. This will work
 whenever the pipeline uses its streaming ability (so when passing lists or `Dataset` or `generator`).
 
 ```python
-from transformers import pipeline
-from transformers.pipelines.pt_utils import KeyDataset
+from transformers_openvla_oft import pipeline
+from transformers_openvla_oft.pipelines.pt_utils import KeyDataset
 import datasets
 
 dataset = datasets.load_dataset("imdb", name="plain_text", split="unsupervised")
@@ -136,7 +136,7 @@ Example where it's mostly a speedup:
 </Tip>
 
 ```python
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 from torch.utils.data import Dataset
 from tqdm.auto import tqdm
 
@@ -211,7 +211,7 @@ Streaming batch_size=64
 Streaming batch_size=256
   0%|                                                                                 | 0/1000 [00:00<?, ?it/s]
 Traceback (most recent call last):
-  File "/home/nicolas/src/transformers/test.py", line 42, in <module>
+  File "/home/nicolas/src/transformers_openvla_oft/test.py", line 42, in <module>
     for out in tqdm(pipe(dataset, batch_size=256), total=len(dataset)):
 ....
     q = q / math.sqrt(dim_per_head)  # (bs, n_heads, q_length, dim_per_head)

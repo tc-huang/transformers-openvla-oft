@@ -35,7 +35,7 @@ rendered properly in your Markdown viewer.
 1. 首先，创建一个[`pipeline`]并指定推理任务：
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline(task="automatic-speech-recognition")
 ```
@@ -144,7 +144,7 @@ texts = transcriber(audio_filenames)
 ### 任务特定参数
 
 所有任务都提供了特定于任务的参数，这些参数提供额外的灵活性和选择，以帮助您完成工作。
-例如，[`transformers.AutomaticSpeechRecognitionPipeline.__call__`] 方法具有一个 `return_timestamps` 参数，对于字幕视频似乎很有帮助：
+例如，[`transformers_openvla_oft.AutomaticSpeechRecognitionPipeline.__call__`] 方法具有一个 `return_timestamps` 参数，对于字幕视频似乎很有帮助：
 
 ```py
 >>> transcriber = pipeline(model="openai/whisper-large-v2", return_timestamps=True)
@@ -154,7 +154,7 @@ texts = transcriber(audio_filenames)
 
 正如您所看到的，模型推断出了文本，还输出了各个句子发音的**时间**。
 
-每个任务都有许多可用的参数，因此请查看每个任务的API参考，以了解您可以进行哪些调整！例如，[`~transformers.AutomaticSpeechRecognitionPipeline`] 具有 `chunk_length_s` 参数，对于处理非常长的音频文件（例如，为整部电影或长达一小时的视频配字幕）非常有帮助，这通常是模型无法单独处理的：
+每个任务都有许多可用的参数，因此请查看每个任务的API参考，以了解您可以进行哪些调整！例如，[`~transformers_openvla_oft.AutomaticSpeechRecognitionPipeline`] 具有 `chunk_length_s` 参数，对于处理非常长的音频文件（例如，为整部电影或长达一小时的视频配字幕）非常有帮助，这通常是模型无法单独处理的：
 
 ```python
 >>> transcriber = pipeline(model="openai/whisper-large-v2", chunk_length_s=30, return_timestamps=True)
@@ -190,7 +190,7 @@ for out in pipe(data()):
 
 ```py
 # KeyDataset is a util that will just output the item we're interested in.
-from transformers.pipelines.pt_utils import KeyDataset
+from transformers_openvla_oft.pipelines.pt_utils import KeyDataset
 from datasets import load_dataset
 
 pipe = pipeline(model="hf-internal-testing/tiny-random-wav2vec2", device=0)
@@ -217,7 +217,7 @@ for out in pipe(KeyDataset(dataset, "audio")):
 
 ![pipeline-cat-chonk](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg)
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vision_classifier = pipeline(model="google/vit-base-patch16-224")
 >>> preds = vision_classifier(
@@ -234,7 +234,7 @@ for out in pipe(KeyDataset(dataset, "audio")):
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> # This model is a `zero-shot-classification` model.
 >>> # It will classify text, except you are free to choose any label you might imagine
@@ -254,7 +254,7 @@ for out in pipe(KeyDataset(dataset, "audio")):
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vqa = pipeline(model="impira/layoutlm-document-qa")
 >>> output = vqa(
@@ -288,7 +288,7 @@ pip install pytesseract
 ```py
 # pip install accelerate
 import torch
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline(model="facebook/opt-1.3b", torch_dtype=torch.bfloat16, device_map="auto")
 output = pipe("This is a cool example!", do_sample=True, top_p=0.95)
@@ -300,7 +300,7 @@ output = pipe("This is a cool example!", do_sample=True, top_p=0.95)
 ```py
 # pip install accelerate bitsandbytes
 import torch
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline(model="facebook/opt-1.3b", device_map="auto", model_kwargs={"load_in_8bit": True})
 output = pipe("This is a cool example!", do_sample=True, top_p=0.95)

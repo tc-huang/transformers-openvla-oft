@@ -19,9 +19,9 @@ from typing import Dict, List, Optional, Union
 
 import numpy as np
 
-from transformers.image_transforms import PaddingMode
-from transformers.testing_utils import require_torch, require_vision
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.image_transforms import PaddingMode
+from transformers_openvla_oft.testing_utils import require_torch, require_vision
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_image_processing_common import ImageProcessingTestMixin, prepare_video_inputs
 
@@ -32,7 +32,7 @@ if is_torch_available():
 if is_vision_available():
     from PIL import Image
 
-    from transformers import TvpImageProcessor
+    from transformers_openvla_oft import TvpImageProcessor
 
 
 class TvpImageProcessingTester(unittest.TestCase):

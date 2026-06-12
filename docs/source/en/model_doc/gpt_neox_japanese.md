@@ -30,7 +30,7 @@ Development of the model was led by [Shinya Otani](https://github.com/SO0529), [
 The `generate()` method can be used to generate text using GPT NeoX Japanese model.
 
 ```python
->>> from transformers import GPTNeoXJapaneseForCausalLM, GPTNeoXJapaneseTokenizer
+>>> from transformers_openvla_oft import GPTNeoXJapaneseForCausalLM, GPTNeoXJapaneseTokenizer
 
 >>> model = GPTNeoXJapaneseForCausalLM.from_pretrained("abeja/gpt-neox-japanese-2.7b")
 >>> tokenizer = GPTNeoXJapaneseTokenizer.from_pretrained("abeja/gpt-neox-japanese-2.7b")

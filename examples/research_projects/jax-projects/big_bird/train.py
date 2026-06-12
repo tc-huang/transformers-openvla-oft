@@ -7,7 +7,7 @@ from bigbird_flax import Args, DataCollator, FlaxBigBirdForNaturalQuestions, Tra
 from datasets import load_dataset
 from flax import jax_utils
 
-from transformers import BigBirdTokenizerFast
+from transformers_openvla_oft import BigBirdTokenizerFast
 
 
 if __name__ == "__main__":

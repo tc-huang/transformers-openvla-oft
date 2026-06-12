@@ -22,7 +22,7 @@ import tempfile
 import unittest
 from typing import List
 
-from transformers import (
+from transformers_openvla_oft import (
     AddedToken,
     MarkupLMTokenizerFast,
     SpecialTokensMixin,
@@ -30,8 +30,8 @@ from transformers import (
     is_torch_available,
     logging,
 )
-from transformers.models.markuplm.tokenization_markuplm import VOCAB_FILES_NAMES, MarkupLMTokenizer
-from transformers.testing_utils import is_pt_tf_cross_test, require_tokenizers, require_torch, slow
+from transformers_openvla_oft.models.markuplm.tokenization_markuplm import VOCAB_FILES_NAMES, MarkupLMTokenizer
+from transformers_openvla_oft.testing_utils import is_pt_tf_cross_test, require_tokenizers, require_torch, slow
 
 from ...test_tokenization_common import SMALL_TRAINING_CORPUS, TokenizerTesterMixin, merge_model_tokenizer_mappings
 
@@ -1048,7 +1048,7 @@ class MarkupLMTokenizationTest(TokenizerTesterMixin, unittest.TestCase):
     def test_torch_encode_plus_sent_to_model(self):
         import torch
 
-        from transformers import MODEL_MAPPING, TOKENIZER_MAPPING
+        from transformers_openvla_oft import MODEL_MAPPING, TOKENIZER_MAPPING
 
         MODEL_TOKENIZER_MAPPING = merge_model_tokenizer_mappings(MODEL_MAPPING, TOKENIZER_MAPPING)
 

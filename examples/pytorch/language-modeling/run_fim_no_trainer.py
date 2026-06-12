@@ -42,8 +42,8 @@ from huggingface_hub import Repository, create_repo
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     CONFIG_MAPPING,
     MODEL_MAPPING,
     AutoConfig,
@@ -55,8 +55,8 @@ from transformers import (
     is_deepspeed_zero3_enabled,
     is_torch_tpu_available,
 )
-from transformers.utils import check_min_version, send_example_telemetry
-from transformers.utils.versions import require_version
+from transformers_openvla_oft.utils import check_min_version, send_example_telemetry
+from transformers_openvla_oft.utils.versions import require_version
 
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
@@ -349,10 +349,10 @@ def main():
     logger.info(accelerator.state, main_process_only=False)
     if accelerator.is_local_main_process:
         datasets.utils.logging.set_verbosity_warning()
-        transformers.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
     else:
         datasets.utils.logging.set_verbosity_error()
-        transformers.utils.logging.set_verbosity_error()
+        transformers_openvla_oft.utils.logging.set_verbosity_error()
 
     # If passed along, set the training seed now.
     if args.seed is not None:

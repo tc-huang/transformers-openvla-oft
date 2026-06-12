@@ -18,9 +18,9 @@ import json
 import os
 import unittest
 
-from transformers import MgpstrTokenizer
-from transformers.models.mgp_str.tokenization_mgp_str import VOCAB_FILES_NAMES
-from transformers.testing_utils import require_tokenizers
+from transformers_openvla_oft import MgpstrTokenizer
+from transformers_openvla_oft.models.mgp_str.tokenization_mgp_str import VOCAB_FILES_NAMES
+from transformers_openvla_oft.testing_utils import require_tokenizers
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

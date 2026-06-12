@@ -1,4 +1,4 @@
-from transformers import ProcessorMixin
+from transformers_openvla_oft import ProcessorMixin
 
 
 class CustomProcessor(ProcessorMixin):

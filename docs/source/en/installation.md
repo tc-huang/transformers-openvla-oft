@@ -88,7 +88,7 @@ pip install 'transformers[flax]'
 Finally, check if 🤗 Transformers has been properly installed by running the following command. It will download a pretrained model:
 
 ```bash
-python -c "from transformers import pipeline; print(pipeline('sentiment-analysis')('we love you'))"
+python -c "from transformers_openvla_oft import pipeline; print(pipeline('sentiment-analysis')('we love you'))"
 ```
 
 Then print out the label and score:
@@ -110,7 +110,7 @@ This command installs the bleeding edge `main` version rather than the latest `s
 Check if 🤗 Transformers has been properly installed by running the following command:
 
 ```bash
-python -c "from transformers import pipeline; print(pipeline('sentiment-analysis')('I love you'))"
+python -c "from transformers_openvla_oft import pipeline; print(pipeline('sentiment-analysis')('I love you'))"
 ```
 
 ## Editable install
@@ -187,7 +187,7 @@ This script should run without hanging or waiting to timeout because it won't at
 You can also bypass loading a model from the Hub from each [`~PreTrainedModel.from_pretrained`] call with the [`local_files_only`] parameter. When set to `True`, only local files are loaded:
 
 ```py
-from transformers import T5Model
+from transformers_openvla_oft import T5Model
 
 model = T5Model.from_pretrained("./path/to/local/directory", local_files_only=True)
 ```
@@ -205,7 +205,7 @@ Another option for using 🤗 Transformers offline is to download the files ahea
     1. Download your files ahead of time with [`PreTrainedModel.from_pretrained`]:
 
     ```py
-    >>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+    >>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 
     >>> tokenizer = AutoTokenizer.from_pretrained("bigscience/T0_3B")
     >>> model = AutoModelForSeq2SeqLM.from_pretrained("bigscience/T0_3B")
@@ -244,7 +244,7 @@ Another option for using 🤗 Transformers offline is to download the files ahea
 Once your file is downloaded and locally cached, specify it's local path to load and use it:
 
 ```py
->>> from transformers import AutoConfig
+>>> from transformers_openvla_oft import AutoConfig
 
 >>> config = AutoConfig.from_pretrained("./your/path/bigscience_t0/config.json")
 ```

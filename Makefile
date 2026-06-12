@@ -17,13 +17,13 @@ modified_only_fixup:
 		echo "No library .py files were modified"; \
 	fi
 
-# Update src/transformers/dependency_versions_table.py
+# Update src/transformers_openvla_oft/dependency_versions_table.py
 
 deps_table_update:
 	@python setup.py deps_table_update
 
 deps_table_check_updated:
-	@md5sum src/transformers/dependency_versions_table.py > md5sum.saved
+	@md5sum src/transformers_openvla_oft/dependency_versions_table.py > md5sum.saved
 	@python setup.py deps_table_update
 	@md5sum -c --quiet md5sum.saved || (printf "\nError: the version dependency table is outdated.\nPlease run 'make fixup' or 'make style' and commit the changes.\n\n" && exit 1)
 	@rm md5sum.saved
@@ -51,7 +51,7 @@ repo-consistency:
 # this target runs checks on all files
 
 quality:
-	@python -c "from transformers import *" || (echo '🚨 import failed, this means you introduced unprotected imports! 🚨'; exit 1)
+	@python -c "from transformers_openvla_oft import *" || (echo '🚨 import failed, this means you introduced unprotected imports! 🚨'; exit 1)
 	ruff check $(check_dirs) setup.py conftest.py
 	ruff format --check $(check_dirs) setup.py conftest.py
 	python utils/custom_init_isort.py --check_only

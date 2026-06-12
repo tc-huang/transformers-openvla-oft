@@ -19,7 +19,7 @@ import unittest
 
 import numpy as np
 
-from transformers import (
+from transformers_openvla_oft import (
     BertTokenizer,
     DataCollatorForLanguageModeling,
     DataCollatorForPermutationLanguageModeling,
@@ -31,7 +31,7 @@ from transformers import (
     is_torch_available,
     set_seed,
 )
-from transformers.testing_utils import require_tf, require_torch
+from transformers_openvla_oft.testing_utils import require_tf, require_torch
 
 
 if is_torch_available():

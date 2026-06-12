@@ -20,9 +20,9 @@ from typing import List
 
 import numpy as np
 
-from transformers import EfficientFormerConfig
-from transformers.testing_utils import require_tf, require_vision, slow
-from transformers.utils import cached_property, is_tf_available, is_vision_available
+from transformers_openvla_oft import EfficientFormerConfig
+from transformers_openvla_oft.testing_utils import require_tf, require_vision, slow
+from transformers_openvla_oft.utils import cached_property, is_tf_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_tf_common import TFModelTesterMixin, floats_tensor, ids_tensor
@@ -32,18 +32,18 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         TFEfficientFormerForImageClassification,
         TFEfficientFormerForImageClassificationWithTeacher,
         TFEfficientFormerModel,
     )
-    from transformers.modeling_tf_utils import keras
+    from transformers_openvla_oft.modeling_tf_utils import keras
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import EfficientFormerImageProcessor
+    from transformers_openvla_oft import EfficientFormerImageProcessor
 
 
 class TFEfficientFormerModelTester:

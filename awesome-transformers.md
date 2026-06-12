@@ -107,7 +107,7 @@ Keywords: Imagen, Text-to-image
 
 ## [adapters](https://github.com/adapter-hub/adapters)
 
-[adapters](https://github.com/adapter-hub/adapters) is an extension of HuggingFace's Transformers library, integrating adapters into state-of-the-art language models by incorporating AdapterHub, a central repository for pre-trained adapter modules. It is a drop-in replacement for transformers, which is regularly updated to stay up-to-date with the developments of transformers.
+[adapters](https://github.com/adapter-hub/adapters) is an extension of HuggingFace's Transformers library, integrating adapters into state-of-the-art language models by incorporating AdapterHub, a central repository for pre-trained adapter modules. It is a drop-in replacement for transformers, which is regularly updated to stay up-to-date with the developments of transformers_openvla_oft.
 
 Keywords: Adapters, LoRA, Parameter-efficient fine-tuning, Hub
 
@@ -146,9 +146,9 @@ Keywords: Framework, simplicity, NLP
 
 Keywords: LLM, Agents, HF Hub
 
-## [transformers.js](https://xenova.github.io/transformers.js/)
+## [transformers_openvla_oft.js](https://xenova.github.io/transformers.js/)
 
-[transformers.js](https://xenova.github.io/transformers.js/) is a JavaScript library targeted at running models from transformers directly within the browser.
+[transformers_openvla_oft.js](https://xenova.github.io/transformers.js/) is a JavaScript library targeted at running models from transformers directly within the browser.
 
 Keywords: Transformers, JavaScript, browser
 
@@ -197,7 +197,7 @@ Keywords: Visualization, Transformers
 
 ## [mesh-transformer-jax](https://github.com/kingoflolz/mesh-transformer-jax)
 
-[mesh-transformer-jax](https://github.com/kingoflolz/mesh-transformer-jax) is a haiku library using the xmap/pjit operators in JAX for model parallelism of transformers. This library is designed for scalability up to approximately 40B parameters on TPUv3s. It was the library used to train the GPT-J model.
+[mesh-transformer-jax](https://github.com/kingoflolz/mesh-transformer-jax) is a haiku library using the xmap/pjit operators in JAX for model parallelism of transformers_openvla_oft. This library is designed for scalability up to approximately 40B parameters on TPUv3s. It was the library used to train the GPT-J model.
 
 Keywords: Haiku, Model parallelism, LLM, TPU
 

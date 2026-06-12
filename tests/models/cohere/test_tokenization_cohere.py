@@ -15,8 +15,8 @@
 
 import unittest
 
-from transformers import CohereTokenizerFast
-from transformers.testing_utils import require_jinja, require_tokenizers
+from transformers_openvla_oft import CohereTokenizerFast
+from transformers_openvla_oft.testing_utils import require_jinja, require_tokenizers
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

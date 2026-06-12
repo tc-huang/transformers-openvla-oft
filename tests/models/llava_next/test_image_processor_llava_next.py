@@ -17,10 +17,10 @@ import unittest
 
 import numpy as np
 
-from transformers.image_utils import OPENAI_CLIP_MEAN, OPENAI_CLIP_STD
-from transformers.models.llava_next.image_processing_llava_next import select_best_resolution
-from transformers.testing_utils import require_torch, require_vision
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.image_utils import OPENAI_CLIP_MEAN, OPENAI_CLIP_STD
+from transformers_openvla_oft.models.llava_next.image_processing_llava_next import select_best_resolution
+from transformers_openvla_oft.testing_utils import require_torch, require_vision
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_image_processing_common import ImageProcessingTestMixin, prepare_image_inputs
 
@@ -31,7 +31,7 @@ if is_torch_available():
 if is_vision_available():
     from PIL import Image
 
-    from transformers import LlavaNextImageProcessor
+    from transformers_openvla_oft import LlavaNextImageProcessor
 
 
 class LlavaNextImageProcessingTester(unittest.TestCase):

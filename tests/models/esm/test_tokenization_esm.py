@@ -19,10 +19,10 @@ import tempfile
 import unittest
 from typing import List
 
-from transformers.models.esm.tokenization_esm import VOCAB_FILES_NAMES, EsmTokenizer
-from transformers.testing_utils import require_tokenizers
-from transformers.tokenization_utils import PreTrainedTokenizer
-from transformers.tokenization_utils_base import PreTrainedTokenizerBase
+from transformers_openvla_oft.models.esm.tokenization_esm import VOCAB_FILES_NAMES, EsmTokenizer
+from transformers_openvla_oft.testing_utils import require_tokenizers
+from transformers_openvla_oft.tokenization_utils import PreTrainedTokenizer
+from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase
 
 
 @require_tokenizers

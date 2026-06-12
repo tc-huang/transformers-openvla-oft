@@ -24,14 +24,14 @@ import unittest
 
 import numpy as np
 
-from transformers import (
+from transformers_openvla_oft import (
     AddedToken,
     Wav2Vec2Config,
     Wav2Vec2CTCTokenizer,
     Wav2Vec2Tokenizer,
 )
-from transformers.models.wav2vec2.tokenization_wav2vec2 import VOCAB_FILES_NAMES, Wav2Vec2CTCTokenizerOutput
-from transformers.testing_utils import require_torch, slow
+from transformers_openvla_oft.models.wav2vec2.tokenization_wav2vec2 import VOCAB_FILES_NAMES, Wav2Vec2CTCTokenizerOutput
+from transformers_openvla_oft.testing_utils import require_torch, slow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 
@@ -645,7 +645,7 @@ class Wav2Vec2CTCTokenizerTest(TokenizerTesterMixin, unittest.TestCase):
         tokenizer = self.tokenizer_class.from_pretrained("facebook/wav2vec2-base-960h")
         # pred_ids correspond to the following code
         # ```
-        #        from transformers import AutoTokenizer, AutoFeatureExtractor, AutoModelForCTC
+        #        from transformers_openvla_oft import AutoTokenizer, AutoFeatureExtractor, AutoModelForCTC
         #        from datasets import load_dataset
         #        import datasets
         #        import torch

@@ -48,7 +48,7 @@ import cv2
 import numpy as np
 import torch
 from huggingface_hub import hf_hub_download
-from transformers import AutoProcessor, TvpForVideoGrounding
+from transformers_openvla_oft import AutoProcessor, TvpForVideoGrounding
 
 
 def pyav_decode(container, sampling_rate, num_frames, clip_idx, num_clips, target_fps):

@@ -55,7 +55,7 @@ Di seguito sono riportate alcune note per aiutarvi a utilizzare questo modulo, o
 Dopo aver installato le librerie necessarie, per caricare il tuo modello mixed 8-bit è il seguente:
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_name = "bigscience/bloom-2b5"
 model_8bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_8bit=True)
@@ -69,7 +69,7 @@ Per la generazione di testo, si consiglia di:
 Ecco un semplice esempio:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model_name = "bigscience/bloom-2b5"
 tokenizer = AutoTokenizer.from_pretrained(model_name)

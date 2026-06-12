@@ -109,7 +109,7 @@ image = image_generator("A banner showing " + answer)
 もうすぐ確認しましょう。 `document_qa` ツールを読み込んで名前と説明を出力します。
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 document_qa = load_tool("document-question-answering")
 print(f"- {document_qa.name}: {document_qa.description}")
@@ -162,7 +162,7 @@ image = image_generator("A banner showing " + answer)
 
 プロンプトの最後の部分に対応しています：
 
-[こちら](https://github.com/huggingface/transformers/blob/main/src/transformers/tools/evaluate_agent.py)の問題ステートメントで厳密に評価される、エージェントのプロンプトができるだけ優れたものになるように
+[こちら](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/tools/evaluate_agent.py)の問題ステートメントで厳密に評価される、エージェントのプロンプトができるだけ優れたものになるように
 慎重に選定されたプロンプト例を提供しています。
 
 ```text
@@ -233,7 +233,7 @@ Human: <user-input>\n\nAssistant:
 
 
 ```py
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
 
@@ -414,7 +414,7 @@ agent = HfAgent(url_endpoint=your_endpoint, chat_prompt_template=template)
 便利な [`load_tool`] 関数を使用してカスタムツールをロードします：
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 controlnet_transformer = load_tool("diffusers/controlnet-canny-tool")
 upscaler = load_tool("diffusers/latent-upscaler-tool")
@@ -572,7 +572,7 @@ print(model.id)
 
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 
 
 class HFModelDownloadsTool(Tool):
@@ -589,7 +589,7 @@ class HFModelDownloadsTool(Tool):
 
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 from huggingface_hub import list_models
 
 
@@ -633,7 +633,7 @@ tool.push_to_hub("hf-model-downloads")
 Hubにあるツールがあります。これは次のようにインスタンス化できます（ユーザー名をツールに合わせて変更してください）:
 
 ```python
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 tool = load_tool("lysandre/hf-model-downloads")
 ```
@@ -642,7 +642,7 @@ tool = load_tool("lysandre/hf-model-downloads")
 
 
 ```python
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder", additional_tools=[tool])
 
@@ -682,7 +682,7 @@ The model with the most downloads is damo-vilab/text-to-video-ms-1.7b.
 既存のツールを置き換えるには、新しいアイテムをエージェントのツールボックスに割り当てるだけで行うことができます。以下はその方法です:
 
 ```python
-from transformers import HfAgent, load_tool
+from transformers_openvla_oft import HfAgent, load_tool
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
 agent.toolbox["image-transformation"] = load_tool("diffusers/controlnet-canny-tool")
@@ -712,7 +712,7 @@ gradio_tool = StableDiffusionPromptGeneratorTool()
 
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 
 tool = Tool.from_gradio(gradio_tool)
 ```
@@ -721,7 +721,7 @@ tool = Tool.from_gradio(gradio_tool)
 ` a rabbit wearing a space suit`:
 
 ```python
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder", additional_tools=[tool])
 

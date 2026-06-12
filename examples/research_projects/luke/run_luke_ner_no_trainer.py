@@ -34,8 +34,8 @@ from luke_utils import DataCollatorForLukeTokenClassification, is_punctuation, p
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     AdamW,
     LukeConfig,
     LukeForEntitySpanClassification,
@@ -45,7 +45,7 @@ from transformers import (
     get_scheduler,
     set_seed,
 )
-from transformers.utils.versions import require_version
+from transformers_openvla_oft.utils.versions import require_version
 
 
 logger = logging.getLogger(__name__)
@@ -245,10 +245,10 @@ def main():
     logger.setLevel(logging.INFO if accelerator.is_local_main_process else logging.ERROR)
     if accelerator.is_local_main_process:
         datasets.utils.logging.set_verbosity_warning()
-        transformers.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
     else:
         datasets.utils.logging.set_verbosity_error()
-        transformers.utils.logging.set_verbosity_error()
+        transformers_openvla_oft.utils.logging.set_verbosity_error()
 
     # If passed along, set the training seed now.
     if args.seed is not None:

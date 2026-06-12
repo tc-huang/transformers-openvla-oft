@@ -56,7 +56,7 @@ fine-tuning. If you are doing multi-task fine-tuning, you should use a prefix.
 ByT5 works on raw UTF-8 bytes, so it can be used without a tokenizer:
 
 ```python
->>> from transformers import T5ForConditionalGeneration
+>>> from transformers_openvla_oft import T5ForConditionalGeneration
 >>> import torch
 
 >>> model = T5ForConditionalGeneration.from_pretrained("google/byt5-small")
@@ -77,7 +77,7 @@ ByT5 works on raw UTF-8 bytes, so it can be used without a tokenizer:
 For batched inference and training it is however recommended to make use of the tokenizer:
 
 ```python
->>> from transformers import T5ForConditionalGeneration, AutoTokenizer
+>>> from transformers_openvla_oft import T5ForConditionalGeneration, AutoTokenizer
 
 >>> model = T5ForConditionalGeneration.from_pretrained("google/byt5-small")
 >>> tokenizer = AutoTokenizer.from_pretrained("google/byt5-small")
@@ -102,7 +102,7 @@ input sentence `"The dog chases a ball in the park."` and ask ByT5 to predict th
 for us.
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 >>> import torch
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google/byt5-base")

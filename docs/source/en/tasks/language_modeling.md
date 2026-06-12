@@ -109,7 +109,7 @@ tasks is you don't need labels (also known as an unsupervised task) because the 
 The next step is to load a DistilGPT2 tokenizer to process the `text` subfield:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 ```
@@ -202,7 +202,7 @@ sentences to the longest length in a batch during collation, instead of padding 
 Use the end-of-sequence token as the padding token and set `mlm=False`. This will use the inputs as labels shifted to the right by one element:
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> tokenizer.pad_token = tokenizer.eos_token
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
@@ -213,7 +213,7 @@ Use the end-of-sequence token as the padding token and set `mlm=False`. This wil
 Use the end-of-sequence token as the padding token and set `mlm=False`. This will use the inputs as labels shifted to the right by one element:
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False, return_tensors="tf")
 ```
@@ -235,7 +235,7 @@ If you aren't familiar with finetuning a model with the [`Trainer`], take a look
 You're ready to start training your model now! Load DistilGPT2 with [`AutoModelForCausalLM`]:
 
 ```py
->>> from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, TrainingArguments, Trainer
 
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
@@ -266,7 +266,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, use the [`~transformers.Trainer.evaluate`] method to evaluate your model and get its perplexity:
+Once training is completed, use the [`~transformers_openvla_oft.Trainer.evaluate`] method to evaluate your model and get its perplexity:
 
 ```py
 >>> import math
@@ -276,7 +276,7 @@ Once training is completed, use the [`~transformers.Trainer.evaluate`] method to
 Perplexity: 49.61
 ```
 
-Then share your model to the Hub with the [`~transformers.Trainer.push_to_hub`] method so everyone can use your model:
+Then share your model to the Hub with the [`~transformers_openvla_oft.Trainer.push_to_hub`] method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -291,7 +291,7 @@ If you aren't familiar with finetuning a model with Keras, take a look at the [b
 To finetune a model in TensorFlow, start by setting up an optimizer function, learning rate schedule, and some training hyperparameters:
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -299,12 +299,12 @@ To finetune a model in TensorFlow, start by setting up an optimizer function, le
 Then you can load DistilGPT2 with [`TFAutoModelForCausalLM`]:
 
 ```py
->>> from transformers import TFAutoModelForCausalLM
+>>> from transformers_openvla_oft import TFAutoModelForCausalLM
 
 >>> model = TFAutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
 
-Convert your datasets to the `tf.data.Dataset` format with [`~transformers.TFPreTrainedModel.prepare_tf_dataset`]:
+Convert your datasets to the `tf.data.Dataset` format with [`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -330,10 +330,10 @@ Configure the model for training with [`compile`](https://keras.io/api/models/mo
 >>> model.compile(optimizer=optimizer)  # No loss argument!
 ```
 
-This can be done by specifying where to push your model and tokenizer in the [`~transformers.PushToHubCallback`]:
+This can be done by specifying where to push your model and tokenizer in the [`~transformers_openvla_oft.PushToHubCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> callback = PushToHubCallback(
 ...     output_dir="my_awesome_eli5_clm-model",
@@ -372,7 +372,7 @@ Come up with a prompt you'd like to generate text from:
 The simplest way to try out your finetuned model for inference is to use it in a [`pipeline`]. Instantiate a `pipeline` for text generation with your model, and pass your text to it:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline("text-generation", model="username/my_awesome_eli5_clm-model")
 >>> generator(prompt)
@@ -384,17 +384,17 @@ The simplest way to try out your finetuned model for inference is to use it in a
 Tokenize the text and return the `input_ids` as PyTorch tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("username/my_awesome_eli5_clm-model")
 >>> inputs = tokenizer(prompt, return_tensors="pt").input_ids
 ```
 
-Use the [`~transformers.generation_utils.GenerationMixin.generate`] method to generate text.
+Use the [`~transformers_openvla_oft.generation_utils.GenerationMixin.generate`] method to generate text.
 For more details about the different text generation strategies and parameters for controlling generation, check out the [Text generation strategies](../generation_strategies) page.
 
 ```py
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained("username/my_awesome_eli5_clm-model")
 >>> outputs = model.generate(inputs, max_new_tokens=100, do_sample=True, top_k=50, top_p=0.95)
@@ -411,16 +411,16 @@ Decode the generated token ids back into text:
 Tokenize the text and return the `input_ids` as TensorFlow tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("username/my_awesome_eli5_clm-model")
 >>> inputs = tokenizer(prompt, return_tensors="tf").input_ids
 ```
 
-Use the [`~transformers.generation_tf_utils.TFGenerationMixin.generate`] method to create the summarization. For more details about the different text generation strategies and parameters for controlling generation, check out the [Text generation strategies](../generation_strategies) page.
+Use the [`~transformers_openvla_oft.generation_tf_utils.TFGenerationMixin.generate`] method to create the summarization. For more details about the different text generation strategies and parameters for controlling generation, check out the [Text generation strategies](../generation_strategies) page.
 
 ```py
->>> from transformers import TFAutoModelForCausalLM
+>>> from transformers_openvla_oft import TFAutoModelForCausalLM
 
 >>> model = TFAutoModelForCausalLM.from_pretrained("username/my_awesome_eli5_clm-model")
 >>> outputs = model.generate(input_ids=inputs, max_new_tokens=100, do_sample=True, top_k=50, top_p=0.95)

@@ -25,7 +25,7 @@ Compiling a model takes time, so it's useful if you are compiling the model only
 To compile any computer vision model of your choice, call `torch.compile()` on the model as shown below:
 
 ```diff
-from transformers import AutoModelForImageClassification
+from transformers_openvla_oft import AutoModelForImageClassification
 
 model = AutoModelForImageClassification.from_pretrained(MODEL_ID).to("cuda")
 + model = torch.compile(model)
@@ -46,7 +46,7 @@ import torch
 from PIL import Image
 import requests
 import numpy as np
-from transformers import AutoImageProcessor, AutoModelForImageClassification
+from transformers_openvla_oft import AutoImageProcessor, AutoModelForImageClassification
 
 url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
 image = Image.open(requests.get(url, stream=True).raw)
@@ -65,7 +65,7 @@ with torch.no_grad():
 #### Object Detection with DETR
 
 ```python 
-from transformers import AutoImageProcessor, AutoModelForObjectDetection
+from transformers_openvla_oft import AutoImageProcessor, AutoModelForObjectDetection
 
 processor = AutoImageProcessor.from_pretrained("facebook/detr-resnet-50")
 model = AutoModelForObjectDetection.from_pretrained("facebook/detr-resnet-50").to("cuda")
@@ -81,7 +81,7 @@ with torch.no_grad():
 #### Image Segmentation with Segformer
 
 ```python 
-from transformers import SegformerImageProcessor, SegformerForSemanticSegmentation
+from transformers_openvla_oft import SegformerImageProcessor, SegformerForSemanticSegmentation
 
 processor = SegformerImageProcessor.from_pretrained("nvidia/segformer-b0-finetuned-ade-512-512")
 model = SegformerForSemanticSegmentation.from_pretrained("nvidia/segformer-b0-finetuned-ade-512-512").to("cuda")

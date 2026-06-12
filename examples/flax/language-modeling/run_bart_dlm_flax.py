@@ -47,7 +47,7 @@ from flax.training.common_utils import get_metrics, onehot, shard
 from huggingface_hub import HfApi
 from tqdm import tqdm
 
-from transformers import (
+from transformers_openvla_oft import (
     CONFIG_MAPPING,
     FLAX_MODEL_FOR_MASKED_LM_MAPPING,
     AutoTokenizer,
@@ -59,8 +59,8 @@ from transformers import (
     is_tensorboard_available,
     set_seed,
 )
-from transformers.models.bart.modeling_flax_bart import shift_tokens_right
-from transformers.utils import send_example_telemetry
+from transformers_openvla_oft.models.bart.modeling_flax_bart import shift_tokens_right
+from transformers_openvla_oft.utils import send_example_telemetry
 
 
 MODEL_CONFIG_CLASSES = list(FLAX_MODEL_FOR_MASKED_LM_MAPPING.keys())
@@ -266,7 +266,7 @@ class FlaxDataCollatorForBartDenoisingLM:
     at the `official paper <https://arxiv.org/pdf/1910.13461.pdf>`__
     or the `official code for preprocessing <https://github.com/facebookresearch/fairseq/blob/main/fairseq/data/denoising_dataset.py>`__ .
     Args:
-        tokenizer (:class:`~transformers.PreTrainedTokenizer` or :class:`~transformers.PreTrainedTokenizerFast`):
+        tokenizer (:class:`~transformers_openvla_oft.PreTrainedTokenizer` or :class:`~transformers_openvla_oft.PreTrainedTokenizerFast`):
             The tokenizer used for encoding the data
         mask_ratio (:obj:`float`):
             The probability with which to (randomly) mask tokens in the input
@@ -458,7 +458,7 @@ def write_eval_metric(summary_writer, eval_metrics, step):
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 

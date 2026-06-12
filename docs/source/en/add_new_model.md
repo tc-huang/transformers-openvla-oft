@@ -100,7 +100,7 @@ own regarding how code should be written :-)
 
 1. The forward pass of your model should be fully written in the modeling file while being fully independent of other
    models in the library. If you want to reuse a block from another model, copy the code and paste it with a
-   `# Copied from` comment on top (see [here](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers/models/roberta/modeling_roberta.py#L160)
+   `# Copied from` comment on top (see [here](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L160)
    for a good example and [there](pr_checks#check-copies) for more documentation on Copied from). 
 2. The code should be fully understandable, even by a non-native English speaker. This means you should pick
    descriptive variable names and avoid abbreviations. As an example, `activation` is preferred to `act`.
@@ -387,7 +387,7 @@ important. Here is some advice to make your debugging environment as efficient a
   original code so that you can directly input the ids instead of an input string.
 - Make sure that the model in your debugging setup is **not** in training mode, which often causes the model to yield
   random outputs due to multiple dropout layers in the model. Make sure that the forward pass in your debugging
-  environment is **deterministic** so that the dropout layers are not used. Or use *transformers.utils.set_seed*
+  environment is **deterministic** so that the dropout layers are not used. Or use *transformers_openvla_oft.utils.set_seed*
   if the old and new implementations are in the same framework.
 
 The following section gives you more specific details/tips on how you can do this for *brand_new_bert*.
@@ -476,11 +476,11 @@ Hugging Face team by Slack or email.
 **5. Adapt the generated models code for brand_new_bert**
 
 At first, we will focus only on the model itself and not care about the tokenizer. All the relevant code should be
-found in the generated files `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` and
-`src/transformers/models/brand_new_bert/configuration_brand_new_bert.py`.
+found in the generated files `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` and
+`src/transformers_openvla_oft/models/brand_new_bert/configuration_brand_new_bert.py`.
 
 Now you can finally start coding :). The generated code in
-`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` will either have the same architecture as BERT if
+`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` will either have the same architecture as BERT if
 it's an encoder-only model or BART if it's an encoder-decoder model. At this point, you should remind yourself what
 you've learned in the beginning about the theoretical aspects of the model: *How is the model different from BERT or
 BART?*". Implement those changes which often means changing the *self-attention* layer, the order of the normalization
@@ -489,14 +489,14 @@ get a better feeling of how your model should be implemented.
 
 **Note** that at this point, you don't have to be very sure that your code is fully correct or clean. Rather, it is
 advised to add a first *unclean*, copy-pasted version of the original code to
-`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` until you feel like all the necessary code is
+`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` until you feel like all the necessary code is
 added. From our experience, it is much more efficient to quickly add a first version of the required code and
 improve/correct the code iteratively with the conversion script as described in the next section. The only thing that
 has to work at this point is that you can instantiate the 🤗 Transformers implementation of *brand_new_bert*, *i.e.* the
 following command should work:
 
 ```python
-from transformers import BrandNewBertModel, BrandNewBertConfig
+from transformers_openvla_oft import BrandNewBertModel, BrandNewBertConfig
 
 model = BrandNewBertModel(BrandNewBertConfig())
 ```
@@ -556,8 +556,8 @@ the same framework as *brand_new_bert*. Usually, it is enough to copy an already
 slightly adapt it for your use case. Don't hesitate to ask the Hugging Face team to point you to a similar already
 existing conversion script for your model.
 
-- If you are porting a model from TensorFlow to PyTorch, a good starting point might be BERT's conversion script [here](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers/models/bert/modeling_bert.py#L91)
-- If you are porting a model from PyTorch to PyTorch, a good starting point might be BART's conversion script [here](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
+- If you are porting a model from TensorFlow to PyTorch, a good starting point might be BERT's conversion script [here](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers_openvla_oft/models/bert/modeling_bert.py#L91)
+- If you are porting a model from PyTorch to PyTorch, a good starting point might be BART's conversion script [here](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
 
 In the following, we'll quickly explain how PyTorch models store layer weights and define layer names. In PyTorch, the
 name of a layer is defined by the name of the class attribute you give the layer. Let's define a dummy model in
@@ -790,7 +790,7 @@ a functional tokenization script that uses the original repository, an analogous
 created. It should look similar to this:
 
 ```python
-from transformers import BrandNewBertTokenizer
+from transformers_openvla_oft import BrandNewBertTokenizer
 
 input_str = "This is a long example input string containing special characters .$?-, numbers 2872 234 12 and words."
 
@@ -826,7 +826,7 @@ this page before using your model. Hence, the documentation must be understandab
 the community to add some *Tips* to show how the model should be used. Don't hesitate to ping the Hugging Face team
 regarding the docstrings.
 
-Next, make sure that the docstring added to `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` is
+Next, make sure that the docstring added to `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` is
 correct and included all necessary inputs and outputs. We have a detailed guide about writing documentation and our docstring format [here](writing-documentation). It is always good to remind oneself that documentation should
 be treated at least as carefully as the code in 🤗 Transformers since the documentation is usually the first contact
 point of the community with the model.

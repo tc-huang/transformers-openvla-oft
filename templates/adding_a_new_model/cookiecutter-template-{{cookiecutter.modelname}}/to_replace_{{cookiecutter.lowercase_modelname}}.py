@@ -24,7 +24,7 @@
 ##
 ## Put '## COMMENT' to comment on the file.
 
-# To replace in: "src/transformers/__init__.py"
+# To replace in: "src/transformers_openvla_oft/__init__.py"
 # Below: "    # PyTorch models structure" if generating PyTorch
 # Replace with:
 {% if cookiecutter.is_encoder_decoder_model == "False" %}
@@ -122,7 +122,7 @@
     "models.{{cookiecutter.lowercase_modelname}}": ["{{cookiecutter.camelcase_modelname}}Config", "{{cookiecutter.camelcase_modelname}}Tokenizer"],
 # End.
 
-# To replace in: "src/transformers/__init__.py"
+# To replace in: "src/transformers_openvla_oft/__init__.py"
 # Below: "        # PyTorch model imports" if generating PyTorch
 # Replace with:
 {% if cookiecutter.is_encoder_decoder_model == "False" %}
@@ -210,14 +210,14 @@
 
 
 
-# To replace in: "src/transformers/models/__init__.py"
+# To replace in: "src/transformers_openvla_oft/models/__init__.py"
 # Below: "from . import ("
 # Replace with:
     {{cookiecutter.lowercase_modelname}},
 # End.
 
 
-# To replace in: "src/transformers/models/auto/configuration_auto.py"
+# To replace in: "src/transformers_openvla_oft/models/auto/configuration_auto.py"
 # Below: "# Add configs here"
 # Replace with:
         ("{{cookiecutter.lowercase_modelname}}", "{{cookiecutter.camelcase_modelname}}Config"),
@@ -230,7 +230,7 @@
 
 
 
-# To replace in: "src/transformers/models/auto/modeling_auto.py" if generating PyTorch
+# To replace in: "src/transformers_openvla_oft/models/auto/modeling_auto.py" if generating PyTorch
 # Below: "# Base model mapping"
 # Replace with:
         ("{{cookiecutter.lowercase_modelname}}", "{{cookiecutter.camelcase_modelname}}Model"),
@@ -292,7 +292,7 @@
 {% endif -%}
 # End.
 
-# To replace in: "src/transformers/models/auto/modeling_tf_auto.py" if generating TensorFlow
+# To replace in: "src/transformers_openvla_oft/models/auto/modeling_tf_auto.py" if generating TensorFlow
 # Below: "# Base model mapping"
 # Replace with:
         ("{{cookiecutter.lowercase_modelname}}", "TF{{cookiecutter.camelcase_modelname}}Model"),
@@ -363,7 +363,7 @@
 {% endif -%}
 # End.
 
-# To replace in: "src/transformers/models/auto/modeling_flax_auto.py" if generating Flax
+# To replace in: "src/transformers_openvla_oft/models/auto/modeling_flax_auto.py" if generating Flax
 # Below: "# Base model mapping"
 # Replace with:
         ("{{cookiecutter.lowercase_modelname}}", "Flax{{cookiecutter.camelcase_modelname}}Model"),

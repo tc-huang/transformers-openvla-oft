@@ -24,8 +24,8 @@ import quant_trainer
 import torch
 from torch.utils.data import DataLoader
 
-from transformers import Trainer, is_torch_xla_available
-from transformers.trainer_utils import PredictionOutput
+from transformers_openvla_oft import Trainer, is_torch_xla_available
+from transformers_openvla_oft.trainer_utils import PredictionOutput
 
 
 logger = logging.getLogger(__name__)

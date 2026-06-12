@@ -18,8 +18,8 @@ import json
 import pathlib
 import unittest
 
-from transformers.testing_utils import require_torch, require_vision, slow
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_torch, require_vision, slow
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_image_processing_common import AnnotationFormatTestMixin, ImageProcessingTestMixin, prepare_image_inputs
 
@@ -27,12 +27,12 @@ from ...test_image_processing_common import AnnotationFormatTestMixin, ImageProc
 if is_torch_available():
     import torch
 
-    from transformers.models.grounding_dino.modeling_grounding_dino import GroundingDinoObjectDetectionOutput
+    from transformers_openvla_oft.models.grounding_dino.modeling_grounding_dino import GroundingDinoObjectDetectionOutput
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import GroundingDinoImageProcessor
+    from transformers_openvla_oft import GroundingDinoImageProcessor
 
 
 class GroundingDinoImageProcessingTester(unittest.TestCase):

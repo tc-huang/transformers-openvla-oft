@@ -36,7 +36,7 @@ and decoder for a summarization model as was shown in: [Text Summarization with 
 [`EncoderDecoderModel`] can be randomly initialized from an encoder and a decoder config. In the following example, we show how to do this using the default [`BertModel`] configuration for the encoder and the default [`BertForCausalLM`] configuration for the decoder.
 
 ```python
->>> from transformers import BertConfig, EncoderDecoderConfig, EncoderDecoderModel
+>>> from transformers_openvla_oft import BertConfig, EncoderDecoderConfig, EncoderDecoderModel
 
 >>> config_encoder = BertConfig()
 >>> config_decoder = BertConfig()
@@ -53,7 +53,7 @@ Initializing [`EncoderDecoderModel`] from a pretrained encoder and decoder check
 To do so, the `EncoderDecoderModel` class provides a [`EncoderDecoderModel.from_encoder_decoder_pretrained`] method.
 
 ```python
->>> from transformers import EncoderDecoderModel, BertTokenizer
+>>> from transformers_openvla_oft import EncoderDecoderModel, BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = EncoderDecoderModel.from_encoder_decoder_pretrained("google-bert/bert-base-uncased", "google-bert/bert-base-uncased")
@@ -66,7 +66,7 @@ To load fine-tuned checkpoints of the `EncoderDecoderModel` class, [`EncoderDeco
 To perform inference, one uses the [`generate`] method, which allows to autoregressively generate text. This method supports various forms of decoding, such as greedy, beam search and multinomial sampling.
 
 ```python
->>> from transformers import AutoTokenizer, EncoderDecoderModel
+>>> from transformers_openvla_oft import AutoTokenizer, EncoderDecoderModel
 
 >>> # load a fine-tuned seq2seq model and corresponding tokenizer
 >>> model = EncoderDecoderModel.from_pretrained("patrickvonplaten/bert2bert_cnn_daily_mail")
@@ -95,7 +95,7 @@ checkpoints for a particular encoder-decoder model, a workaround is:
 
 ```python
 >>> # a workaround to load from pytorch checkpoint
->>> from transformers import EncoderDecoderModel, TFEncoderDecoderModel
+>>> from transformers_openvla_oft import EncoderDecoderModel, TFEncoderDecoderModel
 
 >>> _model = EncoderDecoderModel.from_pretrained("patrickvonplaten/bert2bert-cnn_dailymail-fp16")
 
@@ -117,7 +117,7 @@ As you can see, only 2 inputs are required for the model in order to compute a l
 target sequence).
 
 ```python
->>> from transformers import BertTokenizer, EncoderDecoderModel
+>>> from transformers_openvla_oft import BertTokenizer, EncoderDecoderModel
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = EncoderDecoderModel.from_encoder_decoder_pretrained("google-bert/bert-base-uncased", "google-bert/bert-base-uncased")

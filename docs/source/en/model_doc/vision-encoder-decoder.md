@@ -38,7 +38,7 @@ the caption. Another example is optical character recognition. Refer to [TrOCR](
 and the default [`BertForCausalLM`] configuration for the decoder.
 
 ```python
->>> from transformers import BertConfig, ViTConfig, VisionEncoderDecoderConfig, VisionEncoderDecoderModel
+>>> from transformers_openvla_oft import BertConfig, ViTConfig, VisionEncoderDecoderConfig, VisionEncoderDecoderModel
 
 >>> config_encoder = ViTConfig()
 >>> config_decoder = BertConfig()
@@ -55,7 +55,7 @@ Initializing [`VisionEncoderDecoderModel`] from a pretrained encoder and decoder
 To do so, the `VisionEncoderDecoderModel` class provides a [`VisionEncoderDecoderModel.from_encoder_decoder_pretrained`] method.
 
 ```python
->>> from transformers import VisionEncoderDecoderModel
+>>> from transformers_openvla_oft import VisionEncoderDecoderModel
 
 >>> model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(
 ...     "microsoft/swin-base-patch4-window7-224-in22k", "google-bert/bert-base-uncased"
@@ -72,7 +72,7 @@ To perform inference, one uses the [`generate`] method, which allows to autoregr
 >>> import requests
 >>> from PIL import Image
 
->>> from transformers import GPT2TokenizerFast, ViTImageProcessor, VisionEncoderDecoderModel
+>>> from transformers_openvla_oft import GPT2TokenizerFast, ViTImageProcessor, VisionEncoderDecoderModel
 
 >>> # load a fine-tuned image captioning model and corresponding tokenizer and image processor
 >>> model = VisionEncoderDecoderModel.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
@@ -98,7 +98,7 @@ PyTorch checkpoint. Passing `from_pt=True` to this method will throw an exceptio
 checkpoints for a particular vision encoder-decoder model, a workaround is:
 
 ```python
->>> from transformers import VisionEncoderDecoderModel, TFVisionEncoderDecoderModel
+>>> from transformers_openvla_oft import VisionEncoderDecoderModel, TFVisionEncoderDecoderModel
 
 >>> _model = VisionEncoderDecoderModel.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
 
@@ -119,7 +119,7 @@ As you can see, only 2 inputs are required for the model in order to compute a l
 images) and `labels` (which are the `input_ids` of the encoded target sequence).
 
 ```python
->>> from transformers import ViTImageProcessor, BertTokenizer, VisionEncoderDecoderModel
+>>> from transformers_openvla_oft import ViTImageProcessor, BertTokenizer, VisionEncoderDecoderModel
 >>> from datasets import load_dataset
 
 >>> image_processor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")

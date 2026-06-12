@@ -50,7 +50,7 @@ BigBird は、質問応答や要約などのさまざまな NLP タスクのパ�
 - シーケンスの長さはブロック サイズで割り切れる必要があります。
 - 現在の実装では **ITC** のみがサポートされています。
 - 現在の実装では **num_random_blocks = 0** はサポートされていません。
-- BigBirdPegasus は [PegasusTokenizer](https://github.com/huggingface/transformers/blob/main/src/transformers/models/pegasus/tokenization_pegasus.py) を使用します。
+- BigBirdPegasus は [PegasusTokenizer](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/pegasus/tokenization_pegasus.py) を使用します。
 - BigBird は絶対位置埋め込みを備えたモデルであるため、通常は入力を右側にパディングすることをお勧めします。
   左。
 

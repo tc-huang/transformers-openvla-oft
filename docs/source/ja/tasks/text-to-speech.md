@@ -27,7 +27,7 @@ rendered properly in your Markdown viewer.
 Bark で`text-to-speech`パイプラインを使用する方法の例を次に示します。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> pipe = pipeline("text-to-speech", model="suno/bark-small")
 >>> text = "[clears throat] This is a test ... and I just took a long pause."
@@ -119,7 +119,7 @@ dataset = dataset.cast_column("audio", Audio(sampling_rate=16000))
 
 
 ```py
->>> from transformers import SpeechT5Processor
+>>> from transformers_openvla_oft import SpeechT5Processor
 
 >>> checkpoint = "microsoft/speecht5_tts"
 >>> processor = SpeechT5Processor.from_pretrained(checkpoint)
@@ -451,7 +451,7 @@ SpeechT5 では、モデルのデコーダ部分への入力が 2 分の 1 に�
 プロセッサのロードに使用したのと同じチェックポイントから事前トレーニングされたモデルをロードします。
 
 ```py
->>> from transformers import SpeechT5ForTextToSpeech
+>>> from transformers_openvla_oft import SpeechT5ForTextToSpeech
 
 >>> model = SpeechT5ForTextToSpeech.from_pretrained(checkpoint)
 ```
@@ -466,7 +466,7 @@ SpeechT5 では、モデルのデコーダ部分への入力が 2 分の 1 に�
 損失だけを見てください。
 
 ```python
->>> from transformers import Seq2SeqTrainingArguments
+>>> from transformers_openvla_oft import Seq2SeqTrainingArguments
 
 >>> training_args = Seq2SeqTrainingArguments(
 ...     output_dir="speecht5_finetuned_voxpopuli_nl",  # change to a repo name of your choice
@@ -493,7 +493,7 @@ SpeechT5 では、モデルのデコーダ部分への入力が 2 分の 1 に�
 `Trainer`オブジェクトをインスタンス化し、モデル、データセット、データ照合器をそれに渡します。
 
 ```py
->>> from transformers import Seq2SeqTrainer
+>>> from transformers_openvla_oft import Seq2SeqTrainer
 
 >>> trainer = Seq2SeqTrainer(
 ...     args=training_args,
@@ -532,7 +532,7 @@ SpeechT5 では、モデルのデコーダ部分への入力が 2 分の 1 に�
 チェックポイント:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> pipe = pipeline("text-to-speech", model="YOUR_ACCOUNT_NAME/speecht5_finetuned_voxpopuli_nl")
 ```

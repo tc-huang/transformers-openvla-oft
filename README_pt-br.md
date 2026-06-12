@@ -145,13 +145,13 @@ Se você possui ou utiliza um projeto que acredita que deveria fazer parte da li
 Para usar imediatamente um modelo em uma entrada específica (texto, imagem, áudio, ...), oferecemos a API `pipeline`. Os pipelines agrupam um modelo pré-treinado com o pré-processamento que foi usado durante o treinamento desse modelo. Aqui está como usar rapidamente um pipeline para classificar textos como positivos ou negativos:
 
 ```python
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 # Carregue o pipeline de classificação de texto
 >>> classifier = pipeline("sentiment-analysis")
 
 # Classifique o texto como positivo ou negativo
->>> classifier("Estamos muito felizes em apresentar o pipeline no repositório dos transformers.")
+>>> classifier("Estamos muito felizes em apresentar o pipeline no repositório dos transformers_openvla_oft.")
 [{'label': 'POSITIVE', 'score': 0.9996980428695679}]
 ```
 
@@ -162,7 +162,7 @@ Muitas tarefas têm um `pipeline` pré-treinado pronto para uso, não apenas em 
 ``` python
 >>> import requests
 >>> from PIL import Image
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Download an image with cute cats
 >>> url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/coco_sample.png"
@@ -203,7 +203,7 @@ Você pode aprender mais sobre as tarefas suportadas pela API `pipeline` em [est
 Além do `pipeline`, para baixar e usar qualquer um dos modelos pré-treinados em sua tarefa específica, tudo o que é necessário são três linhas de código. Aqui está a versão em PyTorch:
 
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -215,7 +215,7 @@ Além do `pipeline`, para baixar e usar qualquer um dos modelos pré-treinados e
 E aqui está o código equivalente para TensorFlow:
 
 ```python
->>> from transformers import AutoTokenizer, TFAutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

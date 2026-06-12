@@ -116,7 +116,7 @@ import pandas as pd
 import torch
 from tqdm import tqdm
 
-import transformers
+import transformers_openvla_oft
 
 
 nan = float("nan")
@@ -285,7 +285,7 @@ def get_versions():
 Datetime    : {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 Software:
-transformers: {transformers.__version__}
+transformers: {transformers_openvla_oft.__version__}
 torch       : {torch.__version__}
 cuda        : {torch.version.cuda}
 python      : {platform.python_version()}

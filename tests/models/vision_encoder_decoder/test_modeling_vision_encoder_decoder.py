@@ -21,8 +21,8 @@ from datasets import load_dataset
 from huggingface_hub import hf_hub_download
 from packaging import version
 
-from transformers import DonutProcessor, NougatProcessor, TrOCRProcessor
-from transformers.testing_utils import (
+from transformers_openvla_oft import DonutProcessor, NougatProcessor, TrOCRProcessor
+from transformers_openvla_oft.testing_utils import (
     require_levenshtein,
     require_nltk,
     require_sentencepiece,
@@ -32,7 +32,7 @@ from transformers.testing_utils import (
     to_2tuple,
     torch_device,
 )
-from transformers.utils import cached_property, is_torch_available, is_vision_available
+from transformers_openvla_oft.utils import cached_property, is_torch_available, is_vision_available
 
 from ...test_modeling_common import floats_tensor, ids_tensor, random_attention_mask
 from ..bart.test_modeling_bart import BartModelTester
@@ -48,7 +48,7 @@ if is_torch_available():
     import numpy as np
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoTokenizer,
         BartForCausalLM,
         BertLMHeadModel,
@@ -60,14 +60,14 @@ if is_torch_available():
         VisionEncoderDecoderModel,
         ViTModel,
     )
-    from transformers.modeling_outputs import BaseModelOutput
+    from transformers_openvla_oft.modeling_outputs import BaseModelOutput
 
 
 if is_vision_available():
     import PIL
     from PIL import Image
 
-    from transformers import ViTImageProcessor
+    from transformers_openvla_oft import ViTImageProcessor
 
 
 @require_torch

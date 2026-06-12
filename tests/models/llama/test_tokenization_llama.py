@@ -21,15 +21,15 @@ import unittest
 
 from datasets import load_dataset
 
-from transformers import (
+from transformers_openvla_oft import (
     SPIECE_UNDERLINE,
     AddedToken,
     LlamaTokenizer,
     LlamaTokenizerFast,
     is_torch_available,
 )
-from transformers.convert_slow_tokenizer import convert_slow_tokenizer
-from transformers.testing_utils import (
+from transformers_openvla_oft.convert_slow_tokenizer import convert_slow_tokenizer
+from transformers_openvla_oft.testing_utils import (
     get_tests_dir,
     nested_simplify,
     require_jinja,

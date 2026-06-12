@@ -10,7 +10,7 @@ from loaders import load_vqgan
 from PIL import Image
 from torch import nn
 
-from transformers import CLIPModel, CLIPTokenizerFast
+from transformers_openvla_oft import CLIPModel, CLIPTokenizerFast
 from utils import get_device, get_timestamp, show_pil
 
 

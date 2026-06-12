@@ -21,12 +21,12 @@ from typing import List, Tuple
 
 import numpy as np
 
-import transformers
-from transformers import is_flax_available, is_torch_available
-from transformers.models.auto import get_values
-from transformers.testing_utils import CaptureLogger, is_pt_flax_cross_test, require_flax, torch_device
-from transformers.utils import CONFIG_NAME, GENERATION_CONFIG_NAME, logging
-from transformers.utils.generic import ModelOutput
+import transformers_openvla_oft
+from transformers_openvla_oft import is_flax_available, is_torch_available
+from transformers_openvla_oft.models.auto import get_values
+from transformers_openvla_oft.testing_utils import CaptureLogger, is_pt_flax_cross_test, require_flax, torch_device
+from transformers_openvla_oft.utils import CONFIG_NAME, GENERATION_CONFIG_NAME, logging
+from transformers_openvla_oft.utils.generic import ModelOutput
 
 
 if is_flax_available():
@@ -38,7 +38,7 @@ if is_flax_available():
     from flax.serialization import from_bytes
     from flax.traverse_util import flatten_dict, unflatten_dict
 
-    from transformers import (
+    from transformers_openvla_oft import (
         FLAX_MODEL_FOR_QUESTION_ANSWERING_MAPPING,
         FLAX_MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING,
         FLAX_MODEL_MAPPING,
@@ -46,11 +46,11 @@ if is_flax_available():
         FlaxAutoModelForSequenceClassification,
         FlaxBertModel,
     )
-    from transformers.modeling_flax_pytorch_utils import (
+    from transformers_openvla_oft.modeling_flax_pytorch_utils import (
         convert_pytorch_state_dict_to_flax,
         load_flax_weights_in_pytorch_model,
     )
-    from transformers.modeling_flax_utils import FLAX_WEIGHTS_INDEX_NAME, FLAX_WEIGHTS_NAME
+    from transformers_openvla_oft.modeling_flax_utils import FLAX_WEIGHTS_INDEX_NAME, FLAX_WEIGHTS_NAME
 
     os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.12"  # assumed parallelism: 8
 
@@ -761,7 +761,7 @@ class FlaxModelTesterMixin:
                     with self.assertRaises(ValueError):
                         new_model_without_prefix = FlaxAutoModel.from_pretrained(tmp_dir, vocab_size=10)
 
-                    logger = logging.get_logger("transformers.modeling_flax_utils")
+                    logger = logging.get_logger("transformers_openvla_oft.modeling_flax_utils")
                     with CaptureLogger(logger) as cl:
                         new_model = FlaxAutoModelForSequenceClassification.from_pretrained(
                             tmp_dir, num_labels=42, ignore_mismatched_sizes=True

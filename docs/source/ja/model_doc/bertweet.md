@@ -32,7 +32,7 @@ al.、2019）。実験では、BERTweet が強力なベースラインである 
 
 ```python
 >>> import torch
->>> from transformers import AutoModel, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModel, AutoTokenizer
 
 >>> bertweet = AutoModel.from_pretrained("vinai/bertweet-base")
 
@@ -51,7 +51,7 @@ al.、2019）。実験では、BERTweet が強力なベースラインである 
 ...     features = bertweet(input_ids)  # Models outputs are now tuples
 
 >>> # With TensorFlow 2.0+:
->>> # from transformers import TFAutoModel
+>>> # from transformers_openvla_oft import TFAutoModel
 >>> # bertweet = TFAutoModel.from_pretrained("vinai/bertweet-base")
 ```
 <Tip>

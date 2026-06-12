@@ -12,7 +12,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from transformers import AdamW, GPT2LMHeadModel, get_linear_schedule_with_warmup
+from transformers_openvla_oft import AdamW, GPT2LMHeadModel, get_linear_schedule_with_warmup
 
 
 logger = logging.getLogger(__name__)

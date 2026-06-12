@@ -56,7 +56,7 @@ encode the text and prepare the images. The following example shows how to get t
 >>> from PIL import Image
 >>> import requests
 
->>> from transformers import AltCLIPModel, AltCLIPProcessor
+>>> from transformers_openvla_oft import AltCLIPModel, AltCLIPProcessor
 
 >>> model = AltCLIPModel.from_pretrained("BAAI/AltCLIP")
 >>> processor = AltCLIPProcessor.from_pretrained("BAAI/AltCLIP")

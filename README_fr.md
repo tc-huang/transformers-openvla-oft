@@ -124,7 +124,7 @@ Dans les tâches multimodales :
 
 Transformers est plus qu'une boîte à outils pour utiliser des modèles pré-entraînés : c'est une communauté de projets construits autour de lui et du Hub Hugging Face. Nous voulons que Transformers permette aux développeurs, chercheurs, étudiants, professeurs, ingénieurs et à quiconque d'imaginer et de réaliser leurs projets de rêve.
 
-Afin de célébrer les 100 000 étoiles de transformers, nous avons décidé de mettre en avant la communauté et avons créé la page [awesome-transformers](./awesome-transformers.md) qui répertorie 100 projets incroyables construits autour de transformers.
+Afin de célébrer les 100 000 étoiles de transformers, nous avons décidé de mettre en avant la communauté et avons créé la page [awesome-transformers](./awesome-transformers.md) qui répertorie 100 projets incroyables construits autour de transformers_openvla_oft.
 
 Si vous possédez ou utilisez un projet que vous pensez devoir figurer dans la liste, veuillez ouvrir une pull request pour l'ajouter !
 
@@ -139,11 +139,11 @@ Si vous possédez ou utilisez un projet que vous pensez devoir figurer dans la l
 Pour utiliser immédiatement un modèle sur une entrée donnée (texte, image, audio,...), nous fournissons l'API `pipeline`. Les pipelines regroupent un modèle pré-entraîné avec la préparation des données qui a été utilisée lors de l'entraînement de ce modèle. Voici comment utiliser rapidement un pipeline pour classer des textes en positif ou négatif :
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Allouer un pipeline pour l'analyse de sentiment
 >>> classifieur = pipeline('sentiment-analysis')
->>> classifieur("Nous sommes très heureux d'introduire le pipeline dans le référentiel transformers.")
+>>> classifieur("Nous sommes très heureux d'introduire le pipeline dans le référentiel transformers_openvla_oft.")
 [{'label': 'POSITIF', 'score': 0.9996980428695679}]
 ```
 
@@ -154,7 +154,7 @@ De nombreuses tâches ont une pipeline pré-entraîné prêt à l'emploi, en NLP
 ```python
 >>> import requests
 >>> from PIL import Image
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Télécharger une image avec de jolis chats
 >>> url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/coco_sample.png"
@@ -193,7 +193,7 @@ Vous pouvez en savoir plus sur les tâches supportées par l'API pipeline dans [
 En plus de `pipeline`, pour télécharger et utiliser n'importe lequel des modèles pré-entraînés sur votre tâche donnée, il suffit de trois lignes de code. Voici la version PyTorch :
 
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -205,7 +205,7 @@ outputs = model(**inputs)
 Et voici le code équivalent pour TensorFlow :
 
 ```python
-from transformers import AutoTokenizer, TFAutoModel
+from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

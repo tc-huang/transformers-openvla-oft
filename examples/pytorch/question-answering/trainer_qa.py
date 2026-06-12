@@ -18,8 +18,8 @@ A subclass of `Trainer` specific to Question-Answering tasks
 import math
 import time
 
-from transformers import Trainer, is_torch_xla_available
-from transformers.trainer_utils import PredictionOutput, speed_metrics
+from transformers_openvla_oft import Trainer, is_torch_xla_available
+from transformers_openvla_oft.trainer_utils import PredictionOutput, speed_metrics
 
 
 if is_torch_xla_available():

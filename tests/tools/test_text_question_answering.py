@@ -15,7 +15,7 @@
 
 import unittest
 
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 from .test_tools_common import ToolTesterMixin
 

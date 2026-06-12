@@ -43,7 +43,7 @@ from typing import Any, Optional, Tuple, Union
 
 from check_repo import ignore_undocumented
 
-from transformers.utils import direct_transformers_import
+from transformers_openvla_oft.utils import direct_transformers_import
 
 
 PATH_TO_TRANSFORMERS = Path("src").resolve() / "transformers"

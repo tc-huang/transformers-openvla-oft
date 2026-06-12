@@ -79,7 +79,7 @@ pip install transformers bitsandbytes>=0.39.0 -q
 首先，您需要加载模型。
 
 ```py
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained(
 ...     "mistralai/Mistral-7B-v0.1", device_map="auto", load_in_4bit=True
@@ -96,7 +96,7 @@ pip install transformers bitsandbytes>=0.39.0 -q
 接下来，你需要使用一个[tokenizer](tokenizer_summary)来预处理你的文本输入。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1", padding_side="left")
 >>> model_inputs = tokenizer(["A list of colors: red, blue"], return_tensors="pt").to("cuda")
@@ -133,7 +133,7 @@ pip install transformers bitsandbytes>=0.39.0 -q
 有许多[生成策略](generation_strategies)，有时默认值可能不适合您的用例。如果您的输出与您期望的结果不匹配，我们已经创建了一个最常见的陷阱列表以及如何避免它们。
 
 ```py
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1")
 >>> tokenizer.pad_token = tokenizer.eos_token  # Most LLMs don't have a pad token by default
@@ -166,7 +166,7 @@ pip install transformers bitsandbytes>=0.39.0 -q
 
 ```py
 >>> # Set seed or reproducibility -- you don't need this unless you want full reproducibility
->>> from transformers import set_seed
+>>> from transformers_openvla_oft import set_seed
 >>> set_seed(42)
 
 >>> model_inputs = tokenizer(["I am a cat."], return_tensors="pt").to("cuda")

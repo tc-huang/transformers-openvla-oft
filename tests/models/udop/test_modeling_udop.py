@@ -19,8 +19,8 @@ import unittest
 
 from huggingface_hub import hf_hub_download
 
-from transformers import UdopConfig, is_torch_available, is_vision_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import UdopConfig, is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import (
     require_sentencepiece,
     require_tokenizers,
     require_torch,
@@ -28,7 +28,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import cached_property
+from transformers_openvla_oft.utils import cached_property
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, ids_tensor
@@ -38,7 +38,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import UdopEncoderModel, UdopForConditionalGeneration, UdopModel, UdopProcessor
+    from transformers_openvla_oft import UdopEncoderModel, UdopForConditionalGeneration, UdopModel, UdopProcessor
 
 
 if is_vision_available():

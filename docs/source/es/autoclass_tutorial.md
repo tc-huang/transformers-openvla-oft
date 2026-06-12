@@ -38,7 +38,7 @@ Casi cualquier tarea de Procesamiento de Lenguaje Natural comienza con un tokeni
 Carga un tokenizador con [`AutoTokenizer.from_pretrained`]:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -60,7 +60,7 @@ Para tareas de audio y visión, un extractor de características procesa la señ
 Carga un extractor de características con [`AutoFeatureExtractor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained(
 ...     "ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"
@@ -74,7 +74,7 @@ Las tareas multimodales requieren un procesador que combine dos tipos de herrami
 Carga un procesador con [`AutoProcessor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("microsoft/layoutlmv2-base-uncased")
 ```
@@ -86,7 +86,7 @@ Carga un procesador con [`AutoProcessor.from_pretrained`]:
 Finalmente, las clases `AutoModelFor` te permiten cargar un modelo preentrenado para una tarea dada (revisa [aquí](model_doc/auto) para conocer la lista completa de tareas disponibles). Por ejemplo, cargue un modelo para clasificación de secuencias con [`AutoModelForSequenceClassification.from_pretrained`]:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -94,7 +94,7 @@ Finalmente, las clases `AutoModelFor` te permiten cargar un modelo preentrenado 
 Reutiliza fácilmente el mismo checkpoint para cargar una aquitectura para alguna tarea diferente:
 
 ```py
->>> from transformers import AutoModelForTokenClassification
+>>> from transformers_openvla_oft import AutoModelForTokenClassification
 
 >>> model = AutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -105,7 +105,7 @@ Generalmente recomendamos utilizar las clases `AutoTokenizer` y `AutoModelFor` p
 Finalmente, la clase `TFAutoModelFor` te permite cargar tu modelo pre-entrenado para una tarea dada (revisa [aquí](model_doc/auto) para conocer la lista completa de tareas disponibles). Por ejemplo, carga un modelo para clasificación de secuencias con [`TFAutoModelForSequenceClassification.from_pretrained`]:
 
 ```py
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -113,7 +113,7 @@ Finalmente, la clase `TFAutoModelFor` te permite cargar tu modelo pre-entrenado 
 Reutiliza fácilmente el mismo checkpoint para cargar una aquitectura para alguna tarea diferente:
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```

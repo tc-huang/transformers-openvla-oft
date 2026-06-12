@@ -43,7 +43,7 @@ The original code can be found [here](https://github.com/salesforce/codegen).
 ## Usage example
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> checkpoint = "Salesforce/codegen-350M-mono"
 >>> model = AutoModelForCausalLM.from_pretrained(checkpoint)

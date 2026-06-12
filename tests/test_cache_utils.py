@@ -17,8 +17,8 @@ import unittest
 
 from parameterized import parameterized
 
-from transformers import set_seed
-from transformers.testing_utils import (
+from transformers_openvla_oft import set_seed
+from transformers_openvla_oft.testing_utils import (
     is_torch_available,
     require_auto_gptq,
     require_torch,
@@ -31,7 +31,7 @@ from transformers.testing_utils import (
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoModelForCausalLM,
         AutoTokenizer,
         DynamicCache,

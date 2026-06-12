@@ -18,9 +18,9 @@ import os
 import tempfile
 import unittest
 
-from transformers import SPIECE_UNDERLINE, AddedToken, BatchEncoding, SiglipTokenizer
-from transformers.testing_utils import get_tests_dir, require_sentencepiece, require_tokenizers, slow
-from transformers.utils import cached_property, is_tf_available, is_torch_available
+from transformers_openvla_oft import SPIECE_UNDERLINE, AddedToken, BatchEncoding, SiglipTokenizer
+from transformers_openvla_oft.testing_utils import get_tests_dir, require_sentencepiece, require_tokenizers, slow
+from transformers_openvla_oft.utils import cached_property, is_tf_available, is_torch_available
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

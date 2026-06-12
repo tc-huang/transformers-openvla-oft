@@ -23,8 +23,8 @@ import numpy as np
 from datasets import load_dataset
 from huggingface_hub import hf_hub_download
 
-from transformers.testing_utils import check_json_file_has_correct_format, require_torch, require_vision
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import check_json_file_has_correct_format, require_torch, require_vision
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_image_processing_common import prepare_image_inputs
 
@@ -33,9 +33,9 @@ if is_torch_available():
     import torch
 
     if is_vision_available():
-        from transformers import CLIPTokenizer, OneFormerImageProcessor, OneFormerProcessor
-        from transformers.models.oneformer.image_processing_oneformer import binary_mask_to_rle
-        from transformers.models.oneformer.modeling_oneformer import OneFormerForUniversalSegmentationOutput
+        from transformers_openvla_oft import CLIPTokenizer, OneFormerImageProcessor, OneFormerProcessor
+        from transformers_openvla_oft.models.oneformer.image_processing_oneformer import binary_mask_to_rle
+        from transformers_openvla_oft.models.oneformer.modeling_oneformer import OneFormerForUniversalSegmentationOutput
 
 if is_vision_available():
     from PIL import Image

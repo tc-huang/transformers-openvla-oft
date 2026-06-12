@@ -18,9 +18,9 @@ import os
 import pickle
 import unittest
 
-from transformers import AutoTokenizer
-from transformers.models.bert.tokenization_bert import BertTokenizer
-from transformers.models.bert_japanese.tokenization_bert_japanese import (
+from transformers_openvla_oft import AutoTokenizer
+from transformers_openvla_oft.models.bert.tokenization_bert import BertTokenizer
+from transformers_openvla_oft.models.bert_japanese.tokenization_bert_japanese import (
     VOCAB_FILES_NAMES,
     BertJapaneseTokenizer,
     CharacterTokenizer,
@@ -29,7 +29,7 @@ from transformers.models.bert_japanese.tokenization_bert_japanese import (
     SudachiTokenizer,
     WordpieceTokenizer,
 )
-from transformers.testing_utils import custom_tokenizers, require_jumanpp, require_sudachi_projection
+from transformers_openvla_oft.testing_utils import custom_tokenizers, require_jumanpp, require_sudachi_projection
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

@@ -37,12 +37,12 @@ import os
 import re
 from typing import List
 
-from transformers.utils import direct_transformers_import
+from transformers_openvla_oft.utils import direct_transformers_import
 
 
 # All paths are set with the intent you should run this script from the root of the repo with the command
 # python utils/check_table.py
-TRANSFORMERS_PATH = "src/transformers"
+TRANSFORMERS_PATH = "src/transformers_openvla_oft"
 PATH_TO_DOCS = "docs/source/en"
 REPO_PATH = "."
 

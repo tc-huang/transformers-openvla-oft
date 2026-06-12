@@ -5,7 +5,7 @@ import numpy as np
 from datasets import ClassLabel, DatasetDict, load_dataset
 from evaluate import load
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
     DataCollatorWithPadding,

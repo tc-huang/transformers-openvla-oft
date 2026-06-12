@@ -56,7 +56,7 @@ Los campos `sent1` y `sent2` muestran cómo comienza una oración, y cada campo 
 Carga el tokenizer de BERT para procesar el comienzo de cada oración y los cuatro finales posibles:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -101,7 +101,7 @@ El `DataCollatorForMultipleChoice` aplanará todas las entradas del modelo, les 
 <pt>
 ```py
 >>> from dataclasses import dataclass
->>> from transformers.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
+>>> from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
 >>> from typing import Optional, Union
 >>> import torch
 
@@ -144,7 +144,7 @@ El `DataCollatorForMultipleChoice` aplanará todas las entradas del modelo, les 
 <tf>
 ```py
 >>> from dataclasses import dataclass
->>> from transformers.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
+>>> from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
 >>> from typing import Optional, Union
 >>> import tensorflow as tf
 
@@ -192,7 +192,7 @@ El `DataCollatorForMultipleChoice` aplanará todas las entradas del modelo, les 
 Carga el modelo BERT con [`AutoModelForMultipleChoice`]:
 
 ```py
->>> from transformers import AutoModelForMultipleChoice, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForMultipleChoice, TrainingArguments, Trainer
 
 >>> model = AutoModelForMultipleChoice.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -261,7 +261,7 @@ Para familiarizarte con el fine-tuning con Keras, ¡mira el tutorial básico [aq
 Prepara una función de optimización, un programa para la tasa de aprendizaje y algunos hiperparámetros de entrenamiento:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_train_epochs = 2
@@ -272,7 +272,7 @@ Prepara una función de optimización, un programa para la tasa de aprendizaje y
 Carga el modelo BERT con [`TFAutoModelForMultipleChoice`]:
 
 ```py
->>> from transformers import TFAutoModelForMultipleChoice
+>>> from transformers_openvla_oft import TFAutoModelForMultipleChoice
 
 >>> model = TFAutoModelForMultipleChoice.from_pretrained("google-bert/bert-base-uncased")
 ```

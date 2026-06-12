@@ -23,9 +23,9 @@ import unittest
 import numpy as np
 import requests
 
-import transformers
-from transformers import CLIPConfig, CLIPTextConfig, CLIPVisionConfig
-from transformers.testing_utils import (
+import transformers_openvla_oft
+from transformers_openvla_oft import CLIPConfig, CLIPTextConfig, CLIPVisionConfig
+from transformers_openvla_oft.testing_utils import (
     is_flax_available,
     is_pt_flax_cross_test,
     require_torch,
@@ -33,7 +33,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import (
@@ -50,7 +50,7 @@ if is_torch_available():
     import torch
     from torch import nn
 
-    from transformers import (
+    from transformers_openvla_oft import (
         CLIPForImageClassification,
         CLIPModel,
         CLIPTextModel,
@@ -63,13 +63,13 @@ if is_torch_available():
 if is_vision_available():
     from PIL import Image
 
-    from transformers import CLIPProcessor
+    from transformers_openvla_oft import CLIPProcessor
 
 
 if is_flax_available():
     import jax.numpy as jnp
 
-    from transformers.modeling_flax_pytorch_utils import (
+    from transformers_openvla_oft.modeling_flax_pytorch_utils import (
         convert_pytorch_state_dict_to_flax,
         load_flax_weights_in_pytorch_model,
     )

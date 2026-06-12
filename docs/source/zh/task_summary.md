@@ -36,7 +36,7 @@ rendered properly in your Markdown viewer.
 * 音乐分类：使用流派标签（"金属"、"嘻哈"、"乡村"）对音乐进行标记。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="audio-classification", model="superb/hubert-base-superb-er")
 >>> preds = classifier("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -55,7 +55,7 @@ rendered properly in your Markdown viewer.
 但是，Transformer架构帮助解决的一个关键挑战是低资源语言。通过在大量语音数据上进行预训练，仅在一个低资源语言的一小时标记语音数据上进行微调，仍然可以产生与以前在100倍更多标记数据上训练的ASR系统相比高质量的结果。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline(task="automatic-speech-recognition", model="openai/whisper-small")
 >>> transcriber("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -81,7 +81,7 @@ rendered properly in your Markdown viewer.
 * 生态学：标记动物或植物物种的图像以监测野生动物种群或跟踪濒危物种
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="image-classification")
 >>> preds = classifier(
@@ -106,7 +106,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> detector = pipeline(task="object-detection")
 >>> preds = detector(
@@ -129,7 +129,7 @@ rendered properly in your Markdown viewer.
 分割任务对于自动驾驶车辆很有帮助，可以创建周围世界的像素级地图，以便它们可以在行人和其他车辆周围安全导航。它还适用于医学成像，其中任务的更精细粒度可以帮助识别异常细胞或器官特征。图像分割也可以用于电子商务，通过您的相机在现实世界中覆盖物体来虚拟试穿衣服或创建增强现实体验。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> segmenter = pipeline(task="image-segmentation")
 >>> preds = segmenter(
@@ -153,7 +153,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> depth_estimator = pipeline(task="depth-estimation")
 >>> preds = depth_estimator(
@@ -174,7 +174,7 @@ NLP任务是最常见的类型之一，因为文本是我们进行交流的自�
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="sentiment-analysis")
 >>> preds = classifier("Hugging Face is the best thing since sliced bread!")
@@ -193,7 +193,7 @@ NLP任务是最常见的类型之一，因为文本是我们进行交流的自�
 * 词性标注（POS）：根据其词性（如名词、动词或形容词）对标记进行标记。POS对于帮助翻译系统了解两个相同的单词如何在语法上不同很有用（作为名词的银行与作为动词的银行）。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="ner")
 >>> preds = classifier("Hugging Face is a French company based in New York City.")
@@ -229,7 +229,7 @@ NLP任务是最常见的类型之一，因为文本是我们进行交流的自�
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> question_answerer = pipeline(task="question-answering")
 >>> preds = question_answerer(
@@ -253,7 +253,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> summarizer = pipeline(task="summarization")
 >>> summarizer(
@@ -269,7 +269,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 在早期，翻译模型大多是单语的，但最近，越来越多的人对可以在多种语言之间进行翻译的多语言模型感兴趣。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> text = "translate English to French: Hugging Face is a community-based open-source platform for machine learning."
 >>> translator = pipeline(task="translation", model="google-t5/t5-small")
@@ -287,7 +287,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
   
 
     ```py
-    >>> from transformers import pipeline
+    >>> from transformers_openvla_oft import pipeline
 
     >>> prompt = "Hugging Face is a community-based open-source platform for machine learning."
     >>> generator = pipeline(task="text-generation")
@@ -328,7 +328,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 文档问答是从文档中回答自然语言问题的任务。与`token-level`问答任务不同，文档问答将包含问题的文档的图像作为输入，并返回答案。文档问答可用于解析结构化文档并从中提取关键信息。在下面的例子中，可以从收据中提取总金额和找零金额。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> from PIL import Image
 >>> import requests
 

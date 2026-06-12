@@ -29,7 +29,7 @@ usage of `pickle.load()`:
 
 ```python
 import os
-from transformers import TransfoXLTokenizer, TransfoXLLMHeadModel
+from transformers_openvla_oft import TransfoXLTokenizer, TransfoXLLMHeadModel
 
 os.environ["TRUST_REMOTE_CODE"] = "True"
 

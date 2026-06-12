@@ -48,7 +48,7 @@ from flax.training.common_utils import get_metrics, onehot, shard
 from huggingface_hub import HfApi
 from tqdm import tqdm
 
-from transformers import (
+from transformers_openvla_oft import (
     CONFIG_MAPPING,
     FLAX_MODEL_FOR_MASKED_LM_MAPPING,
     AutoConfig,
@@ -60,7 +60,7 @@ from transformers import (
     is_tensorboard_available,
     set_seed,
 )
-from transformers.utils import send_example_telemetry
+from transformers_openvla_oft.utils import send_example_telemetry
 
 
 MODEL_CONFIG_CLASSES = list(FLAX_MODEL_FOR_MASKED_LM_MAPPING.keys())
@@ -285,7 +285,7 @@ class FlaxDataCollatorForLanguageModeling:
     are not all of the same length.
 
     Args:
-        tokenizer (:class:`~transformers.PreTrainedTokenizer` or :class:`~transformers.PreTrainedTokenizerFast`):
+        tokenizer (:class:`~transformers_openvla_oft.PreTrainedTokenizer` or :class:`~transformers_openvla_oft.PreTrainedTokenizerFast`):
             The tokenizer used for encoding the data.
         mlm_probability (:obj:`float`, `optional`, defaults to 0.15):
             The probability with which to (randomly) mask tokens in the input.
@@ -294,7 +294,7 @@ class FlaxDataCollatorForLanguageModeling:
 
         For best performance, this data collator should be used with a dataset having items that are dictionaries or
         BatchEncoding, with the :obj:`"special_tokens_mask"` key, as returned by a
-        :class:`~transformers.PreTrainedTokenizer` or a :class:`~transformers.PreTrainedTokenizerFast` with the
+        :class:`~transformers_openvla_oft.PreTrainedTokenizer` or a :class:`~transformers_openvla_oft.PreTrainedTokenizerFast` with the
         argument :obj:`return_special_tokens_mask=True`.
     """
 
@@ -382,7 +382,7 @@ def write_eval_metric(summary_writer, eval_metrics, step):
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 

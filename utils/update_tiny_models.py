@@ -31,16 +31,16 @@ import time
 from create_dummy_models import COMPOSITE_MODELS, create_tiny_models
 from huggingface_hub import ModelFilter, hf_api
 
-import transformers
-from transformers import AutoFeatureExtractor, AutoImageProcessor, AutoTokenizer
-from transformers.image_processing_utils import BaseImageProcessor
+import transformers_openvla_oft
+from transformers_openvla_oft import AutoFeatureExtractor, AutoImageProcessor, AutoTokenizer
+from transformers_openvla_oft.image_processing_utils import BaseImageProcessor
 
 
 def get_all_model_names():
     model_names = set()
     # Each auto modeling files contains multiple mappings. Let's get them in a dynamic way.
     for module_name in ["modeling_auto", "modeling_tf_auto", "modeling_flax_auto"]:
-        module = getattr(transformers.models.auto, module_name, None)
+        module = getattr(transformers_openvla_oft.models.auto, module_name, None)
         if module is None:
             continue
         # all mappings in a single auto modeling file

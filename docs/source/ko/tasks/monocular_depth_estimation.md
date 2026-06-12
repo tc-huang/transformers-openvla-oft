@@ -51,7 +51,7 @@ pip install -q transformers
 [Hugging Face Hub 체크포인트](https://huggingface.co/models?pipeline_tag=depth-estimation&sort=downloads)에서 파이프라인을 초기화합니다:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> checkpoint = "vinvino02/glpn-nyu"
 >>> depth_estimator = pipeline("depth-estimation", model=checkpoint)
@@ -100,7 +100,7 @@ pip install -q transformers
 여기서 이전에 사용한 체크포인트와 동일한 것을 사용합니다:
 
 ```py
->>> from transformers import AutoImageProcessor, AutoModelForDepthEstimation
+>>> from transformers_openvla_oft import AutoImageProcessor, AutoModelForDepthEstimation
 
 >>> checkpoint = "vinvino02/glpn-nyu"
 

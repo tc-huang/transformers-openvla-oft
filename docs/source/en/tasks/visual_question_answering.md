@@ -176,7 +176,7 @@ The next step is to load a ViLT processor to prepare the image and text data for
 [`ViltProcessor`] wraps a BERT tokenizer and ViLT image processor into a convenient single processor:
 
 ```py 
->>> from transformers import ViltProcessor
+>>> from transformers_openvla_oft import ViltProcessor
 
 >>> processor = ViltProcessor.from_pretrained(model_checkpoint)
 ```
@@ -234,7 +234,7 @@ Dataset({
 As a final step, create a batch of examples using [`DefaultDataCollator`]:
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
@@ -245,7 +245,7 @@ You’re ready to start training your model now! Load ViLT with [`ViltForQuestio
 along with the label mappings:
 
 ```py
->>> from transformers import ViltForQuestionAnswering
+>>> from transformers_openvla_oft import ViltForQuestionAnswering
 
 >>> model = ViltForQuestionAnswering.from_pretrained(model_checkpoint, num_labels=len(id2label), id2label=id2label, label2id=label2id)
 ```
@@ -255,7 +255,7 @@ At this point, only three steps remain:
 1. Define your training hyperparameters in [`TrainingArguments`]:
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> repo_id = "MariaK/vilt_finetuned_200"
 
@@ -275,7 +275,7 @@ At this point, only three steps remain:
 2. Pass the training arguments to [`Trainer`] along with the model, dataset, processor, and data collator.
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -304,7 +304,7 @@ Now that you have fine-tuned a ViLT model, and uploaded it to the 🤗 Hub, you 
 way to try out your fine-tuned model for inference is to use it in a [`Pipeline`].
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> pipe = pipeline("visual-question-answering", model="MariaK/vilt_finetuned_200")
 ```
@@ -361,7 +361,7 @@ Let's illustrate how you can use this model for VQA. First, let's load the model
 GPU, if available, which we didn't need to do earlier when training, as [`Trainer`] handles this automatically: 
 
 ```py
->>> from transformers import AutoProcessor, Blip2ForConditionalGeneration
+>>> from transformers_openvla_oft import AutoProcessor, Blip2ForConditionalGeneration
 >>> import torch
 
 >>> processor = AutoProcessor.from_pretrained("Salesforce/blip2-opt-2.7b")

@@ -18,7 +18,7 @@ rendered properly in your Markdown viewer.
 
 テキスト生成は、オープンエンドのテキスト生成、要約、翻訳など、多くの自然言語処理タスクに不可欠です。また、テキストを出力とするさまざまな混在モダリティアプリケーションにも影響を与えており、例えば音声からテキストへの変換や画像からテキストへの変換などがあります。テキストを生成できるいくつかのモデルには、GPT2、XLNet、OpenAI GPT、CTRL、TransformerXL、XLM、Bart、T5、GIT、Whisperが含まれます。
 
-[`~transformers.generation_utils.GenerationMixin.generate`] メソッドを使用して、異なるタスクのテキスト出力を生成するいくつかの例をご紹介します：
+[`~transformers_openvla_oft.generation_utils.GenerationMixin.generate`] メソッドを使用して、異なるタスクのテキスト出力を生成するいくつかの例をご紹介します：
 * [テキスト要約](./tasks/summarization#inference)
 * [画像のキャプション](./model_doc/git#transformers.GitForCausalLM.forward.example)
 * [音声の転記](./model_doc/whisper#transformers.WhisperForConditionalGeneration.forward.example)
@@ -39,7 +39,7 @@ generateメソッドへの入力は、モデルのモダリティに依存しま
 モデルを明示的に読み込む場合、それに付属する生成設定を `model.generation_config` を介して確認できます。
 
 ```python
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 >>> model.generation_config
@@ -77,7 +77,7 @@ GenerationConfig {
 * `push_to_hub` を `True` に設定して、構成をモデルのリポジトリにアップロードします
 
 ```python
->>> from transformers import AutoModelForCausalLM, GenerationConfig
+>>> from transformers_openvla_oft import AutoModelForCausalLM, GenerationConfig
 
 >>> model = AutoModelForCausalLM.from_pretrained("my_account/my_model")  # doctest: +SKIP
 >>> generation_config = GenerationConfig(
@@ -92,7 +92,7 @@ GenerationConfig {
 
 
 ```python
->>> from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, GenerationConfig
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer, GenerationConfig
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-t5/t5-small")
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("google-t5/t5-small")
@@ -130,7 +130,7 @@ GenerationConfig {
 
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, TextStreamer
 
 >>> tok = AutoTokenizer.from_pretrained("openai-community/gpt2")
 >>> model = AutoModelForCausalLM.from_pretrained("openai-community/gpt2")
@@ -154,7 +154,7 @@ An increasing sequence: one, two, three, four, five, six, seven, eight, nine, te
 
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> prompt = "I look forward to"
 >>> checkpoint = "distilbert/distilgpt2"
@@ -175,7 +175,7 @@ An increasing sequence: one, two, three, four, five, six, seven, eight, nine, te
 コントラスティブ検索の動作を有効にし、制御する2つの主要なパラメータは「penalty_alpha」と「top_k」です：
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM
 
 >>> checkpoint = "openai-community/gpt2-large"
 >>> tokenizer = AutoTokenizer.from_pretrained(checkpoint)
@@ -198,7 +198,7 @@ products or services, feel free to contact us at any time. We look forward to he
 多項分布サンプリングを有効にするには、`do_sample=True` および `num_beams=1` を設定します。
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM, set_seed
 >>> set_seed(0)  # For reproducibility
 
 >>> checkpoint = "openai-community/gpt2-large"
@@ -223,7 +223,7 @@ that\'s a terrible feeling."']
 希望されるテキストの翻訳がお手伝いできて嬉しいです！もしさらなる質問やサポートが必要な場合は、お気軽にお知らせください。
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> prompt = "It is astonishing how one can"
 >>> checkpoint = "openai-community/gpt2-medium"
@@ -244,7 +244,7 @@ time."\n\nHe added: "I am very proud of the work I have been able to do in the l
 その名前からもわかるように、このデコーディング戦略はビームサーチと多項サンプリングを組み合わせています。このデコーディング戦略を使用するには、`num_beams` を1より大きな値に設定し、`do_sample=True` を設定する必要があります。
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, set_seed
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM, set_seed
 >>> set_seed(0)  # For reproducibility
 
 >>> prompt = "translate English to German: The house is wonderful."
@@ -266,7 +266,7 @@ time."\n\nHe added: "I am very proud of the work I have been able to do in the l
 
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 
 >>> checkpoint = "google/pegasus-xsum"
 >>> prompt = (
@@ -307,7 +307,7 @@ culture, and they allow us to design the'
 
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> prompt = "Alice and Bob"
 >>> checkpoint = "EleutherAI/pythia-1.4b-deduped"
@@ -327,7 +327,7 @@ culture, and they allow us to design the'
 
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, set_seed
 >>> set_seed(42)  # For reproducibility
 
 >>> prompt = "Alice and Bob"

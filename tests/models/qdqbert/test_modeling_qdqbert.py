@@ -18,8 +18,8 @@
 
 import unittest
 
-from transformers import QDQBertConfig, is_torch_available
-from transformers.testing_utils import require_pytorch_quantization, require_torch, slow, torch_device
+from transformers_openvla_oft import QDQBertConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import require_pytorch_quantization, require_torch, slow, torch_device
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, floats_tensor, ids_tensor, random_attention_mask
@@ -29,7 +29,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         QDQBertForMaskedLM,
         QDQBertForMultipleChoice,
         QDQBertForNextSentencePrediction,

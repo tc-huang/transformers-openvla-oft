@@ -22,9 +22,9 @@ import tempfile
 from importlib import import_module
 from math import isnan
 
-from transformers import is_tf_available
-from transformers.models.auto import get_values
-from transformers.testing_utils import _tf_gpu_memory_limit, require_tf, slow
+from transformers_openvla_oft import is_tf_available
+from transformers_openvla_oft.models.auto import get_values
+from transformers_openvla_oft.testing_utils import _tf_gpu_memory_limit, require_tf, slow
 
 from ..test_modeling_tf_common import ids_tensor
 
@@ -33,7 +33,7 @@ if is_tf_available():
     import numpy as np
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         TF_MODEL_FOR_CAUSAL_LM_MAPPING,
         TF_MODEL_FOR_IMAGE_CLASSIFICATION_MAPPING,
         TF_MODEL_FOR_MASKED_LM_MAPPING,
@@ -46,7 +46,7 @@ if is_tf_available():
         TF_MODEL_FOR_TOKEN_CLASSIFICATION_MAPPING,
         TFSharedEmbeddings,
     )
-    from transformers.modeling_tf_utils import keras
+    from transformers_openvla_oft.modeling_tf_utils import keras
 
     if _tf_gpu_memory_limit is not None:
         gpus = tf.config.list_physical_devices("GPU")

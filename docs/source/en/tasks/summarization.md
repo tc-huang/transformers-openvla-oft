@@ -90,7 +90,7 @@ There are two fields that you'll want to use:
 The next step is to load a T5 tokenizer to process `text` and `summary`:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> checkpoint = "google-t5/t5-small"
 >>> tokenizer = AutoTokenizer.from_pretrained(checkpoint)
@@ -128,7 +128,7 @@ Now create a batch of examples using [`DataCollatorForSeq2Seq`]. It's more effic
 <pt>
 
 ```py
->>> from transformers import DataCollatorForSeq2Seq
+>>> from transformers_openvla_oft import DataCollatorForSeq2Seq
 
 >>> data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=checkpoint)
 ```
@@ -136,7 +136,7 @@ Now create a batch of examples using [`DataCollatorForSeq2Seq`]. It's more effic
 <tf>
 
 ```py
->>> from transformers import DataCollatorForSeq2Seq
+>>> from transformers_openvla_oft import DataCollatorForSeq2Seq
 
 >>> data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=checkpoint, return_tensors="tf")
 ```
@@ -188,7 +188,7 @@ If you aren't familiar with finetuning a model with the [`Trainer`], take a look
 You're ready to start training your model now! Load T5 with [`AutoModelForSeq2SeqLM`]:
 
 ```py
->>> from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 ```
@@ -227,7 +227,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [`~transformers.Trainer.push_to_hub`] method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [`~transformers_openvla_oft.Trainer.push_to_hub`] method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -242,7 +242,7 @@ If you aren't familiar with finetuning a model with Keras, take a look at the ba
 To finetune a model in TensorFlow, start by setting up an optimizer function, learning rate schedule, and some training hyperparameters:
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -250,12 +250,12 @@ To finetune a model in TensorFlow, start by setting up an optimizer function, le
 Then you can load T5 with [`TFAutoModelForSeq2SeqLM`]:
 
 ```py
->>> from transformers import TFAutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import TFAutoModelForSeq2SeqLM
 
 >>> model = TFAutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 ```
 
-Convert your datasets to the `tf.data.Dataset` format with [`~transformers.TFPreTrainedModel.prepare_tf_dataset`]:
+Convert your datasets to the `tf.data.Dataset` format with [`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -283,18 +283,18 @@ Configure the model for training with [`compile`](https://keras.io/api/models/mo
 
 The last two things to setup before you start training is to compute the ROUGE score from the predictions, and provide a way to push your model to the Hub. Both are done by using [Keras callbacks](../main_classes/keras_callbacks).
 
-Pass your `compute_metrics` function to [`~transformers.KerasMetricCallback`]:
+Pass your `compute_metrics` function to [`~transformers_openvla_oft.KerasMetricCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_validation_set)
 ```
 
-Specify where to push your model and tokenizer in the [`~transformers.PushToHubCallback`]:
+Specify where to push your model and tokenizer in the [`~transformers_openvla_oft.PushToHubCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="my_awesome_billsum_model",
@@ -339,7 +339,7 @@ Come up with some text you'd like to summarize. For T5, you need to prefix your 
 The simplest way to try out your finetuned model for inference is to use it in a [`pipeline`]. Instantiate a `pipeline` for summarization with your model, and pass your text to it:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> summarizer = pipeline("summarization", model="stevhliu/my_awesome_billsum_model")
 >>> summarizer(text)
@@ -354,16 +354,16 @@ You can also manually replicate the results of the `pipeline` if you'd like:
 Tokenize the text and return the `input_ids` as PyTorch tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_billsum_model")
 >>> inputs = tokenizer(text, return_tensors="pt").input_ids
 ```
 
-Use the [`~transformers.generation_utils.GenerationMixin.generate`] method to create the summarization. For more details about the different text generation strategies and parameters for controlling generation, check out the [Text Generation](../main_classes/text_generation) API.
+Use the [`~transformers_openvla_oft.generation_utils.GenerationMixin.generate`] method to create the summarization. For more details about the different text generation strategies and parameters for controlling generation, check out the [Text Generation](../main_classes/text_generation) API.
 
 ```py
->>> from transformers import AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("stevhliu/my_awesome_billsum_model")
 >>> outputs = model.generate(inputs, max_new_tokens=100, do_sample=False)
@@ -380,16 +380,16 @@ Decode the generated token ids back into text:
 Tokenize the text and return the `input_ids` as TensorFlow tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_billsum_model")
 >>> inputs = tokenizer(text, return_tensors="tf").input_ids
 ```
 
-Use the [`~transformers.generation_tf_utils.TFGenerationMixin.generate`] method to create the summarization. For more details about the different text generation strategies and parameters for controlling generation, check out the [Text Generation](../main_classes/text_generation) API.
+Use the [`~transformers_openvla_oft.generation_tf_utils.TFGenerationMixin.generate`] method to create the summarization. For more details about the different text generation strategies and parameters for controlling generation, check out the [Text Generation](../main_classes/text_generation) API.
 
 ```py
->>> from transformers import TFAutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import TFAutoModelForSeq2SeqLM
 
 >>> model = TFAutoModelForSeq2SeqLM.from_pretrained("stevhliu/my_awesome_billsum_model")
 >>> outputs = model.generate(inputs, max_new_tokens=100, do_sample=False)

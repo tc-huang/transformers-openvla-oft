@@ -63,7 +63,7 @@ El campo `text` es el input y el campo `summary` es el objetivo.
 Carga el tokenizador T5 para procesar `text` y `summary`:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-t5/t5-small")
 ```
@@ -99,14 +99,14 @@ Usa [`DataCollatorForSeq2Seq`] para crear un lote de ejemplos. Esto también *re
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DataCollatorForSeq2Seq
+>>> from transformers_openvla_oft import DataCollatorForSeq2Seq
 
 >>> data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DataCollatorForSeq2Seq
+>>> from transformers_openvla_oft import DataCollatorForSeq2Seq
 
 >>> data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model, return_tensors="tf")
 ```
@@ -120,7 +120,7 @@ Usa [`DataCollatorForSeq2Seq`] para crear un lote de ejemplos. Esto también *re
 Carga T5 con [`AutoModelForSeq2SeqLM`]:
 
 ```py
->>> from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("google-t5/t5-small")
 ```
@@ -190,7 +190,7 @@ Para familiarizarte con el fine-tuning con Keras, ¡mira el tutorial básico [aq
 Crea la función optimizadora, establece la tasa de aprendizaje y algunos hiperparámetros de entrenamiento:
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -198,7 +198,7 @@ Crea la función optimizadora, establece la tasa de aprendizaje y algunos hiperp
 Carga T5 con [`TFAutoModelForSeq2SeqLM`]:
 
 ```py
->>> from transformers import TFAutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import TFAutoModelForSeq2SeqLM
 
 >>> model = TFAutoModelForSeq2SeqLM.from_pretrained("google-t5/t5-small")
 ```

@@ -20,14 +20,14 @@ import unittest
 
 from datasets import load_dataset
 
-from transformers import SegGptConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft import SegGptConfig
+from transformers_openvla_oft.testing_utils import (
     require_torch,
     require_vision,
     slow,
     torch_device,
 )
-from transformers.utils import cached_property, is_torch_available, is_vision_available
+from transformers_openvla_oft.utils import cached_property, is_torch_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, floats_tensor
@@ -38,11 +38,11 @@ if is_torch_available():
     import torch
     from torch import nn
 
-    from transformers import SegGptForImageSegmentation, SegGptModel
+    from transformers_openvla_oft import SegGptForImageSegmentation, SegGptModel
 
 
 if is_vision_available():
-    from transformers import SegGptImageProcessor
+    from transformers_openvla_oft import SegGptImageProcessor
 
 
 class SegGptModelTester:

@@ -10,7 +10,7 @@ from modeling_bertabs import BertAbs, build_predictor
 from torch.utils.data import DataLoader, SequentialSampler
 from tqdm import tqdm
 
-from transformers import BertTokenizer
+from transformers_openvla_oft import BertTokenizer
 
 from .utils_summarization import (
     CNNDMDataset,

@@ -17,8 +17,8 @@ from callbacks import Seq2SeqLoggingCallback, get_checkpoint_callback, get_early
 from torch import nn
 from torch.utils.data import DataLoader
 
-from transformers import MBartTokenizer, T5ForConditionalGeneration
-from transformers.models.bart.modeling_bart import shift_tokens_right
+from transformers_openvla_oft import MBartTokenizer, T5ForConditionalGeneration
+from transformers_openvla_oft.models.bart.modeling_bart import shift_tokens_right
 from utils import (
     ROUGE_KEYS,
     LegacySeq2SeqDataset,

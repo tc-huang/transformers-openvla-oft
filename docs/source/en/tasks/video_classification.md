@@ -147,7 +147,7 @@ There are 10 unique classes. For each class, there are 30 videos in the training
 Instantiate a video classification model from a pretrained checkpoint and its associated image processor. The model's encoder comes with pre-trained parameters, and the classification head is randomly initialized. The image processor will come in handy when writing the preprocessing pipeline for our dataset.
 
 ```py 
->>> from transformers import VideoMAEImageProcessor, VideoMAEForVideoClassification
+>>> from transformers_openvla_oft import VideoMAEImageProcessor, VideoMAEForVideoClassification
 
 >>> model_ckpt = "MCG-NJU/videomae-base"
 >>> image_processor = VideoMAEImageProcessor.from_pretrained(model_ckpt)
@@ -345,7 +345,7 @@ Most of the training arguments are self-explanatory, but one that is quite impor
 
 
 ```py 
->>> from transformers import TrainingArguments, Trainer
+>>> from transformers_openvla_oft import TrainingArguments, Trainer
 
 >>> model_name = model_ckpt.split("/")[-1]
 >>> new_model_name = f"{model_name}-finetuned-ucf101-subset"
@@ -421,7 +421,7 @@ Now fine-tune our model by calling the `train` method:
 >>> train_results = trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [`~transformers.Trainer.push_to_hub`] method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [`~transformers_openvla_oft.Trainer.push_to_hub`] method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -444,7 +444,7 @@ Load a video for inference:
 The simplest way to try out your fine-tuned model for inference is to use it in a [`pipeline`](https://huggingface.co/docs/transformers/main/en/main_classes/pipelines#transformers.VideoClassificationPipeline). Instantiate a `pipeline` for video classification with your model, and pass your video to it:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> video_cls = pipeline(model="my_awesome_video_cls_model")
 >>> video_cls("https://huggingface.co/datasets/sayakpaul/ucf101-subset/resolve/main/v_BasketballDunk_g14_c06.avi")

@@ -28,9 +28,9 @@ from datasets import load_dataset
 from finetuning import finetune
 from tqdm.auto import tqdm
 
-import transformers
-from transformers import AutoConfig, set_seed
-from transformers.trainer_utils import IntervalStrategy
+import transformers_openvla_oft
+from transformers_openvla_oft import AutoConfig, set_seed
+from transformers_openvla_oft.trainer_utils import IntervalStrategy
 
 
 logger = logging.getLogger(__name__)
@@ -180,10 +180,10 @@ def selftrain(model_name_or_path, train_file, infer_file, output_dir, **kwargs):
 
     if accelerator.is_local_main_process:
         datasets.utils.logging.set_verbosity_warning()
-        transformers.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
     else:
         datasets.utils.logging.set_verbosity_error()
-        transformers.utils.logging.set_verbosity_error()
+        transformers_openvla_oft.utils.logging.set_verbosity_error()
 
     model_args = STModelArguments(model_name_or_path=model_name_or_path)
     data_args = STDataArguments(train_file=train_file, infer_file=infer_file)

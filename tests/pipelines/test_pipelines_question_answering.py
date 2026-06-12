@@ -14,15 +14,15 @@
 
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_QUESTION_ANSWERING_MAPPING,
     TF_MODEL_FOR_QUESTION_ANSWERING_MAPPING,
     LxmertConfig,
     QuestionAnsweringPipeline,
 )
-from transformers.data.processors.squad import SquadExample
-from transformers.pipelines import QuestionAnsweringArgumentHandler, pipeline
-from transformers.testing_utils import (
+from transformers_openvla_oft.data.processors.squad import SquadExample
+from transformers_openvla_oft.pipelines import QuestionAnsweringArgumentHandler, pipeline
+from transformers_openvla_oft.testing_utils import (
     is_pipeline_test,
     nested_simplify,
     require_tf,

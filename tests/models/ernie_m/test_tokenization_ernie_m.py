@@ -16,8 +16,8 @@
 
 import unittest
 
-from transformers import ErnieMTokenizer
-from transformers.testing_utils import get_tests_dir, require_sentencepiece, require_tokenizers, slow
+from transformers_openvla_oft import ErnieMTokenizer
+from transformers_openvla_oft.testing_utils import get_tests_dir, require_sentencepiece, require_tokenizers, slow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

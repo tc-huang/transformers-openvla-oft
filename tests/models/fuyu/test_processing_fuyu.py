@@ -3,20 +3,20 @@ import unittest
 
 import requests
 
-from transformers import AutoTokenizer, is_torch_available, is_vision_available
-from transformers.testing_utils import require_torch, require_torch_gpu, slow
+from transformers_openvla_oft import AutoTokenizer, is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_torch, require_torch_gpu, slow
 
 
 if is_vision_available():
     from PIL import Image
 
 if is_vision_available() and is_torch_available():
-    from transformers import FuyuImageProcessor, FuyuProcessor
+    from transformers_openvla_oft import FuyuImageProcessor, FuyuProcessor
 
 if is_torch_available():
     import torch
 
-    from transformers.models.fuyu.processing_fuyu import construct_full_unpacked_stream, full_unpacked_stream_to_tensor
+    from transformers_openvla_oft.models.fuyu.processing_fuyu import construct_full_unpacked_stream, full_unpacked_stream_to_tensor
 
 
 @require_torch

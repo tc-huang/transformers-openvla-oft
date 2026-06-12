@@ -69,7 +69,7 @@ transformers-cli env
 Sie können denselben Befehl auch im Hauptverzeichnis des Repositorys ausführen:
 
 ```bash
-python src/transformers/commands/transformers_cli.py env
+python src/transformers_openvla_oft/commands/transformers_cli.py env
 ```
 
 ### Möchten Sie eine neue Funktion?
@@ -241,7 +241,7 @@ Sie benötigen **[Python 3.8](https://github.com/huggingface/transformers/blob/m
 * Wenn Sie einen neuen Tokenizer hinzufügen, schreiben Sie Tests und stellen Sie mit `RUN_SLOW=1 python -m pytest tests/models/{your_model_name}/test_tokenization_{your_model_name}.py` sicher, dass diese erfolgreich durchlaufen.
 * CircleCI führt die langsamen Tests nicht aus, aber GitHub Actions tut dies jede Nacht!<br>
 
-☐ Alle public Methoden müssen informative Docstrings haben (siehe [`modeling_bert.py`](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py) als Beispiel).<br>
+☐ Alle public Methoden müssen informative Docstrings haben (siehe [`modeling_bert.py`](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bert/modeling_bert.py) als Beispiel).<br>
 ☐ Aufgrund des schnell wachsenden Repositorys fügen Sie bitte keine Bilder, Videos oder andere Nicht-Textdateien hinzu, die das Repository erheblich belasten würden. Verwenden Sie stattdessen ein Hub-Repository wie [`hf-internal-testing`](https://huggingface.co/hf-internal-testing), um diese Dateien zu hosten und sie per URL zu verlinken. Wir empfehlen Bilder, die zur Dokumentation gehören, im folgenden Repository abzulegen: [huggingface/documentation-images](https://huggingface.co/datasets/huggingface/documentation-images). Sie können eine PR in diesem Datasets-Repository erstellen und ein Hugging-Face-Mitglied bitten, sie zu mergen.
 
 Um mehr über die Prüfungen zu erfahren, die bei einer Pull-Anfrage ausgelöst werden, lesen Sie unseren Leitfaden zu [Überprüfungen bei einer Pull-Anfrage](https://huggingface.co/docs/transformers/pr_checks).
@@ -286,7 +286,7 @@ Wie bei den langsamen Tests gibt es auch andere Umgebungsvariablen, die standard
 * `RUN_PT_FLAX_CROSS_TESTS`: Aktiviert Tests für die Integration von PyTorch + Flax.
 * `RUN_PT_TF_CROSS_TESTS`: Aktiviert Tests für die Integration von TensorFlow + PyTorch.
 
-Weitere Umgebungsvariablen und zusätzliche Informationen finden Sie in der [testing_utils.py](src/transformers/testing_utils.py).
+Weitere Umgebungsvariablen und zusätzliche Informationen finden Sie in der [testing_utils.py](src/transformers_openvla_oft/testing_utils.py).
 
 🤗 Transformers verwendet `pytest` nur als Test-Runner. Es verwendet keine `pytest`-spezifischen Funktionen in der Test-Suite selbst.
 

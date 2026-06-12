@@ -18,10 +18,10 @@ import unittest
 
 from parameterized import parameterized
 
-from transformers import OlmoConfig, is_torch_available, set_seed
-from transformers.models.auto.tokenization_auto import AutoTokenizer
-from transformers.models.gpt_neox.tokenization_gpt_neox_fast import GPTNeoXTokenizerFast
-from transformers.testing_utils import (
+from transformers_openvla_oft import OlmoConfig, is_torch_available, set_seed
+from transformers_openvla_oft.models.auto.tokenization_auto import AutoTokenizer
+from transformers_openvla_oft.models.gpt_neox.tokenization_gpt_neox_fast import GPTNeoXTokenizerFast
+from transformers_openvla_oft.testing_utils import (
     is_flaky,
     require_tokenizers,
     require_torch,
@@ -39,7 +39,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         OlmoForCausalLM,
         OlmoModel,
     )

@@ -2,9 +2,9 @@ from collections import Counter
 
 import datasets
 
-import transformers
-from transformers.convert_slow_tokenizer import SLOW_TO_FAST_CONVERTERS
-from transformers.utils import logging
+import transformers_openvla_oft
+from transformers_openvla_oft.convert_slow_tokenizer import SLOW_TO_FAST_CONVERTERS
+from transformers_openvla_oft.utils import logging
 
 
 logging.set_verbosity_info()

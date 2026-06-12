@@ -5,7 +5,7 @@ from glob import glob
 import faiss
 from datasets import Features, Sequence, Value, concatenate_datasets, load_dataset, load_from_disk
 
-from transformers import DPRContextEncoder, DPRContextEncoderTokenizerFast
+from transformers_openvla_oft import DPRContextEncoder, DPRContextEncoderTokenizerFast
 
 
 def split_text(text, n=100, character=" "):

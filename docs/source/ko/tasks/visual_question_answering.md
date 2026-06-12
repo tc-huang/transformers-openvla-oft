@@ -163,7 +163,7 @@ Dataset({
 [`ViltProcessor`]는 BERT 토크나이저와 ViLT 이미지 프로세서를 편리하게 하나의 프로세서로 묶습니다:
 
 ```py 
->>> from transformers import ViltProcessor
+>>> from transformers_openvla_oft import ViltProcessor
 
 >>> processor = ViltProcessor.from_pretrained(model_checkpoint)
 ```
@@ -217,7 +217,7 @@ Dataset({
 마지막 단계로, [`DefaultDataCollator`]를 사용하여 예제로 쓸 배치를 생성하세요:
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
@@ -227,7 +227,7 @@ Dataset({
 이제 모델을 훈련하기 위해 준비되었습니다! [`ViltForQuestionAnswering`]으로 ViLT를 가져올 차례입니다. 레이블의 수와 레이블 매핑을 지정하세요:
 
 ```py
->>> from transformers import ViltForQuestionAnswering
+>>> from transformers_openvla_oft import ViltForQuestionAnswering
 
 >>> model = ViltForQuestionAnswering.from_pretrained(model_checkpoint, num_labels=len(id2label), id2label=id2label, label2id=label2id)
 ```
@@ -237,7 +237,7 @@ Dataset({
 1. [`TrainingArguments`]에서 훈련 하이퍼파라미터를 정의하세요:
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> repo_id = "MariaK/vilt_finetuned_200"
 
@@ -257,7 +257,7 @@ Dataset({
 2. 모델, 데이터세트, 프로세서, 데이터 콜레이터와 함께 훈련 인수를 [`Trainer`]에 전달하세요:
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -285,7 +285,7 @@ Dataset({
 ViLT 모델을 미세 조정하고 🤗 Hub에 업로드했다면 추론에 사용할 수 있습니다. 미세 조정된 모델을 추론에 사용해보는 가장 간단한 방법은 [`Pipeline`]에서 사용하는 것입니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> pipe = pipeline("visual-question-answering", model="MariaK/vilt_finetuned_200")
 ```
@@ -338,7 +338,7 @@ Predicted answer: down
 이 모델을 어떻게 VQA에 사용할 수 있는지 설명해 보겠습니다. 먼저 모델을 가져와 보겠습니다. 여기서 GPU가 사용 가능한 경우 모델을 명시적으로 GPU로 전송할 것입니다. 이전에는 훈련할 때 쓰지 않은 이유는 [`Trainer`]가 이 부분을 자동으로 처리하기 때문입니다:
 
 ```py
->>> from transformers import AutoProcessor, Blip2ForConditionalGeneration
+>>> from transformers_openvla_oft import AutoProcessor, Blip2ForConditionalGeneration
 >>> import torch
 
 >>> processor = AutoProcessor.from_pretrained("Salesforce/blip2-opt-2.7b")

@@ -16,8 +16,8 @@
 import time
 import unittest
 
-from transformers import is_torch_available
-from transformers.testing_utils import require_torch, torch_device
+from transformers_openvla_oft import is_torch_available
+from transformers_openvla_oft.testing_utils import require_torch, torch_device
 
 from ..test_modeling_common import ids_tensor
 
@@ -25,7 +25,7 @@ from ..test_modeling_common import ids_tensor
 if is_torch_available():
     import torch
 
-    from transformers.generation import (
+    from transformers_openvla_oft.generation import (
         EosTokenCriteria,
         MaxLengthCriteria,
         MaxNewTokensCriteria,

@@ -18,10 +18,10 @@ import copy
 import tempfile
 import unittest
 
-from transformers import LongT5Config, is_torch_available
-from transformers.models.auto import get_values
-from transformers.testing_utils import require_sentencepiece, require_tokenizers, require_torch, slow, torch_device
-from transformers.utils import cached_property
+from transformers_openvla_oft import LongT5Config, is_torch_available
+from transformers_openvla_oft.models.auto import get_values
+from transformers_openvla_oft.testing_utils import require_sentencepiece, require_tokenizers, require_torch, slow, torch_device
+from transformers_openvla_oft.utils import cached_property
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -32,7 +32,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         MODEL_FOR_QUESTION_ANSWERING_MAPPING,
         AutoTokenizer,
         LongT5EncoderModel,

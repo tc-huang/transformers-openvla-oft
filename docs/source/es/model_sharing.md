@@ -128,7 +128,7 @@ A continuación, como usualmente, pasa tus argumentos de entrenamiento a [`Train
 ... )
 ```
 
-Luego que realizas fine-tune a tu modelo, llamas [`~transformers.Trainer.push_to_hub`] en [`Trainer`] para enviar el modelo al Hub!🤗 Transformers incluso añadirá automáticamente los Hiperparámetros de entrenamiento, resultados de entrenamiento y versiones del Framework a tu model card!
+Luego que realizas fine-tune a tu modelo, llamas [`~transformers_openvla_oft.Trainer.push_to_hub`] en [`Trainer`] para enviar el modelo al Hub!🤗 Transformers incluso añadirá automáticamente los Hiperparámetros de entrenamiento, resultados de entrenamiento y versiones del Framework a tu model card!
 
 ```py
 >>> trainer.push_to_hub()
@@ -143,7 +143,7 @@ Los usuarios de TensorFlow pueden activar la misma funcionalidad con [`PushToHub
 - El `hub_model_id`, el cual es tu usuario Hub y el nombre del modelo.
 
 ```py
->>> from transformers import PushToHubCallback
+>>> from transformers_openvla_oft import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="./your_model_save_path", tokenizer=tokenizer, hub_model_id="your-username/my-awesome-model"
@@ -169,7 +169,7 @@ Especifica el nombre del modelo en `push_to_hub`:
 Esto creará un repositorio bajo tu usuario con el nombre del modelo `my-awesome-model`. Ahora los usuarios pueden cargar tu modelo con la función `from_pretrained`:
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> model = AutoModel.from_pretrained("your_username/my-awesome-model")
 ```

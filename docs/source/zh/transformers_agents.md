@@ -76,7 +76,7 @@ pip install openai
 
 
 ```py
-from transformers import OpenAiAgent
+from transformers_openvla_oft import OpenAiAgent
 
 agent = OpenAiAgent(model="text-davinci-003", api_key="<your_api_key>")
 ```
@@ -92,7 +92,7 @@ login("<YOUR_TOKEN>")
 然后，实例化`agent`：
 
 ```py
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 # Starcoder
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
@@ -241,7 +241,7 @@ agent.chat("Transform the picture so that there is a rock in there")
 这些`tools`已在transformers中集成，并且也可以手动使用，例如：
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 tool = load_tool("text-to-speech")
 audio = tool("This is a text to speech tool")
@@ -275,7 +275,7 @@ agent.run("Draw me a picture of rivers and lakes", return_code=True)
 返回以下代码
 
 ```python
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 image_generator = load_tool("huggingface-tools/text-to-image")
 

@@ -92,10 +92,10 @@ rendered properly in your Markdown viewer.
 서브워드 토큰화를 사용하면 모델이 의미 있는 문맥 독립적 표현을 학습하면서 합리적인 어휘 크기를 가질 수 있습니다.
 또한, 서브워드 토큰화를 통해 모델은 이전에 본 적이 없는 단어를 알려진 서브워드로 분해하여 처리할 수 있습니다.
 
-예를 들어, [`~transformers.BertTokenizer`]는 `"I have a new GPU!"` 라는 문장을 아래와 같이 토큰화합니다:
+예를 들어, [`~transformers_openvla_oft.BertTokenizer`]는 `"I have a new GPU!"` 라는 문장을 아래와 같이 토큰화합니다:
 
 ```py
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> tokenizer.tokenize("I have a new GPU!")
@@ -107,9 +107,9 @@ rendered properly in your Markdown viewer.
 결과적으로 토크나이저는 `"gpu"`를 알려진 두 개의 서브워드로 쪼갭니다: `["gp" and "##u"]`.
 `"##"`은 토큰의 나머지 부분이 공백 없이 이전 토큰에 연결되어야(attach) 함을 의미합니다(토큰화 디코딩 또는 역전을 위해).
 
-또 다른 예로, [`~transformers.XLNetTokenizer`]는 이전에 예시 문장을 다음과 같이 토큰화합니다:
+또 다른 예로, [`~transformers_openvla_oft.XLNetTokenizer`]는 이전에 예시 문장을 다음과 같이 토큰화합니다:
 ```py
->>> from transformers import XLNetTokenizer
+>>> from transformers_openvla_oft import XLNetTokenizer
 
 >>> tokenizer = XLNetTokenizer.from_pretrained("xlnet/xlnet-base-cased")
 >>> tokenizer.tokenize("Don't you love 🤗 Transformers? We sure do.")

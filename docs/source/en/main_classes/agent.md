@@ -94,12 +94,12 @@ These types have three specific purposes:
 
 ### AgentText
 
-[[autodoc]] transformers.tools.agent_types.AgentText
+[[autodoc]] transformers_openvla_oft.tools.agent_types.AgentText
 
 ### AgentImage
 
-[[autodoc]] transformers.tools.agent_types.AgentImage
+[[autodoc]] transformers_openvla_oft.tools.agent_types.AgentImage
 
 ### AgentAudio
 
-[[autodoc]] transformers.tools.agent_types.AgentAudio
+[[autodoc]] transformers_openvla_oft.tools.agent_types.AgentAudio

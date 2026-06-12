@@ -31,7 +31,7 @@ from huggingface_hub import HfApi, HfFolder, delete_repo
 from pytest import mark
 from requests.exceptions import HTTPError
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoConfig,
     AutoModel,
     AutoModelForSequenceClassification,
@@ -40,7 +40,7 @@ from transformers import (
     is_torch_available,
     logging,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     TOKEN,
     USER,
     CaptureLogger,
@@ -59,13 +59,13 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import (
+from transformers_openvla_oft.utils import (
     SAFE_WEIGHTS_INDEX_NAME,
     SAFE_WEIGHTS_NAME,
     WEIGHTS_INDEX_NAME,
     WEIGHTS_NAME,
 )
-from transformers.utils.import_utils import (
+from transformers_openvla_oft.utils.import_utils import (
     is_flash_attn_2_available,
     is_flax_available,
     is_tf_available,
@@ -85,7 +85,7 @@ if is_torch_available():
     from test_module.custom_modeling import CustomModel, NoSuperInitModel
     from torch import nn
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoModelForCausalLM,
         AutoTokenizer,
         BertConfig,
@@ -95,13 +95,13 @@ if is_torch_available():
         T5Config,
         T5ForConditionalGeneration,
     )
-    from transformers.modeling_attn_mask_utils import (
+    from transformers_openvla_oft.modeling_attn_mask_utils import (
         AttentionMaskConverter,
         _create_4d_causal_attention_mask,
         _prepare_4d_attention_mask,
         _prepare_4d_causal_attention_mask,
     )
-    from transformers.modeling_utils import _find_disjoint, _find_identical, shard_checkpoint
+    from transformers_openvla_oft.modeling_utils import _find_disjoint, _find_identical, shard_checkpoint
 
     # Fake pretrained models for tests
     class BaseModel(PreTrainedModel):
@@ -193,10 +193,10 @@ if is_torch_available():
 
 
 if is_flax_available():
-    from transformers import FlaxBertModel
+    from transformers_openvla_oft import FlaxBertModel
 
 if is_tf_available():
-    from transformers import TFBertModel
+    from transformers_openvla_oft import TFBertModel
 
 
 TINY_T5 = "patrickvonplaten/t5-tiny-random"
@@ -315,7 +315,7 @@ class ModelUtilsTest(TestCasePlus):
         model = T5ForConditionalGeneration.from_pretrained(TINY_T5)
         self.assertIsNotNone(model)
 
-        logger = logging.get_logger("transformers.configuration_utils")
+        logger = logging.get_logger("transformers_openvla_oft.configuration_utils")
         with LoggingLevel(logging.WARNING):
             with CaptureLogger(logger) as cl:
                 BertModel.from_pretrained(TINY_T5)
@@ -730,7 +730,7 @@ class ModelUtilsTest(TestCasePlus):
 
         mname = "google-bert/bert-base-cased"
 
-        preamble = "from transformers import AutoModel"
+        preamble = "from transformers_openvla_oft import AutoModel"
         one_liner_str = f'{preamble}; AutoModel.from_pretrained("{mname}", low_cpu_mem_usage=False)'
         max_rss_normal = self.python_one_liner_max_rss(one_liner_str)
         # print(f"{max_rss_normal=}")
@@ -1034,7 +1034,7 @@ class ModelUtilsTest(TestCasePlus):
 
     def test_unexpected_keys_warnings(self):
         model = ModelWithHead(PretrainedConfig())
-        logger = logging.get_logger("transformers.modeling_utils")
+        logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
         with tempfile.TemporaryDirectory() as tmp_dir:
             model.save_pretrained(tmp_dir)
 
@@ -1059,7 +1059,7 @@ class ModelUtilsTest(TestCasePlus):
             self.assertEqual(loading_info["unexpected_keys"], ["added_key"])
 
     def test_warn_if_padding_and_no_attention_mask(self):
-        logger = logging.get_logger("transformers.modeling_utils")
+        logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
 
         with self.subTest("Ensure no warnings when pad_token_id is None."):
             logger.warning_once.cache_clear()
@@ -1250,7 +1250,7 @@ class ModelUtilsTest(TestCasePlus):
         model = AutoModelForCausalLM.from_pretrained("openai-community/gpt2")
         model.config.top_k = 1
         with tempfile.TemporaryDirectory() as tmp_dir:
-            with self.assertLogs("transformers.modeling_utils", level="WARNING") as logs:
+            with self.assertLogs("transformers_openvla_oft.modeling_utils", level="WARNING") as logs:
                 model.save_pretrained(tmp_dir)
             self.assertEqual(len(logs.output), 1)
             self.assertIn("Your generation config was originally created from the model config", logs.output[0])
@@ -1502,7 +1502,7 @@ class ModelOnTheFlyConversionTester(unittest.TestCase):
             self.assertTrue(bot_opened_pr)
             self.assertEqual(bot_opened_pr_title, "Adding `safetensors` variant of this model")
 
-    @mock.patch("transformers.safetensors_conversion.spawn_conversion")
+    @mock.patch("transformers_openvla_oft.safetensors_conversion.spawn_conversion")
     def test_absence_of_safetensors_triggers_conversion_failed(self, spawn_conversion_mock):
         spawn_conversion_mock.side_effect = HTTPError()
 

@@ -71,7 +71,7 @@ The original code can be found [here](https://github.com/haotian-liu/LLaVA/tree/
 Here's how to load the model and perform inference in half-precision (`torch.float16`):
 
 ```python
-from transformers import LlavaNextProcessor, LlavaNextForConditionalGeneration
+from transformers_openvla_oft import LlavaNextProcessor, LlavaNextForConditionalGeneration
 import torch
 from PIL import Image
 import requests
@@ -101,7 +101,7 @@ print(processor.decode(output[0], skip_special_tokens=True))
 The model can be loaded in 8 or 4 bits, greatly reducing the memory requirements while maintaining the performance of the original model. First make sure to install bitsandbytes, `pip install bitsandbytes`` and make sure to have access to a CUDA compatible GPU device. Simply change the snippet above with:
 
 ```python
-from transformers import LlavaNextForConditionalGeneration, BitsAndBytesConfig
+from transformers_openvla_oft import LlavaNextForConditionalGeneration, BitsAndBytesConfig
 
 # specify how to quantize the model
 quantization_config = BitsAndBytesConfig(
@@ -118,7 +118,7 @@ model = LlavaNextForConditionalGeneration.from_pretrained("llava-hf/llava-v1.6-m
 First make sure to install flash-attn. Refer to the [original repository of Flash Attention](https://github.com/Dao-AILab/flash-attention) regarding that package installation. Simply change the snippet above with:
 
 ```python
-from transformers import LlavaNextForConditionalGeneration
+from transformers_openvla_oft import LlavaNextForConditionalGeneration
 
 model = LlavaNextForConditionalGeneration.from_pretrained(
     model_id, 

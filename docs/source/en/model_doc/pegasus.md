@@ -77,7 +77,7 @@ All the [checkpoints](https://huggingface.co/models?search=pegasus) are fine-tun
 ## Usage Example
 
 ```python
->>> from transformers import PegasusForConditionalGeneration, PegasusTokenizer
+>>> from transformers_openvla_oft import PegasusForConditionalGeneration, PegasusTokenizer
 >>> import torch
 
 >>> src_text = [

@@ -20,7 +20,7 @@ from pathlib import Path
 
 from requests.exceptions import HTTPError
 
-from transformers.utils import (
+from transformers_openvla_oft.utils import (
     CONFIG_NAME,
     FLAX_WEIGHTS_NAME,
     TF2_WEIGHTS_NAME,

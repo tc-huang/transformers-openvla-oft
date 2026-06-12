@@ -14,14 +14,14 @@
 
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_IMAGE_CLASSIFICATION_MAPPING,
     TF_MODEL_FOR_IMAGE_CLASSIFICATION_MAPPING,
     PreTrainedTokenizerBase,
     is_vision_available,
 )
-from transformers.pipelines import ImageClassificationPipeline, pipeline
-from transformers.testing_utils import (
+from transformers_openvla_oft.pipelines import ImageClassificationPipeline, pipeline
+from transformers_openvla_oft.testing_utils import (
     is_pipeline_test,
     nested_simplify,
     require_tf,

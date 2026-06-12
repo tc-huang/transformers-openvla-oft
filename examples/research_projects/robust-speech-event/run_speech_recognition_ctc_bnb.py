@@ -31,8 +31,8 @@ import numpy as np
 import torch
 from datasets import DatasetDict, load_dataset, load_metric
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     AutoConfig,
     AutoFeatureExtractor,
     AutoModelForCTC,
@@ -44,10 +44,10 @@ from transformers import (
     Wav2Vec2Processor,
     set_seed,
 )
-from transformers.trainer_pt_utils import get_parameter_names
-from transformers.trainer_utils import get_last_checkpoint, is_main_process
-from transformers.utils import check_min_version
-from transformers.utils.versions import require_version
+from transformers_openvla_oft.trainer_pt_utils import get_parameter_names
+from transformers_openvla_oft.trainer_utils import get_last_checkpoint, is_main_process
+from transformers_openvla_oft.utils import check_min_version
+from transformers_openvla_oft.utils.versions import require_version
 
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
@@ -265,9 +265,9 @@ class DataCollatorCTCWithPadding:
     """
     Data collator that will dynamically pad the inputs received.
     Args:
-        processor (:class:`~transformers.AutoProcessor`)
+        processor (:class:`~transformers_openvla_oft.AutoProcessor`)
             The processor used for proccessing the data.
-        padding (:obj:`bool`, :obj:`str` or :class:`~transformers.tokenization_utils_base.PaddingStrategy`, `optional`, defaults to :obj:`True`):
+        padding (:obj:`bool`, :obj:`str` or :class:`~transformers_openvla_oft.tokenization_utils_base.PaddingStrategy`, `optional`, defaults to :obj:`True`):
             Select a strategy to pad the returned sequences (according to the model's padding side and padding index)
             among:
             * :obj:`True` or :obj:`'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
@@ -362,7 +362,7 @@ def create_vocabulary_from_data(
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 
@@ -404,7 +404,7 @@ def main():
     )
     # Set the verbosity to info of the Transformers logger (on main process only):
     if is_main_process(training_args.local_rank):
-        transformers.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
     logger.info("Training/evaluation parameters %s", training_args)
 
     # Set seed before initializing model.

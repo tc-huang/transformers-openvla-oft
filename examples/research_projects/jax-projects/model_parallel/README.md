@@ -30,7 +30,7 @@ TODO: Add more explantion.
 Before training, let's prepare our model first. To be able to shard the model, the sharded dimension needs to be a multiple of devices it'll be sharded on. But GPTNeo's vocab size is 50257, so we need to resize the embeddings accordingly. 
 
 ```python
-from transformers import FlaxGPTNeoForCausalLM, GPTNeoConfig 
+from transformers_openvla_oft import FlaxGPTNeoForCausalLM, GPTNeoConfig 
 model = FlaxGPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
 
 emb = jnp.zeros((50264, model.config.hidden_size))

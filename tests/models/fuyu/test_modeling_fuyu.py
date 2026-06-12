@@ -19,9 +19,9 @@ import unittest
 
 import requests
 
-from transformers import FuyuConfig, is_torch_available, is_vision_available
-from transformers.testing_utils import require_torch, require_torch_gpu, slow, torch_device
-from transformers.utils import cached_property
+from transformers_openvla_oft import FuyuConfig, is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_torch, require_torch_gpu, slow, torch_device
+from transformers_openvla_oft.utils import cached_property
 
 from ...test_modeling_common import ModelTesterMixin, ids_tensor, random_attention_mask
 from ...test_pipeline_mixin import PipelineTesterMixin
@@ -32,13 +32,13 @@ if is_vision_available():
 
 
 if is_torch_available() and is_vision_available():
-    from transformers import FuyuProcessor
+    from transformers_openvla_oft import FuyuProcessor
 
 
 if is_torch_available():
     import torch
 
-    from transformers import FuyuForCausalLM
+    from transformers_openvla_oft import FuyuForCausalLM
 
 
 class FuyuModelTester:

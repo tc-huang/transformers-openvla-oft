@@ -17,8 +17,8 @@
 
 import unittest
 
-from transformers import is_torch_available, is_vision_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import (
     require_accelerate,
     require_torch,
     require_torch_accelerator,
@@ -35,8 +35,8 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import PvtConfig, PvtForImageClassification, PvtImageProcessor, PvtModel
-    from transformers.models.auto.modeling_auto import MODEL_MAPPING_NAMES
+    from transformers_openvla_oft import PvtConfig, PvtForImageClassification, PvtImageProcessor, PvtModel
+    from transformers_openvla_oft.models.auto.modeling_auto import MODEL_MAPPING_NAMES
 
 
 if is_vision_available():

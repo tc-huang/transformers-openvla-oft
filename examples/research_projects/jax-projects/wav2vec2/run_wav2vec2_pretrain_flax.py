@@ -18,7 +18,7 @@ from flax.training import train_state
 from flax.training.common_utils import get_metrics, onehot, shard
 from tqdm import tqdm
 
-from transformers import (
+from transformers_openvla_oft import (
     FlaxWav2Vec2ForPreTraining,
     HfArgumentParser,
     TrainingArguments,
@@ -26,7 +26,7 @@ from transformers import (
     Wav2Vec2FeatureExtractor,
     is_tensorboard_available,
 )
-from transformers.models.wav2vec2.modeling_flax_wav2vec2 import _compute_mask_indices, _sample_negative_indices
+from transformers_openvla_oft.models.wav2vec2.modeling_flax_wav2vec2 import _compute_mask_indices, _sample_negative_indices
 
 
 logger = logging.getLogger(__name__)
@@ -140,12 +140,12 @@ class FlaxDataCollatorForWav2Vec2Pretraining:
     for self-supervised pretraining.
 
     Args:
-        model (:class:`~transformers.FlaxWav2Vec2ForPreTraining`):
+        model (:class:`~transformers_openvla_oft.FlaxWav2Vec2ForPreTraining`):
             The Wav2Vec2 model used for pretraining. The data collator needs to have access
             to config and ``_get_feat_extract_output_lengths`` function for correct padding.
-        feature_extractor (:class:`~transformers.Wav2Vec2FeatureExtractor`):
+        feature_extractor (:class:`~transformers_openvla_oft.Wav2Vec2FeatureExtractor`):
             The processor used for processing the data.
-        padding (:obj:`bool`, :obj:`str` or :class:`~transformers.tokenization_utils_base.PaddingStrategy`, `optional`, defaults to :obj:`True`):
+        padding (:obj:`bool`, :obj:`str` or :class:`~transformers_openvla_oft.tokenization_utils_base.PaddingStrategy`, `optional`, defaults to :obj:`True`):
             Select a strategy to pad the returned sequences (according to the model's padding side and padding index)
             among:
             * :obj:`True` or :obj:`'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
@@ -281,7 +281,7 @@ def compute_contrastive_loss(
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 

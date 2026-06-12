@@ -27,8 +27,8 @@ import torch
 from bart_onnx.generation_onnx import BARTBeamSearchGenerator
 from bart_onnx.reduce_onnx_size import remove_dup_initializers
 
-import transformers
-from transformers import BartForConditionalGeneration, BartTokenizer
+import transformers_openvla_oft
+from transformers_openvla_oft import BartForConditionalGeneration, BartTokenizer
 
 
 logging.basicConfig(
@@ -177,7 +177,7 @@ def main():
     )
 
     logger.setLevel(logging.INFO)
-    transformers.utils.logging.set_verbosity_error()
+    transformers_openvla_oft.utils.logging.set_verbosity_error()
 
     device = torch.device(args.device)
 

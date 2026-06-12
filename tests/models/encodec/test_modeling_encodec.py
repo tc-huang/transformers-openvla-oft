@@ -24,8 +24,8 @@ from typing import Dict, List, Tuple
 import numpy as np
 from datasets import Audio, load_dataset
 
-from transformers import AutoProcessor, EncodecConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft import AutoProcessor, EncodecConfig
+from transformers_openvla_oft.testing_utils import (
     is_torch_available,
     require_torch,
     slow,
@@ -40,7 +40,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import EncodecModel
+    from transformers_openvla_oft import EncodecModel
 
 
 def prepare_inputs_dict(

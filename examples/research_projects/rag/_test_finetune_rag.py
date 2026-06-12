@@ -6,8 +6,8 @@ from pathlib import Path
 
 import finetune_rag
 
-from transformers.file_utils import is_apex_available
-from transformers.testing_utils import (
+from transformers_openvla_oft.file_utils import is_apex_available
+from transformers_openvla_oft.testing_utils import (
     TestCasePlus,
     execute_subprocess_async,
     require_ray,

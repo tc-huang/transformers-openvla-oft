@@ -18,8 +18,8 @@ import json
 import os
 import unittest
 
-from transformers.models.xlm.tokenization_xlm import VOCAB_FILES_NAMES, XLMTokenizer
-from transformers.testing_utils import slow
+from transformers_openvla_oft.models.xlm.tokenization_xlm import VOCAB_FILES_NAMES, XLMTokenizer
+from transformers_openvla_oft.testing_utils import slow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

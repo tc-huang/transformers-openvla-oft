@@ -17,15 +17,15 @@
 
 import unittest
 
-from transformers import is_flax_available, {{cookiecutter.camelcase_modelname}}Config
-from transformers.testing_utils import require_flax, slow
+from transformers_openvla_oft import is_flax_available, {{cookiecutter.camelcase_modelname}}Config
+from transformers_openvla_oft.testing_utils import require_flax, slow
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_flax_common import FlaxModelTesterMixin, ids_tensor
 
 if is_flax_available():
     import numpy as np
-    from transformers import (
+    from transformers_openvla_oft import (
         Flax{{cookiecutter.camelcase_modelname}}ForCausalLM,
         Flax{{cookiecutter.camelcase_modelname}}ForMaskedLM,
         Flax{{cookiecutter.camelcase_modelname}}ForMultipleChoice,
@@ -338,12 +338,12 @@ class Flax{{cookiecutter.camelcase_modelname}}ModelIntegrationTest(unittest.Test
 {% else %}
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     is_flax_available,
     {{cookiecutter.camelcase_modelname}}Config,
     {{cookiecutter.camelcase_modelname}}Tokenizer,
 )
-from transformers.testing_utils import require_sentencepiece, require_flax, require_tokenizers, slow
+from transformers_openvla_oft.testing_utils import require_sentencepiece, require_flax, require_tokenizers, slow
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_flax_common import FlaxModelTesterMixin, ids_tensor
@@ -352,7 +352,7 @@ from ...test_modeling_flax_common import FlaxModelTesterMixin, ids_tensor
 if is_flax_available():
     import numpy as np
     import jax.numpy as jnp
-    from transformers import (
+    from transformers_openvla_oft import (
         Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration,
         Flax{{cookiecutter.camelcase_modelname}}ForQuestionAnswering,
         Flax{{cookiecutter.camelcase_modelname}}ForSequenceClassification,

@@ -42,7 +42,7 @@ XLM には10の異なるチェックポイントがあり、そのうちの1つ�
 
 ```py
 >>> import torch
->>> from transformers import XLMTokenizer, XLMWithLMHeadModel
+>>> from transformers_openvla_oft import XLMTokenizer, XLMWithLMHeadModel
 
 >>> tokenizer = XLMTokenizer.from_pretrained("FacebookAI/xlm-clm-enfr-1024")
 >>> model = XLMWithLMHeadModel.from_pretrained("FacebookAI/xlm-clm-enfr-1024")
@@ -116,7 +116,7 @@ XLM-RoBERTa は、100の言語で新しく作成およびクリーニングさ�
 この例では、`facebook/m2m100_418M` チェックポイントをロードして、中国語から英語に翻訳します。 トークナイザーでソース言語を設定できます。
 
 ```py
->>> from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+>>> from transformers_openvla_oft import M2M100ForConditionalGeneration, M2M100Tokenizer
 
 >>> en_text = "Do not meddle in the affairs of wizards, for they are subtle and quick to anger."
 >>> chinese_text = "不要插手巫師的事務, 因為他們是微妙的, 很快就會發怒."
@@ -152,7 +152,7 @@ M2M100 は、最初に生成されたトークンとしてターゲット言語 
 この例では、`facebook/mbart-large-50-many-to-many-mmt` チェックポイントをロードして、フィンランド語を英語に翻訳します。トークナイザーでソース言語を設定できます。
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 
 >>> en_text = "Do not meddle in the affairs of wizards, for they are subtle and quick to anger."
 >>> fi_text = "Älä sekaannu velhojen asioihin, sillä ne ovat hienovaraisia ja nopeasti vihaisia."

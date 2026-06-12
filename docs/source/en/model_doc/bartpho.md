@@ -35,7 +35,7 @@ This model was contributed by [dqnguyen](https://huggingface.co/dqnguyen). The o
 
 ```python
 >>> import torch
->>> from transformers import AutoModel, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModel, AutoTokenizer
 
 >>> bartpho = AutoModel.from_pretrained("vinai/bartpho-syllable")
 
@@ -49,7 +49,7 @@ This model was contributed by [dqnguyen](https://huggingface.co/dqnguyen). The o
 ...     features = bartpho(**input_ids)  # Models outputs are now tuples
 
 >>> # With TensorFlow 2.0+:
->>> from transformers import TFAutoModel
+>>> from transformers_openvla_oft import TFAutoModel
 
 >>> bartpho = TFAutoModel.from_pretrained("vinai/bartpho-syllable")
 >>> input_ids = tokenizer(line, return_tensors="tf")
@@ -64,7 +64,7 @@ This model was contributed by [dqnguyen](https://huggingface.co/dqnguyen). The o
   For example:
 
 ```python
->>> from transformers import MBartForConditionalGeneration
+>>> from transformers_openvla_oft import MBartForConditionalGeneration
 
 >>> bartpho = MBartForConditionalGeneration.from_pretrained("vinai/bartpho-syllable")
 >>> TXT = "Chúng tôi là <mask> nghiên cứu viên."

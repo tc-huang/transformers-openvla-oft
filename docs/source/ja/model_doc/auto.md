@@ -33,7 +33,7 @@ model = AutoModel.from_pretrained("google-bert/bert-base-cased")
 それぞれの自動クラスには、カスタムクラスで拡張するためのメソッドがあります。例えば、`NewModel`というモデルのカスタムクラスを定義した場合、`NewModelConfig`を確保しておけばこのようにして自動クラスに追加することができます：
 
 ```python
-from transformers import AutoConfig, AutoModel
+from transformers_openvla_oft import AutoConfig, AutoModel
 
 AutoConfig.register("new-model", NewModelConfig)
 AutoModel.register(NewModelConfig, NewModel)
@@ -43,7 +43,7 @@ AutoModel.register(NewModelConfig, NewModel)
 
 <Tip warning={true}>
 
-あなたの`NewModelConfig`が[`~transformers.PretrainedConfig`]のサブクラスである場合、その`model_type`属性がコンフィグを登録するときに使用するキー（ここでは`"new-model"`）と同じに設定されていることを確認してください。
+あなたの`NewModelConfig`が[`~transformers_openvla_oft.PretrainedConfig`]のサブクラスである場合、その`model_type`属性がコンフィグを登録するときに使用するキー（ここでは`"new-model"`）と同じに設定されていることを確認してください。
 
 同様に、あなたの`NewModel`が[`PreTrainedModel`]のサブクラスである場合、その`config_class`属性がモデルを登録する際に使用するクラス（ここでは`NewModelConfig`）と同じに設定されていることを確認してください。
 

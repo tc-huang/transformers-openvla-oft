@@ -140,7 +140,7 @@ Passa gli argomenti per il training come di consueto al [`Trainer`]:
 ... )
 ```
 
-Dopo aver effettuato il fine-tuning del tuo modello, chiama [`~transformers.Trainer.push_to_hub`] sul [`Trainer`] per condividere il modello allenato nell'Hub. 🤗 Transformers aggiungerà in modo automatico persino gli iperparametri, i risultati del training e le versioni del framework alla scheda del tuo modello (model card, in inglese)!
+Dopo aver effettuato il fine-tuning del tuo modello, chiama [`~transformers_openvla_oft.Trainer.push_to_hub`] sul [`Trainer`] per condividere il modello allenato nell'Hub. 🤗 Transformers aggiungerà in modo automatico persino gli iperparametri, i risultati del training e le versioni del framework alla scheda del tuo modello (model card, in inglese)!
 
 ```py
 >>> trainer.push_to_hub()
@@ -154,7 +154,7 @@ Condividi un modello nell'Hub con [`PushToHubCallback`]. Nella funzione [`PushTo
 - L'`hub_model_id`, che è il tuo username sull'Hub e il nome del modello.
 
 ```py
->>> from transformers import PushToHubCallback
+>>> from transformers_openvla_oft import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="./il_path_dove_salvare_il_tuo_modello",
@@ -184,7 +184,7 @@ Specifica il nome del tuo modello in `push_to_hub`:
 Questo crea un repository sotto il proprio username con il nome del modello `il-mio-bellissimo-modello`. Ora chiunque può caricare il tuo modello con la funzione `from_pretrained`:
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> model = AutoModel.from_pretrained("il-tuo-username/il-mio-bellissimo-modello")
 ```

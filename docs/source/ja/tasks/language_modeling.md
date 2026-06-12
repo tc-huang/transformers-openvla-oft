@@ -110,7 +110,7 @@ pip install transformers datasets evaluate
 次のステップは、`text`サブフィールドを処理するために DistilGPT2 トークナイザーをロードすることです。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 ```
@@ -198,7 +198,7 @@ Apply the `group_texts` function over the entire dataset:
 シーケンス終了トークンをパディング トークンとして使用し、`mlm=False` を設定します。これは、入力を 1 要素分右にシフトしたラベルとして使用します。
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> tokenizer.pad_token = tokenizer.eos_token
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
@@ -209,7 +209,7 @@ Apply the `group_texts` function over the entire dataset:
 シーケンス終了トークンをパディング トークンとして使用し、`mlm=False` を設定します。これは、入力を 1 要素分右にシフトしたラベルとして使用します。
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False, return_tensors="tf")
 ```
@@ -232,7 +232,7 @@ Apply the `group_texts` function over the entire dataset:
 
 
 ```py
->>> from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, TrainingArguments, Trainer
 
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
@@ -263,7 +263,7 @@ Apply the `group_texts` function over the entire dataset:
 >>> trainer.train()
 ```
 
-トレーニングが完了したら、 [`~transformers.Trainer.evaluate`] メソッドを使用してモデルを評価し、その複雑さを取得します。
+トレーニングが完了したら、 [`~transformers_openvla_oft.Trainer.evaluate`] メソッドを使用してモデルを評価し、その複雑さを取得します。
 
 ```py
 >>> import math
@@ -273,7 +273,7 @@ Apply the `group_texts` function over the entire dataset:
 Perplexity: 49.61
 ```
 
-次に、 [`~transformers.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
+次に、 [`~transformers_openvla_oft.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
 
 ```py
 >>> trainer.push_to_hub()
@@ -288,7 +288,7 @@ Keras を使用したモデルの微調整に慣れていない場合は、[基�
 TensorFlow でモデルを微調整するには、オプティマイザー関数、学習率スケジュール、およびいくつかのトレーニング ハイパーパラメーターをセットアップすることから始めます。
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -296,12 +296,12 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 次に、[`TFAutoModelForCausalLM`] を使用して DistilGPT2 をロードできます。
 
 ```py
->>> from transformers import TFAutoModelForCausalLM
+>>> from transformers_openvla_oft import TFAutoModelForCausalLM
 
 >>> model = TFAutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -327,12 +327,12 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 >>> model.compile(optimizer=optimizer)  # No loss argument!
 ```
 
-これは、モデルとトークナイザーを [`~transformers.PushToHubCallback`] でプッシュする場所を指定することで実行できます。
+これは、モデルとトークナイザーを [`~transformers_openvla_oft.PushToHubCallback`] でプッシュする場所を指定することで実行できます。
 
 
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> callback = PushToHubCallback(
 ...     output_dir="my_awesome_eli5_clm-model",
@@ -375,7 +375,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline("text-generation", model="my_awesome_eli5_clm-model")
 >>> generator(prompt)
@@ -389,17 +389,17 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 テキストをトークン化し、「input_ids」を PyTorch テンソルとして返します。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_eli5_clm-model")
 >>> inputs = tokenizer(prompt, return_tensors="pt").input_ids
 ```
 
-[`~transformers.generation_utils.GenerationMixin.generate`] メソッドを使用してテキストを生成します。
+[`~transformers_openvla_oft.generation_utils.GenerationMixin.generate`] メソッドを使用してテキストを生成します。
 さまざまなテキスト生成戦略と生成を制御するためのパラメーターの詳細については、[テキスト生成戦略](../generation_strategies) ページを参照してください。
 
 ```py
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained("my_awesome_eli5_clm-model")
 >>> outputs = model.generate(inputs, max_new_tokens=100, do_sample=True, top_k=50, top_p=0.95)
@@ -418,16 +418,16 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 テキストをトークン化し、`input_ids`を TensorFlow テンソルとして返します。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_eli5_clm-model")
 >>> inputs = tokenizer(prompt, return_tensors="tf").input_ids
 ```
 
-[`~transformers.generation_tf_utils.TFGenerationMixin.generate`] メソッドを使用して要約を作成します。さまざまなテキスト生成戦略と生成を制御するためのパラメーターの詳細については、[テキスト生成戦略](../generation_strategies) ページを参照してください。
+[`~transformers_openvla_oft.generation_tf_utils.TFGenerationMixin.generate`] メソッドを使用して要約を作成します。さまざまなテキスト生成戦略と生成を制御するためのパラメーターの詳細については、[テキスト生成戦略](../generation_strategies) ページを参照してください。
 
 ```py
->>> from transformers import TFAutoModelForCausalLM
+>>> from transformers_openvla_oft import TFAutoModelForCausalLM
 
 >>> model = TFAutoModelForCausalLM.from_pretrained("my_awesome_eli5_clm-model")
 >>> outputs = model.generate(input_ids=inputs, max_new_tokens=100, do_sample=True, top_k=50, top_p=0.95)

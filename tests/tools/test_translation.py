@@ -15,8 +15,8 @@
 
 import unittest
 
-from transformers import load_tool
-from transformers.tools.agent_types import AGENT_TYPE_MAPPING
+from transformers_openvla_oft import load_tool
+from transformers_openvla_oft.tools.agent_types import AGENT_TYPE_MAPPING
 
 from .test_tools_common import ToolTesterMixin, output_types
 

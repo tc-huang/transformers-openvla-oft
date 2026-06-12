@@ -17,9 +17,9 @@ import unittest
 
 import numpy as np
 
-import transformers
-from transformers import is_flax_available
-from transformers.testing_utils import (
+import transformers_openvla_oft
+from transformers_openvla_oft import is_flax_available
+from transformers_openvla_oft.testing_utils import (
     is_pt_flax_cross_test,
     require_flax,
     require_sentencepiece,
@@ -47,9 +47,9 @@ if is_flax_available():
     from flax.training.common_utils import onehot
     from flax.traverse_util import flatten_dict
 
-    from transformers import FLAX_MODEL_MAPPING, ByT5Tokenizer, T5Config, T5Tokenizer
-    from transformers.modeling_flax_pytorch_utils import load_flax_weights_in_pytorch_model
-    from transformers.models.t5.modeling_flax_t5 import (
+    from transformers_openvla_oft import FLAX_MODEL_MAPPING, ByT5Tokenizer, T5Config, T5Tokenizer
+    from transformers_openvla_oft.modeling_flax_pytorch_utils import load_flax_weights_in_pytorch_model
+    from transformers_openvla_oft.models.t5.modeling_flax_t5 import (
         FlaxT5EncoderModel,
         FlaxT5ForConditionalGeneration,
         FlaxT5Model,

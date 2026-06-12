@@ -43,7 +43,7 @@ Transformers 4.20.0では、[`~PreTrainedModel.from_pretrained`] メソッドが
 
 
 ```py
-from transformers import AutoModelForSeq2SeqLM
+from transformers_openvla_oft import AutoModelForSeq2SeqLM
 
 t0pp = AutoModelForSeq2SeqLM.from_pretrained("bigscience/T0pp", low_cpu_mem_usage=True)
 ```
@@ -54,7 +54,7 @@ t0pp = AutoModelForSeq2SeqLM.from_pretrained("bigscience/T0pp", low_cpu_mem_usag
 
 
 ```py
-from transformers import AutoModelForSeq2SeqLM
+from transformers_openvla_oft import AutoModelForSeq2SeqLM
 
 t0pp = AutoModelForSeq2SeqLM.from_pretrained("bigscience/T0pp", device_map="auto")
 ```

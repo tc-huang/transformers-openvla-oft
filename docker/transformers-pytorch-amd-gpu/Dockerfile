@@ -32,7 +32,7 @@ RUN python3 -m pip install --no-cache-dir -e ./transformers[dev-torch,testing,vi
 RUN python3 -m pip uninstall -y tensorflow flax
 
 # When installing in editable mode, `transformers` is not recognized as a package.
-# this line must be added in order for python to be aware of transformers.
+# this line must be added in order for python to be aware of transformers_openvla_oft.
 RUN cd transformers && python3 setup.py develop
 
 # Remove nvml as it is not compatible with ROCm

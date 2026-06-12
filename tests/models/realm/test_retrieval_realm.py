@@ -22,9 +22,9 @@ from unittest.mock import patch
 import numpy as np
 from datasets import Dataset
 
-from transformers.models.realm.configuration_realm import RealmConfig
-from transformers.models.realm.retrieval_realm import _REALM_BLOCK_RECORDS_FILENAME, RealmRetriever
-from transformers.models.realm.tokenization_realm import VOCAB_FILES_NAMES, RealmTokenizer
+from transformers_openvla_oft.models.realm.configuration_realm import RealmConfig
+from transformers_openvla_oft.models.realm.retrieval_realm import _REALM_BLOCK_RECORDS_FILENAME, RealmRetriever
+from transformers_openvla_oft.models.realm.tokenization_realm import VOCAB_FILES_NAMES, RealmTokenizer
 
 
 class RealmRetrieverTest(TestCase):
@@ -178,7 +178,7 @@ class RealmRetrieverTest(TestCase):
         self.assertEqual(retriever.block_records[0], b"This is the first record")
 
         # Test mocked remote path
-        with patch("transformers.models.realm.retrieval_realm.hf_hub_download") as mock_hf_hub_download:
+        with patch("transformers_openvla_oft.models.realm.retrieval_realm.hf_hub_download") as mock_hf_hub_download:
             mock_hf_hub_download.return_value = os.path.join(
                 os.path.join(self.tmpdirname, "realm_block_records"), _REALM_BLOCK_RECORDS_FILENAME
             )

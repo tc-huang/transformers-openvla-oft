@@ -32,7 +32,7 @@ from torchtext import data as torchtext_data
 from torchtext import datasets
 from tqdm import tqdm, trange
 
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
+from transformers_openvla_oft import GPT2LMHeadModel, GPT2Tokenizer
 
 
 torch.manual_seed(0)

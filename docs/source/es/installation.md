@@ -74,7 +74,7 @@ pip install transformers[flax]
 Por último, revisa si 🤗 Transformers ha sido instalada exitosamente con el siguiente comando que descarga un modelo pre-entrenado:
 
 ```bash
-python -c "from transformers import pipeline; print(pipeline('sentiment-analysis')('we love you'))"
+python -c "from transformers_openvla_oft import pipeline; print(pipeline('sentiment-analysis')('we love you'))"
 ```
 Después imprime la etiqueta y el puntaje:
 
@@ -95,7 +95,7 @@ El comando de arriba instala la versión `master` más actual en vez de la últi
 Verifica si 🤗 Transformers está instalada apropiadamente con el siguiente comando:
 
 ```bash
-python -c "from transformers import pipeline; print(pipeline('sentiment-analysis')('I love you'))"
+python -c "from transformers_openvla_oft import pipeline; print(pipeline('sentiment-analysis')('I love you'))"
 ```
 
 ## Instalación editable
@@ -190,7 +190,7 @@ Otra opción para usar 🤗 Transformers offline es descargando previamente los 
     1. Descarga previamente los archivos con [`PreTrainedModel.from_pretrained`]:
 
     ```py
-    >>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+    >>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 
     >>> tokenizer = AutoTokenizer.from_pretrained("bigscience/T0_3B")
     >>> model = AutoModelForSeq2SeqLM.from_pretrained("bigscience/T0_3B")
@@ -230,7 +230,7 @@ Otra opción para usar 🤗 Transformers offline es descargando previamente los 
 Una vez que el archivo se descargue y se almacene en caché localmente, especifica tu ruta local para cargarlo y usarlo:
 
 ```py
->>> from transformers import AutoConfig
+>>> from transformers_openvla_oft import AutoConfig
 
 >>> config = AutoConfig.from_pretrained("./your/path/bigscience_t0/config.json")
 ```

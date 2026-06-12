@@ -30,8 +30,8 @@ import numpy as np
 from parameterized import parameterized
 from pytest import mark
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     AutoModel,
     AutoModelForCausalLM,
     AutoModelForSequenceClassification,
@@ -41,8 +41,8 @@ from transformers import (
     logging,
     set_seed,
 )
-from transformers.models.auto import get_values
-from transformers.models.auto.modeling_auto import (
+from transformers_openvla_oft.models.auto import get_values
+from transformers_openvla_oft.models.auto.modeling_auto import (
     MODEL_FOR_AUDIO_CLASSIFICATION_MAPPING_NAMES,
     MODEL_FOR_AUDIO_XVECTOR_MAPPING_NAMES,
     MODEL_FOR_BACKBONE_MAPPING_NAMES,
@@ -63,7 +63,7 @@ from transformers.models.auto.modeling_auto import (
     MODEL_FOR_VISION_2_SEQ_MAPPING_NAMES,
     MODEL_MAPPING_NAMES,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     CaptureLogger,
     is_flaky,
     is_pt_flax_cross_test,
@@ -79,7 +79,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import (
+from transformers_openvla_oft.utils import (
     CONFIG_NAME,
     GENERATION_CONFIG_NAME,
     SAFE_WEIGHTS_NAME,
@@ -91,7 +91,7 @@ from transformers.utils import (
     is_torch_fx_available,
     is_torch_sdpa_available,
 )
-from transformers.utils.generic import ContextManagers, ModelOutput
+from transformers_openvla_oft.utils.generic import ContextManagers, ModelOutput
 
 
 if is_accelerate_available():
@@ -105,9 +105,9 @@ if is_torch_available():
     from safetensors.torch import save_file as safe_save_file
     from torch import nn
 
-    from transformers import MODEL_MAPPING, AdaptiveEmbedding
-    from transformers.modeling_utils import load_state_dict, no_init_weights
-    from transformers.pytorch_utils import id_tensor_storage
+    from transformers_openvla_oft import MODEL_MAPPING, AdaptiveEmbedding
+    from transformers_openvla_oft.modeling_utils import load_state_dict, no_init_weights
+    from transformers_openvla_oft.pytorch_utils import id_tensor_storage
 
 
 if is_tf_available():
@@ -117,13 +117,13 @@ if is_flax_available():
     import jax.numpy as jnp
 
     from tests.test_modeling_flax_utils import check_models_equal
-    from transformers.modeling_flax_pytorch_utils import (
+    from transformers_openvla_oft.modeling_flax_pytorch_utils import (
         convert_pytorch_state_dict_to_flax,
         load_flax_weights_in_pytorch_model,
     )
 
 if is_torch_fx_available():
-    from transformers.utils.fx import _FX_SUPPORTED_MODELS_WITH_KV_CACHE, symbolic_trace
+    from transformers_openvla_oft.utils.fx import _FX_SUPPORTED_MODELS_WITH_KV_CACHE, symbolic_trace
 
 
 def _config_zero_init(config):
@@ -149,9 +149,9 @@ def _mock_all_init_weights(self):
     if self.config.pruned_heads:
         self.prune_heads(self.config.pruned_heads)
 
-    import transformers.modeling_utils
+    import transformers_openvla_oft.modeling_utils
 
-    if transformers.modeling_utils._init_weights:
+    if transformers_openvla_oft.modeling_utils._init_weights:
         for module in self.modules():
             module._is_hf_initialized = False
         # Initialize weights
@@ -2375,7 +2375,7 @@ class ModelTesterMixin:
 
     @is_pt_tf_cross_test
     def test_pt_tf_model_equivalence(self, allow_missing_keys=False):
-        import transformers
+        import transformers_openvla_oft
 
         for model_class in self.all_model_classes:
             config, inputs_dict = self.model_tester.prepare_config_and_inputs_for_common()
@@ -2426,10 +2426,10 @@ class ModelTesterMixin:
             # Check we can load pt model in tf and vice-versa with model => model functions
             # Here requires `tf_inputs_dict` to build `tf_model`
             tf_inputs_dict = self.prepare_tf_inputs_from_pt_inputs(pt_inputs_dict)
-            tf_model = transformers.load_pytorch_model_in_tf2_model(
+            tf_model = transformers_openvla_oft.load_pytorch_model_in_tf2_model(
                 tf_model, pt_model, tf_inputs=tf_inputs_dict, allow_missing_keys=allow_missing_keys
             )
-            pt_model = transformers.load_tf2_model_in_pytorch_model(
+            pt_model = transformers_openvla_oft.load_tf2_model_in_pytorch_model(
                 pt_model, tf_model, allow_missing_keys=allow_missing_keys
             )
 
@@ -2443,13 +2443,13 @@ class ModelTesterMixin:
             with tempfile.TemporaryDirectory() as tmpdirname:
                 pt_checkpoint_path = os.path.join(tmpdirname, "pt_model.bin")
                 torch.save(pt_model.state_dict(), pt_checkpoint_path)
-                tf_model = transformers.load_pytorch_checkpoint_in_tf2_model(
+                tf_model = transformers_openvla_oft.load_pytorch_checkpoint_in_tf2_model(
                     tf_model, pt_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
                 tf_checkpoint_path = os.path.join(tmpdirname, "tf_model.h5")
                 tf_model.save_weights(tf_checkpoint_path)
-                pt_model = transformers.load_tf2_checkpoint_in_pytorch_model(
+                pt_model = transformers_openvla_oft.load_tf2_checkpoint_in_pytorch_model(
                     pt_model, tf_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
@@ -3079,7 +3079,7 @@ class ModelTesterMixin:
                     with self.assertRaises(RuntimeError):
                         new_model_without_prefix = AutoModel.from_pretrained(tmp_dir, vocab_size=10)
 
-                    logger = logging.get_logger("transformers.modeling_utils")
+                    logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
 
                     with CaptureLogger(logger) as cl:
                         new_model = AutoModelForSequenceClassification.from_pretrained(
@@ -3123,7 +3123,7 @@ class ModelTesterMixin:
                     with self.assertRaises(RuntimeError):
                         new_model = AutoModelForSequenceClassification.from_pretrained(tmp_dir, num_labels=42)
 
-                    logger = logging.get_logger("transformers.modeling_utils")
+                    logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
 
                     with CaptureLogger(logger) as cl:
                         new_model = AutoModelForSequenceClassification.from_pretrained(

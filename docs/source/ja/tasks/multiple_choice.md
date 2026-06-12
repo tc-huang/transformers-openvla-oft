@@ -88,7 +88,7 @@ pip install transformers datasets evaluate
 次のステップでは、BERT トークナイザーをロードして、文の始まりと 4 つの可能な終わりを処理します。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -132,7 +132,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 <pt>
 ```py
 >>> from dataclasses import dataclass
->>> from transformers.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
+>>> from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
 >>> from typing import Optional, Union
 >>> import torch
 
@@ -174,7 +174,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 <tf>
 ```py
 >>> from dataclasses import dataclass
->>> from transformers.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
+>>> from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
 >>> from typing import Optional, Union
 >>> import tensorflow as tf
 
@@ -252,7 +252,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 これでモデルのトレーニングを開始する準備が整いました。 [`AutoModelForMultipleChoice`] を使用して BERT をロードします。
 
 ```py
->>> from transformers import AutoModelForMultipleChoice, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForMultipleChoice, TrainingArguments, Trainer
 
 >>> model = AutoModelForMultipleChoice.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -290,7 +290,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 >>> trainer.train()
 ```
 
-トレーニングが完了したら、 [`~transformers.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できますように。
+トレーニングが完了したら、 [`~transformers_openvla_oft.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できますように。
 
 ```py
 >>> trainer.push_to_hub()
@@ -305,7 +305,7 @@ Keras を使用したモデルの微調整に慣れていない場合は、[こ�
 TensorFlow でモデルを微調整するには、オプティマイザー関数、学習率スケジュール、およびいくつかのトレーニング ハイパーパラメーターをセットアップすることから始めます。
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_train_epochs = 2
@@ -316,12 +316,12 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 次に、[`TFAutoModelForMultipleChoice`] を使用して BERT をロードできます。
 
 ```py
->>> from transformers import TFAutoModelForMultipleChoice
+>>> from transformers_openvla_oft import TFAutoModelForMultipleChoice
 
 >>> model = TFAutoModelForMultipleChoice.from_pretrained("google-bert/bert-base-uncased")
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
 
 ```py
 >>> data_collator = DataCollatorForMultipleChoice(tokenizer=tokenizer)
@@ -348,18 +348,18 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 
 トレーニングを開始する前にセットアップする最後の 2 つのことは、予測から精度を計算することと、モデルをハブにプッシュする方法を提供することです。どちらも [Keras コールバック](../main_classes/keras_callbacks) を使用して行われます。
 
-`compute_metrics` 関数を [`~transformers.KerasMetricCallback`] に渡します。
+`compute_metrics` 関数を [`~transformers_openvla_oft.KerasMetricCallback`] に渡します。
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_validation_set)
 ```
 
-[`~transformers.PushToHubCallback`] でモデルとトークナイザーをプッシュする場所を指定します。
+[`~transformers_openvla_oft.PushToHubCallback`] でモデルとトークナイザーをプッシュする場所を指定します。
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="my_awesome_model",
@@ -412,7 +412,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 各プロンプトと回答候補のペアをトークン化し、PyTorch テンソルを返します。いくつかの`lables`も作成する必要があります。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_swag_model")
 >>> inputs = tokenizer([[prompt, candidate1], [prompt, candidate2]], return_tensors="pt", padding=True)
@@ -422,7 +422,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 入力とラベルをモデルに渡し、`logits`を返します。
 
 ```py
->>> from transformers import AutoModelForMultipleChoice
+>>> from transformers_openvla_oft import AutoModelForMultipleChoice
 
 >>> model = AutoModelForMultipleChoice.from_pretrained("my_awesome_swag_model")
 >>> outputs = model(**{k: v.unsqueeze(0) for k, v in inputs.items()}, labels=labels)
@@ -442,7 +442,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 各プロンプトと回答候補のペアをトークン化し、TensorFlow テンソルを返します。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_swag_model")
 >>> inputs = tokenizer([[prompt, candidate1], [prompt, candidate2]], return_tensors="tf", padding=True)
@@ -451,7 +451,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 入力をモデルに渡し、`logits`を返します。
 
 ```py
->>> from transformers import TFAutoModelForMultipleChoice
+>>> from transformers_openvla_oft import TFAutoModelForMultipleChoice
 
 >>> model = TFAutoModelForMultipleChoice.from_pretrained("my_awesome_swag_model")
 >>> inputs = {k: tf.expand_dims(v, 0) for k, v in inputs.items()}

@@ -11,13 +11,13 @@ import faiss
 import numpy as np
 from datasets import Dataset
 
-from transformers import BartConfig, BartTokenizer, DPRConfig, DPRQuestionEncoderTokenizer, RagConfig
-from transformers.file_utils import is_datasets_available, is_faiss_available, is_psutil_available, is_torch_available
-from transformers.integrations import is_ray_available
-from transformers.models.bert.tokenization_bert import VOCAB_FILES_NAMES as DPR_VOCAB_FILES_NAMES
-from transformers.models.rag.retrieval_rag import CustomHFIndex, RagRetriever
-from transformers.models.roberta.tokenization_roberta import VOCAB_FILES_NAMES as BART_VOCAB_FILES_NAMES
-from transformers.testing_utils import require_ray
+from transformers_openvla_oft import BartConfig, BartTokenizer, DPRConfig, DPRQuestionEncoderTokenizer, RagConfig
+from transformers_openvla_oft.file_utils import is_datasets_available, is_faiss_available, is_psutil_available, is_torch_available
+from transformers_openvla_oft.integrations import is_ray_available
+from transformers_openvla_oft.models.bert.tokenization_bert import VOCAB_FILES_NAMES as DPR_VOCAB_FILES_NAMES
+from transformers_openvla_oft.models.rag.retrieval_rag import CustomHFIndex, RagRetriever
+from transformers_openvla_oft.models.roberta.tokenization_roberta import VOCAB_FILES_NAMES as BART_VOCAB_FILES_NAMES
+from transformers_openvla_oft.testing_utils import require_ray
 
 
 sys.path.append(os.path.join(os.getcwd()))  # noqa: E402 # noqa: E402 # isort:skip
@@ -39,7 +39,7 @@ else:
 def require_distributed_retrieval(test_case):
     """
     Decorator marking a test that requires a set of dependencies necessary for pefrorm retrieval with
-    :class:`~transformers.RagRetriever`.
+    :class:`~transformers_openvla_oft.RagRetriever`.
 
     These tests are skipped when respective libraries are not installed.
 
@@ -145,7 +145,7 @@ class RagRetrieverTest(TestCase):
             question_encoder=DPRConfig().to_dict(),
             generator=BartConfig().to_dict(),
         )
-        with patch("transformers.models.rag.retrieval_rag.load_dataset") as mock_load_dataset:
+        with patch("transformers_openvla_oft.models.rag.retrieval_rag.load_dataset") as mock_load_dataset:
             mock_load_dataset.return_value = dataset
             retriever = RagPyTorchDistributedRetriever(
                 config,
@@ -168,7 +168,7 @@ class RagRetrieverTest(TestCase):
         )
         remote_cls = ray.remote(RayRetriever)
         workers = [remote_cls.remote() for _ in range(1)]
-        with patch("transformers.models.rag.retrieval_rag.load_dataset") as mock_load_dataset:
+        with patch("transformers_openvla_oft.models.rag.retrieval_rag.load_dataset") as mock_load_dataset:
             mock_load_dataset.return_value = self.get_dummy_dataset()
             retriever = RagRayDistributedRetriever(
                 config,

@@ -20,8 +20,8 @@ import unittest
 import pytest
 from parameterized import parameterized
 
-from transformers import LlamaConfig, StaticCache, is_torch_available, logging, set_seed
-from transformers.testing_utils import (
+from transformers_openvla_oft import LlamaConfig, StaticCache, is_torch_available, logging, set_seed
+from transformers_openvla_oft.testing_utils import (
     CaptureLogger,
     require_bitsandbytes,
     require_flash_attn,
@@ -43,7 +43,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         CodeLlamaTokenizer,
         LlamaForCausalLM,
         LlamaForQuestionAnswering,
@@ -51,7 +51,7 @@ if is_torch_available():
         LlamaModel,
         LlamaTokenizer,
     )
-    from transformers.models.llama.modeling_llama import (
+    from transformers_openvla_oft.models.llama.modeling_llama import (
         LlamaDynamicNTKScalingRotaryEmbedding,
         LlamaLinearScalingRotaryEmbedding,
         LlamaRotaryEmbedding,

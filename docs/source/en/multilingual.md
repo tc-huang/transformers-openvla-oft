@@ -42,7 +42,7 @@ In this example, load the `FacebookAI/xlm-clm-enfr-1024` checkpoint (Causal lang
 
 ```py
 >>> import torch
->>> from transformers import XLMTokenizer, XLMWithLMHeadModel
+>>> from transformers_openvla_oft import XLMTokenizer, XLMWithLMHeadModel
 
 >>> tokenizer = XLMTokenizer.from_pretrained("FacebookAI/xlm-clm-enfr-1024")
 >>> model = XLMWithLMHeadModel.from_pretrained("FacebookAI/xlm-clm-enfr-1024")
@@ -117,7 +117,7 @@ The following M2M100 models can be used for multilingual translation:
 In this example, load the `facebook/m2m100_418M` checkpoint to translate from Chinese to English. You can set the source language in the tokenizer:
 
 ```py
->>> from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+>>> from transformers_openvla_oft import M2M100ForConditionalGeneration, M2M100Tokenizer
 
 >>> en_text = "Do not meddle in the affairs of wizards, for they are subtle and quick to anger."
 >>> chinese_text = "不要插手巫師的事務, 因為他們是微妙的, 很快就會發怒."
@@ -153,7 +153,7 @@ The following MBart models can be used for multilingual translation:
 In this example, load the `facebook/mbart-large-50-many-to-many-mmt` checkpoint to translate Finnish to English. You can set the source language in the tokenizer:
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 
 >>> en_text = "Do not meddle in the affairs of wizards, for they are subtle and quick to anger."
 >>> fi_text = "Älä sekaannu velhojen asioihin, sillä ne ovat hienovaraisia ja nopeasti vihaisia."

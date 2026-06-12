@@ -93,10 +93,10 @@ Choose from 1, 2 [1]:
 Once the command has finished, you should have a total of 7 new files spread across the repository:
 ```
 docs/source/model_doc/<model_name>.md
-src/transformers/models/<model_name>/configuration_<model_name>.py
-src/transformers/models/<model_name>/modeling_<model_name>.py
-src/transformers/models/<model_name>/modeling_tf_<model_name>.py
-src/transformers/models/<model_name>/tokenization_<model_name>.py
+src/transformers_openvla_oft/models/<model_name>/configuration_<model_name>.py
+src/transformers_openvla_oft/models/<model_name>/modeling_<model_name>.py
+src/transformers_openvla_oft/models/<model_name>/modeling_tf_<model_name>.py
+src/transformers_openvla_oft/models/<model_name>/tokenization_<model_name>.py
 tests/models/<model_name>/test_modeling_<model_name>.py
 tests/models/<model_name>/test_modeling_tf_<model_name>.py
 ```
@@ -112,7 +112,7 @@ Feel free to modify each file to mimic the behavior of your model.
 ⚠ You should be careful about the classes preceded by the following line:️
 
 ```python
-# Copied from transformers.[...]
+# Copied from transformers_openvla_oft.[...]
 ```
 
 This line ensures that the copy does not diverge from the source. If it *should* diverge, because the implementation
@@ -230,7 +230,7 @@ Should we add a version of your new model in all the frameworks implemented by O
 If you answer yes, the new model will have files for all the frameworks implemented by the model you're cloning.
 Otherwise, you will get a new question to select the frameworks you want.
 
-Once the command has finished, you will see a new subfolder in the `src/transformers/models/` folder, with the
+Once the command has finished, you will see a new subfolder in the `src/transformers_openvla_oft/models/` folder, with the
 necessary files (configuration and modeling files for all frameworks requested, and maybe the processing files,
 depending on your choices).
 
@@ -254,7 +254,7 @@ python -m pytest ./tests/test_*<model_name>*.py
 ⚠ You should be careful about the classes preceded by the following line:️
 
 ```python
-# Copied from transformers.[...]
+# Copied from transformers_openvla_oft.[...]
 ```
 
 This line ensures that the copy does not diverge from the source. If it *should* diverge, because the implementation

@@ -57,7 +57,7 @@ To load and use a PEFT adapter model from 🤗 Transformers, make sure the Hub r
 2. pass it to the [`AutoModelForCausalLM`] class
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 peft_model_id = "ybelkada/opt-350m-lora"
 model = AutoModelForCausalLM.from_pretrained(peft_model_id)
@@ -72,7 +72,7 @@ You can load a PEFT adapter with either an `AutoModelFor` class or the base mode
 You can also load a PEFT adapter by calling the `load_adapter` method:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model_id = "facebook/opt-350m"
 peft_model_id = "ybelkada/opt-350m-lora"
@@ -86,7 +86,7 @@ model.load_adapter(peft_model_id)
 The `bitsandbytes` integration supports 8bit and 4bit precision data types, which are useful for loading large models because it saves memory (see the `bitsandbytes` integration [guide](./quantization#bitsandbytes-integration) to learn more). Add the `load_in_8bit` or `load_in_4bit` parameters to [`~PreTrainedModel.from_pretrained`] and set `device_map="auto"` to effectively distribute the model to your hardware:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 peft_model_id = "ybelkada/opt-350m-lora"
 model = AutoModelForCausalLM.from_pretrained(peft_model_id, device_map="auto", load_in_8bit=True)
@@ -97,7 +97,7 @@ model = AutoModelForCausalLM.from_pretrained(peft_model_id, device_map="auto", l
 You can use [`~peft.PeftModel.add_adapter`] to add a new adapter to a model with an existing adapter as long as the new adapter is the same type as the current one. For example, if you have an existing LoRA adapter attached to a model:
 
 ```py
-from transformers import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
 from peft import LoraConfig
 
 model_id = "facebook/opt-350m"
@@ -137,7 +137,7 @@ print(tokenizer.decode(output_enabled[0], skip_special_tokens=True))
 Once you've added an adapter to a model, you can enable or disable the adapter module. To enable the adapter module:
 
 ```py
-from transformers import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
 from peft import PeftConfig
 
 model_id = "facebook/opt-350m"
@@ -213,7 +213,7 @@ model = AutoModelForCausalLM.from_pretrained(save_dir)
 You can also fine-tune additional trainable adapters on top of a model that has adapters attached by passing `modules_to_save` in your PEFT config. For example, if you want to also fine-tune the lm_head on top of a model with a LoRA adapter:
 
 ```py
-from transformers import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
 from peft import LoraConfig
 
 model_id = "facebook/opt-350m"

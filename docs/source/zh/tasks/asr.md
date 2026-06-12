@@ -118,7 +118,7 @@ DatasetDict({
 下一步是加载一个 Wav2Vec2 处理器来处理音频信号：
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base")
 ```
@@ -260,7 +260,7 @@ Wav2Vec2 分词器仅训练了大写字符，因此您需要确保文本与分�
 使用 `ctc_loss_reduction` 参数指定要应用的减少方式。通常最好使用平均值而不是默认的求和：
 
 ```py
->>> from transformers import AutoModelForCTC, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForCTC, TrainingArguments, Trainer
 
 >>> model = AutoModelForCTC.from_pretrained(
 ...     "facebook/wav2vec2-base",
@@ -312,7 +312,7 @@ Wav2Vec2 分词器仅训练了大写字符，因此您需要确保文本与分�
 >>> trainer.train()
 ```
 
-训练完成后，使用 [`~transformers.Trainer.push_to_hub`] 方法将您的模型分享到 Hub，方便大家使用您的模型：
+训练完成后，使用 [`~transformers_openvla_oft.Trainer.push_to_hub`] 方法将您的模型分享到 Hub，方便大家使用您的模型：
 
 ```py
 >>> trainer.push_to_hub()
@@ -347,7 +347,7 @@ Wav2Vec2 分词器仅训练了大写字符，因此您需要确保文本与分�
 使用您的模型实例化一个用于自动语音识别的 `pipeline`，并将您的音频文件传递给它：
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline("automatic-speech-recognition", model="stevhliu/my_awesome_asr_minds_model")
 >>> transcriber(audio_file)
@@ -368,7 +368,7 @@ Wav2Vec2 分词器仅训练了大写字符，因此您需要确保文本与分�
 加载一个处理器来预处理音频文件和转录，并将 `input` 返回为 PyTorch 张量：
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("stevhliu/my_awesome_asr_mind_model")
 >>> inputs = processor(dataset[0]["audio"]["array"], sampling_rate=sampling_rate, return_tensors="pt")
@@ -377,7 +377,7 @@ Wav2Vec2 分词器仅训练了大写字符，因此您需要确保文本与分�
 将您的输入传递给模型并返回 logits：
 
 ```py
->>> from transformers import AutoModelForCTC
+>>> from transformers_openvla_oft import AutoModelForCTC
 
 >>> model = AutoModelForCTC.from_pretrained("stevhliu/my_awesome_asr_mind_model")
 >>> with torch.no_grad():

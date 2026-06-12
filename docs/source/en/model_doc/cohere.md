@@ -34,7 +34,7 @@ The model and tokenizer can be loaded via:
 
 ```python
 # pip install transformers
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM
 
 model_id = "CohereForAI/c4ai-command-r-v01"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -69,7 +69,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 Loading FP16 model
 ```python
 # pip install transformers
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM
 
 model_id = "CohereForAI/c4ai-command-r-v01"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -94,7 +94,7 @@ print(gen_text)
 Loading bitsnbytes 4bit quantized model
 ```python
 # pip install transformers bitsandbytes accelerate
-from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
 bnb_config = BitsAndBytesConfig(load_in_4bit=True)
 

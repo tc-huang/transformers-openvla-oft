@@ -21,7 +21,7 @@ rendered properly in your Markdown viewer.
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
 from starlette.routing import Route
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 import asyncio
 
 

@@ -17,8 +17,8 @@
 import tempfile
 import unittest
 
-from transformers import is_torch_available, logging
-from transformers.testing_utils import CaptureLogger, require_torch, slow, torch_device
+from transformers_openvla_oft import is_torch_available, logging
+from transformers_openvla_oft.testing_utils import CaptureLogger, require_torch, slow, torch_device
 
 from ...test_modeling_common import ids_tensor
 from ..bart.test_modeling_bart import BartStandaloneDecoderModelTester
@@ -33,7 +33,7 @@ if is_torch_available():
     import numpy as np
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoConfig,
         AutoTokenizer,
         BartForCausalLM,
@@ -49,7 +49,7 @@ if is_torch_available():
         RobertaForCausalLM,
         RobertaModel,
     )
-    from transformers.modeling_outputs import BaseModelOutput
+    from transformers_openvla_oft.modeling_outputs import BaseModelOutput
 
 
 @require_torch
@@ -801,7 +801,7 @@ class BertEncoderDecoderModelTest(EncoderDecoderMixin, unittest.TestCase):
             ]
         )
 
-        logger = logging.get_logger("transformers.modeling_utils")
+        logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
         logger.warning_once.cache_clear()
 
         with CaptureLogger(logger) as cl:

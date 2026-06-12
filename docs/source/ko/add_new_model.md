@@ -72,7 +72,7 @@ model.config  # model has access to its config
 
 새로운 모델을 작성할 때, Transformers는 주관적인 라이브러리이며 몇 가지 독특한 코딩 스타일이 있습니다:
 
-1. 모델의 forward pass는 모델 파일에 완전히 작성되어야 합니다. 라이브러리의 다른 모델에서 블록을 재사용하려면 코드를 복사하여 위에 `# Copied from` 주석과 함께 붙여넣으면 됩니다 (예: [여기](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers/models/roberta/modeling_roberta.py#L160)를 참조하세요).
+1. 모델의 forward pass는 모델 파일에 완전히 작성되어야 합니다. 라이브러리의 다른 모델에서 블록을 재사용하려면 코드를 복사하여 위에 `# Copied from` 주석과 함께 붙여넣으면 됩니다 (예: [여기](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L160)를 참조하세요).
 2. 코드는 완전히 이해하기 쉬워야 합니다. 변수 이름을 명확하게 지정하고 약어를 사용하지 않는 것이 좋습니다. 예를 들어, `act`보다는 `activation`을 선호합니다. 한 글자 변수 이름은 루프의 인덱스인 경우를 제외하고 권장되지 않습니다.
 3. 더 일반적으로, 짧은 마법 같은 코드보다는 길고 명시적인 코드를 선호합니다.
 4. PyTorch에서 `nn.Sequential`을 하위 클래스로 만들지 말고 `nn.Module`을 하위 클래스로 만들고 forward pass를 작성하여 다른 사람이 코드를 빠르게 디버그할 수 있도록 합니다. print 문이나 중단점을 추가할 수 있습니다.
@@ -260,7 +260,7 @@ original_output = model.predict(input_ids)
 - 사용 가능한 가장 작은 사전 훈련된 체크포인트를 사용하세요. 체크포인트가 작을수록 디버그 사이클이 더 빨라집니다. 전반적으로 forward pass에 10초 이상이 걸리는 경우 효율적이지 않습니다. 매우 큰 체크포인트만 사용할 수 있는 경우, 새 환경에서 임의로 초기화된 가중치로 더미 모델을 만들고 해당 가중치를 🤗 Transformers 버전과 비교하기 위해 저장하는 것이 더 의미가 있을 수 있습니다.
 - 디버깅 설정에서 가장 쉽게 forward pass를 호출하는 방법을 사용하세요. 원본 저장소에서 **단일** forward pass만 호출하는 함수를 찾는 것이 이상적입니다. 이 함수는 일반적으로 `predict`, `evaluate`, `forward`, `__call__`과 같이 호출됩니다. `autoregressive_sample`과 같은 텍스트 생성에서 `forward`를 여러 번 호출하여 텍스트를 생성하는 등의 작업을 수행하는 함수를 디버그하고 싶지 않을 것입니다.
 - 토큰화 과정을 모델의 *forward* pass와 분리하려고 노력하세요. 원본 저장소에서 입력 문자열을 입력해야 하는 예제가 있는 경우, 입력 문자열이 입력 ID로 변경되는 순간을 찾아서 시작하세요. 이 경우 직접 ID를 입력할 수 있도록 작은 스크립트를 작성하거나 원본 코드를 수정해야 할 수도 있습니다.
-- 디버깅 설정에서 모델이 훈련 모드가 아니라는 것을 확인하세요. 훈련 모드에서는 모델의 여러 드롭아웃 레이어 때문에 무작위 출력이 생성될 수 있습니다. 디버깅 환경에서 forward pass가 **결정론적**이도록 해야 합니다. 또는 동일한 프레임워크에 있는 경우 *transformers.utils.set_seed*를 사용하세요.
+- 디버깅 설정에서 모델이 훈련 모드가 아니라는 것을 확인하세요. 훈련 모드에서는 모델의 여러 드롭아웃 레이어 때문에 무작위 출력이 생성될 수 있습니다. 디버깅 환경에서 forward pass가 **결정론적**이도록 해야 합니다. 또는 동일한 프레임워크에 있는 경우 *transformers_openvla_oft.utils.set_seed*를 사용하세요.
 
 다음 섹션에서는 *brand_new_bert*에 대해 이 작업을 수행하는 데 더 구체적인 세부 사항/팁을 제공합니다.
 
@@ -332,14 +332,14 @@ git merge upstream/main
 
 **5. brand_new_bert에 대해 생성된 모델 코드를 적용하기**
 
-먼저, 우리는 모델 자체에만 초점을 맞추고 토크나이저에 대해서는 신경 쓰지 않을 것입니다. 모든 관련 코드는 다음의 생성된 파일에서 찾을 수 있습니다: `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` 및 `src/transformers/models/brand_new_bert/configuration_brand_new_bert.py`.
+먼저, 우리는 모델 자체에만 초점을 맞추고 토크나이저에 대해서는 신경 쓰지 않을 것입니다. 모든 관련 코드는 다음의 생성된 파일에서 찾을 수 있습니다: `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` 및 `src/transformers_openvla_oft/models/brand_new_bert/configuration_brand_new_bert.py`.
 
-이제 마침내 코딩을 시작할 수 있습니다 :). `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py`의 생성된 코드는 인코더 전용 모델인 경우 BERT와 동일한 아키텍처를 가지거나, 인코더-디코더 모델인 경우 BART와 동일한 아키텍처를 가질 것입니다. 이 시점에서, 모델의 이론적 측면에 대해 배운 내용을 다시 상기해야 합니다: *모델이 BERT 또는 BART와 어떻게 다른가요?*. 자주 변경해야 하는 것은 *self-attention* 레이어, 정규화 레이어의 순서 등을 변경하는 것입니다. 다시 말하지만, 자신의 모델을 구현하는 데 도움이 되도록 Transformers에서 이미 존재하는 모델의 유사한 아키텍처를 살펴보는 것이 유용할 수 있습니다.
+이제 마침내 코딩을 시작할 수 있습니다 :). `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py`의 생성된 코드는 인코더 전용 모델인 경우 BERT와 동일한 아키텍처를 가지거나, 인코더-디코더 모델인 경우 BART와 동일한 아키텍처를 가질 것입니다. 이 시점에서, 모델의 이론적 측면에 대해 배운 내용을 다시 상기해야 합니다: *모델이 BERT 또는 BART와 어떻게 다른가요?*. 자주 변경해야 하는 것은 *self-attention* 레이어, 정규화 레이어의 순서 등을 변경하는 것입니다. 다시 말하지만, 자신의 모델을 구현하는 데 도움이 되도록 Transformers에서 이미 존재하는 모델의 유사한 아키텍처를 살펴보는 것이 유용할 수 있습니다.
 
-**참고로** 이 시점에서, 코드가 완전히 정확하거나 깨끗하다고 확신할 필요는 없습니다. 오히려 처음에는 원본 코드의 첫 번째 *불완전하고* 복사된 버전을 `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py`에 추가하는 것이 좋습니다. 필요한 모든 코드가 추가될 때까지 이러한 작업을 진행한 후, 다음 섹션에서 설명한 변환 스크립트를 사용하여 코드를 점진적으로 개선하고 수정하는 것이 훨씬 효율적입니다. 이 시점에서 작동해야 하는 유일한 것은 다음 명령이 작동하는 것입니다:
+**참고로** 이 시점에서, 코드가 완전히 정확하거나 깨끗하다고 확신할 필요는 없습니다. 오히려 처음에는 원본 코드의 첫 번째 *불완전하고* 복사된 버전을 `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py`에 추가하는 것이 좋습니다. 필요한 모든 코드가 추가될 때까지 이러한 작업을 진행한 후, 다음 섹션에서 설명한 변환 스크립트를 사용하여 코드를 점진적으로 개선하고 수정하는 것이 훨씬 효율적입니다. 이 시점에서 작동해야 하는 유일한 것은 다음 명령이 작동하는 것입니다:
 
 ```python
-from transformers import BrandNewBertModel, BrandNewBertConfig
+from transformers_openvla_oft import BrandNewBertModel, BrandNewBertConfig
 
 model = BrandNewBertModel(BrandNewBertConfig())
 ```
@@ -386,8 +386,8 @@ def _init_weights(self, module):
 
 다음으로, 디버그에 사용한 체크포인트를 기존 저장소에서 만든 🤗 Transformers 구현과 호환되는 체크포인트로 변환할 수 있는 변환 스크립트를 작성해야 합니다. 변환 스크립트를 처음부터 작성하는 것보다는 *brand_new_bert*와 동일한 프레임워크로 작성된 유사한 모델을 변환한 기존 변환 스크립트를 찾아보는 것이 좋습니다. 일반적으로 기존 변환 스크립트를 복사하여 사용 사례에 맞게 약간 수정하는 것으로 충분합니다. 모델에 대해 유사한 기존 변환 스크립트를 어디에서 찾을 수 있는지 Hugging Face 팀에게 문의하는 것을 망설이지 마세요.
 
-- TensorFlow에서 PyTorch로 모델을 이전하는 경우, 좋은 참고 자료로 BERT의 변환 스크립트 [여기](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers/models/bert/modeling_bert.py#L91)를 참조할 수 있습니다.
-- PyTorch에서 PyTorch로 모델을 이전하는 경우, 좋은 참고 자료로 BART의 변환 스크립트 [여기](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)를 참조할 수 있습니다.
+- TensorFlow에서 PyTorch로 모델을 이전하는 경우, 좋은 참고 자료로 BERT의 변환 스크립트 [여기](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers_openvla_oft/models/bert/modeling_bert.py#L91)를 참조할 수 있습니다.
+- PyTorch에서 PyTorch로 모델을 이전하는 경우, 좋은 참고 자료로 BART의 변환 스크립트 [여기](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)를 참조할 수 있습니다.
 
 다음에서는 PyTorch 모델이 레이어 가중치를 저장하고 레이어 이름을 정의하는 방법에 대해 간단히 설명하겠습니다. PyTorch에서 레이어의 이름은 레이어에 지정한 클래스 속성의 이름으로 정의됩니다. 다음과 같이 PyTorch에서 `SimpleModel`이라는 더미 모델을 정의해 봅시다:
 
@@ -560,7 +560,7 @@ input_ids = model.tokenize(input_str)
 원본 리포지토리를 자세히 살펴보고 올바른 토크나이저 함수를 찾거나, 복제본에서 변경 사항을 적용하여 `input_ids`만 출력하도록 해야 합니다. 원본 리포지토리를 사용하는 기능적인 토큰화 스크립트를 작성한 후, 🤗 Transformers의 유사한 스크립트를 생성해야 합니다. 다음과 같이 작성되어야 합니다:
 
 ```python
-from transformers import BrandNewBertTokenizer
+from transformers_openvla_oft import BrandNewBertTokenizer
 
 input_str = "This is a long example input string containing special characters .$?-, numbers 2872 234 12 and words."
 
@@ -581,7 +581,7 @@ input_ids = tokenizer(input_str).input_ids
 
 이제 *brand_new_bert*에 필요한 모든 기능이 추가되었습니다. 거의 끝났습니다! 추가해야 할 것은 멋진 기술문서과 기술문서 페이지입니다. Cookiecutter가 `docs/source/model_doc/brand_new_bert.md`라는 템플릿 파일을 추가해줬을 것입니다. 이 페이지를 사용하기 전에 모델을 사용하는 사용자들은 일반적으로 이 페이지를 먼저 확인합니다. 따라서 문서는 이해하기 쉽고 간결해야 합니다. 모델을 사용하는 방법을 보여주기 위해 *팁*을 추가하는 것이 커뮤니티에 매우 유용합니다. 독스트링에 관련하여 Hugging Face 팀에 문의하는 것을 주저하지 마세요.
 
-다음으로, `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py`에 추가된 독스트링이 올바르며 필요한 모든 입력 및 출력을 포함하도록 확인하세요. [여기](writing-documentation)에서 우리의 문서 작성 가이드와 독스트링 형식에 대한 상세 가이드가 있습니다. 문서는 일반적으로 커뮤니티와 모델의 첫 번째 접점이기 때문에, 문서는 적어도 코드만큼의 주의를 기울여야 합니다.
+다음으로, `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py`에 추가된 독스트링이 올바르며 필요한 모든 입력 및 출력을 포함하도록 확인하세요. [여기](writing-documentation)에서 우리의 문서 작성 가이드와 독스트링 형식에 대한 상세 가이드가 있습니다. 문서는 일반적으로 커뮤니티와 모델의 첫 번째 접점이기 때문에, 문서는 적어도 코드만큼의 주의를 기울여야 합니다.
 
 **코드 리팩토링**
 

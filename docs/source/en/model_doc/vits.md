@@ -50,7 +50,7 @@ runs a forward pass using the MMS-TTS English checkpoint:
 
 ```python
 import torch
-from transformers import VitsTokenizer, VitsModel, set_seed
+from transformers_openvla_oft import VitsTokenizer, VitsModel, set_seed
 
 tokenizer = VitsTokenizer.from_pretrained("facebook/mms-tts-eng")
 model = VitsModel.from_pretrained("facebook/mms-tts-eng")
@@ -88,7 +88,7 @@ You can check whether you require the `uroman` package for your language by insp
 the pre-trained `tokenizer`:
 
 ```python
-from transformers import VitsTokenizer
+from transformers_openvla_oft import VitsTokenizer
 
 tokenizer = VitsTokenizer.from_pretrained("facebook/mms-tts-eng")
 print(tokenizer.is_uroman)
@@ -110,7 +110,7 @@ You can then pre-process the text input using the following code snippet. You ca
 
 ```python
 import torch
-from transformers import VitsTokenizer, VitsModel, set_seed
+from transformers_openvla_oft import VitsTokenizer, VitsModel, set_seed
 import os
 import subprocess
 

@@ -22,19 +22,19 @@ import unittest
 
 import pytest
 
-from transformers import (
+from transformers_openvla_oft import (
     BarkCoarseConfig,
     BarkConfig,
     BarkFineConfig,
     BarkSemanticConfig,
     is_torch_available,
 )
-from transformers.models.bark.generation_configuration_bark import (
+from transformers_openvla_oft.models.bark.generation_configuration_bark import (
     BarkCoarseGenerationConfig,
     BarkFineGenerationConfig,
     BarkSemanticGenerationConfig,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     require_flash_attn,
     require_torch,
     require_torch_fp16,
@@ -42,7 +42,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import cached_property
+from transformers_openvla_oft.utils import cached_property
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -53,7 +53,7 @@ from ..encodec.test_modeling_encodec import EncodecModelTester
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         BarkCausalModel,
         BarkCoarseModel,
         BarkFineModel,

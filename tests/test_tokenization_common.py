@@ -30,7 +30,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Tuple, Union
 
 from parameterized import parameterized
 
-from transformers import (
+from transformers_openvla_oft import (
     AlbertTokenizer,
     AlbertTokenizerFast,
     BertTokenizer,
@@ -46,7 +46,7 @@ from transformers import (
     is_torch_available,
     logging,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     check_json_file_has_correct_format,
     get_tests_dir,
     is_pt_tf_cross_test,
@@ -58,7 +58,7 @@ from transformers.testing_utils import (
     run_test_in_subprocess,
     slow,
 )
-from transformers.tokenization_utils import AddedToken
+from transformers_openvla_oft.tokenization_utils import AddedToken
 
 
 if is_torch_available():
@@ -66,7 +66,7 @@ if is_torch_available():
 
 
 if TYPE_CHECKING:
-    from transformers import PretrainedConfig, PreTrainedModel, TFPreTrainedModel
+    from transformers_openvla_oft import PretrainedConfig, PreTrainedModel, TFPreTrainedModel
 
 
 logger = logging.get_logger(__name__)
@@ -2581,7 +2581,7 @@ class TokenizerTesterMixin:
     def test_torch_encode_plus_sent_to_model(self):
         import torch
 
-        from transformers import MODEL_MAPPING, TOKENIZER_MAPPING
+        from transformers_openvla_oft import MODEL_MAPPING, TOKENIZER_MAPPING
 
         MODEL_TOKENIZER_MAPPING = merge_model_tokenizer_mappings(MODEL_MAPPING, TOKENIZER_MAPPING)
 
@@ -2630,7 +2630,7 @@ class TokenizerTesterMixin:
     @require_tf
     @slow
     def test_tf_encode_plus_sent_to_model(self):
-        from transformers import TF_MODEL_MAPPING, TOKENIZER_MAPPING
+        from transformers_openvla_oft import TF_MODEL_MAPPING, TOKENIZER_MAPPING
 
         MODEL_TOKENIZER_MAPPING = merge_model_tokenizer_mappings(TF_MODEL_MAPPING, TOKENIZER_MAPPING)
 
@@ -2665,7 +2665,7 @@ class TokenizerTesterMixin:
     @require_torch
     @slow
     def test_np_encode_plus_sent_to_model(self):
-        from transformers import MODEL_MAPPING, TOKENIZER_MAPPING
+        from transformers_openvla_oft import MODEL_MAPPING, TOKENIZER_MAPPING
 
         MODEL_TOKENIZER_MAPPING = merge_model_tokenizer_mappings(MODEL_MAPPING, TOKENIZER_MAPPING)
 

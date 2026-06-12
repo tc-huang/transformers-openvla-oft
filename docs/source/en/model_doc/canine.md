@@ -66,7 +66,7 @@ Model checkpoints:
 CANINE works on raw characters, so it can be used **without a tokenizer**:
 
 ```python
->>> from transformers import CanineModel
+>>> from transformers_openvla_oft import CanineModel
 >>> import torch
 
 >>> model = CanineModel.from_pretrained("google/canine-c")  # model pre-trained with autoregressive character loss
@@ -84,7 +84,7 @@ For batched inference and training, it is however recommended to make use of the
 sequences to the same length):
 
 ```python
->>> from transformers import CanineTokenizer, CanineModel
+>>> from transformers_openvla_oft import CanineTokenizer, CanineModel
 
 >>> model = CanineModel.from_pretrained("google/canine-c")
 >>> tokenizer = CanineTokenizer.from_pretrained("google/canine-c")

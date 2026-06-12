@@ -44,12 +44,12 @@ import subprocess
 from collections import OrderedDict
 from typing import List, Optional, Tuple, Union
 
-from transformers.utils import direct_transformers_import
+from transformers_openvla_oft.utils import direct_transformers_import
 
 
 # All paths are set with the intent you should run this script from the root of the repo with the command
 # python utils/check_copies.py
-TRANSFORMERS_PATH = "src/transformers"
+TRANSFORMERS_PATH = "src/transformers_openvla_oft"
 MODEL_TEST_PATH = "tests/models"
 PATH_TO_DOCS = "docs/source/en"
 REPO_PATH = "."
@@ -496,7 +496,7 @@ def find_code_and_splits(object_name: str, base_path: str, buffer: dict = None):
 
     Args:
         object_name (`str`):
-            The name of the object, e.g. `transformers.models.bert.modeling_bert.BertAttention` or
+            The name of the object, e.g. `transformers_openvla_oft.models.bert.modeling_bert.BertAttention` or
             `tests.models.llama.test_modeling_llama.LlamaModelTest.test_config`.
         base_path (`str`):
             The path to the base directory within which the search will be performed. It could be either
@@ -534,7 +534,7 @@ def find_code_and_splits(object_name: str, base_path: str, buffer: dict = None):
     return lines, code, code_splits
 
 
-_re_copy_warning = re.compile(r"^(\s*)#\s*Copied from\s+transformers\.(\S+\.\S+)\s*($|\S.*$)")
+_re_copy_warning = re.compile(r"^(\s*)#\s*Copied from\s+transformers_openvla_oft\.(\S+\.\S+)\s*($|\S.*$)")
 _re_copy_warning_for_test_file = re.compile(r"^(\s*)#\s*Copied from\s+tests\.(\S+\.\S+)\s*($|\S.*$)")
 _re_replace_pattern = re.compile(r"^\s*(\S+)->(\S+)(\s+.*|$)")
 _re_fill_pattern = re.compile(r"<FILL\s+[^>]*>")

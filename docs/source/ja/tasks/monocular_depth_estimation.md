@@ -54,7 +54,7 @@ pip install -q transformers
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> checkpoint = "vinvino02/glpn-nyu"
 >>> depth_estimator = pipeline("depth-estimation", model=checkpoint)
@@ -104,7 +104,7 @@ pip install -q transformers
 
 
 ```py
->>> from transformers import AutoImageProcessor, AutoModelForDepthEstimation
+>>> from transformers_openvla_oft import AutoImageProcessor, AutoModelForDepthEstimation
 
 >>> checkpoint = "vinvino02/glpn-nyu"
 

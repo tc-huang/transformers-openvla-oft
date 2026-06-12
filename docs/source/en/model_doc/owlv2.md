@@ -43,7 +43,7 @@ OWLv2 is, just like its predecessor [OWL-ViT](owlvit), a zero-shot text-conditio
 >>> from PIL import Image
 >>> import torch
 
->>> from transformers import Owlv2Processor, Owlv2ForObjectDetection
+>>> from transformers_openvla_oft import Owlv2Processor, Owlv2ForObjectDetection
 
 >>> processor = Owlv2Processor.from_pretrained("google/owlv2-base-patch16-ensemble")
 >>> model = Owlv2ForObjectDetection.from_pretrained("google/owlv2-base-patch16-ensemble")

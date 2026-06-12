@@ -24,9 +24,9 @@ rendered properly in your Markdown viewer.
 
 
 ```python
-import transformers
+import transformers_openvla_oft
 
-transformers.logging.set_verbosity_info()
+transformers_openvla_oft.logging.set_verbosity_info()
 ```
 
 
@@ -50,7 +50,7 @@ TRANSFORMERS_NO_ADVISORY_WARNINGS=1 ./myprogram.py
 以下は、独自のモジュールまたはスクリプトでライブラリと同じロガーを使用する方法の例です。
 
 ```python
-from transformers.utils import logging
+from transformers_openvla_oft.utils import logging
 
 logging.set_verbosity_info()
 logger = logging.get_logger("transformers")
@@ -63,13 +63,13 @@ logger.warning("WARN")
 [`logging.set_verbosity`] を使用して、冗長性を選択したレベルに設定します。順番に（少ないものから）
 冗長から最も冗長まで)、それらのレベル (括弧内は対応する int 値) は次のとおりです。
 
-- `transformers.logging.CRITICAL` または `transformers.logging.FATAL` (int 値、50): 最も多いもののみをレポートします。
+- `transformers_openvla_oft.logging.CRITICAL` または `transformers_openvla_oft.logging.FATAL` (int 値、50): 最も多いもののみをレポートします。
   重大なエラー。
-- `transformers.logging.ERROR` (int 値、40): エラーのみを報告します。
-- `transformers.logging.WARNING` または `transformers.logging.WARN` (int 値、30): エラーと
+- `transformers_openvla_oft.logging.ERROR` (int 値、40): エラーのみを報告します。
+- `transformers_openvla_oft.logging.WARNING` または `transformers_openvla_oft.logging.WARN` (int 値、30): エラーと
   警告。これはライブラリで使用されるデフォルトのレベルです。
-- `transformers.logging.INFO` (int 値、20): エラー、警告、および基本情報をレポートします。
-- `transformers.logging.DEBUG` (int 値、10): すべての情報をレポートします。
+- `transformers_openvla_oft.logging.INFO` (int 値、20): エラー、警告、および基本情報をレポートします。
+- `transformers_openvla_oft.logging.DEBUG` (int 値、10): すべての情報をレポートします。
 
 デフォルトでは、モデルのダウンロード中に「tqdm」進行状況バーが表示されます。 [`logging.disable_progress_bar`] および [`logging.enable_progress_bar`] を使用して、この動作を抑制または抑制解除できます。
 

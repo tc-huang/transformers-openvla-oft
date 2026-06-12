@@ -9,7 +9,7 @@ from datasets import Dataset
 from torch import nn
 from tqdm.auto import tqdm
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoModelForSequenceClassification,
     AutoTokenizer,
     HfArgumentParser,
@@ -18,7 +18,7 @@ from transformers import (
     set_seed,
     utils,
 )
-from transformers.trainer_utils import get_last_checkpoint, is_main_process
+from transformers_openvla_oft.trainer_utils import get_last_checkpoint, is_main_process
 
 
 DESCRIPTION = """

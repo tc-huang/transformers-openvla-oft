@@ -40,7 +40,7 @@ from jax.nn import log_softmax
 from modeling_flax_performer import FlaxPerformerForMaskedLM
 from tqdm import tqdm
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_MASKED_LM_MAPPING,
     AutoTokenizer,
     BertConfig,
@@ -195,7 +195,7 @@ class DataTrainingArguments:
                 assert extension in ["csv", "json", "txt"], "`validation_file` should be a csv, a json or a txt file."
 
 
-# Adapted from transformers/data/data_collator.py
+# Adapted from transformers_openvla_oft/data/data_collator.py
 # Letting here for now, let's discuss where it should live
 @dataclass
 class FlaxDataCollatorForLanguageModeling:
@@ -204,7 +204,7 @@ class FlaxDataCollatorForLanguageModeling:
     are not all of the same length.
 
     Args:
-        tokenizer (:class:`~transformers.PreTrainedTokenizer` or :class:`~transformers.PreTrainedTokenizerFast`):
+        tokenizer (:class:`~transformers_openvla_oft.PreTrainedTokenizer` or :class:`~transformers_openvla_oft.PreTrainedTokenizerFast`):
             The tokenizer used for encoding the data.
         mlm (:obj:`bool`, `optional`, defaults to :obj:`True`):
             Whether or not to use masked language modeling. If set to :obj:`False`, the labels are the same as the
@@ -217,7 +217,7 @@ class FlaxDataCollatorForLanguageModeling:
 
         For best performance, this data collator should be used with a dataset having items that are dictionaries or
         BatchEncoding, with the :obj:`"special_tokens_mask"` key, as returned by a
-        :class:`~transformers.PreTrainedTokenizer` or a :class:`~transformers.PreTrainedTokenizerFast` with the
+        :class:`~transformers_openvla_oft.PreTrainedTokenizer` or a :class:`~transformers_openvla_oft.PreTrainedTokenizerFast` with the
         argument :obj:`return_special_tokens_mask=True`.
     """
 
@@ -445,7 +445,7 @@ def generate_batch_splits(samples_idx: np.ndarray, batch_size: int) -> np.ndarra
 
 
 if __name__ == "__main__":
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 

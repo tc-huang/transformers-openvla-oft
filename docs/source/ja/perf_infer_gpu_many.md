@@ -44,7 +44,7 @@ Flash Attentionは、fp16またはbf16 dtypeを使用しているモデルにの
 モデルをBetterTransformerに変換するには：
 
 ```python
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m")
 # convert the model to BetterTransformer
@@ -58,7 +58,7 @@ SDPAは、ハードウェアや問題のサイズなどの特定の設定で[Fla
 
 ```diff
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("facebook/opt-350m")
 model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m").to("cuda")
@@ -105,7 +105,7 @@ BetterTransformerのパフォーマンスの詳細については、この[ブ�
 
 ```py
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 quantization_config = BitsAndBytesConfig(
     load_in_4bit=True,

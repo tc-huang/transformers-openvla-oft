@@ -77,7 +77,7 @@ LLM과 자기회귀 생성을 함께 사용할 때 핵심적인 부분은 이 �
 먼저, 모델을 불러오세요.
 
 ```python
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained(
 ...     "mistralai/Mistral-7B-v0.1", device_map="auto", load_in_4bit=True
@@ -94,7 +94,7 @@ LLM과 자기회귀 생성을 함께 사용할 때 핵심적인 부분은 이 �
 이어서 텍스트 입력을 [토크나이저](tokenizer_summary)으로 전처리하세요.
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> import torch
 
 >>> tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1")
@@ -120,7 +120,7 @@ LLM과 자기회귀 생성을 함께 사용할 때 핵심적인 부분은 이 �
 [생성 전략](generation_strategies)이 많고, 기본값이 항상 사용 사례에 적합하지 않을 수 있습니다. 출력이 예상과 다를 때 흔히 발생하는 문제와 이를 해결하는 방법에 대한 목록을 만들었습니다.
 
 ```py
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1")
 >>> tokenizer.pad_token = tokenizer.eos_token  # Mistral has no pad token by default
@@ -154,7 +154,7 @@ LLM과 자기회귀 생성을 함께 사용할 때 핵심적인 부분은 이 �
 
 ```python
 >>> # Set seed or reproducibility -- you don't need this unless you want full reproducibility
->>> from transformers import set_seed
+>>> from transformers_openvla_oft import set_seed
 >>> set_seed(0)
 
 >>> model_inputs = tokenizer(["I am a cat."], return_tensors="pt").to("cuda")

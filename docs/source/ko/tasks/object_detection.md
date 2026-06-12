@@ -174,7 +174,7 @@ DatasetDict({
 사전 훈련된 모델과 동일한 체크포인트에서 이미지 프로세서를 인스턴스화합니다.
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> checkpoint = "facebook/detr-resnet-50"
 >>> image_processor = AutoImageProcessor.from_pretrained(checkpoint)
@@ -322,7 +322,7 @@ DatasetDict({
 또한, `ignore_mismatched_sizes=True`를 지정하여 기존 분류 헤드(모델에서 분류에 사용되는 마지막 레이어)를 새 분류 헤드로 대체합니다.
 
 ```py
->>> from transformers import AutoModelForObjectDetection
+>>> from transformers_openvla_oft import AutoModelForObjectDetection
 
 >>> model = AutoModelForObjectDetection.from_pretrained(
 ...     checkpoint,
@@ -339,7 +339,7 @@ DatasetDict({
 
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(
 ...     output_dir="detr-resnet-50_finetuned_cppe5",
@@ -356,10 +356,10 @@ DatasetDict({
 ... )
 ```
 
-마지막으로 `model`, `training_args`, `collate_fn`, `image_processor`와 데이터 세트(`cppe5`)를 모두 가져온 후, [`~transformers.Trainer.train`]를 호출합니다.
+마지막으로 `model`, `training_args`, `collate_fn`, `image_processor`와 데이터 세트(`cppe5`)를 모두 가져온 후, [`~transformers_openvla_oft.Trainer.train`]를 호출합니다.
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -373,7 +373,7 @@ DatasetDict({
 ```
 
 `training_args`에서 `push_to_hub`를 `True`로 설정한 경우, 학습 체크포인트는 허깅페이스 허브에 업로드됩니다.
-학습 완료 후, [`~transformers.Trainer.push_to_hub`] 메소드를 호출하여 최종 모델을 허깅페이스 허브에 업로드합니다.
+학습 완료 후, [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드를 호출하여 최종 모델을 허깅페이스 허브에 업로드합니다.
 
 ```py
 >>> trainer.push_to_hub()
@@ -528,7 +528,7 @@ IoU metric: bbox
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.590
 ```
 
-이러한 결과는 [`~transformers.TrainingArguments`]의 하이퍼파라미터를 조정하여 더욱 개선될 수 있습니다. 한번 시도해 보세요!
+이러한 결과는 [`~transformers_openvla_oft.TrainingArguments`]의 하이퍼파라미터를 조정하여 더욱 개선될 수 있습니다. 한번 시도해 보세요!
 
 ## 추론하기 [[inference]]
 
@@ -538,7 +538,7 @@ DETR 모델을 미세 조정 및 평가하고, 허깅페이스 허브에 업로�
 모델과 함께 객체 탐지를 위한 파이프라인을 인스턴스화하고, 이미지를 전달하세요:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> import requests
 
 >>> url = "https://i.imgur.com/2lnWoly.jpg"

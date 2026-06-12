@@ -34,7 +34,7 @@ The code snippet below shows how to compute image & text features and similariti
 ```python
 >>> from PIL import Image
 >>> import requests
->>> from transformers import ChineseCLIPProcessor, ChineseCLIPModel
+>>> from transformers_openvla_oft import ChineseCLIPProcessor, ChineseCLIPModel
 
 >>> model = ChineseCLIPModel.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")
 >>> processor = ChineseCLIPProcessor.from_pretrained("OFA-Sys/chinese-clip-vit-base-patch16")

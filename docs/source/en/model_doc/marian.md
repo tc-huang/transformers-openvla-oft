@@ -77,7 +77,7 @@ New multi-lingual models from the [Tatoeba-Challenge repo](https://github.com/He
 require 3 character language codes:
 
 ```python
->>> from transformers import MarianMTModel, MarianTokenizer
+>>> from transformers_openvla_oft import MarianMTModel, MarianTokenizer
 
 >>> src_text = [
 ...     ">>fra<< this is a sentence in english that we want to translate to french",
@@ -143,7 +143,7 @@ Example of translating english to many romance languages, using old-style 2 char
 
 
 ```python
->>> from transformers import MarianMTModel, MarianTokenizer
+>>> from transformers_openvla_oft import MarianMTModel, MarianTokenizer
 
 >>> src_text = [
 ...     ">>fr<< this is a sentence in english that we want to translate to french",

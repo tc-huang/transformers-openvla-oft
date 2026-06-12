@@ -57,7 +57,7 @@ to the vocabulary of the specified language.
 Similarly, the processor should be loaded with the same target language
 
 ```py
-from transformers import Wav2Vec2ForCTC, AutoProcessor
+from transformers_openvla_oft import Wav2Vec2ForCTC, AutoProcessor
 
 model_id = "facebook/mms-1b-all"
 target_lang = "fra"
@@ -82,7 +82,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 If you want to use the ASR pipeline, you can load your chosen target language as such:
 
 ```py
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 model_id = "facebook/mms-1b-all"
 target_lang = "fra"
@@ -112,7 +112,7 @@ fr_sample = next(iter(stream_data))["audio"]["array"]
 Next, we load the model and processor
 
 ```py
-from transformers import Wav2Vec2ForCTC, AutoProcessor
+from transformers_openvla_oft import Wav2Vec2ForCTC, AutoProcessor
 import torch
 
 model_id = "facebook/mms-1b-all"
@@ -186,7 +186,7 @@ pre-process the text inputs. The following code example runs a forward pass usin
 
 ```python
 import torch
-from transformers import VitsTokenizer, VitsModel, set_seed
+from transformers_openvla_oft import VitsTokenizer, VitsModel, set_seed
 
 tokenizer = VitsTokenizer.from_pretrained("facebook/mms-tts-eng")
 model = VitsModel.from_pretrained("facebook/mms-tts-eng")
@@ -224,7 +224,7 @@ You can check whether you require the `uroman` package for your language by insp
 the pre-trained `tokenizer`:
 
 ```python
-from transformers import VitsTokenizer
+from transformers_openvla_oft import VitsTokenizer
 
 tokenizer = VitsTokenizer.from_pretrained("facebook/mms-tts-eng")
 print(tokenizer.is_uroman)
@@ -246,7 +246,7 @@ You can then pre-process the text input using the following code snippet. You ca
 
 ```python
 import torch
-from transformers import VitsTokenizer, VitsModel, set_seed
+from transformers_openvla_oft import VitsTokenizer, VitsModel, set_seed
 import os
 import subprocess
 
@@ -288,7 +288,7 @@ waveform = outputs.waveform[0]
 
 ```python
 import torch
-from transformers import VitsTokenizer, VitsModel, set_seed
+from transformers_openvla_oft import VitsTokenizer, VitsModel, set_seed
 
 tokenizer = VitsTokenizer.from_pretrained("facebook/mms-tts-eng")
 model = VitsModel.from_pretrained("facebook/mms-tts-eng")
@@ -337,7 +337,7 @@ ar_sample = next(iter(stream_data))["audio"]["array"]
 Next, we load the model and processor
 
 ```py
-from transformers import Wav2Vec2ForSequenceClassification, AutoFeatureExtractor
+from transformers_openvla_oft import Wav2Vec2ForSequenceClassification, AutoFeatureExtractor
 import torch
 
 model_id = "facebook/mms-lid-126"

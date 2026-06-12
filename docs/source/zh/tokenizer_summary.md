@@ -87,10 +87,10 @@ and [SentencePiece](#sentencepiece)，并且给出了示例，哪个模型用到
 像Turkish语言，这么做是相当有用的，在这样的语言里，通过线性组合子词，大多数情况下你能形成任意长的复杂的单词。
 
 子词分词允许模型有一个合理的词典大小，而且能学到有意义的上下文独立地表达。除此以外，子词分词可以让模型处理以前从来没见过的单词，
-方式是通过分解这些单词到已知的子词，举个例子：[`~transformers.BertTokenizer`]对句子`"I have a new GPU!"`分词的结果如下：
+方式是通过分解这些单词到已知的子词，举个例子：[`~transformers_openvla_oft.BertTokenizer`]对句子`"I have a new GPU!"`分词的结果如下：
 
 ```py
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> tokenizer.tokenize("I have a new GPU!")
@@ -101,10 +101,10 @@ and [SentencePiece](#sentencepiece)，并且给出了示例，哪个模型用到
 的词典内，但是这个单词`"gpu"`不在词典内。所以，分词器将`"gpu"`分割成已知的子词`["gp" and "##u"]`。`"##"`意味着剩下的
 token应该附着在前面那个token的后面，不带空格的附着（分词的解码或者反向）。
 
-另外一个例子，[`~transformers.XLNetTokenizer`]对前面的文本例子分词结果如下：
+另外一个例子，[`~transformers_openvla_oft.XLNetTokenizer`]对前面的文本例子分词结果如下：
 
 ```py
->>> from transformers import XLNetTokenizer
+>>> from transformers_openvla_oft import XLNetTokenizer
 
 >>> tokenizer = XLNetTokenizer.from_pretrained("xlnet/xlnet-base-cased")
 >>> tokenizer.tokenize("Don't you love 🤗 Transformers? We sure do.")

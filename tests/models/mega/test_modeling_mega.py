@@ -16,8 +16,8 @@
 
 import unittest
 
-from transformers import MegaConfig, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import MegaConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     TestCasePlus,
     is_flaky,
     require_torch,
@@ -35,7 +35,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         MegaForCausalLM,
         MegaForMaskedLM,
         MegaForMultipleChoice,

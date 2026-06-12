@@ -29,7 +29,7 @@ fine-tune for translation or summarization.
 The `generate()` method can be used to generate text using GPTSAN-Japanese model.
 
 ```python
->>> from transformers import AutoModel, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModel, AutoTokenizer
 >>> import torch
 
 >>> tokenizer = AutoTokenizer.from_pretrained("Tanrei/GPTSAN-japanese")

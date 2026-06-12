@@ -19,8 +19,8 @@ import unittest
 
 import pytest
 
-from transformers import BitsAndBytesConfig, GPTJConfig, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import BitsAndBytesConfig, GPTJConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     require_bitsandbytes,
     require_flash_attn,
     require_torch,
@@ -39,14 +39,14 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoTokenizer,
         GPTJForCausalLM,
         GPTJForQuestionAnswering,
         GPTJForSequenceClassification,
         GPTJModel,
     )
-    from transformers.pytorch_utils import is_torch_greater_or_equal_than_1_12
+    from transformers_openvla_oft.pytorch_utils import is_torch_greater_or_equal_than_1_12
 else:
     is_torch_greater_or_equal_than_1_12 = False
 

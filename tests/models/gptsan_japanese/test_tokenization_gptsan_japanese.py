@@ -18,11 +18,11 @@ import json
 import os
 import unittest
 
-from transformers.models.gptsan_japanese.tokenization_gptsan_japanese import (
+from transformers_openvla_oft.models.gptsan_japanese.tokenization_gptsan_japanese import (
     VOCAB_FILES_NAMES,
     GPTSanJapaneseTokenizer,
 )
-from transformers.testing_utils import require_jinja, require_tokenizers, slow
+from transformers_openvla_oft.testing_utils import require_jinja, require_tokenizers, slow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

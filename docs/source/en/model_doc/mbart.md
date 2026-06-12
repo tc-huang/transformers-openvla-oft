@@ -51,7 +51,7 @@ keyword, and target text format passed with the `text_label` keyword argument.
 - Supervised training
 
 ```python
->>> from transformers import MBartForConditionalGeneration, MBartTokenizer
+>>> from transformers_openvla_oft import MBartForConditionalGeneration, MBartTokenizer
 
 >>> tokenizer = MBartTokenizer.from_pretrained("facebook/mbart-large-en-ro", src_lang="en_XX", tgt_lang="ro_RO")
 >>> example_english_phrase = "UN Chief Says There Is No Military Solution in Syria"
@@ -70,7 +70,7 @@ keyword, and target text format passed with the `text_label` keyword argument.
   example shows how to translate English to Romanian using the *facebook/mbart-large-en-ro* model.
 
 ```python
->>> from transformers import MBartForConditionalGeneration, MBartTokenizer
+>>> from transformers_openvla_oft import MBartForConditionalGeneration, MBartTokenizer
 
 >>> tokenizer = MBartTokenizer.from_pretrained("facebook/mbart-large-en-ro", src_lang="en_XX")
 >>> article = "UN Chief Says There Is No Military Solution in Syria"
@@ -109,7 +109,7 @@ MBart-50 has its own tokenizer [`MBart50Tokenizer`].
 -  Supervised training
 
 ```python
-from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
+from transformers_openvla_oft import MBartForConditionalGeneration, MBart50TokenizerFast
 
 model = MBartForConditionalGeneration.from_pretrained("facebook/mbart-large-50")
 tokenizer = MBart50TokenizerFast.from_pretrained("facebook/mbart-large-50", src_lang="en_XX", tgt_lang="ro_RO")
@@ -131,7 +131,7 @@ model(**model_inputs)  # forward pass
   *facebook/mbart-50-large-many-to-many* checkpoint.
 
 ```python
-from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
+from transformers_openvla_oft import MBartForConditionalGeneration, MBart50TokenizerFast
 
 article_hi = "संयुक्त राष्ट्र के प्रमुख का कहना है कि सीरिया में कोई सैन्य समाधान नहीं है"
 article_ar = "الأمين العام للأمم المتحدة يقول إنه لا يوجد حل عسكري في سوريا."

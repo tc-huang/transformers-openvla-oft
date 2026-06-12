@@ -35,7 +35,7 @@ MeCab および WordPiece トークン化でモデルを使用する例:
 
 ```python
 >>> import torch
->>> from transformers import AutoModel, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModel, AutoTokenizer
 
 >>> bertjapanese = AutoModel.from_pretrained("cl-tohoku/bert-base-japanese")
 >>> tokenizer = AutoTokenizer.from_pretrained("cl-tohoku/bert-base-japanese")

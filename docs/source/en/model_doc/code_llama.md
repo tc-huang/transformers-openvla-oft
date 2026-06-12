@@ -50,7 +50,7 @@ Tips:
 Here is a sample usage:
 
 ```bash
-python src/transformers/models/llama/convert_llama_weights_to_hf.py \
+python src/transformers_openvla_oft/models/llama/convert_llama_weights_to_hf.py \
     --input_dir /path/to/downloaded/llama/weights --model_size 7B --output_dir /output/path
 ```
 
@@ -60,7 +60,7 @@ come in several checkpoints they each contain a part of each weight of the model
 After conversion, the model and tokenizer can be loaded via:
 
 ```python
->>> from transformers import LlamaForCausalLM, CodeLlamaTokenizer
+>>> from transformers_openvla_oft import LlamaForCausalLM, CodeLlamaTokenizer
 
 >>> tokenizer = CodeLlamaTokenizer.from_pretrained("codellama/CodeLlama-7b-hf")
 >>> model = LlamaForCausalLM.from_pretrained("codellama/CodeLlama-7b-hf")
@@ -92,7 +92,7 @@ def remove_non_ascii(s: str) -> str:
 
 If you only want the infilled part:
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> import torch
 
 >>> generator = pipeline("text-generation",model="codellama/CodeLlama-7b-hf",torch_dtype=torch.float16, device_map="auto")

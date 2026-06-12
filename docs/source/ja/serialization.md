@@ -89,7 +89,7 @@ optimum-cli export onnx --model local_path --task question-answering distilbert_
 
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> from optimum.onnxruntime import ORTModelForQuestionAnswering
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert_base_uncased_squad_onnx")
@@ -111,7 +111,7 @@ CLIの代わりに、🤗 TransformersモデルをONNXにプログラム的に�
 
 ```python
 >>> from optimum.onnxruntime import ORTModelForSequenceClassification
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> model_checkpoint = "distilbert_base_uncased_squad"
 >>> save_directory = "onnx/"
@@ -129,11 +129,11 @@ CLIの代わりに、🤗 TransformersモデルをONNXにプログラム的に�
 
 現在エクスポートできないモデルをサポートするために貢献したい場合、まず[`optimum.exporters.onnx`](https://huggingface.co/docs/optimum/exporters/onnx/overview)でサポートされているかどうかを確認し、サポートされていない場合は[🤗 Optimumに貢献](https://huggingface.co/docs/optimum/exporters/onnx/usage_guides/contribute)してください。
 
-### Exporting a model with `transformers.onnx`
+### Exporting a model with `transformers_openvla_oft.onnx`
 
 <Tip warning={true}>
 
-`transformers.onnx`はもはやメンテナンスされていないため、モデルを上記で説明したように🤗 Optimumでエクスポートしてください。このセクションは将来のバージョンで削除されます。
+`transformers_openvla_oft.onnx`はもはやメンテナンスされていないため、モデルを上記で説明したように🤗 Optimumでエクスポートしてください。このセクションは将来のバージョンで削除されます。
 
 </Tip>
 
@@ -144,17 +144,17 @@ CLIの代わりに、🤗 TransformersモデルをONNXにプログラム的に�
 pip install transformers[onnx]
 ```
 
-`transformers.onnx`パッケージをPythonモジュールとして使用して、事前に用意された設定を使用してチェックポイントをエクスポートする方法は以下の通りです：
+`transformers_openvla_oft.onnx`パッケージをPythonモジュールとして使用して、事前に用意された設定を使用してチェックポイントをエクスポートする方法は以下の通りです：
 
 ```bash
-python -m transformers.onnx --model=distilbert/distilbert-base-uncased onnx/
+python -m transformers_openvla_oft.onnx --model=distilbert/distilbert-base-uncased onnx/
 ```
 
 この方法は、`--model`引数で定義されたチェックポイントのONNXグラフをエクスポートします。🤗 Hubのいずれかのチェックポイントまたはローカルに保存されたチェックポイントを渡すことができます。エクスポートされた`model.onnx`ファイルは、ONNX標準をサポートする多くのアクセラレータで実行できます。例えば、ONNX Runtimeを使用してモデルを読み込んで実行する方法は以下の通りです：
 
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> from onnxruntime import InferenceSession
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
@@ -168,7 +168,7 @@ python -m transformers.onnx --model=distilbert/distilbert-base-uncased onnx/
 
 
 ```python
->>> from transformers.models.distilbert import DistilBertConfig, DistilBertOnnxConfig
+>>> from transformers_openvla_oft.models.distilbert import DistilBertConfig, DistilBertOnnxConfig
 
 >>> config = DistilBertConfig()
 >>> onnx_config = DistilBertOnnxConfig(config)
@@ -179,13 +179,13 @@ python -m transformers.onnx --model=distilbert/distilbert-base-uncased onnx/
 ハブから純粋なTensorFlowのチェックポイントをプログラム的にエクスポートするプロセスは、以下のように同様です：
 
 ```bash
-python -m transformers.onnx --model=keras-io/transformers-qa onnx/
+python -m transformers_openvla_oft.onnx --model=keras-io/transformers-qa onnx/
 ```
 
-ローカルに保存されたモデルをエクスポートする場合、モデルの重みとトークナイザのファイルを同じディレクトリに保存してください（例： `local-pt-checkpoint`）。その後、`transformers.onnx`パッケージの `--model`引数を希望するディレクトリに向けて設定して、ONNXにエクスポートします：
+ローカルに保存されたモデルをエクスポートする場合、モデルの重みとトークナイザのファイルを同じディレクトリに保存してください（例： `local-pt-checkpoint`）。その後、`transformers_openvla_oft.onnx`パッケージの `--model`引数を希望するディレクトリに向けて設定して、ONNXにエクスポートします：
 
 
 ```bash
-python -m transformers.onnx --model=local-pt-checkpoint onnx/
+python -m transformers_openvla_oft.onnx --model=local-pt-checkpoint onnx/
 ```
 

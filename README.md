@@ -132,7 +132,7 @@ else to build their dream projects.
 
 In order to celebrate the 100,000 stars of transformers, we have decided to put the spotlight on the
 community, and we have created the [awesome-transformers](./awesome-transformers.md) page which lists 100
-incredible projects built in the vicinity of transformers.
+incredible projects built in the vicinity of transformers_openvla_oft.
 
 If you own or use a project that you believe should be part of the list, please open a PR to add it!
 
@@ -147,7 +147,7 @@ If you own or use a project that you believe should be part of the list, please 
 To immediately use a model on a given input (text, image, audio, ...), we provide the `pipeline` API. Pipelines group together a pretrained model with the preprocessing that was used during that model's training. Here is how to quickly use a pipeline to classify positive versus negative texts:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Allocate a pipeline for sentiment-analysis
 >>> classifier = pipeline('sentiment-analysis')
@@ -162,7 +162,7 @@ Many tasks have a pre-trained `pipeline` ready to go, in NLP but also in compute
 ``` python
 >>> import requests
 >>> from PIL import Image
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Download an image with cute cats
 >>> url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/coco_sample.png"
@@ -200,7 +200,7 @@ You can learn more about the tasks supported by the `pipeline` API in [this tuto
 
 In addition to `pipeline`, to download and use any of the pretrained models on your given task, all it takes is three lines of code. Here is the PyTorch version:
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -211,7 +211,7 @@ In addition to `pipeline`, to download and use any of the pretrained models on y
 
 And here is the equivalent code for TensorFlow:
 ```python
->>> from transformers import AutoTokenizer, TFAutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

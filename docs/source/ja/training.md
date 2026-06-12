@@ -53,7 +53,7 @@ rendered properly in your Markdown viewer.
 データセット全体に前処理関数を適用します：
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -89,7 +89,7 @@ rendered properly in your Markdown viewer.
 まず、モデルをロードし、予想されるラベルの数を指定します。Yelp Review [dataset card](https://huggingface.co/datasets/yelp_review_full#data-fields)から、5つのラベルがあることがわかります：
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -109,7 +109,7 @@ BERTモデルの事前学習済みのヘッドは破棄され、ランダムに�
 トレーニングのチェックポイントを保存する場所を指定します：
 
 ```python
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(output_dir="test_trainer")
 ```
@@ -138,7 +138,7 @@ BERTモデルの事前学習済みのヘッドは破棄され、ランダムに�
 評価メトリクスをファインチューニング中に監視したい場合、トレーニング引数で `evaluation_strategy` パラメータを指定して、各エポックの終了時に評価メトリクスを報告します：
 
 ```python
->>> from transformers import TrainingArguments, Trainer
+>>> from transformers_openvla_oft import TrainingArguments, Trainer
 
 >>> training_args = TrainingArguments(output_dir="test_trainer", evaluation_strategy="epoch")
 ```
@@ -157,7 +157,7 @@ BERTモデルの事前学習済みのヘッドは破棄され、ランダムに�
 ... )
 ```
 
-その後、[`~transformers.Trainer.train`]を呼び出してモデルを微調整します：
+その後、[`~transformers_openvla_oft.Trainer.train`]を呼び出してモデルを微調整します：
 
 ```python
 >>> trainer.train()
@@ -192,7 +192,7 @@ dataset = dataset["train"]  # 今のところトレーニング分割のみを�
 次に、トークナイザをロードし、データをNumPy配列としてトークン化します。ラベルは既に`0`と`1`のリストであるため、トークン化せずに直接NumPy配列に変換できます！
 
 ```python
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 tokenized_data = tokenizer(dataset["sentence"], return_tensors="np", padding=True)
@@ -206,7 +206,7 @@ labels = np.array(dataset["label"])  # ラベルはすでに0と1の配列です
 注意点として、Transformersモデルはすべてデフォルトでタスクに関連した損失関数を持っているため、指定しなくても構いません（指定する場合を除く）：
 
 ```python
-from transformers import TFAutoModelForSequenceClassification
+from transformers_openvla_oft import TFAutoModelForSequenceClassification
 from tensorflow.keras.optimizers import Adam
 
 # モデルをロードしてコンパイルする
@@ -330,7 +330,7 @@ torch.cuda.empty_cache()
 ロードするモデルと期待されるラベルの数を指定してください：
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -349,7 +349,7 @@ PyTorchから[`AdamW`](https://pytorch.org/docs/stable/generated/torch.optim.Ada
 デフォルトの学習率スケジューラを[`Trainer`]から作成する：
 
 ```py
->>> from transformers import get_scheduler
+>>> from transformers_openvla_oft import get_scheduler
 
 >>> num_epochs = 3
 >>> num_training_steps = num_epochs * len(train_dataloader)

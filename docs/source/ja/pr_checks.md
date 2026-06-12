@@ -162,27 +162,27 @@ Transformersライブラリは、モデルコードに関して非常に意見�
 
 </Tip>
 
-この仕組みは、`# Copied from xxx`という形式のコメントに依存しています。`xxx`は、コピーされているクラスまたは関数の完全なパスを含む必要があります。例えば、`RobertaSelfOutput`は`BertSelfOutput`クラスの直接のコピーですので、[こちら](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers/models/roberta/modeling_roberta.py#L289)にコメントがあります。
+この仕組みは、`# Copied from xxx`という形式のコメントに依存しています。`xxx`は、コピーされているクラスまたは関数の完全なパスを含む必要があります。例えば、`RobertaSelfOutput`は`BertSelfOutput`クラスの直接のコピーですので、[こちら](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L289)にコメントがあります。
 
 
 ```py
-# Copied from transformers.models.bert.modeling_bert.BertSelfOutput
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertSelfOutput
 ```
 
-注意点として、これをクラス全体に適用する代わりに、コピー元の関連メソッドに適用できます。たとえば、[こちら](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers/models/roberta/modeling_roberta.py#L598)では、`RobertaPreTrainedModel._init_weights` が `BertPreTrainedModel` からコピーされており、以下のコメントがあります：
+注意点として、これをクラス全体に適用する代わりに、コピー元の関連メソッドに適用できます。たとえば、[こちら](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L598)では、`RobertaPreTrainedModel._init_weights` が `BertPreTrainedModel` からコピーされており、以下のコメントがあります：
 
 
 ```py
-# Copied from transformers.models.bert.modeling_bert.BertAttention with Bert->Roberta
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertAttention with Bert->Roberta
 ```
 
 注：矢印の周りにはスペースが含まれていてはいけません（もちろん、そのスペースが置換パターンの一部である場合を除きます）。
 
-カンマで区切られた複数のパターンを追加できます。例えば、ここでは `CamemberForMaskedLM` は `RobertaForMaskedLM` の直接のコピーで、2つの置換があります： `Roberta` から `Camembert` へ、そして `ROBERTA` から `CAMEMBERT` へと置換されます。[こちら](https://github.com/huggingface/transformers/blob/15082a9dc6950ecae63a0d3e5060b2fc7f15050a/src/transformers/models/camembert/modeling_camembert.py#L929)で、この作業はコメント付きで行われています。
+カンマで区切られた複数のパターンを追加できます。例えば、ここでは `CamemberForMaskedLM` は `RobertaForMaskedLM` の直接のコピーで、2つの置換があります： `Roberta` から `Camembert` へ、そして `ROBERTA` から `CAMEMBERT` へと置換されます。[こちら](https://github.com/huggingface/transformers/blob/15082a9dc6950ecae63a0d3e5060b2fc7f15050a/src/transformers_openvla_oft/models/camembert/modeling_camembert.py#L929)で、この作業はコメント付きで行われています。
 
 
 ```py
-# Copied from transformers.models.roberta.modeling_roberta.RobertaForMaskedLM with Roberta->Camembert, ROBERTA->CAMEMBERT
+# Copied from transformers_openvla_oft.models.roberta.modeling_roberta.RobertaForMaskedLM with Roberta->Camembert, ROBERTA->CAMEMBERT
 ```
 
 
@@ -194,11 +194,11 @@ Transformersライブラリは、モデルコードに関して非常に意見�
 
 </Tip>
 
-パターンが同じ置換の異なるケース（大文字と小文字のバリアントがある）の場合、オプションとして `all-casing` を追加するだけの別の方法もあります。[こちら](https://github.com/huggingface/transformers/blob/15082a9dc6950ecae63a0d3e5060b2fc7f15050a/src/transformers/models/mobilebert/modeling_mobilebert.py#L1237)は、`MobileBertForSequenceClassification` 内の例で、コメントがついています。
+パターンが同じ置換の異なるケース（大文字と小文字のバリアントがある）の場合、オプションとして `all-casing` を追加するだけの別の方法もあります。[こちら](https://github.com/huggingface/transformers/blob/15082a9dc6950ecae63a0d3e5060b2fc7f15050a/src/transformers_openvla_oft/models/mobilebert/modeling_mobilebert.py#L1237)は、`MobileBertForSequenceClassification` 内の例で、コメントがついています。
 
 
 ```py
-# Copied from transformers.models.bert.modeling_bert.BertForSequenceClassification with Bert->MobileBert all-casing
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertForSequenceClassification with Bert->MobileBert all-casing
 ```
 
 この場合、コードは「BertForSequenceClassification」からコピーされ、次のように置換されます：

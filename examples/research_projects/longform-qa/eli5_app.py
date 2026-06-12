@@ -12,8 +12,8 @@ from eli5_utils import (
     query_qa_dense_index,
 )
 
-import transformers
-from transformers import AutoModel, AutoModelForSeq2SeqLM, AutoTokenizer
+import transformers_openvla_oft
+from transformers_openvla_oft import AutoModel, AutoModelForSeq2SeqLM, AutoTokenizer
 
 
 MODEL_TYPE = "bart"
@@ -110,7 +110,7 @@ def make_support(question, source="wiki40b", method="dense", n_results=10):
 @st.cache(
     hash_funcs={
         torch.Tensor: (lambda _: None),
-        transformers.models.bart.tokenization_bart.BartTokenizer: (lambda _: None),
+        transformers_openvla_oft.models.bart.tokenization_bart.BartTokenizer: (lambda _: None),
     }
 )
 def answer_question(

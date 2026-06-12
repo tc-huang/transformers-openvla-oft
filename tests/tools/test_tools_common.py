@@ -16,9 +16,9 @@
 from pathlib import Path
 from typing import List
 
-from transformers import is_torch_available, is_vision_available
-from transformers.testing_utils import get_tests_dir, is_tool_test
-from transformers.tools.agent_types import AGENT_TYPE_MAPPING, AgentAudio, AgentImage, AgentText
+from transformers_openvla_oft import is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import get_tests_dir, is_tool_test
+from transformers_openvla_oft.tools.agent_types import AGENT_TYPE_MAPPING, AgentAudio, AgentImage, AgentText
 
 
 if is_torch_available():

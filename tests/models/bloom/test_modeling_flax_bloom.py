@@ -15,8 +15,8 @@ import unittest
 
 import numpy as np
 
-from transformers import BloomConfig, BloomTokenizerFast, is_flax_available
-from transformers.testing_utils import require_flax, slow
+from transformers_openvla_oft import BloomConfig, BloomTokenizerFast, is_flax_available
+from transformers_openvla_oft.testing_utils import require_flax, slow
 
 from ...generation.test_flax_utils import FlaxGenerationTesterMixin
 from ...test_modeling_flax_common import FlaxModelTesterMixin, ids_tensor
@@ -32,7 +32,7 @@ if is_flax_available():
 
     import jax.numpy as jnp
 
-    from transformers import FlaxBloomForCausalLM, FlaxBloomModel
+    from transformers_openvla_oft import FlaxBloomForCausalLM, FlaxBloomModel
 
 
 def prepare_bloom_inputs_dict(config, input_ids, attention_mask=None):

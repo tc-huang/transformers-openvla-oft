@@ -306,7 +306,7 @@ sudo docker cp CONTAINER_ID:/workspace/Megatron-LM/experiments/codeparrot-small/
 git clone https://github.com/huggingface/transformers.git
 git clone https://github.com/NVIDIA/Megatron-LM.git
 export PYTHONPATH=Megatron-LM
-python transformers/src/transformers/models/megatron_gpt2/convert_megatron_gpt2_checkpoint.py nvidia/megatron-codeparrot-small/model_optim_rng.pt
+python transformers/src/transformers_openvla_oft/models/megatron_gpt2/convert_megatron_gpt2_checkpoint.py nvidia/megatron-codeparrot-small/model_optim_rng.pt
 ```
 Be careful, you will need to replace the generated vocabulary file and merges table after the conversion, with the original ones if you plan to load the tokenizer from there.
 

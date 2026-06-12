@@ -21,7 +21,7 @@ more. It also plays a role in a variety of mixed-modality applications that have
 and vision-to-text. Some of the models that can generate text include
 GPT2, XLNet, OpenAI GPT, CTRL, TransformerXL, XLM, Bart, T5, GIT, Whisper.
 
-Check out a few examples that use [`~transformers.generation_utils.GenerationMixin.generate`] method to produce
+Check out a few examples that use [`~transformers_openvla_oft.generation_utils.GenerationMixin.generate`] method to produce
 text outputs for different tasks:
 * [Text summarization](./tasks/summarization#inference)
 * [Image captioning](./model_doc/git#transformers.GitForCausalLM.forward.example)
@@ -52,7 +52,7 @@ When you load a model explicitly, you can inspect the generation configuration t
  `model.generation_config`:
 
 ```python
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 >>> model.generation_config
@@ -105,7 +105,7 @@ If you would like to share your fine-tuned model with a specific generation conf
 * Set `push_to_hub` to `True` to upload your config to the model's repo
 
 ```python
->>> from transformers import AutoModelForCausalLM, GenerationConfig
+>>> from transformers_openvla_oft import AutoModelForCausalLM, GenerationConfig
 
 >>> model = AutoModelForCausalLM.from_pretrained("my_account/my_model")  # doctest: +SKIP
 >>> generation_config = GenerationConfig(
@@ -120,7 +120,7 @@ store several generation configurations for a single model (e.g. one for creativ
 one for summarization with beam search). You must have the right Hub permissions to add configuration files to a model.
 
 ```python
->>> from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, GenerationConfig
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer, GenerationConfig
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-t5/t5-small")
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("google-t5/t5-small")
@@ -161,7 +161,7 @@ ready for you to use. For example, you can use the [`TextStreamer`] class to str
 your screen, one word at a time:
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, TextStreamer
 
 >>> tok = AutoTokenizer.from_pretrained("openai-community/gpt2")
 >>> model = AutoModelForCausalLM.from_pretrained("openai-community/gpt2")
@@ -185,7 +185,7 @@ Here, we'll show some of the parameters that control the decoding strategies and
 [`generate`] uses greedy search decoding by default so you don't have to pass any parameters to enable it. This means the parameters `num_beams` is set to 1 and `do_sample=False`.
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> prompt = "I look forward to"
 >>> checkpoint = "distilbert/distilgpt2"
@@ -207,7 +207,7 @@ works, check out [this blog post](https://huggingface.co/blog/introducing-csearc
 The two main parameters that enable and control the behavior of contrastive search are `penalty_alpha` and `top_k`:
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM
 
 >>> checkpoint = "openai-community/gpt2-large"
 >>> tokenizer = AutoTokenizer.from_pretrained(checkpoint)
@@ -233,7 +233,7 @@ risk of repetition.
 To enable multinomial sampling set `do_sample=True` and `num_beams=1`.
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM, set_seed
 >>> set_seed(0)  # For reproducibility
 
 >>> checkpoint = "openai-community/gpt2-large"
@@ -263,7 +263,7 @@ You can visualize how beam-search decoding works in [this interactive demo](http
 To enable this decoding strategy, specify the `num_beams` (aka number of hypotheses to keep track of) that is greater than 1.
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> prompt = "It is astonishing how one can"
 >>> checkpoint = "openai-community/gpt2-medium"
@@ -285,7 +285,7 @@ As the name implies, this decoding strategy combines beam search with multinomia
 the `num_beams` greater than 1, and set `do_sample=True` to use this decoding strategy.
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, set_seed
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM, set_seed
 >>> set_seed(0)  # For reproducibility
 
 >>> prompt = "translate English to German: The house is wonderful."
@@ -310,7 +310,7 @@ The diversity penalty ensures the outputs are distinct across groups, and beam s
 
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 
 >>> checkpoint = "google/pegasus-xsum"
 >>> prompt = (
@@ -359,7 +359,7 @@ To learn more about assisted decoding, check [this blog post](https://huggingfac
 To enable assisted decoding, set the `assistant_model` argument with a model.
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> prompt = "Alice and Bob"
 >>> checkpoint = "EleutherAI/pythia-1.4b-deduped"
@@ -379,7 +379,7 @@ When using assisted decoding with sampling methods, you can use the `temperature
 just like in multinomial sampling. However, in assisted decoding, reducing the temperature may help improve the latency.
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, set_seed
 >>> set_seed(42)  # For reproducibility
 
 >>> prompt = "Alice and Bob"

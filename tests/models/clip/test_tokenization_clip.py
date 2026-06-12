@@ -18,9 +18,9 @@ import json
 import os
 import unittest
 
-from transformers import CLIPTokenizer, CLIPTokenizerFast
-from transformers.models.clip.tokenization_clip import VOCAB_FILES_NAMES
-from transformers.testing_utils import require_ftfy, require_tokenizers
+from transformers_openvla_oft import CLIPTokenizer, CLIPTokenizerFast
+from transformers_openvla_oft.models.clip.tokenization_clip import VOCAB_FILES_NAMES
+from transformers_openvla_oft.testing_utils import require_ftfy, require_tokenizers
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

@@ -100,7 +100,7 @@ pip install transformers datasets evaluate
 
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -179,14 +179,14 @@ pip install transformers datasets evaluate
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 ```
@@ -206,7 +206,7 @@ pip install transformers datasets evaluate
 これでモデルのトレーニングを開始する準備が整いました。 [`AutoModelForQuestionAnswering`] を使用して DitilBERT をロードします。
 
 ```py
->>> from transformers import AutoModelForQuestionAnswering, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForQuestionAnswering, TrainingArguments, Trainer
 
 >>> model = AutoModelForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -241,7 +241,7 @@ pip install transformers datasets evaluate
 >>> trainer.train()
 ```
 
-トレーニングが完了したら、 [`~transformers.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
+トレーニングが完了したら、 [`~transformers_openvla_oft.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
 
 
 ```py
@@ -259,7 +259,7 @@ Keras を使用したモデルの微調整に慣れていない場合は、[こ�
 TensorFlow でモデルを微調整するには、オプティマイザー関数、学習率スケジュール、およびいくつかのトレーニング ハイパーパラメーターをセットアップすることから始めます。
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_epochs = 2
@@ -274,12 +274,12 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 次に、[`TFAutoModelForQuestionAnswering`] を使用して DistilBERT をロードできます。
 
 ```py
->>> from transformers import TFAutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import TFAutoModelForQuestionAnswering
 
 >>> model = TFAutoModelForQuestionAnswering("distilbert/distilbert-base-uncased")
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -305,10 +305,10 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 >>> model.compile(optimizer=optimizer)
 ```
 
-トレーニングを開始する前に最後にセットアップすることは、モデルをハブにプッシュする方法を提供することです。これは、モデルとトークナイザーを [`~transformers.PushToHubCallback`] でプッシュする場所を指定することで実行できます。
+トレーニングを開始する前に最後にセットアップすることは、モデルをハブにプッシュする方法を提供することです。これは、モデルとトークナイザーを [`~transformers_openvla_oft.PushToHubCallback`] でプッシュする場所を指定することで実行できます。
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> callback = PushToHubCallback(
 ...     output_dir="my_awesome_qa_model",
@@ -354,7 +354,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 推論用に微調整されたモデルを試す最も簡単な方法は、それを [`pipeline`] で使用することです。モデルを使用して質問応答用の`pipeline`をインスタンス化し、それにテキストを渡します。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> question_answerer = pipeline("question-answering", model="my_awesome_qa_model")
 >>> question_answerer(question=question, context=context)
@@ -372,7 +372,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 テキストをトークン化して PyTorch テンソルを返します。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_qa_model")
 >>> inputs = tokenizer(question, context, return_tensors="pt")
@@ -383,7 +383,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 
 ```py
 >>> import torch
->>> from transformers import AutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import AutoModelForQuestionAnswering
 
 >>> model = AutoModelForQuestionAnswering.from_pretrained("my_awesome_qa_model")
 >>> with torch.no_grad():
@@ -410,7 +410,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 テキストをトークン化し、TensorFlow テンソルを返します。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_qa_model")
 >>> inputs = tokenizer(question, text, return_tensors="tf")
@@ -420,7 +420,7 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 
 
 ```py
->>> from transformers import TFAutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import TFAutoModelForQuestionAnswering
 
 >>> model = TFAutoModelForQuestionAnswering.from_pretrained("my_awesome_qa_model")
 >>> outputs = model(**inputs)

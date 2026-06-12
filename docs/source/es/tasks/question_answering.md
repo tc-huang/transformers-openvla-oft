@@ -62,7 +62,7 @@ El campo `answers` es un diccionario que contiene la posición inicial de la res
 Carga el tokenizer de DistilBERT para procesar los campos `question` (pregunta) y `context` (contexto):
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -141,14 +141,14 @@ Usa el [`DefaultDataCollator`] para crear un lote de ejemplos. A diferencia de l
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 ```
@@ -162,7 +162,7 @@ Usa el [`DefaultDataCollator`] para crear un lote de ejemplos. A diferencia de l
 Carga el modelo DistilBERT con [`AutoModelForQuestionAnswering`]:
 
 ```py
->>> from transformers import AutoModelForQuestionAnswering, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForQuestionAnswering, TrainingArguments, Trainer
 
 >>> model = AutoModelForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -230,7 +230,7 @@ Para familiarizarte con el fine-tuning con Keras, ¡mira el tutorial básico [aq
 Prepara una función de optimización, un programa para la tasa de aprendizaje y algunos hiperparámetros de entrenamiento:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_epochs = 2
@@ -245,7 +245,7 @@ Prepara una función de optimización, un programa para la tasa de aprendizaje y
 Carga el modelo DistilBERT con [`TFAutoModelForQuestionAnswering`]:
 
 ```py
->>> from transformers import TFAutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import TFAutoModelForQuestionAnswering
 
 >>> model = TFAutoModelForQuestionAnswering("distilbert/distilbert-base-uncased")
 ```

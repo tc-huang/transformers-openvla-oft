@@ -15,10 +15,10 @@ import json
 import os
 import unittest
 
-from transformers import BatchEncoding, LEDTokenizer, LEDTokenizerFast
-from transformers.models.led.tokenization_led import VOCAB_FILES_NAMES
-from transformers.testing_utils import require_tokenizers, require_torch
-from transformers.utils import cached_property
+from transformers_openvla_oft import BatchEncoding, LEDTokenizer, LEDTokenizerFast
+from transformers_openvla_oft.models.led.tokenization_led import VOCAB_FILES_NAMES
+from transformers_openvla_oft.testing_utils import require_tokenizers, require_torch
+from transformers_openvla_oft.utils import cached_property
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

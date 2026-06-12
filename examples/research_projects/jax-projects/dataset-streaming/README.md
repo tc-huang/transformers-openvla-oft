@@ -76,7 +76,7 @@ In this example, we will simply copy an existing config and tokenizer in English
 You can run the following code in a Python shell to do so.
 
 ```python
-from transformers import RobertaTokenizerFast, RobertaConfig
+from transformers_openvla_oft import RobertaTokenizerFast, RobertaConfig
 
 model_dir = "./english-roberta-base-dummy"
 

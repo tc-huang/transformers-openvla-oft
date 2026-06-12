@@ -133,7 +133,7 @@ user: 使用者
 我們為快速使用模型提供了 `pipeline` API。 Pipeline 包含了預訓練模型和對應的文本預處理。下面是一個快速使用 pipeline 去判斷正負面情緒的例子：
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # 使用情緒分析 pipeline
 >>> classifier = pipeline('sentiment-analysis')
@@ -146,7 +146,7 @@ user: 使用者
 許多的 NLP 任務都有隨選即用的預訓練 `pipeline`。例如，我們可以輕鬆地從給定文本中擷取問題答案：
 
 ``` python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # 使用問答 pipeline
 >>> question_answerer = pipeline('question-answering')
@@ -162,7 +162,7 @@ user: 使用者
 
 要在你的任務中下載和使用任何預訓練模型很簡單，只需三行程式碼。這裡是 PyTorch 版的範例：
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -172,7 +172,7 @@ user: 使用者
 ```
 這裡是對應的 TensorFlow 程式碼：
 ```python
->>> from transformers import AutoTokenizer, TFAutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

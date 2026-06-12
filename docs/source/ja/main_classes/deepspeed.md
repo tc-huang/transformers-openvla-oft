@@ -1643,14 +1643,14 @@ fp16 ウェイトはトレーニングを再開するのに適していますが
 少なくとも 1 つのチェックポイントを保存していて、最新のチェックポイントを使用したい場合は、次の手順を実行できます。
 
 ```python
-from transformers.trainer_utils import get_last_checkpoint
+from transformers_openvla_oft.trainer_utils import get_last_checkpoint
 from deepspeed.utils.zero_to_fp32 import load_state_dict_from_zero_checkpoint
 
 checkpoint_dir = get_last_checkpoint(trainer.args.output_dir)
 fp32_model = load_state_dict_from_zero_checkpoint(trainer.model, checkpoint_dir)
 ```
 
-`--load_best_model_at_end` class:*~transformers.TrainingArguments* 引数を使用している場合 (最適なモデルを追跡するため)
+`--load_best_model_at_end` class:*~transformers_openvla_oft.TrainingArguments* 引数を使用している場合 (最適なモデルを追跡するため)
 チェックポイント)、最初に最終モデルを明示的に保存してから、上記と同じことを行うことでトレーニングを終了できます。
 
 ```python
@@ -1671,7 +1671,7 @@ fp32_model = load_state_dict_from_zero_checkpoint(trainer.model, checkpoint_dir)
 
 </Tip>
 
-もちろん、class:*~transformers.Trainer* を使用する必要はなく、上記の例を独自のものに調整することができます。
+もちろん、class:*~transformers_openvla_oft.Trainer* を使用する必要はなく、上記の例を独自のものに調整することができます。
 トレーナー。
 
 何らかの理由でさらに改良したい場合は、重みの fp32 `state_dict` を抽出して適用することもできます。
@@ -1744,7 +1744,7 @@ DeepSpeed/ZeRO-3 は、既存の RAM に収まらない可能性のある数兆�
 コンテキスト マネージャー (関数デコレーターでもあります)。次のようになります。
 
 ```python
-from transformers import T5ForConditionalGeneration, T5Config
+from transformers_openvla_oft import T5ForConditionalGeneration, T5Config
 import deepspeed
 
 with deepspeed.zero.Init():
@@ -1761,7 +1761,7 @@ with deepspeed.zero.Init():
 `from_pretrained`。考えられるシーケンスの例を次に示します。
 
 ```python
-from transformers import AutoModel, Trainer, TrainingArguments
+from transformers_openvla_oft import AutoModel, Trainer, TrainingArguments
 
 training_args = TrainingArguments(..., deepspeed=ds_config)
 model = AutoModel.from_pretrained("google-t5/t5-small")
@@ -1846,7 +1846,7 @@ Deepspeed ZeRO はメモリを CPU (および NVMe) にオフロードできる�
 単一の GPU で `bigscience/T0_3B`を微調整するために必要なメモリの量を見積もってみましょう。
 
 ```bash
-$ python -c 'from transformers import AutoModel; \
+$ python -c 'from transformers_openvla_oft import AutoModel; \
 from deepspeed.runtime.zero.stage3 import estimate_zero3_model_states_mem_needs_all_live; \
 model = AutoModel.from_pretrained("bigscience/T0_3B"); \
 estimate_zero3_model_states_mem_needs_all_live(model, num_gpus_per_node=1, num_nodes=1)'
@@ -1872,7 +1872,7 @@ SW: Model with 2783M total params, 65M largest layer params.
 たとえば、2 つの GPU に対して同じことを繰り返してみましょう。
 
 ```bash
-$ python -c 'from transformers import AutoModel; \
+$ python -c 'from transformers_openvla_oft import AutoModel; \
 from deepspeed.runtime.zero.stage3 import estimate_zero3_model_states_mem_needs_all_live; \
 model = AutoModel.from_pretrained("bigscience/T0_3B"); \
 estimate_zero3_model_states_mem_needs_all_live(model, num_gpus_per_node=2, num_nodes=1)'
@@ -1912,7 +1912,7 @@ SW: Model with 2783M total params, 65M largest layer params.
 
    ```bash
     python -c 'import torch; print(f"torch: {torch.__version__}")'
-    python -c 'import transformers; print(f"transformers: {transformers.__version__}")'
+    python -c 'import transformers_openvla_oft; print(f"transformers: {transformers_openvla_oft.__version__}")'
     python -c 'import deepspeed; print(f"deepspeed: {deepspeed.__version__}")'
     ```
 
@@ -2015,8 +2015,8 @@ Deepspeed ZeRO-1 または ZeRO-2 を使用している場合は、`HfDeepSpeedC
 
 
 ```python
-from transformers.integrations import HfDeepSpeedConfig
-from transformers import AutoModel
+from transformers_openvla_oft.integrations import HfDeepSpeedConfig
+from transformers_openvla_oft import AutoModel
 import deepspeed
 
 ds_config = {...}  # deepspeed config object or path to the file
@@ -2030,8 +2030,8 @@ engine = deepspeed.initialize(model=model, config_params=ds_config, ...)
 
 
 ```python
-from transformers.integrations import HfDeepSpeedConfig
-from transformers import AutoModel, AutoConfig
+from transformers_openvla_oft.integrations import HfDeepSpeedConfig
+from transformers_openvla_oft import AutoModel, AutoConfig
 import deepspeed
 
 ds_config = {...}  # deepspeed config object or path to the file
@@ -2099,8 +2099,8 @@ engine = deepspeed.initialize(model=model, config_params=ds_config, ...)
 # python -m torch.distributed.run --nproc_per_node=2 t0.py
 
 
-from transformers import AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
-from transformers.integrations import HfDeepSpeedConfig
+from transformers_openvla_oft import AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
+from transformers_openvla_oft.integrations import HfDeepSpeedConfig
 import deepspeed
 import os
 import torch

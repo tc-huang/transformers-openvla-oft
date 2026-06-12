@@ -21,14 +21,14 @@ import unittest
 import requests
 from huggingface_hub import hf_hub_download
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoProcessor,
     LlavaNextConfig,
     LlavaNextForConditionalGeneration,
     is_torch_available,
     is_vision_available,
 )
-from transformers.testing_utils import require_bitsandbytes, require_torch, slow, torch_device
+from transformers_openvla_oft.testing_utils import require_bitsandbytes, require_torch, slow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester

@@ -27,9 +27,9 @@ import unittest.mock as mock
 from huggingface_hub import HfFolder, Repository, delete_repo, snapshot_download
 from requests.exceptions import HTTPError
 
-from transformers import is_tf_available, is_torch_available
-from transformers.configuration_utils import PretrainedConfig
-from transformers.testing_utils import (  # noqa: F401
+from transformers_openvla_oft import is_tf_available, is_torch_available
+from transformers_openvla_oft.configuration_utils import PretrainedConfig
+from transformers_openvla_oft.testing_utils import (  # noqa: F401
     TOKEN,
     USER,
     CaptureLogger,
@@ -41,7 +41,7 @@ from transformers.testing_utils import (  # noqa: F401
     require_torch,
     slow,
 )
-from transformers.utils import (
+from transformers_openvla_oft.utils import (
     SAFE_WEIGHTS_INDEX_NAME,
     SAFE_WEIGHTS_NAME,
     TF2_WEIGHTS_INDEX_NAME,
@@ -58,7 +58,7 @@ if is_tf_available():
     import numpy as np
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         BertConfig,
         PreTrainedModel,
         PushToHubCallback,
@@ -70,8 +70,8 @@ if is_tf_available():
         TFPreTrainedModel,
         TFRagModel,
     )
-    from transformers.modeling_tf_utils import keras, tf_shard_checkpoint, unpack_inputs
-    from transformers.tf_utils import stable_softmax
+    from transformers_openvla_oft.modeling_tf_utils import keras, tf_shard_checkpoint, unpack_inputs
+    from transformers_openvla_oft.tf_utils import stable_softmax
 
     tf.config.experimental.enable_tensor_float_32_execution(False)
 
@@ -90,7 +90,7 @@ if is_tf_available():
                 print(e)
 
 if is_torch_available():
-    from transformers import BertModel
+    from transformers_openvla_oft import BertModel
 
 
 @require_tf
@@ -708,7 +708,7 @@ class TFModelPushToHubTester(unittest.TestCase):
         model.build_in_name_scope()
 
         logging.set_verbosity_info()
-        logger = logging.get_logger("transformers.utils.hub")
+        logger = logging.get_logger("transformers_openvla_oft.utils.hub")
         with CaptureLogger(logger) as cl:
             model.push_to_hub("test-model-tf", token=self._token)
         logging.set_verbosity_warning()

@@ -4,7 +4,7 @@ from typing import List
 
 from ltp import LTP
 
-from transformers.models.bert.tokenization_bert import BertTokenizer
+from transformers_openvla_oft.models.bert.tokenization_bert import BertTokenizer
 
 
 def _is_chinese_char(cp):

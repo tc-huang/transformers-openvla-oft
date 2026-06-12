@@ -327,7 +327,7 @@ It assumes that both `transformers` and `datasets` were installed from main - ot
 datasets streaming will not work correctly.
 
 ```python
-from transformers import FlaxRobertaModel, RobertaTokenizerFast
+from transformers_openvla_oft import FlaxRobertaModel, RobertaTokenizerFast
 from datasets import load_dataset
 import jax
 
@@ -484,7 +484,7 @@ It assumes that both `transformers` and `datasets` were installed from main - ot
 datasets streaming will not work correctly.
 
 ```python
-from transformers import FlaxRobertaModel, RobertaTokenizerFast
+from transformers_openvla_oft import FlaxRobertaModel, RobertaTokenizerFast
 from datasets import load_dataset
 import jax
 
@@ -513,17 +513,17 @@ Currently, we support the following models in Flax.
 Note that some models are about to be merged to `main` and will 
 be available in a couple of days.
 
-- [BART](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bart/modeling_flax_bart.py)
-- [BERT](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_flax_bert.py)
-- [BigBird](https://github.com/huggingface/transformers/blob/main/src/transformers/models/big_bird/modeling_flax_big_bird.py)
-- [CLIP](https://github.com/huggingface/transformers/blob/main/src/transformers/models/clip/modeling_flax_clip.py)
-- [ELECTRA](https://github.com/huggingface/transformers/blob/main/src/transformers/models/electra/modeling_flax_electra.py)
-- [GPT2](https://github.com/huggingface/transformers/blob/main/src/transformers/models/openai-community/gpt2/modeling_flax_gpt2.py)
-- [(TODO) MBART](https://github.com/huggingface/transformers/blob/main/src/transformers/models/mbart/modeling_flax_mbart.py)
-- [RoBERTa](https://github.com/huggingface/transformers/blob/main/src/transformers/models/roberta/modeling_flax_roberta.py)
-- [T5](https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/modeling_flax_t5.py)
-- [ViT](https://github.com/huggingface/transformers/blob/main/src/transformers/models/vit/modeling_flax_vit.py)
-- [Wav2Vec2](https://github.com/huggingface/transformers/blob/main/src/transformers/models/wav2vec2/modeling_flax_wav2vec2.py)
+- [BART](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bart/modeling_flax_bart.py)
+- [BERT](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bert/modeling_flax_bert.py)
+- [BigBird](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/big_bird/modeling_flax_big_bird.py)
+- [CLIP](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/clip/modeling_flax_clip.py)
+- [ELECTRA](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/electra/modeling_flax_electra.py)
+- [GPT2](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/openai-community/gpt2/modeling_flax_gpt2.py)
+- [(TODO) MBART](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/mbart/modeling_flax_mbart.py)
+- [RoBERTa](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/roberta/modeling_flax_roberta.py)
+- [T5](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/t5/modeling_flax_t5.py)
+- [ViT](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/vit/modeling_flax_vit.py)
+- [Wav2Vec2](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/wav2vec2/modeling_flax_wav2vec2.py)
 
 You can find all available training scripts for JAX/Flax under the 
 official [flax example folder](https://github.com/huggingface/transformers/tree/main/examples/flax). Note that a couple of training scripts will be released in the following week.
@@ -674,7 +674,7 @@ class MLPModule(nn.Module):
 Now let's define the `FlaxPreTrainedModel` model class.
 
 ```python
-from transformers.modeling_flax_utils import FlaxPreTrainedModel
+from transformers_openvla_oft.modeling_flax_utils import FlaxPreTrainedModel
 
 class FlaxMLPPreTrainedModel(FlaxPreTrainedModel):
    config_class = MLPConfig
@@ -712,7 +712,7 @@ class FlaxMLPModel(FlaxMLPPreTrainedModel):
 
 Now the `FlaxMLPModel` will have a similar interface as PyTorch or Tensorflow models and allows us to attach loaded or randomly initialized weights to the model instance.
 
-So the important point to remember is that the `model` is not an instance of `nn.Module`; it's an abstract class, like a container that holds a Flax module, its parameters and provides convenient methods for initialization and forward pass. The key take-away here is that an instance of `FlaxMLPModel` is very much stateful now since it holds all the model parameters, whereas the underlying Flax module `FlaxMLPModule` is still stateless. Now to make `FlaxMLPModel` fully compliant with JAX transformations, it is always possible to pass the parameters to `FlaxMLPModel` as well to make it stateless and easier to work with during training. Feel free to take a look at the code to see how exactly this is implemented for ex. [`modeling_flax_bert.py`](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_flax_bert.py#L536)
+So the important point to remember is that the `model` is not an instance of `nn.Module`; it's an abstract class, like a container that holds a Flax module, its parameters and provides convenient methods for initialization and forward pass. The key take-away here is that an instance of `FlaxMLPModel` is very much stateful now since it holds all the model parameters, whereas the underlying Flax module `FlaxMLPModule` is still stateless. Now to make `FlaxMLPModel` fully compliant with JAX transformations, it is always possible to pass the parameters to `FlaxMLPModel` as well to make it stateless and easier to work with during training. Feel free to take a look at the code to see how exactly this is implemented for ex. [`modeling_flax_bert.py`](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bert/modeling_flax_bert.py#L536)
 
 Another significant difference between Flax and PyTorch models is that, we can pass the `labels` directly to PyTorch's forward pass to compute the loss, whereas Flax models never accept `labels` as an input argument. In PyTorch, gradient backpropagation is performed by simply calling `.backward()` on the computed loss which makes it very handy for the user to be able to pass the `labels`. In Flax however, gradient backpropagation cannot be done by simply calling `.backward()` on the loss output, but the loss function itself has to be transformed by `jax.grad` or `jax.value_and_grad` to return the gradients of all parameters. This transformation cannot happen under-the-hood when one passes the `labels` to Flax's forward function, so that in Flax, we simply don't allow `labels` to be passed by design and force the user to implement the loss function oneself. As a conclusion, you will see that all training-related code is decoupled from the modeling code and always defined in the training scripts themselves.
 
@@ -726,7 +726,7 @@ Let's first see how to load, save and do inference with Flax models. As explaine
 Let's use the base `FlaxRobertaModel` without any heads as an example.
 
 ```python
-from transformers import FlaxRobertaModel, RobertaTokenizerFast
+from transformers_openvla_oft import FlaxRobertaModel, RobertaTokenizerFast
 import jax
 
 tokenizer = RobertaTokenizerFast.from_pretrained("FacebookAI/roberta-base")
@@ -763,7 +763,7 @@ First initialize our model
 import jax
 import jax.numpy as jnp
 
-from transformers import FlaxGPT2ForCausalLM
+from transformers_openvla_oft import FlaxGPT2ForCausalLM
 
 model = FlaxGPT2ForCausalLM(config) 
 ```
@@ -1009,7 +1009,7 @@ $ cd ./roberta-base-als
 and run the following commands in a Python shell to save a config.
 
 ```python
-from transformers import RobertaConfig
+from transformers_openvla_oft import RobertaConfig
 
 config = RobertaConfig.from_pretrained("FacebookAI/roberta-base")
 config.save_pretrained("./")
@@ -1243,7 +1243,7 @@ local_path = snapshot_download("flax-community/roberta-base-als");
 
 Note that if you're using 🤗 Transformers library, you can quickly load the model and tokenizer as follows
 ```python
-from transformers import AutoTokenizer, AutoModelForMaskedLM
+from transformers_openvla_oft import AutoTokenizer, AutoModelForMaskedLM
   
 tokenizer = AutoTokenizer.from_pretrained("REPO_ID")
 model = AutoModelForMaskedLM.from_pretrained("REPO_ID")

@@ -4,8 +4,8 @@ Framework agnostic tests for generate()-related methods.
 
 import numpy as np
 
-from transformers import AutoTokenizer
-from transformers.testing_utils import slow, torch_device
+from transformers_openvla_oft import AutoTokenizer
+from transformers_openvla_oft.testing_utils import slow, torch_device
 
 
 class GenerationIntegrationTestsMixin:

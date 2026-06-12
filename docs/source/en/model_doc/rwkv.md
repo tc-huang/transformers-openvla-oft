@@ -31,7 +31,7 @@ The original code can be found [here](https://github.com/BlinkDL/RWKV-LM).
 
 ```py
 import torch
-from transformers import AutoTokenizer, RwkvConfig, RwkvModel
+from transformers_openvla_oft import AutoTokenizer, RwkvConfig, RwkvModel
 
 model = RwkvModel.from_pretrained("sgugger/rwkv-430M-pile")
 tokenizer = AutoTokenizer.from_pretrained("sgugger/rwkv-430M-pile")
@@ -54,7 +54,7 @@ torch.allclose(torch.cat([output_one, output_two], dim=1), output_whole, atol=1e
 If you want to make sure the model stops generating when `'\n\n'` is detected, we recommend using the following stopping criteria:
 
 ```python 
-from transformers import StoppingCriteria
+from transformers_openvla_oft import StoppingCriteria
 
 class RwkvStoppingCriteria(StoppingCriteria):
     def __init__(self, eos_sequence = [187,187], eos_token_id = 537):

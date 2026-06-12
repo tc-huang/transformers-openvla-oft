@@ -40,7 +40,7 @@ Nearly every NLP task begins with a tokenizer. A tokenizer converts your input i
 Load a tokenizer with [`AutoTokenizer.from_pretrained`]:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -60,7 +60,7 @@ Then tokenize your input as shown below:
 For vision tasks, an image processor processes the image into the correct input format.
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("google/vit-base-patch16-224")
 ```
@@ -87,7 +87,7 @@ These parameters can be used interchangeably, but if you use both, make sure the
 For example, in the above diagram, to return the feature map from the first stage of the Swin backbone, you can set `out_indices=(1,)`:
 
 ```py
->>> from transformers import AutoImageProcessor, AutoBackbone
+>>> from transformers_openvla_oft import AutoImageProcessor, AutoBackbone
 >>> import torch
 >>> from PIL import Image
 >>> import requests
@@ -115,7 +115,7 @@ For audio tasks, a feature extractor processes the audio signal the correct inpu
 Load a feature extractor with [`AutoFeatureExtractor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained(
 ...     "ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"
@@ -129,7 +129,7 @@ Multimodal tasks require a processor that combines two types of preprocessing to
 Load a processor with [`AutoProcessor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("microsoft/layoutlmv2-base-uncased")
 ```
@@ -141,7 +141,7 @@ Load a processor with [`AutoProcessor.from_pretrained`]:
 The `AutoModelFor` classes let you load a pretrained model for a given task (see [here](model_doc/auto) for a complete list of available tasks). For example, load a model for sequence classification with [`AutoModelForSequenceClassification.from_pretrained`]:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -149,7 +149,7 @@ The `AutoModelFor` classes let you load a pretrained model for a given task (see
 Easily reuse the same checkpoint to load an architecture for a different task:
 
 ```py
->>> from transformers import AutoModelForTokenClassification
+>>> from transformers_openvla_oft import AutoModelForTokenClassification
 
 >>> model = AutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -168,7 +168,7 @@ Generally, we recommend using the `AutoTokenizer` class and the `AutoModelFor` c
 Finally, the `TFAutoModelFor` classes let you load a pretrained model for a given task (see [here](model_doc/auto) for a complete list of available tasks). For example, load a model for sequence classification with [`TFAutoModelForSequenceClassification.from_pretrained`]:
 
 ```py
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -176,7 +176,7 @@ Finally, the `TFAutoModelFor` classes let you load a pretrained model for a give
 Easily reuse the same checkpoint to load an architecture for a different task:
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```

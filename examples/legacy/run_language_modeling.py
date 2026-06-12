@@ -30,8 +30,8 @@ from typing import Optional
 
 from torch.utils.data import ConcatDataset
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     CONFIG_MAPPING,
     MODEL_WITH_LM_HEAD_MAPPING,
     AutoConfig,
@@ -49,7 +49,7 @@ from transformers import (
     TrainingArguments,
     set_seed,
 )
-from transformers.trainer_utils import is_main_process
+from transformers_openvla_oft.trainer_utils import is_main_process
 
 
 logger = logging.getLogger(__name__)
@@ -197,7 +197,7 @@ def get_dataset(
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 
@@ -236,9 +236,9 @@ def main():
     )
     # Set the verbosity to info of the Transformers logger (on main process only):
     if is_main_process(training_args.local_rank):
-        transformers.utils.logging.set_verbosity_info()
-        transformers.utils.logging.enable_default_handler()
-        transformers.utils.logging.enable_explicit_format()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.enable_default_handler()
+        transformers_openvla_oft.utils.logging.enable_explicit_format()
     logger.info("Training/evaluation parameters %s", training_args)
 
     # Set seed

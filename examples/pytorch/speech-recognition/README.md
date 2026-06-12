@@ -457,7 +457,7 @@ cd wav2vec2-2-bart-base
 Next, run the following script **inside** the just cloned repo:
 
 ```python
-from transformers import SpeechEncoderDecoderModel, AutoFeatureExtractor, AutoTokenizer, Wav2Vec2Processor
+from transformers_openvla_oft import SpeechEncoderDecoderModel, AutoFeatureExtractor, AutoTokenizer, Wav2Vec2Processor
 
 # checkpoints to leverage
 encoder_id = "facebook/wav2vec2-base"

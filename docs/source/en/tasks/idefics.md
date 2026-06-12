@@ -72,7 +72,7 @@ preparing text and image inputs for the model.
 ```py
 >>> import torch
 
->>> from transformers import IdeficsForVisionText2Text, AutoProcessor
+>>> from transformers_openvla_oft import IdeficsForVisionText2Text, AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained(checkpoint)
 
@@ -90,7 +90,7 @@ on the fly while loading.
 
 ```py
 >>> import torch
->>> from transformers import IdeficsForVisionText2Text, AutoProcessor, BitsAndBytesConfig
+>>> from transformers_openvla_oft import IdeficsForVisionText2Text, AutoProcessor, BitsAndBytesConfig
 
 >>> quantization_config = BitsAndBytesConfig(
 ...     load_in_4bit=True,
@@ -385,7 +385,7 @@ The use and prompting for the conversational use is very similar to using the ba
 
 ```py
 >>> import torch
->>> from transformers import IdeficsForVisionText2Text, AutoProcessor
+>>> from transformers_openvla_oft import IdeficsForVisionText2Text, AutoProcessor
 
 >>> device = "cuda" if torch.cuda.is_available() else "cpu"
 

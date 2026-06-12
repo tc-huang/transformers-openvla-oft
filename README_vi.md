@@ -128,7 +128,7 @@ Trong các nhiệm vụ đa phương thức:
 
 Transformers không chỉ là một bộ công cụ để sử dụng các mô hình được huấn luyện trước: đó là một cộng đồng các dự án xây dựng xung quanh nó và Hugging Face Hub. Chúng tôi muốn Transformers giúp các nhà phát triển, nhà nghiên cứu, sinh viên, giáo sư, kỹ sư và bất kỳ ai khác xây dựng những dự án mơ ước của họ.
 
-Để kỷ niệm 100.000 sao của transformers, chúng tôi đã quyết định tập trung vào cộng đồng và tạo ra trang [awesome-transformers](./awesome-transformers.md) liệt kê 100 dự án tuyệt vời được xây dựng xung quanh transformers.
+Để kỷ niệm 100.000 sao của transformers, chúng tôi đã quyết định tập trung vào cộng đồng và tạo ra trang [awesome-transformers](./awesome-transformers.md) liệt kê 100 dự án tuyệt vời được xây dựng xung quanh transformers_openvla_oft.
 
 Nếu bạn sở hữu hoặc sử dụng một dự án mà bạn tin rằng nên được thêm vào danh sách, vui lòng mở một PR để thêm nó!
 
@@ -143,7 +143,7 @@ Nếu bạn sở hữu hoặc sử dụng một dự án mà bạn tin rằng n�
 Để ngay lập tức sử dụng một mô hình trên một đầu vào cụ thể (văn bản, hình ảnh, âm thanh, ...), chúng tôi cung cấp API `pipeline`. Pipelines nhóm một mô hình được huấn luyện trước với quá trình tiền xử lý đã được sử dụng trong quá trình huấn luyện của mô hình đó. Dưới đây là cách sử dụng nhanh một pipeline để phân loại văn bản tích cực so với tiêu cực:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Cấp phát một pipeline cho phân tích cảm xúc
 >>> classifier = pipeline('sentiment-analysis')
@@ -158,7 +158,7 @@ Nhiều nhiệm vụ có sẵn một `pipeline` được huấn luyện trước
 ``` python
 >>> import requests
 >>> from PIL import Image
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Tải xuống một hình ảnh với những con mèo dễ thương
 >>> url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/coco_sample.png"
@@ -196,7 +196,7 @@ Bạn có thể tìm hiểu thêm về các nhiệm vụ được hỗ trợ b�
 
 Ngoài `pipeline`, để tải xuống và sử dụng bất kỳ mô hình được huấn luyện trước nào cho nhiệm vụ cụ thể của bạn, chỉ cần ba dòng code. Đây là phiên bản PyTorch:
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -207,7 +207,7 @@ Ngoài `pipeline`, để tải xuống và sử dụng bất kỳ mô hình đư
 
 Và đây là mã tương đương cho TensorFlow:
 ```python
->>> from transformers import AutoTokenizer, TFAutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

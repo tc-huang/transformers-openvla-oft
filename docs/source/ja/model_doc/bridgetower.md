@@ -51,7 +51,7 @@ BridgeTower は、ビジュアル エンコーダー、テキスト エンコー
 次の例は、[`BridgeTowerProcessor`] と [`BridgeTowerForContrastiveLearning`] を使用して対照学習を実行する方法を示しています。
 
 ```python
->>> from transformers import BridgeTowerProcessor, BridgeTowerForContrastiveLearning
+>>> from transformers_openvla_oft import BridgeTowerProcessor, BridgeTowerForContrastiveLearning
 >>> import requests
 >>> from PIL import Image
 
@@ -74,7 +74,7 @@ BridgeTower は、ビジュアル エンコーダー、テキスト エンコー
 次の例は、[`BridgeTowerProcessor`] と [`BridgeTowerForImageAndTextRetrieval`] を使用して画像テキストの取得を実行する方法を示しています。
 
 ```python
->>> from transformers import BridgeTowerProcessor, BridgeTowerForImageAndTextRetrieval
+>>> from transformers_openvla_oft import BridgeTowerProcessor, BridgeTowerForImageAndTextRetrieval
 >>> import requests
 >>> from PIL import Image
 
@@ -97,7 +97,7 @@ BridgeTower は、ビジュアル エンコーダー、テキスト エンコー
 次の例は、[`BridgeTowerProcessor`] と [`BridgeTowerForMaskedLM`] を使用してマスクされた言語モデリングを実行する方法を示しています。
 
 ```python
->>> from transformers import BridgeTowerProcessor, BridgeTowerForMaskedLM
+>>> from transformers_openvla_oft import BridgeTowerProcessor, BridgeTowerForMaskedLM
 >>> from PIL import Image
 >>> import requests
 

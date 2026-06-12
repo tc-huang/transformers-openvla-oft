@@ -14,9 +14,9 @@
 
 import unittest
 
-from transformers.models.whisper import WhisperTokenizer, WhisperTokenizerFast
-from transformers.models.whisper.tokenization_whisper import _combine_tokens_into_words, _find_longest_common_sequence
-from transformers.testing_utils import slow
+from transformers_openvla_oft.models.whisper import WhisperTokenizer, WhisperTokenizerFast
+from transformers_openvla_oft.models.whisper.tokenization_whisper import _combine_tokens_into_words, _find_longest_common_sequence
+from transformers_openvla_oft.testing_utils import slow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

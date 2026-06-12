@@ -19,7 +19,7 @@
 # - allenai/wmt19-de-en-6-6-big
 
 # this script needs to be run from the top level of the transformers repo
-if [ ! -d "src/transformers" ]; then
+if [ ! -d "src/transformers_openvla_oft" ]; then
     echo "Error: This script needs to be run from the top of the transformers repo"
     exit 1
 fi
@@ -41,9 +41,9 @@ cd -
 
 # run conversions and uploads
 
-PYTHONPATH="src" python src/transformers/convert_fsmt_original_pytorch_checkpoint_to_pytorch.py --fsmt_checkpoint_path data/wmt19_deen_base_dr0.1_1/checkpoint_last3_avg.pt --pytorch_dump_folder_path data/wmt19-de-en-6-6-base
+PYTHONPATH="src" python src/transformers_openvla_oft/convert_fsmt_original_pytorch_checkpoint_to_pytorch.py --fsmt_checkpoint_path data/wmt19_deen_base_dr0.1_1/checkpoint_last3_avg.pt --pytorch_dump_folder_path data/wmt19-de-en-6-6-base
 
-PYTHONPATH="src" python src/transformers/convert_fsmt_original_pytorch_checkpoint_to_pytorch.py --fsmt_checkpoint_path data/wmt19_deen_big_dr0.1_2/checkpoint_last3_avg.pt --pytorch_dump_folder_path data/wmt19-de-en-6-6-big
+PYTHONPATH="src" python src/transformers_openvla_oft/convert_fsmt_original_pytorch_checkpoint_to_pytorch.py --fsmt_checkpoint_path data/wmt19_deen_big_dr0.1_2/checkpoint_last3_avg.pt --pytorch_dump_folder_path data/wmt19-de-en-6-6-big
 
 
 # upload

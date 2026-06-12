@@ -17,8 +17,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import transformers
-from transformers.commands.add_new_model_like import (
+import transformers_openvla_oft
+from transformers_openvla_oft.commands.add_new_model_like import (
     ModelPatterns,
     _re_class_func,
     add_content_to_file,
@@ -36,50 +36,50 @@ from transformers.commands.add_new_model_like import (
     retrieve_model_classes,
     simplify_replacements,
 )
-from transformers.testing_utils import require_flax, require_tf, require_torch
+from transformers_openvla_oft.testing_utils import require_flax, require_tf, require_torch
 
 
 BERT_MODEL_FILES = {
-    "src/transformers/models/bert/__init__.py",
-    "src/transformers/models/bert/configuration_bert.py",
-    "src/transformers/models/bert/tokenization_bert.py",
-    "src/transformers/models/bert/tokenization_bert_fast.py",
-    "src/transformers/models/bert/tokenization_bert_tf.py",
-    "src/transformers/models/bert/modeling_bert.py",
-    "src/transformers/models/bert/modeling_flax_bert.py",
-    "src/transformers/models/bert/modeling_tf_bert.py",
-    "src/transformers/models/bert/convert_bert_original_tf_checkpoint_to_pytorch.py",
-    "src/transformers/models/bert/convert_bert_original_tf2_checkpoint_to_pytorch.py",
-    "src/transformers/models/bert/convert_bert_pytorch_checkpoint_to_original_tf.py",
-    "src/transformers/models/bert/convert_bert_token_dropping_original_tf2_checkpoint_to_pytorch.py",
+    "src/transformers_openvla_oft/models/bert/__init__.py",
+    "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+    "src/transformers_openvla_oft/models/bert/tokenization_bert.py",
+    "src/transformers_openvla_oft/models/bert/tokenization_bert_fast.py",
+    "src/transformers_openvla_oft/models/bert/tokenization_bert_tf.py",
+    "src/transformers_openvla_oft/models/bert/modeling_bert.py",
+    "src/transformers_openvla_oft/models/bert/modeling_flax_bert.py",
+    "src/transformers_openvla_oft/models/bert/modeling_tf_bert.py",
+    "src/transformers_openvla_oft/models/bert/convert_bert_original_tf_checkpoint_to_pytorch.py",
+    "src/transformers_openvla_oft/models/bert/convert_bert_original_tf2_checkpoint_to_pytorch.py",
+    "src/transformers_openvla_oft/models/bert/convert_bert_pytorch_checkpoint_to_original_tf.py",
+    "src/transformers_openvla_oft/models/bert/convert_bert_token_dropping_original_tf2_checkpoint_to_pytorch.py",
 }
 
 VIT_MODEL_FILES = {
-    "src/transformers/models/vit/__init__.py",
-    "src/transformers/models/vit/configuration_vit.py",
-    "src/transformers/models/vit/convert_dino_to_pytorch.py",
-    "src/transformers/models/vit/convert_vit_timm_to_pytorch.py",
-    "src/transformers/models/vit/feature_extraction_vit.py",
-    "src/transformers/models/vit/image_processing_vit.py",
-    "src/transformers/models/vit/modeling_vit.py",
-    "src/transformers/models/vit/modeling_tf_vit.py",
-    "src/transformers/models/vit/modeling_flax_vit.py",
+    "src/transformers_openvla_oft/models/vit/__init__.py",
+    "src/transformers_openvla_oft/models/vit/configuration_vit.py",
+    "src/transformers_openvla_oft/models/vit/convert_dino_to_pytorch.py",
+    "src/transformers_openvla_oft/models/vit/convert_vit_timm_to_pytorch.py",
+    "src/transformers_openvla_oft/models/vit/feature_extraction_vit.py",
+    "src/transformers_openvla_oft/models/vit/image_processing_vit.py",
+    "src/transformers_openvla_oft/models/vit/modeling_vit.py",
+    "src/transformers_openvla_oft/models/vit/modeling_tf_vit.py",
+    "src/transformers_openvla_oft/models/vit/modeling_flax_vit.py",
 }
 
 WAV2VEC2_MODEL_FILES = {
-    "src/transformers/models/wav2vec2/__init__.py",
-    "src/transformers/models/wav2vec2/configuration_wav2vec2.py",
-    "src/transformers/models/wav2vec2/convert_wav2vec2_original_pytorch_checkpoint_to_pytorch.py",
-    "src/transformers/models/wav2vec2/convert_wav2vec2_original_s3prl_checkpoint_to_pytorch.py",
-    "src/transformers/models/wav2vec2/feature_extraction_wav2vec2.py",
-    "src/transformers/models/wav2vec2/modeling_wav2vec2.py",
-    "src/transformers/models/wav2vec2/modeling_tf_wav2vec2.py",
-    "src/transformers/models/wav2vec2/modeling_flax_wav2vec2.py",
-    "src/transformers/models/wav2vec2/processing_wav2vec2.py",
-    "src/transformers/models/wav2vec2/tokenization_wav2vec2.py",
+    "src/transformers_openvla_oft/models/wav2vec2/__init__.py",
+    "src/transformers_openvla_oft/models/wav2vec2/configuration_wav2vec2.py",
+    "src/transformers_openvla_oft/models/wav2vec2/convert_wav2vec2_original_pytorch_checkpoint_to_pytorch.py",
+    "src/transformers_openvla_oft/models/wav2vec2/convert_wav2vec2_original_s3prl_checkpoint_to_pytorch.py",
+    "src/transformers_openvla_oft/models/wav2vec2/feature_extraction_wav2vec2.py",
+    "src/transformers_openvla_oft/models/wav2vec2/modeling_wav2vec2.py",
+    "src/transformers_openvla_oft/models/wav2vec2/modeling_tf_wav2vec2.py",
+    "src/transformers_openvla_oft/models/wav2vec2/modeling_flax_wav2vec2.py",
+    "src/transformers_openvla_oft/models/wav2vec2/processing_wav2vec2.py",
+    "src/transformers_openvla_oft/models/wav2vec2/tokenization_wav2vec2.py",
 }
 
-REPO_PATH = Path(transformers.__path__[0]).parent.parent
+REPO_PATH = Path(transformers_openvla_oft.__path__[0]).parent.parent
 
 
 @require_torch
@@ -123,7 +123,7 @@ CONSTANT_DEFINED_ON_SEVERAL_LINES = [
 def function(args):
     some code
 
-# Copied from transformers.some_module
+# Copied from transformers_openvla_oft.some_module
 class SomeClass:
     some code
 """
@@ -133,7 +133,7 @@ class SomeClass:
             "CONSTANT_DEFINED_ON_SEVERAL_LINES = [\n    first_item,\n    second_item\n]",
             "",
             "def function(args):\n    some code\n",
-            "# Copied from transformers.some_module\nclass SomeClass:\n    some code\n",
+            "# Copied from transformers_openvla_oft.some_module\nclass SomeClass:\n    some code\n",
         ]
         self.assertEqual(parse_module_content(test_code), expected_parts)
 
@@ -316,13 +316,13 @@ GPT_NEW_NEW_CONSTANT = "value"
         new_roberta_model_patterns = ModelPatterns(
             "RoBERTa-New", "huggingface/roberta-new-base", model_camel_cased="RobertaNew"
         )
-        roberta_test = '''# Copied from transformers.models.bert.BertModel with Bert->Roberta
+        roberta_test = '''# Copied from transformers_openvla_oft.models.bert.BertModel with Bert->Roberta
 class RobertaModel(RobertaPreTrainedModel):
     """ The base RoBERTa model. """
     checkpoint = FacebookAI/roberta-base
     base_model_prefix = "roberta"
         '''
-        roberta_expected = '''# Copied from transformers.models.bert.BertModel with Bert->RobertaNew
+        roberta_expected = '''# Copied from transformers_openvla_oft.models.bert.BertModel with Bert->RobertaNew
 class RobertaNewModel(RobertaNewPreTrainedModel):
     """ The base RoBERTa-New model. """
     checkpoint = huggingface/roberta-new-base
@@ -335,12 +335,12 @@ class RobertaNewModel(RobertaNewPreTrainedModel):
 
     def test_get_module_from_file(self):
         self.assertEqual(
-            get_module_from_file("/git/transformers/src/transformers/models/bert/modeling_tf_bert.py"),
-            "transformers.models.bert.modeling_tf_bert",
+            get_module_from_file("/git/transformers/src/transformers_openvla_oft/models/bert/modeling_tf_bert.py"),
+            "transformers_openvla_oft.models.bert.modeling_tf_bert",
         )
         self.assertEqual(
             get_module_from_file("/transformers/models/gpt2/modeling_gpt2.py"),
-            "transformers.models.gpt2.modeling_gpt2",
+            "transformers_openvla_oft.models.gpt2.modeling_gpt2",
         )
         with self.assertRaises(ValueError):
             get_module_from_file("/models/gpt2/modeling_gpt2.py")
@@ -377,7 +377,7 @@ BERT_CONSTANT = "value"
 NEW_BERT_CONSTANT = "value"
 '''
         bert_expected_with_copied_from = (
-            "# Copied from transformers.bert_module.TFBertPreTrainedModel with Bert->NewBert,bert->new_bert\n"
+            "# Copied from transformers_openvla_oft.bert_module.TFBertPreTrainedModel with Bert->NewBert,bert->new_bert\n"
             + bert_expected
         )
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -397,7 +397,7 @@ NEW_BERT_CONSTANT = "value"
     def test_duplicate_module_with_copied_from(self):
         bert_model_patterns = ModelPatterns("Bert", "google-bert/bert-base-cased")
         new_bert_model_patterns = ModelPatterns("New Bert", "huggingface/bert-new-base")
-        bert_test = '''# Copied from transformers.models.xxx.XxxModel with Xxx->Bert
+        bert_test = '''# Copied from transformers_openvla_oft.models.xxx.XxxModel with Xxx->Bert
 class TFBertPreTrainedModel(PreTrainedModel):
     """
     An abstract class to handle weights initialization and a simple interface for downloading and loading pretrained
@@ -412,7 +412,7 @@ class TFBertPreTrainedModel(PreTrainedModel):
 
 BERT_CONSTANT = "value"
 '''
-        bert_expected = '''# Copied from transformers.models.xxx.XxxModel with Xxx->NewBert
+        bert_expected = '''# Copied from transformers_openvla_oft.models.xxx.XxxModel with Xxx->NewBert
 class TFNewBertPreTrainedModel(PreTrainedModel):
     """
     An abstract class to handle weights initialization and a simple interface for downloading and loading pretrained
@@ -536,8 +536,8 @@ NEW_BERT_CONSTANT = "value"
 
         model_files = {str(Path(f).relative_to(REPO_PATH)) for f in bert_files["model_files"]}
         bert_model_files = BERT_MODEL_FILES - {
-            "src/transformers/models/bert/modeling_tf_bert.py",
-            "src/transformers/models/bert/modeling_flax_bert.py",
+            "src/transformers_openvla_oft/models/bert/modeling_tf_bert.py",
+            "src/transformers_openvla_oft/models/bert/modeling_flax_bert.py",
         }
         self.assertEqual(model_files, bert_model_files)
 
@@ -557,8 +557,8 @@ NEW_BERT_CONSTANT = "value"
 
         model_files = {str(Path(f).relative_to(REPO_PATH)) for f in vit_files["model_files"]}
         vit_model_files = VIT_MODEL_FILES - {
-            "src/transformers/models/vit/modeling_tf_vit.py",
-            "src/transformers/models/vit/modeling_flax_vit.py",
+            "src/transformers_openvla_oft/models/vit/modeling_tf_vit.py",
+            "src/transformers_openvla_oft/models/vit/modeling_flax_vit.py",
         }
         self.assertEqual(model_files, vit_model_files)
 
@@ -578,8 +578,8 @@ NEW_BERT_CONSTANT = "value"
 
         model_files = {str(Path(f).relative_to(REPO_PATH)) for f in wav2vec2_files["model_files"]}
         wav2vec2_model_files = WAV2VEC2_MODEL_FILES - {
-            "src/transformers/models/wav2vec2/modeling_tf_wav2vec2.py",
-            "src/transformers/models/wav2vec2/modeling_flax_wav2vec2.py",
+            "src/transformers_openvla_oft/models/wav2vec2/modeling_tf_wav2vec2.py",
+            "src/transformers_openvla_oft/models/wav2vec2/modeling_flax_wav2vec2.py",
         }
         self.assertEqual(model_files, wav2vec2_model_files)
 
@@ -602,7 +602,7 @@ NEW_BERT_CONSTANT = "value"
         self.assertEqual(doc_file, "docs/source/en/model_doc/bert.md")
 
         model_files = {str(Path(f).relative_to(REPO_PATH)) for f in bert_files["model_files"]}
-        bert_model_files = BERT_MODEL_FILES - {"src/transformers/models/bert/modeling_bert.py"}
+        bert_model_files = BERT_MODEL_FILES - {"src/transformers_openvla_oft/models/bert/modeling_bert.py"}
         self.assertEqual(model_files, bert_model_files)
 
         self.assertEqual(bert_files["module_name"], "bert")
@@ -621,7 +621,7 @@ NEW_BERT_CONSTANT = "value"
         self.assertEqual(doc_file, "docs/source/en/model_doc/vit.md")
 
         model_files = {str(Path(f).relative_to(REPO_PATH)) for f in vit_files["model_files"]}
-        vit_model_files = VIT_MODEL_FILES - {"src/transformers/models/vit/modeling_vit.py"}
+        vit_model_files = VIT_MODEL_FILES - {"src/transformers_openvla_oft/models/vit/modeling_vit.py"}
         self.assertEqual(model_files, vit_model_files)
 
         self.assertEqual(vit_files["module_name"], "vit")
@@ -640,7 +640,7 @@ NEW_BERT_CONSTANT = "value"
         self.assertEqual(doc_file, "docs/source/en/model_doc/wav2vec2.md")
 
         model_files = {str(Path(f).relative_to(REPO_PATH)) for f in wav2vec2_files["model_files"]}
-        wav2vec2_model_files = WAV2VEC2_MODEL_FILES - {"src/transformers/models/wav2vec2/modeling_wav2vec2.py"}
+        wav2vec2_model_files = WAV2VEC2_MODEL_FILES - {"src/transformers_openvla_oft/models/wav2vec2/modeling_wav2vec2.py"}
         self.assertEqual(model_files, wav2vec2_model_files)
 
         self.assertEqual(wav2vec2_files["module_name"], "wav2vec2")
@@ -750,7 +750,7 @@ NEW_BERT_CONSTANT = "value"
 
         all_bert_files = bert_info["model_files"]
         model_files = {str(Path(f).relative_to(REPO_PATH)) for f in all_bert_files["model_files"]}
-        bert_model_files = BERT_MODEL_FILES - {"src/transformers/models/bert/modeling_flax_bert.py"}
+        bert_model_files = BERT_MODEL_FILES - {"src/transformers_openvla_oft/models/bert/modeling_flax_bert.py"}
         self.assertEqual(model_files, bert_model_files)
 
         test_files = {str(Path(f).relative_to(REPO_PATH)) for f in all_bert_files["test_files"]}

@@ -22,7 +22,7 @@ Webサーバーは受信と送信の軽い負荷を処理し、実際の作業�
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
 from starlette.routing import Route
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 import asyncio
 
 

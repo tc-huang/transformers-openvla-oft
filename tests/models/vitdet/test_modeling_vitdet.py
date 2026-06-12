@@ -17,9 +17,9 @@
 
 import unittest
 
-from transformers import VitDetConfig
-from transformers.testing_utils import is_flaky, require_torch, torch_device
-from transformers.utils import is_torch_available
+from transformers_openvla_oft import VitDetConfig
+from transformers_openvla_oft.testing_utils import is_flaky, require_torch, torch_device
+from transformers_openvla_oft.utils import is_torch_available
 
 from ...test_backbone_common import BackboneTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -31,7 +31,7 @@ if is_torch_available():
     import torch
     from torch import nn
 
-    from transformers import VitDetBackbone, VitDetModel
+    from transformers_openvla_oft import VitDetBackbone, VitDetModel
 
 
 class VitDetModelTester:

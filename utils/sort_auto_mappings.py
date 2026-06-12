@@ -36,7 +36,7 @@ from typing import Optional
 
 
 # Path are set with the intent you should run this script from the root of the repo.
-PATH_TO_AUTO_MODULE = "src/transformers/models/auto"
+PATH_TO_AUTO_MODULE = "src/transformers_openvla_oft/models/auto"
 
 
 # re pattern that matches mapping introductions:

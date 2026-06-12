@@ -37,7 +37,7 @@ ALIGNはEfficientNetを使用して視覚的特徴を、BERTを使用してテ�
 import requests
 import torch
 from PIL import Image
-from transformers import AlignProcessor, AlignModel
+from transformers_openvla_oft import AlignProcessor, AlignModel
 
 processor = AlignProcessor.from_pretrained("kakaobrain/align-base")
 model = AlignModel.from_pretrained("kakaobrain/align-base")

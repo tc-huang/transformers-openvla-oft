@@ -32,7 +32,7 @@ rendered properly in your Markdown viewer.
 [DistilBERT](model_doc/distilbert) 속성을 검사하기 위해 [`DistilBertConfig`]에 접근하여 자세히 살펴봅니다:
 
 ```py
->>> from transformers import DistilBertConfig
+>>> from transformers_openvla_oft import DistilBertConfig
 
 >>> config = DistilBertConfig()
 >>> print(config)
@@ -117,7 +117,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 사용자 지정 configuration 속성을 모델에 가져옵니다:
 
 ```py
->>> from transformers import DistilBertModel
+>>> from transformers_openvla_oft import DistilBertModel
 
 >>> my_config = DistilBertConfig.from_pretrained("./your_model_save_path/config.json")
 >>> model = DistilBertModel(my_config)
@@ -141,7 +141,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 사용자 지정 configuration 속성을 모델에 불러옵니다:
 
 ```py
->>> from transformers import TFDistilBertModel
+>>> from transformers_openvla_oft import TFDistilBertModel
 
 >>> my_config = DistilBertConfig.from_pretrained("./your_model_save_path/my_config.json")
 >>> tf_model = TFDistilBertModel(my_config)
@@ -172,7 +172,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 예를 들어, [`DistilBertForSequenceClassification`]은 시퀀스 분류 헤드가 있는 기본 DistilBERT 모델입니다. 시퀀스 분류 헤드는 풀링된 출력 위에 있는 선형 레이어입니다.
 
 ```py
->>> from transformers import DistilBertForSequenceClassification
+>>> from transformers_openvla_oft import DistilBertForSequenceClassification
 
 >>> model = DistilBertForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -180,7 +180,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 다른 모델 헤드로 전환하여 이 체크포인트를 다른 작업에 쉽게 재사용할 수 있습니다. 질의응답 작업의 경우, [`DistilBertForQuestionAnswering`] 모델 헤드를 사용할 수 있습니다. 질의응답 헤드는 숨겨진 상태 출력 위에 선형 레이어가 있다는 점을 제외하면 시퀀스 분류 헤드와 유사합니다.
 
 ```py
->>> from transformers import DistilBertForQuestionAnswering
+>>> from transformers_openvla_oft import DistilBertForQuestionAnswering
 
 >>> model = DistilBertForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -189,7 +189,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 예를 들어, [`TFDistilBertForSequenceClassification`]은 시퀀스 분류 헤드가 있는 기본 DistilBERT 모델입니다. 시퀀스 분류 헤드는 풀링된 출력 위에 있는 선형 레이어입니다.
 
 ```py
->>> from transformers import TFDistilBertForSequenceClassification
+>>> from transformers_openvla_oft import TFDistilBertForSequenceClassification
 
 >>> tf_model = TFDistilBertForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -197,7 +197,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 다른 모델 헤드로 전환하여 이 체크포인트를 다른 작업에 쉽게 재사용할 수 있습니다. 질의응답 작업의 경우, [`TFDistilBertForQuestionAnswering`] 모델 헤드를 사용할 수 있습니다. 질의응답 헤드는 숨겨진 상태 출력 위에 선형 레이어가 있다는 점을 제외하면 시퀀스 분류 헤드와 유사합니다.
 
 ```py
->>> from transformers import TFDistilBertForQuestionAnswering
+>>> from transformers_openvla_oft import TFDistilBertForQuestionAnswering
 
 >>> tf_model = TFDistilBertForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -221,7 +221,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 토크나이저를 직접 학습한 경우, *어휘(vocabulary)* 파일에서 토크나이저를 만들 수 있습니다:
 
 ```py
->>> from transformers import DistilBertTokenizer
+>>> from transformers_openvla_oft import DistilBertTokenizer
 
 >>> my_tokenizer = DistilBertTokenizer(vocab_file="my_vocab_file.txt", do_lower_case=False, padding_side="left")
 ```
@@ -229,7 +229,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 사용자 지정 토크나이저의 어휘는 사전 학습된 모델의 토크나이저에서 생성된 어휘와 다를 수 있다는 점을 기억하는 것이 중요합니다. 사전 학습된 모델을 사용하는 경우 사전 학습된 모델의 어휘를 사용해야 하며, 그렇지 않으면 입력이 의미를 갖지 못합니다. [`DistilBertTokenizer`] 클래스를 사용하여 사전 학습된 모델의 어휘로 토크나이저를 생성합니다:
 
 ```py
->>> from transformers import DistilBertTokenizer
+>>> from transformers_openvla_oft import DistilBertTokenizer
 
 >>> slow_tokenizer = DistilBertTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -237,7 +237,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 [`DistilBertTokenizerFast`] 클래스로 빠른 토크나이저를 생성합니다:
 
 ```py
->>> from transformers import DistilBertTokenizerFast
+>>> from transformers_openvla_oft import DistilBertTokenizerFast
 
 >>> fast_tokenizer = DistilBertTokenizerFast.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -255,7 +255,7 @@ configuration 파일을 딕셔너리로 저장하거나 사용자 정의 configu
 사용하려면 사용 중인 모델과 연결된 이미지 프로세서를 생성합니다. 예를 들어, 이미지 분류에 [ViT](model_doc/vit)를 사용하는 경우 기본 [`ViTImageProcessor`]를 생성합니다:
 
 ```py
->>> from transformers import ViTImageProcessor
+>>> from transformers_openvla_oft import ViTImageProcessor
 
 >>> vit_extractor = ViTImageProcessor()
 >>> print(vit_extractor)
@@ -287,7 +287,7 @@ ViTImageProcessor {
 사용자 지정 이미지 프로세서를 생성하려면 [`ViTImageProcessor`] 파라미터를 수정합니다:
 
 ```py
->>> from transformers import ViTImageProcessor
+>>> from transformers_openvla_oft import ViTImageProcessor
 
 >>> my_vit_extractor = ViTImageProcessor(resample="PIL.Image.BOX", do_normalize=False, image_mean=[0.3, 0.3, 0.3])
 >>> print(my_vit_extractor)
@@ -317,7 +317,7 @@ ViTImageProcessor {
 사용하려면 사용 중인 모델과 연결된 특성 추출기를 생성합니다. 예를 들어, 오디오 분류에 [Wav2Vec2](model_doc/wav2vec2)를 사용하는 경우 기본 [`Wav2Vec2FeatureExtractor`]를 생성합니다:
 
 ```py
->>> from transformers import Wav2Vec2FeatureExtractor
+>>> from transformers_openvla_oft import Wav2Vec2FeatureExtractor
 
 >>> w2v2_extractor = Wav2Vec2FeatureExtractor()
 >>> print(w2v2_extractor)
@@ -341,7 +341,7 @@ Wav2Vec2FeatureExtractor {
 사용자 지정 특성 추출기를 만들려면 [`Wav2Vec2FeatureExtractor`] 매개변수를 수정합니다:
 
 ```py
->>> from transformers import Wav2Vec2FeatureExtractor
+>>> from transformers_openvla_oft import Wav2Vec2FeatureExtractor
 
 >>> w2v2_extractor = Wav2Vec2FeatureExtractor(sampling_rate=8000, do_normalize=False)
 >>> print(w2v2_extractor)
@@ -364,7 +364,7 @@ Wav2Vec2FeatureExtractor {
 오디오 입력을 처리할 특성 추출기를 만듭니다:
 
 ```py
->>> from transformers import Wav2Vec2FeatureExtractor
+>>> from transformers_openvla_oft import Wav2Vec2FeatureExtractor
 
 >>> feature_extractor = Wav2Vec2FeatureExtractor(padding_value=1.0, do_normalize=True)
 ```
@@ -372,7 +372,7 @@ Wav2Vec2FeatureExtractor {
 텍스트 입력을 처리할 토크나이저를 만듭니다:
 
 ```py
->>> from transformers import Wav2Vec2CTCTokenizer
+>>> from transformers_openvla_oft import Wav2Vec2CTCTokenizer
 
 >>> tokenizer = Wav2Vec2CTCTokenizer(vocab_file="my_vocab_file.txt")
 ```
@@ -380,7 +380,7 @@ Wav2Vec2FeatureExtractor {
 [`Wav2Vec2Processor`]에서 특성 추출기와 토크나이저를 결합합니다:
 
 ```py
->>> from transformers import Wav2Vec2Processor
+>>> from transformers_openvla_oft import Wav2Vec2Processor
 
 >>> processor = Wav2Vec2Processor(feature_extractor=feature_extractor, tokenizer=tokenizer)
 ```

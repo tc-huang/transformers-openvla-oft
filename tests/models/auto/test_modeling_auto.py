@@ -22,10 +22,10 @@ from pathlib import Path
 
 import pytest
 
-import transformers
-from transformers import BertConfig, GPT2Model, is_safetensors_available, is_torch_available
-from transformers.models.auto.configuration_auto import CONFIG_MAPPING
-from transformers.testing_utils import (
+import transformers_openvla_oft
+from transformers_openvla_oft import BertConfig, GPT2Model, is_safetensors_available, is_torch_available
+from transformers_openvla_oft.models.auto.configuration_auto import CONFIG_MAPPING
+from transformers_openvla_oft.testing_utils import (
     DUMMY_UNKNOWN_IDENTIFIER,
     SMALL_MODEL_IDENTIFIER,
     RequestCounter,
@@ -45,7 +45,7 @@ if is_torch_available():
     import torch
     from test_module.custom_modeling import CustomModel
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoBackbone,
         AutoConfig,
         AutoModel,
@@ -76,7 +76,7 @@ if is_torch_available():
         TapasForQuestionAnswering,
         TimmBackbone,
     )
-    from transformers.models.auto.modeling_auto import (
+    from transformers_openvla_oft.models.auto.modeling_auto import (
         MODEL_FOR_CAUSAL_LM_MAPPING,
         MODEL_FOR_MASKED_LM_MAPPING,
         MODEL_FOR_PRETRAINING_MAPPING,
@@ -90,7 +90,7 @@ if is_torch_available():
 @require_torch
 class AutoModelTest(unittest.TestCase):
     def setUp(self):
-        transformers.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
+        transformers_openvla_oft.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
 
     @slow
     def test_model_from_pretrained(self):
@@ -513,7 +513,7 @@ class AutoModelTest(unittest.TestCase):
         self.assertEqual(counter.total_calls, 1)
 
     def test_attr_not_existing(self):
-        from transformers.models.auto.auto_factory import _LazyAutoMapping
+        from transformers_openvla_oft.models.auto.auto_factory import _LazyAutoMapping
 
         _CONFIG_MAPPING_NAMES = OrderedDict([("bert", "BertConfig")])
         _MODEL_MAPPING_NAMES = OrderedDict([("bert", "GhostModel")])

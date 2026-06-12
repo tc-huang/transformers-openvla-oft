@@ -24,9 +24,9 @@ To change the level of verbosity, just use one of the direct setters. For instan
 to the INFO level.
 
 ```python
-import transformers
+import transformers_openvla_oft
 
-transformers.logging.set_verbosity_info()
+transformers_openvla_oft.logging.set_verbosity_info()
 ```
 
 You can also use the environment variable `TRANSFORMERS_VERBOSITY` to override the default verbosity. You can set it
@@ -47,7 +47,7 @@ TRANSFORMERS_NO_ADVISORY_WARNINGS=1 ./myprogram.py
 Here is an example of how to use the same logger as the library in your own module or script:
 
 ```python
-from transformers.utils import logging
+from transformers_openvla_oft.utils import logging
 
 logging.set_verbosity_info()
 logger = logging.get_logger("transformers")
@@ -61,13 +61,13 @@ All the methods of this logging module are documented below, the main ones are
 [`logging.set_verbosity`] to set the verbosity to the level of your choice. In order (from the least
 verbose to the most verbose), those levels (with their corresponding int values in parenthesis) are:
 
-- `transformers.logging.CRITICAL` or `transformers.logging.FATAL` (int value, 50): only report the most
+- `transformers_openvla_oft.logging.CRITICAL` or `transformers_openvla_oft.logging.FATAL` (int value, 50): only report the most
   critical errors.
-- `transformers.logging.ERROR` (int value, 40): only report errors.
-- `transformers.logging.WARNING` or `transformers.logging.WARN` (int value, 30): only reports error and
+- `transformers_openvla_oft.logging.ERROR` (int value, 40): only report errors.
+- `transformers_openvla_oft.logging.WARNING` or `transformers_openvla_oft.logging.WARN` (int value, 30): only reports error and
   warnings. This the default level used by the library.
-- `transformers.logging.INFO` (int value, 20): reports error, warnings and basic information.
-- `transformers.logging.DEBUG` (int value, 10): report all information.
+- `transformers_openvla_oft.logging.INFO` (int value, 20): reports error, warnings and basic information.
+- `transformers_openvla_oft.logging.DEBUG` (int value, 10): report all information.
 
 By default, `tqdm` progress bars will be displayed during model download. [`logging.disable_progress_bar`] and [`logging.enable_progress_bar`] can be used to suppress or unsuppress this behavior.
 

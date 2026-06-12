@@ -7,8 +7,8 @@ from typing import Dict, List
 import fire
 import torch
 
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from transformers.utils.logging import get_logger
+from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers_openvla_oft.utils.logging import get_logger
 
 
 logger = get_logger(__name__)

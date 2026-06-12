@@ -32,7 +32,7 @@ An example of how to use a [`SpeechEncoderDecoderModel`] for inference can be se
 and the default [`BertForCausalLM`] configuration for the decoder.
 
 ```python
->>> from transformers import BertConfig, Wav2Vec2Config, SpeechEncoderDecoderConfig, SpeechEncoderDecoderModel
+>>> from transformers_openvla_oft import BertConfig, Wav2Vec2Config, SpeechEncoderDecoderConfig, SpeechEncoderDecoderModel
 
 >>> config_encoder = Wav2Vec2Config()
 >>> config_decoder = BertConfig()
@@ -49,7 +49,7 @@ Initializing [`SpeechEncoderDecoderModel`] from a pretrained encoder and decoder
 To do so, the `SpeechEncoderDecoderModel` class provides a [`SpeechEncoderDecoderModel.from_encoder_decoder_pretrained`] method.
 
 ```python
->>> from transformers import SpeechEncoderDecoderModel
+>>> from transformers_openvla_oft import SpeechEncoderDecoderModel
 
 >>> model = SpeechEncoderDecoderModel.from_encoder_decoder_pretrained(
 ...     "facebook/hubert-large-ll60k", "google-bert/bert-base-uncased"
@@ -63,7 +63,7 @@ To load fine-tuned checkpoints of the `SpeechEncoderDecoderModel` class, [`Speec
 To perform inference, one uses the [`generate`] method, which allows to autoregressively generate text. This method supports various forms of decoding, such as greedy, beam search and multinomial sampling.
 
 ```python
->>> from transformers import Wav2Vec2Processor, SpeechEncoderDecoderModel
+>>> from transformers_openvla_oft import Wav2Vec2Processor, SpeechEncoderDecoderModel
 >>> from datasets import load_dataset
 >>> import torch
 
@@ -89,7 +89,7 @@ As you can see, only 2 inputs are required for the model in order to compute a l
 speech inputs) and `labels` (which are the `input_ids` of the encoded target sequence).
 
 ```python
->>> from transformers import AutoTokenizer, AutoFeatureExtractor, SpeechEncoderDecoderModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoFeatureExtractor, SpeechEncoderDecoderModel
 >>> from datasets import load_dataset
 
 >>> encoder_id = "facebook/wav2vec2-base-960h"  # acoustic model encoder

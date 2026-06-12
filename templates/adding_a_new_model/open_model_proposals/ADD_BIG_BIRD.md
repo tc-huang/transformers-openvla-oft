@@ -254,7 +254,7 @@ You should have understood the following aspects of BigBird by now:
 - BigBird's self-attention layer is composed of three mechanisms: block sparse (local) self-attention, global self-attention, random self-attention
 - BigBird's block sparse (local) self-attention is different from Longformer's local self-attention. How so? Why does that matter? => Can be deployed on TPU much easier this way
 - BigBird can be implemented for both an encoder-only model **and** 
-  for an encoder-decoder model, which means that we can reuse lots of [code from RoBERTa](https://github.com/huggingface/transformers/blob/main/src/transformers/models/roberta/modeling_roberta.py) and [from PEGASUS](https://github.com/huggingface/transformers/blob/main/src/transformers/models/pegasus/modeling_pegasus.py) at a later stage.
+  for an encoder-decoder model, which means that we can reuse lots of [code from RoBERTa](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/roberta/modeling_roberta.py) and [from PEGASUS](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/pegasus/modeling_pegasus.py) at a later stage.
 
 
 If any of the mentioned aspects above are **not** clear to you, now is a great time to talk to Patrick.
@@ -532,7 +532,7 @@ to make your debugging environment as efficient as possible.
     due to multiple dropout layers in the model. Make sure that the
     forward pass in your debugging environment is **deterministic** so
     that the dropout layers are not used. Or use
-    `transformers.utils.set_seed` if the old and new
+    `transformers_openvla_oft.utils.set_seed` if the old and new
     implementations are in the same framework.
 
 #### (Important) More details on how to create a debugging environment for BigBird 
@@ -654,11 +654,11 @@ feel free to ping Patrick by Slack or email.
 
 At first, we will focus only on the model itself and not care about the
 tokenizer. All the relevant code should be found in the generated files
-`src/transformers/models/big_bird/modeling_big_bird.py` and
-`src/transformers/models/big_bird/configuration_big_bird.py`.
+`src/transformers_openvla_oft/models/big_bird/modeling_big_bird.py` and
+`src/transformers_openvla_oft/models/big_bird/configuration_big_bird.py`.
 
 Now you can finally start coding :). The generated code in
-`src/transformers/models/big_bird/modeling_big_bird.py` will
+`src/transformers_openvla_oft/models/big_bird/modeling_big_bird.py` will
 either have the same architecture as BERT if it's an encoder-only model
 or BART if it's an encoder-decoder model. At this point, you should
 remind yourself what you've learned in the beginning about the
@@ -672,7 +672,7 @@ model should be implemented.
 **Note** that at this point, you don't have to be very sure that your
 code is fully correct or clean. Rather, it is advised to add a first
 *unclean*, copy-pasted version of the original code to
-`src/transformers/models/big_bird/modeling_big_bird.py`
+`src/transformers_openvla_oft/models/big_bird/modeling_big_bird.py`
 until you feel like all the necessary code is added. From our
 experience, it is much more efficient to quickly add a first version of
 the required code and improve/correct the code iteratively with the
@@ -682,7 +682,7 @@ implementation of *BigBird*, *i.e.* the following command
 should work:
 
 ```python
-from transformers import BigBirdModel, BigBirdConfig
+from transformers_openvla_oft import BigBirdModel, BigBirdConfig
 model = BigBirdModel(BigBirdConfig())
 ```
 
@@ -714,7 +714,7 @@ case. Don't hesitate to ask Patrick to point you to a
 similar already existing conversion script for your model.
 
 -   A good starting point to convert the original TF BigBird implementation to the PT Hugging Face implementation is probably BERT's conversion script
-    [here](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers/models/bert/modeling_bert.py#L91)
+    [here](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers_openvla_oft/models/bert/modeling_bert.py#L91)
 
 You can copy paste the conversion function into `modeling_big_bird.py` and then adapt it 
 to your needs.
@@ -1001,7 +1001,7 @@ For BigBird, the tokenizer (sentencepiece) files can be found [here](https://git
 as easily as:
 
 ```python
-from transformers import BertGenerationTokenizer
+from transformers_openvla_oft import BertGenerationTokenizer
 tokenizer = BertGenerationTokenizer("/path/to/gpt2.model/file")
 ```
 
@@ -1023,7 +1023,7 @@ the original repository, an analogous script for 🤗 Transformers should
 be created. It should look similar to this:
 
 ```python
-from transformers import BertGenerationTokenizer
+from transformers_openvla_oft import BertGenerationTokenizer
 input_str = "This is a long example input string containing special characters .$?-, numbers 2872 234 12 and words."
 
 tokenizer = BertGenerationTokenizer.from_pretrained("/path/big/bird/folder")
@@ -1068,7 +1068,7 @@ model should be used. Don't hesitate to ping Patrick
 regarding the docstrings.
 
 Next, make sure that the docstring added to
-`src/transformers/models/big_bird/modeling_big_bird.py` is
+`src/transformers_openvla_oft/models/big_bird/modeling_big_bird.py` is
 correct and included all necessary inputs and outputs. It is always to
 good to remind oneself that documentation should be treated at least as
 carefully as the code in 🤗 Transformers since the documentation is

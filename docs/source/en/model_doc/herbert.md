@@ -44,7 +44,7 @@ This model was contributed by [rmroczkowski](https://huggingface.co/rmroczkowski
 ## Usage example
 
 ```python
->>> from transformers import HerbertTokenizer, RobertaModel
+>>> from transformers_openvla_oft import HerbertTokenizer, RobertaModel
 
 >>> tokenizer = HerbertTokenizer.from_pretrained("allegro/herbert-klej-cased-tokenizer-v1")
 >>> model = RobertaModel.from_pretrained("allegro/herbert-klej-cased-v1")
@@ -54,7 +54,7 @@ This model was contributed by [rmroczkowski](https://huggingface.co/rmroczkowski
 
 >>> # HerBERT can also be loaded using AutoTokenizer and AutoModel:
 >>> import torch
->>> from transformers import AutoModel, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModel, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("allegro/herbert-klej-cased-tokenizer-v1")
 >>> model = AutoModel.from_pretrained("allegro/herbert-klej-cased-v1")

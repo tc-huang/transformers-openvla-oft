@@ -45,7 +45,7 @@ The models finetuned on `chart2text-pew` and `chart2text-statista` are more suit
 You can use these models as follows (example on a ChatQA dataset):
 
 ```python
-from transformers import AutoProcessor, Pix2StructForConditionalGeneration
+from transformers_openvla_oft import AutoProcessor, Pix2StructForConditionalGeneration
 import requests
 from PIL import Image
 
@@ -63,7 +63,7 @@ print(processor.decode(predictions[0], skip_special_tokens=True))
 
 To fine-tune MatCha, refer to the pix2struct [fine-tuning notebook](https://github.com/huggingface/notebooks/blob/main/examples/image_captioning_pix2struct.ipynb). For `Pix2Struct` models, we have found out that fine-tuning the model with Adafactor and cosine learning rate scheduler leads to faste convergence:
 ```python
-from transformers.optimization import Adafactor, get_cosine_schedule_with_warmup
+from transformers_openvla_oft.optimization import Adafactor, get_cosine_schedule_with_warmup
 
 optimizer = Adafactor(self.parameters(), scale_parameter=False, relative_step=False, lr=0.01, weight_decay=1e-05)
 scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=1000, num_training_steps=40000)

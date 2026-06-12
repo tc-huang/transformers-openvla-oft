@@ -72,7 +72,7 @@ TensorFlow의 [model.save](https://www.tensorflow.org/tutorials/keras/save_and_l
 - 모델 가중치를 `h5` 파일 확장자로 [`model.save_weights`](https://www.tensorflow.org/tutorials/keras/save_and_load#save_the_entire_model)로 저장한 다음 [`~TFPreTrainedModel.from_pretrained`]로 모델을 다시 가져옵니다:
 
 ```py
->>> from transformers import TFPreTrainedModel
+>>> from transformers_openvla_oft import TFPreTrainedModel
 >>> from tensorflow import keras
 
 >>> model.save_weights("some_folder/tf_model.h5")
@@ -82,7 +82,7 @@ TensorFlow의 [model.save](https://www.tensorflow.org/tutorials/keras/save_and_l
 - 모델을 [`~TFPretrainedModel.save_pretrained`]로 저장하고 [`~TFPreTrainedModel.from_pretrained`]로 다시 가져옵니다:
 
 ```py
->>> from transformers import TFPreTrainedModel
+>>> from transformers_openvla_oft import TFPreTrainedModel
 
 >>> model.save_pretrained("path_to/model")
 >>> model = TFPreTrainedModel.from_pretrained("path_to/model")
@@ -131,7 +131,7 @@ RuntimeError: CUDA error: device-side assert triggered
 경우에 따라 `input_ids`에 패딩 토큰이 포함된 경우 `hidden_state` 출력이 올바르지 않을 수 있습니다. 데모를 위해 모델과 토크나이저를 가져오세요. 모델의 `pad_token_id`에 액세스하여 해당 값을 확인할 수 있습니다. 일부 모델의 경우 `pad_token_id`가 `None`일 수 있지만 언제든지 수동으로 설정할 수 있습니다.
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 >>> import torch
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-uncased")
@@ -189,10 +189,10 @@ tensor([[ 0.0082, -0.2307],
 예를 들어, 다음 예제에서 질의응답에 대한 GPT2가 없기 때문에 오류가 발생합니다:
 
 ```py
->>> from transformers import AutoProcessor, AutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import AutoProcessor, AutoModelForQuestionAnswering
 
 >>> processor = AutoProcessor.from_pretrained("openai-community/gpt2-medium")
 >>> model = AutoModelForQuestionAnswering.from_pretrained("openai-community/gpt2-medium")
-ValueError: Unrecognized configuration class <class 'transformers.models.gpt2.configuration_gpt2.GPT2Config'> for this kind of AutoModel: AutoModelForQuestionAnswering.
+ValueError: Unrecognized configuration class <class 'transformers_openvla_oft.models.gpt2.configuration_gpt2.GPT2Config'> for this kind of AutoModel: AutoModelForQuestionAnswering.
 Model type should be one of AlbertConfig, BartConfig, BertConfig, BigBirdConfig, BigBirdPegasusConfig, BloomConfig, ...
 ```

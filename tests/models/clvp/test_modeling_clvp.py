@@ -22,13 +22,13 @@ import unittest
 import datasets
 import numpy as np
 
-from transformers import ClvpConfig, ClvpDecoderConfig, ClvpEncoderConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft import ClvpConfig, ClvpDecoderConfig, ClvpEncoderConfig
+from transformers_openvla_oft.testing_utils import (
     require_torch,
     slow,
     torch_device,
 )
-from transformers.utils import is_torch_available
+from transformers_openvla_oft.utils import is_torch_available
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -44,9 +44,9 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import ClvpEncoder, ClvpForCausalLM, ClvpModel, ClvpModelForConditionalGeneration
+    from transformers_openvla_oft import ClvpEncoder, ClvpForCausalLM, ClvpModel, ClvpModelForConditionalGeneration
 
-from transformers import ClvpFeatureExtractor, ClvpTokenizer
+from transformers_openvla_oft import ClvpFeatureExtractor, ClvpTokenizer
 
 
 class ClvpEncoderTester:

@@ -46,7 +46,7 @@ Begin by loading the [Yelp Reviews](https://huggingface.co/datasets/yelp_review_
 As you now know, you need a tokenizer to process the text and include a padding and truncation strategy to handle any variable sequence lengths. To process your dataset in one step, use 🤗 Datasets [`map`](https://huggingface.co/docs/datasets/process#map) method to apply a preprocessing function over the entire dataset:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -84,7 +84,7 @@ just use the button at the top-right of that framework's block!
 Start by loading your model and specify the number of expected labels. From the Yelp Review [dataset card](https://huggingface.co/datasets/yelp_review_full#data-fields), you know there are five labels:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -103,7 +103,7 @@ Next, create a [`TrainingArguments`] class which contains all the hyperparameter
 Specify where to save the checkpoints from your training:
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(output_dir="test_trainer")
 ```
@@ -131,7 +131,7 @@ Call [`~evaluate.compute`] on `metric` to calculate the accuracy of your predict
 If you'd like to monitor your evaluation metrics during fine-tuning, specify the `evaluation_strategy` parameter in your training arguments to report the evaluation metric at the end of each epoch:
 
 ```py
->>> from transformers import TrainingArguments, Trainer
+>>> from transformers_openvla_oft import TrainingArguments, Trainer
 
 >>> training_args = TrainingArguments(output_dir="test_trainer", evaluation_strategy="epoch")
 ```
@@ -150,7 +150,7 @@ Create a [`Trainer`] object with your model, training arguments, training and te
 ... )
 ```
 
-Then fine-tune your model by calling [`~transformers.Trainer.train`]:
+Then fine-tune your model by calling [`~transformers_openvla_oft.Trainer.train`]:
 
 ```py
 >>> trainer.train()
@@ -185,7 +185,7 @@ Next, load a tokenizer and tokenize the data as NumPy arrays. Note that the labe
 so we can just convert that directly to a NumPy array without tokenization!
 
 ```py
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 tokenized_data = tokenizer(dataset["sentence"], return_tensors="np", padding=True)
@@ -198,7 +198,7 @@ labels = np.array(dataset["label"])  # Label is already an array of 0 and 1
 Finally, load, [`compile`](https://keras.io/api/models/model_training_apis/#compile-method), and [`fit`](https://keras.io/api/models/model_training_apis/#fit-method) the model. Note that Transformers models all have a default task-relevant loss function, so you don't need to specify one unless you want to:
 
 ```py
-from transformers import TFAutoModelForSequenceClassification
+from transformers_openvla_oft import TFAutoModelForSequenceClassification
 from tensorflow.keras.optimizers import Adam
 
 # Load and compile our model
@@ -332,7 +332,7 @@ Create a `DataLoader` for your training and test datasets so you can iterate ove
 Load your model with the number of expected labels:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -350,7 +350,7 @@ Create an optimizer and learning rate scheduler to fine-tune the model. Let's us
 Create the default learning rate scheduler from [`Trainer`]:
 
 ```py
->>> from transformers import get_scheduler
+>>> from transformers_openvla_oft import get_scheduler
 
 >>> num_epochs = 3
 >>> num_training_steps = num_epochs * len(train_dataloader)

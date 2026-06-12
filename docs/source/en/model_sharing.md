@@ -136,7 +136,7 @@ Pass your training arguments as usual to [`Trainer`]:
 ... )
 ```
 
-After you fine-tune your model, call [`~transformers.Trainer.push_to_hub`] on [`Trainer`] to push the trained model to the Hub. 🤗 Transformers will even automatically add training hyperparameters, training results and framework versions to your model card!
+After you fine-tune your model, call [`~transformers_openvla_oft.Trainer.push_to_hub`] on [`Trainer`] to push the trained model to the Hub. 🤗 Transformers will even automatically add training hyperparameters, training results and framework versions to your model card!
 
 ```py
 >>> trainer.push_to_hub()
@@ -150,7 +150,7 @@ Share a model to the Hub with [`PushToHubCallback`]. In the [`PushToHubCallback`
 - The `hub_model_id`, which is your Hub username and model name.
 
 ```py
->>> from transformers import PushToHubCallback
+>>> from transformers_openvla_oft import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="./your_model_save_path", tokenizer=tokenizer, hub_model_id="your-username/my-awesome-model"
@@ -178,7 +178,7 @@ Specify your model name in `push_to_hub`:
 This creates a repository under your username with the model name `my-awesome-model`. Users can now load your model with the `from_pretrained` function:
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> model = AutoModel.from_pretrained("your_username/my-awesome-model")
 ```

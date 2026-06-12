@@ -101,7 +101,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티와
 마스킹된 언어 모델링을 위해, 다음 단계로 DistilRoBERTa 토크나이저를 가져와서 `text` 하위 필드를 처리합니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilroberta-base")
 ```
@@ -192,7 +192,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티와
 시퀀스 끝 토큰을 패딩 토큰으로 사용하고 데이터를 반복할 때마다 토큰을 무작위로 마스킹하도록 `mlm_-probability`를 지정합니다:
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> tokenizer.pad_token = tokenizer.eos_token
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.15)
@@ -203,7 +203,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티와
 시퀀스 끝 토큰을 패딩 토큰으로 사용하고 데이터를 반복할 때마다 토큰을 무작위로 마스킹하도록 `mlm_-probability`를 지정합니다:
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.15, return_tensors="tf")
 ```
@@ -222,7 +222,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티와
 이제 모델 훈련을 시작할 준비가 되었습니다! [`AutoModelForMaskedLM`]를 사용해 DistilRoBERTa 모델을 가져옵니다:
 
 ```py
->>> from transformers import AutoModelForMaskedLM
+>>> from transformers_openvla_oft import AutoModelForMaskedLM
 
 >>> model = AutoModelForMaskedLM.from_pretrained("distilbert/distilroberta-base")
 ```
@@ -254,7 +254,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티와
 >>> trainer.train()
 ```
 
-훈련이 완료되면 [`~transformers.Trainer.evaluate`] 메소드를 사용하여 펄플렉서티(perplexity)를 계산하고 모델을 평가합니다:
+훈련이 완료되면 [`~transformers_openvla_oft.Trainer.evaluate`] 메소드를 사용하여 펄플렉서티(perplexity)를 계산하고 모델을 평가합니다:
 
 ```py
 >>> import math
@@ -264,7 +264,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티와
 Perplexity: 8.76
 ```
 
-그리고 [`~transformers.Trainer.push_to_hub`] 메소드를 사용해 다른 사람들이 사용할 수 있도록, Hub로 모델을 업로드합니다. 
+그리고 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드를 사용해 다른 사람들이 사용할 수 있도록, Hub로 모델을 업로드합니다. 
 
 ```py
 >>> trainer.push_to_hub()
@@ -279,7 +279,7 @@ Keras로 모델을 미세 조정하는 데 익숙하지 않다면 기본 튜토�
 TensorFlow로 모델을 미세 조정하기 위해서는 옵티마이저(optimizer) 함수 설정, 학습률(learning rate) 스케쥴링, 훈련 하이퍼파라미터 설정부터 시작하세요:
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -287,12 +287,12 @@ TensorFlow로 모델을 미세 조정하기 위해서는 옵티마이저(optimiz
 다음으로 [`TFAutoModelForMaskedLM`]를 사용해 DistilRoBERTa 모델을 가져옵니다:
 
 ```py
->>> from transformers import TFAutoModelForMaskedLM
+>>> from transformers_openvla_oft import TFAutoModelForMaskedLM
 
 >>> model = TFAutoModelForMaskedLM.from_pretrained("distilbert/distilroberta-base")
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`] 메소드를 사용해 데이터 세트를 `tf.data.Dataset` 형식으로 변환하세요:
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`] 메소드를 사용해 데이터 세트를 `tf.data.Dataset` 형식으로 변환하세요:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -318,10 +318,10 @@ TensorFlow로 모델을 미세 조정하기 위해서는 옵티마이저(optimiz
 >>> model.compile(optimizer=optimizer)
 ```
 
-이는 업로드할 모델과 토크나이저의 위치를 [`~transformers.PushToHubCallback`]에 지정하여 수행할 수 있습니다:
+이는 업로드할 모델과 토크나이저의 위치를 [`~transformers_openvla_oft.PushToHubCallback`]에 지정하여 수행할 수 있습니다:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> callback = PushToHubCallback(
 ...     output_dir="my_awesome_eli5_mlm_model",
@@ -362,7 +362,7 @@ TensorFlow로 모델을 미세 조정하기 위해서는 옵티마이저(optimiz
 `top_k` 매개변수를 사용하여 반환하는 예측의 수를 지정할 수 있습니다:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> mask_filler = pipeline("fill-mask", "stevhliu/my_awesome_eli5_mlm_model")
 >>> mask_filler(text, top_k=3)
@@ -385,7 +385,7 @@ TensorFlow로 모델을 미세 조정하기 위해서는 옵티마이저(optimiz
 텍스트를 토큰화하고 `input_ids`를 PyTorch 텐서 형태로 반환합니다.
 또한, `<mask>` 토큰의 위치를 지정해야 합니다:
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_eli5_mlm_model")
 >>> inputs = tokenizer(text, return_tensors="pt")
@@ -395,7 +395,7 @@ TensorFlow로 모델을 미세 조정하기 위해서는 옵티마이저(optimiz
 모델에 `inputs`를 입력하고, 마스킹된 토큰의 `logits`를 반환합니다:
 
 ```py
->>> from transformers import AutoModelForMaskedLM
+>>> from transformers_openvla_oft import AutoModelForMaskedLM
 
 >>> model = AutoModelForMaskedLM.from_pretrained("stevhliu/my_awesome_eli5_mlm_model")
 >>> logits = model(**inputs).logits
@@ -417,7 +417,7 @@ The Milky Way is a small galaxy.
 텍스트를 토큰화하고 `input_ids`를 TensorFlow 텐서 형태로 반환합니다.
 또한, `<mask>` 토큰의 위치를 지정해야 합니다:
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_eli5_mlm_model")
 >>> inputs = tokenizer(text, return_tensors="tf")
@@ -427,7 +427,7 @@ The Milky Way is a small galaxy.
 모델에 `inputs`를 입력하고, 마스킹된 토큰의 `logits`를 반환합니다:
 
 ```py
->>> from transformers import TFAutoModelForMaskedLM
+>>> from transformers_openvla_oft import TFAutoModelForMaskedLM
 
 >>> model = TFAutoModelForMaskedLM.from_pretrained("stevhliu/my_awesome_eli5_mlm_model")
 >>> logits = model(**inputs).logits

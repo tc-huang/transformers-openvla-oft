@@ -16,7 +16,7 @@
 # limitations under the License.
 """ Benchmarking the library on inference and training """
 
-from transformers import HfArgumentParser, PyTorchBenchmark, PyTorchBenchmarkArguments
+from transformers_openvla_oft import HfArgumentParser, PyTorchBenchmark, PyTorchBenchmarkArguments
 
 
 def main():

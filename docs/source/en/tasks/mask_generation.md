@@ -49,7 +49,7 @@ pip install -q transformers
 The easiest way to infer mask generation models is to use the `mask-generation` pipeline.
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> checkpoint = "facebook/sam-vit-base"
 >>> mask_generator = pipeline(model=checkpoint, task="mask-generation")
@@ -123,7 +123,7 @@ You can also use the model without the pipeline. To do so, initialize the model 
 the processor.
 
 ```python
-from transformers import SamModel, SamProcessor
+from transformers_openvla_oft import SamModel, SamProcessor
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 

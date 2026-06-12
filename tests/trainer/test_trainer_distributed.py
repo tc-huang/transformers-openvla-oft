@@ -16,8 +16,8 @@ from typing import Dict
 
 import numpy as np
 
-from transformers import EvalPrediction, HfArgumentParser, TrainingArguments, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import EvalPrediction, HfArgumentParser, TrainingArguments, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     TestCasePlus,
     execute_subprocess_async,
     get_torch_dist_unique_port,
@@ -26,8 +26,8 @@ from transformers.testing_utils import (
     require_torch_neuroncore,
     require_torch_npu,
 )
-from transformers.training_args import ParallelMode
-from transformers.utils import logging
+from transformers_openvla_oft.training_args import ParallelMode
+from transformers_openvla_oft.utils import logging
 
 
 logger = logging.get_logger(__name__)
@@ -38,7 +38,7 @@ if is_torch_available():
     from torch import nn
     from torch.utils.data import Dataset, IterableDataset
 
-    from transformers import Trainer
+    from transformers_openvla_oft import Trainer
 
     class DummyDataset(Dataset):
         def __init__(self, length: int = 101):

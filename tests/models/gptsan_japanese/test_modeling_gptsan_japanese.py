@@ -18,15 +18,15 @@ import unittest
 
 import numpy as np
 
-from transformers import (
+from transformers_openvla_oft import (
     GPTSanJapaneseConfig,
     GPTSanJapaneseForConditionalGeneration,
     GPTSanJapaneseModel,
     GPTSanJapaneseTokenizer,
     is_torch_available,
 )
-from transformers.generation import GenerationConfig
-from transformers.testing_utils import require_torch, slow, tooslow, torch_device
+from transformers_openvla_oft.generation import GenerationConfig
+from transformers_openvla_oft.testing_utils import require_torch, slow, tooslow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester

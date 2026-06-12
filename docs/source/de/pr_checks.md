@@ -153,30 +153,30 @@ Wenn eine Datei eine vollständige Kopie einer anderen Datei ist, sollten Sie si
 
 </Tip>
 
-Dieser Mechanismus stützt sich auf Kommentare der Form `# Kopiert von xxx`. Das `xxx` sollte den gesamten Pfad zu der Klasse der Funktion enthalten, die darunter kopiert wird. Zum Beispiel ist `RobertaSelfOutput` eine direkte Kopie der Klasse `BertSelfOutput`. Sie können also [hier](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers/models/roberta/modeling_roberta.py#L289) sehen, dass sie einen Kommentar hat:
+Dieser Mechanismus stützt sich auf Kommentare der Form `# Kopiert von xxx`. Das `xxx` sollte den gesamten Pfad zu der Klasse der Funktion enthalten, die darunter kopiert wird. Zum Beispiel ist `RobertaSelfOutput` eine direkte Kopie der Klasse `BertSelfOutput`. Sie können also [hier](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L289) sehen, dass sie einen Kommentar hat:
 
 ```py
-# Copied from transformers.models.bert.modeling_bert.BertSelfOutput
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertSelfOutput
 ```
 
-Beachten Sie, dass Sie dies nicht auf eine ganze Klasse anwenden, sondern auf die entsprechenden Methoden, von denen kopiert wird. Zum Beispiel [hier](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers/models/roberta/modeling_roberta.py#L598) können Sie sehen, wie `RobertaPreTrainedModel._init_weights` von der gleichen Methode in `BertPreTrainedModel` mit dem Kommentar kopiert wird:
+Beachten Sie, dass Sie dies nicht auf eine ganze Klasse anwenden, sondern auf die entsprechenden Methoden, von denen kopiert wird. Zum Beispiel [hier](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L598) können Sie sehen, wie `RobertaPreTrainedModel._init_weights` von der gleichen Methode in `BertPreTrainedModel` mit dem Kommentar kopiert wird:
 
 ```py
-# Copied from transformers.models.bert.modeling_bert.BertPreTrainedModel._init_weights
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertPreTrainedModel._init_weights
 ```
 
-Manchmal ist die Kopie bis auf die Namen genau gleich: zum Beispiel verwenden wir in `RobertaAttention` `RobertaSelfAttention` anstelle von `BertSelfAttention`, aber ansonsten ist der Code genau derselbe. Aus diesem Grund unterstützt `#Copied from` einfache String-Ersetzungen mit der folgenden Syntax: `Kopiert von xxx mit foo->bar`. Das bedeutet, dass der Code kopiert wird, wobei alle Instanzen von "foo" durch "bar" ersetzt werden. Sie können sehen, wie es [hier](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers/models/roberta/modeling_roberta.py#L304C1-L304C86) in `RobertaAttention` mit dem Kommentar verwendet wird:
+Manchmal ist die Kopie bis auf die Namen genau gleich: zum Beispiel verwenden wir in `RobertaAttention` `RobertaSelfAttention` anstelle von `BertSelfAttention`, aber ansonsten ist der Code genau derselbe. Aus diesem Grund unterstützt `#Copied from` einfache String-Ersetzungen mit der folgenden Syntax: `Kopiert von xxx mit foo->bar`. Das bedeutet, dass der Code kopiert wird, wobei alle Instanzen von "foo" durch "bar" ersetzt werden. Sie können sehen, wie es [hier](https://github.com/huggingface/transformers/blob/2bd7a27a671fd1d98059124024f580f8f5c0f3b5/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L304C1-L304C86) in `RobertaAttention` mit dem Kommentar verwendet wird:
 
 ```py
-# Copied from transformers.models.bert.modeling_bert.BertAttention with Bert->Roberta
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertAttention with Bert->Roberta
 ```
 
 Beachten Sie, dass um den Pfeil herum keine Leerzeichen stehen sollten (es sei denn, das Leerzeichen ist Teil des zu ersetzenden Musters, natürlich).
 
-Sie können mehrere Muster durch ein Komma getrennt hinzufügen. Zum Beispiel ist hier `CamemberForMaskedLM` eine direkte Kopie von `RobertaForMaskedLM` mit zwei Ersetzungen: `Roberta` zu `Camembert` und `ROBERTA` zu `CAMEMBERT`. Sie können [hier](https://github.com/huggingface/transformers/blob/15082a9dc6950ecae63a0d3e5060b2fc7f15050a/src/transformers/models/camembert/modeling_camembert.py#L929) sehen, wie dies mit dem Kommentar gemacht wird:
+Sie können mehrere Muster durch ein Komma getrennt hinzufügen. Zum Beispiel ist hier `CamemberForMaskedLM` eine direkte Kopie von `RobertaForMaskedLM` mit zwei Ersetzungen: `Roberta` zu `Camembert` und `ROBERTA` zu `CAMEMBERT`. Sie können [hier](https://github.com/huggingface/transformers/blob/15082a9dc6950ecae63a0d3e5060b2fc7f15050a/src/transformers_openvla_oft/models/camembert/modeling_camembert.py#L929) sehen, wie dies mit dem Kommentar gemacht wird:
 
 ```py
-# Copied from transformers.models.roberta.modeling_roberta.RobertaForMaskedLM with Roberta->Camembert, ROBERTA->CAMEMBERT
+# Copied from transformers_openvla_oft.models.roberta.modeling_roberta.RobertaForMaskedLM with Roberta->Camembert, ROBERTA->CAMEMBERT
 ```
 
 Wenn die Reihenfolge eine Rolle spielt (weil eine der Ersetzungen mit einer vorherigen in Konflikt geraten könnte), werden die Ersetzungen von links nach rechts ausgeführt.
@@ -187,10 +187,10 @@ Wenn die Ersetzungen die Formatierung ändern (wenn Sie z.B. einen kurzen Namen 
 
 </Tip>
 
-Eine andere Möglichkeit, wenn es sich bei den Mustern nur um verschiedene Umschreibungen derselben Ersetzung handelt (mit einer groß- und einer kleingeschriebenen Variante), besteht darin, die Option `all-casing` hinzuzufügen. [Hier](https://github.com/huggingface/transformers/blob/15082a9dc6950ecae63a0d3e5060b2fc7f15050a/src/transformers/models/mobilebert/modeling_mobilebert.py#L1237) ist ein Beispiel in `MobileBertForSequenceClassification` mit dem Kommentar:
+Eine andere Möglichkeit, wenn es sich bei den Mustern nur um verschiedene Umschreibungen derselben Ersetzung handelt (mit einer groß- und einer kleingeschriebenen Variante), besteht darin, die Option `all-casing` hinzuzufügen. [Hier](https://github.com/huggingface/transformers/blob/15082a9dc6950ecae63a0d3e5060b2fc7f15050a/src/transformers_openvla_oft/models/mobilebert/modeling_mobilebert.py#L1237) ist ein Beispiel in `MobileBertForSequenceClassification` mit dem Kommentar:
 
 ```py
-# Copied from transformers.models.bert.modeling_bert.BertForSequenceClassification with Bert->MobileBert all-casing
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertForSequenceClassification with Bert->MobileBert all-casing
 ```
 
 In diesem Fall wird der Code von `BertForSequenceClassification` kopiert, indem er ersetzt wird:

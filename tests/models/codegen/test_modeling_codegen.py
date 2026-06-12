@@ -17,9 +17,9 @@
 import datetime
 import unittest
 
-from transformers import CodeGenConfig, is_torch_available
-from transformers.file_utils import cached_property
-from transformers.testing_utils import backend_manual_seed, is_flaky, require_torch, slow, torch_device
+from transformers_openvla_oft import CodeGenConfig, is_torch_available
+from transformers_openvla_oft.file_utils import cached_property
+from transformers_openvla_oft.testing_utils import backend_manual_seed, is_flaky, require_torch, slow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -30,7 +30,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import AutoTokenizer, CodeGenForCausalLM, CodeGenModel
+    from transformers_openvla_oft import AutoTokenizer, CodeGenForCausalLM, CodeGenModel
 
 
 class CodeGenModelTester:

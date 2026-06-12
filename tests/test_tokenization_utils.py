@@ -24,7 +24,7 @@ from huggingface_hub import HfFolder, delete_repo
 from huggingface_hub.file_download import http_get
 from requests.exceptions import HTTPError
 
-from transformers import (
+from transformers_openvla_oft import (
     AlbertTokenizer,
     AutoTokenizer,
     BertTokenizer,
@@ -32,8 +32,8 @@ from transformers import (
     GPT2TokenizerFast,
     is_tokenizers_available,
 )
-from transformers.testing_utils import TOKEN, USER, is_staging_test, require_tokenizers
-from transformers.tokenization_utils import Trie
+from transformers_openvla_oft.testing_utils import TOKEN, USER, is_staging_test, require_tokenizers
+from transformers_openvla_oft.tokenization_utils import Trie
 
 
 sys.path.append(str(Path(__file__).parent.parent / "utils"))

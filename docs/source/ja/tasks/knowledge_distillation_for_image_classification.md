@@ -40,7 +40,7 @@ dataset = load_dataset("beans")
 この場合、同じ解像度で同じ出力が返されるため、どちらのモデルの画像プロセッサも使用できます。 `dataset`の`map()`メソッドを使用して、データセットのすべての分割に前処理を適用します。
 
 ```python
-from transformers import AutoImageProcessor
+from transformers_openvla_oft import AutoImageProcessor
 teacher_processor = AutoImageProcessor.from_pretrained("merve/beans-vit-224")
 
 def process(examples):
@@ -54,7 +54,7 @@ processed_datasets = dataset.map(process, batched=True)
 
 
 ```python
-from transformers import TrainingArguments, Trainer
+from transformers_openvla_oft import TrainingArguments, Trainer
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -104,7 +104,7 @@ notebook_login()
 教師モデルと生徒モデルである`TrainingArguments`を設定しましょう。
 
 ```python
-from transformers import AutoModelForImageClassification, MobileNetV2Config, MobileNetV2ForImageClassification
+from transformers_openvla_oft import AutoModelForImageClassification, MobileNetV2Config, MobileNetV2ForImageClassification
 
 training_args = TrainingArguments(
     output_dir="my-awesome-model",
@@ -155,7 +155,7 @@ def compute_metrics(eval_pred):
 
 
 ```python
-from transformers import DefaultDataCollator
+from transformers_openvla_oft import DefaultDataCollator
 
 data_collator = DefaultDataCollator()
 trainer = ImageDistilTrainer(

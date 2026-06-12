@@ -13,7 +13,7 @@ from datasets import load_dataset
 from huggingface_hub.utils import insecure_hashlib
 from minhash_deduplication import deduplicate_dataset
 
-from transformers import AutoTokenizer, HfArgumentParser
+from transformers_openvla_oft import AutoTokenizer, HfArgumentParser
 
 
 PATTERN = re.compile(r"\s+")

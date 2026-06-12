@@ -19,8 +19,8 @@ import unittest
 
 from huggingface_hub.hf_api import list_models
 
-from transformers import MarianConfig, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import MarianConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     require_sentencepiece,
     require_tokenizers,
     require_torch,
@@ -28,7 +28,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import cached_property
+from transformers_openvla_oft.utils import cached_property
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -39,7 +39,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoConfig,
         AutoModelWithLMHead,
         AutoTokenizer,
@@ -47,12 +47,12 @@ if is_torch_available():
         MarianMTModel,
         TranslationPipeline,
     )
-    from transformers.models.marian.convert_marian_to_pytorch import (
+    from transformers_openvla_oft.models.marian.convert_marian_to_pytorch import (
         ORG_NAME,
         convert_hf_name_to_opus_name,
         convert_opus_name_to_hf_name,
     )
-    from transformers.models.marian.modeling_marian import (
+    from transformers_openvla_oft.models.marian.modeling_marian import (
         MarianDecoder,
         MarianEncoder,
         MarianForCausalLM,

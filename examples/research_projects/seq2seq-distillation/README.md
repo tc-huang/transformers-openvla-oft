@@ -207,7 +207,7 @@ output_dir
 ```
 After training, you can recover the best checkpoint by running
 ```python
-from transformers import AutoModelForSeq2SeqLM
+from transformers_openvla_oft import AutoModelForSeq2SeqLM
 model = AutoModelForSeq2SeqLM.from_pretrained(f'{output_dir}/best_tfmr')
 ```
 

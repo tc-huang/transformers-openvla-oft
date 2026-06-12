@@ -66,18 +66,18 @@ This model was contributed by [INSERT YOUR HF USERNAME HERE](<https://huggingfac
 
 ## {{cookiecutter.camelcase_modelname}}ForSequenceClassification
 
-[[autodoc]] transformers.{{cookiecutter.camelcase_modelname}}ForSequenceClassification
+[[autodoc]] transformers_openvla_oft.{{cookiecutter.camelcase_modelname}}ForSequenceClassification
     - forward
 
 ## {{cookiecutter.camelcase_modelname}}ForMultipleChoice
 
-[[autodoc]] transformers.{{cookiecutter.camelcase_modelname}}ForMultipleChoice
+[[autodoc]] transformers_openvla_oft.{{cookiecutter.camelcase_modelname}}ForMultipleChoice
     - forward
 
 
 ## {{cookiecutter.camelcase_modelname}}ForTokenClassification
 
-[[autodoc]] transformers.{{cookiecutter.camelcase_modelname}}ForTokenClassification
+[[autodoc]] transformers_openvla_oft.{{cookiecutter.camelcase_modelname}}ForTokenClassification
     - forward
 
 

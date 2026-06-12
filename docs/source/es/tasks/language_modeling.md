@@ -79,7 +79,7 @@ Observa que `text` es un subcampo anidado dentro del diccionario `answers`. Cuan
 Para modelados de lenguaje causales carga el tokenizador DistilGPT2 para procesar el subcampo `text`:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 ```
@@ -89,7 +89,7 @@ Para modelados de lenguaje causales carga el tokenizador DistilGPT2 para procesa
 Para modelados de lenguaje por enmascaramiento carga el tokenizador DistilRoBERTa, en lugar de DistilGPT2:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilroberta-base")
 ```
@@ -167,7 +167,7 @@ Para modelados de lenguaje causales, usa [`DataCollatorForLanguageModeling`] par
 Puedes usar el token de final de secuencia como el token de relleno y asignar `mlm=False`. Esto usará los inputs como etiquetas movidas un elemento hacia la derecha:
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> tokenizer.pad_token = tokenizer.eos_token
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
@@ -176,7 +176,7 @@ Puedes usar el token de final de secuencia como el token de relleno y asignar `m
 Para modelados de lenguaje por enmascaramiento usa el mismo [`DataCollatorForLanguageModeling`] excepto que deberás especificar `mlm_probability` para enmascarar tokens aleatoriamente cada vez que iteras sobre los datos.
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> tokenizer.pad_token = tokenizer.eos_token
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.15)
@@ -186,7 +186,7 @@ Para modelados de lenguaje por enmascaramiento usa el mismo [`DataCollatorForLan
 Puedes usar el token de final de secuencia como el token de relleno y asignar `mlm=False`. Esto usará los inputs como etiquetas movidas un elemento hacia la derecha:
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False, return_tensors="tf")
 ```
@@ -194,7 +194,7 @@ Puedes usar el token de final de secuencia como el token de relleno y asignar `m
 Para modelados de lenguajes por enmascaramiento usa el mismo [`DataCollatorForLanguageModeling`] excepto que deberás especificar `mlm_probability` para enmascarar tokens aleatoriamente cada vez que iteras sobre los datos.
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False, return_tensors="tf")
 ```
@@ -212,7 +212,7 @@ El modelado de lenguaje causal es frecuentemente utilizado para generación de t
 Carga DistilGPT2 con [`AutoModelForCausalLM`]:
 
 ```py
->>> from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, TrainingArguments, Trainer
 
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
@@ -278,7 +278,7 @@ Si no estás familiarizado con realizar fine-tuning de tus modelos con Keras, co
 Crea la función optimizadora, la tasa de aprendizaje, y algunos hiperparámetros de entrenamiento:
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -286,7 +286,7 @@ Crea la función optimizadora, la tasa de aprendizaje, y algunos hiperparámetro
 Carga DistilGPT2 con [`TFAutoModelForCausalLM`]:
 
 ```py
->>> from transformers import TFAutoModelForCausalLM
+>>> from transformers_openvla_oft import TFAutoModelForCausalLM
 
 >>> model = TFAutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
@@ -318,7 +318,7 @@ El modelado de lenguaje por enmascaramiento es también conocido como una tarea 
 Carga DistilRoBERTa con [`AutoModelForMaskedlM`]:
 
 ```py
->>> from transformers import AutoModelForMaskedLM
+>>> from transformers_openvla_oft import AutoModelForMaskedLM
 
 >>> model = AutoModelForMaskedLM.from_pretrained("distilbert/distilroberta-base")
 ```
@@ -385,7 +385,7 @@ Si no estás familiarizado con realizar fine-tuning de tus modelos con Keras, co
 Crea la función optimizadora, la tasa de aprendizaje, y algunos hiperparámetros de entrenamiento:
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -393,7 +393,7 @@ Crea la función optimizadora, la tasa de aprendizaje, y algunos hiperparámetro
 Carga DistilRoBERTa con [`TFAutoModelForMaskedLM`]:
 
 ```py
->>> from transformers import TFAutoModelForMaskedLM
+>>> from transformers_openvla_oft import TFAutoModelForMaskedLM
 
 >>> model = TFAutoModelForCausalLM.from_pretrained("distilbert/distilroberta-base")
 ```

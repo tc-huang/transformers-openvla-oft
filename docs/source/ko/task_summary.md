@@ -48,7 +48,7 @@ rendered properly in your Markdown viewer.
 * 음악 분류: 음악에 장르 레이블("메탈", "힙합", "컨트리")을 지정합니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="audio-classification", model="superb/hubert-base-superb-er")
 >>> preds = classifier("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -70,7 +70,7 @@ rendered properly in your Markdown viewer.
 
 하지만 트랜스포머 아키텍처가 해결하는 데 도움을 준 핵심 도전 과제 중 하나는 양이 데이터 양이 적은 언어(low-resource language)에 대한 것입니다. 대량의 음성 데이터로 사전 훈련한 후 데이터 양이 적은 언어에서 레이블이 지정된 음성 데이터 1시간만으로 모델을 미세 조정하면 이전의 100배 많은 레이블이 지정된 데이터로 훈련된 ASR 시스템보다 훨씬 더 높은 품질의 결과를 얻을 수 있습니다. 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline(task="automatic-speech-recognition", model="openai/whisper-small")
 >>> transcriber("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -101,7 +101,7 @@ rendered properly in your Markdown viewer.
 * 생태학: 동물이나 식물 종 이미지를 분류하여 야생 동물 개체군을 조사하거나 멸종 위기에 처한 종을 추적합니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="image-classification")
 >>> preds = classifier(
@@ -129,7 +129,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> detector = pipeline(task="object-detection")
 >>> preds = detector(
@@ -155,7 +155,7 @@ rendered properly in your Markdown viewer.
 분할 작업은 자율 주행 차량에서 유용하며, 주변 환경의 픽셀 수준 지도를 생성하여 보행자와 다른 차량 주변에서 안전하게 탐색할 수 있습니다. 또한 의료 영상에서도 유용합니다. 분할 작업이 픽셀 수준에서 객체를 감지할 수 있기 때문에 비정상적인 세포나 장기의 특징을 식별하는 데 도움이 될 수 있습니다. 이미지 분할은 의류 가상 시착이나 카메라를 통해 실제 세계에 가상 개체를 덧씌워 증강 현실 경험을 만드는 등 전자 상거래 분야에서도 사용될 수 있습니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> segmenter = pipeline(task="image-segmentation")
 >>> preds = segmenter(
@@ -179,7 +179,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> depth_estimator = pipeline(task="depth-estimation")
 >>> preds = depth_estimator(
@@ -199,7 +199,7 @@ rendered properly in your Markdown viewer.
 * 콘텐츠 분류: 텍스트를 주제에 따라 레이블링(날씨, 스포츠, 금융 등)하여 뉴스 및 소셜 미디어 피드에서 정보를 구성하고 필터링하는 데 도움이 될 수 있습니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="sentiment-analysis")
 >>> preds = classifier("Hugging Face is the best thing since sliced bread!")
@@ -219,7 +219,7 @@ rendered properly in your Markdown viewer.
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="ner")
 >>> preds = classifier("Hugging Face is a French company based in New York City.")
@@ -254,7 +254,7 @@ rendered properly in your Markdown viewer.
 * 생성형: 질문과 문맥이 주어졌을 때, 주어진 문맥을 통해 답변을 생성합니다. 이 접근 방식은 [`QuestionAnsweringPipeline`] 대신 [`Text2TextGenerationPipeline`]을 통해 처리됩니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> question_answerer = pipeline(task="question-answering")
 >>> preds = question_answerer(
@@ -277,7 +277,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 * 생성형: 원본 텍스트에서 목표 요약을 생성합니다. 입력 문서에 없는 새로운 단어를 포함할 수도 있습니다. [`SummarizationPipeline`]은 생성형 접근 방식을 사용합니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> summarizer = pipeline(task="summarization")
 >>> summarizer(
@@ -293,7 +293,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 초기의 번역 모델은 대부분 단일 언어로 이루어져 있었지만, 최근에는 많은 언어 쌍 간에 번역을 수행할 수 있는 다중 언어 모델에 대한 관심이 높아지고 있습니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> text = "translate English to French: Hugging Face is a community-based open-source platform for machine learning."
 >>> translator = pipeline(task="translation", model="google-t5/t5-small")
@@ -309,7 +309,7 @@ score: 0.9327, start: 30, end: 54, answer: huggingface/transformers
 
 * 인과적 언어 모델링: 이 모델의 목적은 시퀀스에서 다음 토큰을 예측하는 것이며, 미래 토큰이 마스킹 됩니다.
     ```py
-    >>> from transformers import pipeline
+    >>> from transformers_openvla_oft import pipeline
 
     >>> prompt = "Hugging Face is a community-based open-source platform for machine learning."
     >>> generator = pipeline(task="text-generation")

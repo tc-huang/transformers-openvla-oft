@@ -45,7 +45,7 @@ Let's see how to leverage this tokenizer object in the 🤗 Transformers library
 *tokenizer* object as an argument:
 
 ```python
->>> from transformers import PreTrainedTokenizerFast
+>>> from transformers_openvla_oft import PreTrainedTokenizerFast
 
 >>> fast_tokenizer = PreTrainedTokenizerFast(tokenizer_object=tokenizer)
 ```
@@ -65,7 +65,7 @@ The path to which we saved this file can be passed to the [`PreTrainedTokenizerF
 method using the `tokenizer_file` parameter:
 
 ```python
->>> from transformers import PreTrainedTokenizerFast
+>>> from transformers_openvla_oft import PreTrainedTokenizerFast
 
 >>> fast_tokenizer = PreTrainedTokenizerFast(tokenizer_file="tokenizer.json")
 ```

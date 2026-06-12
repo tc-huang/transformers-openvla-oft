@@ -45,7 +45,7 @@ into a single instance to both extract the input features and decode the predict
 - Step-by-step Optical Character Recognition (OCR)
 
 ```py
->>> from transformers import MgpstrProcessor, MgpstrForSceneTextRecognition
+>>> from transformers_openvla_oft import MgpstrProcessor, MgpstrForSceneTextRecognition
 >>> import requests
 >>> from PIL import Image
 

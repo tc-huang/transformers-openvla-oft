@@ -25,7 +25,7 @@ A barrier to accessing very large pretrained models is the amount of memory requ
 The first two steps both require a full version of the model in memory and if the model weighs several GBs, you may not have enough memory for two copies of it. This problem is amplified in distributed training environments because each process loads a pretrained model and stores two copies in memory.
 
 > [!TIP]
-> The randomly created model is initialized with "empty" tensors, which take space in memory without filling it. The random values are whatever was in this chunk of memory at the time. To improve loading speed, the [`_fast_init`](https://github.com/huggingface/transformers/blob/c9f6e5e35156e068b227dd9b15521767f6afd4d2/src/transformers/modeling_utils.py#L2710) parameter is set to `True` by default to skip the random initialization for all weights that are correctly loaded.
+> The randomly created model is initialized with "empty" tensors, which take space in memory without filling it. The random values are whatever was in this chunk of memory at the time. To improve loading speed, the [`_fast_init`](https://github.com/huggingface/transformers/blob/c9f6e5e35156e068b227dd9b15521767f6afd4d2/src/transformers_openvla_oft/modeling_utils.py#L2710) parameter is set to `True` by default to skip the random initialization for all weights that are correctly loaded.
 
 This guide will show you how Transformers can help you load large pretrained models despite their memory requirements.
 
@@ -57,7 +57,7 @@ The main advantage of sharded checkpoints for big models is that each shard is l
 You could also directly load a sharded checkpoint inside a model without the [`~PreTrainedModel.from_pretrained`] method (similar to PyTorch's `load_state_dict()` method for a full checkpoint). In this case, use the [`~modeling_utils.load_sharded_checkpoint`] method.
 
 ```py
->>> from transformers.modeling_utils import load_sharded_checkpoint
+>>> from transformers_openvla_oft.modeling_utils import load_sharded_checkpoint
 
 >>> with tempfile.TemporaryDirectory() as tmp_dir:
 ...     model.save_pretrained(tmp_dir, max_shard_size="5GB")
@@ -109,7 +109,7 @@ From Transformers v4.20.0, the [`~PreTrainedModel.from_pretrained`] method is su
 To enable Big Model Inference in Transformers, set `low_cpu_mem_usage=True` in the [`~PreTrainedModel.from_pretrained`] method.
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 gemma = AutoModelForCausalLM.from_pretrained("google/gemma-7b", low_cpu_mem_usage=True)
 ```
@@ -117,7 +117,7 @@ gemma = AutoModelForCausalLM.from_pretrained("google/gemma-7b", low_cpu_mem_usag
 Accelerate automatically dispatches the model weights across all available devices, starting with the fastest device (GPU) first and then offloading to the slower devices (CPU and even hard drive). This is enabled by setting `device_map="auto"` in the [`~PreTrainedModel.from_pretrained`] method. When you pass the `device_map` parameter, `low_cpu_mem_usage` is automatically set to `True` so you don't need to specify it.
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 # these loading methods are equivalent
 gemma = AutoModelForCausalLM.from_pretrained("google/gemma-7b", device_map="auto")
@@ -187,7 +187,7 @@ To avoid wasting memory like this, explicitly set the `torch_dtype` parameter to
 <hfoption id="specific dtype">
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 gemma = AutoModelForCausalLM.from_pretrained("google/gemma-7b", torch_dtype=torch.float16)
 ```
@@ -196,7 +196,7 @@ gemma = AutoModelForCausalLM.from_pretrained("google/gemma-7b", torch_dtype=torc
 <hfoption id="auto dtype">
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 gemma = AutoModelForCausalLM.from_pretrained("google/gemma-7b", torch_dtype="auto")
 ```
@@ -208,7 +208,7 @@ You can also set the data type to use for models instantiated from scratch.
 
 ```python
 import torch
-from transformers import AutoConfig, AutoModel
+from transformers_openvla_oft import AutoConfig, AutoModel
 
 my_config = AutoConfig.from_pretrained("google/gemma-2b", torch_dtype=torch.float16)
 model = AutoModel.from_config(my_config)

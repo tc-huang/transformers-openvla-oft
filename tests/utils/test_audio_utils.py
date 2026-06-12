@@ -18,7 +18,7 @@ import unittest
 import numpy as np
 import pytest
 
-from transformers.audio_utils import (
+from transformers_openvla_oft.audio_utils import (
     amplitude_to_db,
     chroma_filter_bank,
     hertz_to_mel,
@@ -28,7 +28,7 @@ from transformers.audio_utils import (
     spectrogram,
     window_function,
 )
-from transformers.testing_utils import is_librosa_available, require_librosa
+from transformers_openvla_oft.testing_utils import is_librosa_available, require_librosa
 
 
 if is_librosa_available():

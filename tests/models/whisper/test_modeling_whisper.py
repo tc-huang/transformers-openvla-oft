@@ -27,9 +27,9 @@ import numpy as np
 import pytest
 from huggingface_hub import hf_hub_download
 
-import transformers
-from transformers import WhisperConfig
-from transformers.testing_utils import (
+import transformers_openvla_oft
+from transformers_openvla_oft import WhisperConfig
+from transformers_openvla_oft.testing_utils import (
     is_pt_flax_cross_test,
     require_flash_attn,
     require_torch,
@@ -39,8 +39,8 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import cached_property, is_flax_available, is_torch_available, is_torchaudio_available
-from transformers.utils.import_utils import is_datasets_available
+from transformers_openvla_oft.utils import cached_property, is_flax_available, is_torch_available, is_torchaudio_available
+from transformers_openvla_oft.utils.import_utils import is_datasets_available
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -55,7 +55,7 @@ if is_datasets_available():
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         WhisperFeatureExtractor,
         WhisperForAudioClassification,
         WhisperForCausalLM,
@@ -64,8 +64,8 @@ if is_torch_available():
         WhisperProcessor,
         set_seed,
     )
-    from transformers.generation.logits_process import LogitsProcessor
-    from transformers.models.whisper.modeling_whisper import WhisperDecoder, WhisperEncoder, sinusoids
+    from transformers_openvla_oft.generation.logits_process import LogitsProcessor
+    from transformers_openvla_oft.models.whisper.modeling_whisper import WhisperDecoder, WhisperEncoder, sinusoids
 
     class DummyTimestampLogitProcessor(LogitsProcessor):
         """This processor fakes the correct timestamps tokens pattern [TOK_1] [TOK_2] ... [TOK_N] [TIME_STAMP_TOK_1] [TIME_STAMP_TOK_2] [TOK_N+1] ..."""
@@ -150,7 +150,7 @@ if is_torchaudio_available():
 if is_flax_available():
     import jax.numpy as jnp
 
-    from transformers.modeling_flax_pytorch_utils import (
+    from transformers_openvla_oft.modeling_flax_pytorch_utils import (
         convert_pytorch_state_dict_to_flax,
         load_flax_weights_in_pytorch_model,
     )
@@ -1534,10 +1534,10 @@ class WhisperModelTest(ModelTesterMixin, GenerationTesterMixin, PipelineTesterMi
 @require_torchaudio
 class WhisperModelIntegrationTests(unittest.TestCase):
     def setUp(self):
-        self._unpatched_generation_mixin_generate = transformers.GenerationMixin.generate
+        self._unpatched_generation_mixin_generate = transformers_openvla_oft.GenerationMixin.generate
 
     def tearDown(self):
-        transformers.GenerationMixin.generate = self._unpatched_generation_mixin_generate
+        transformers_openvla_oft.GenerationMixin.generate = self._unpatched_generation_mixin_generate
 
     @cached_property
     def default_processor(self):
@@ -1558,7 +1558,7 @@ class WhisperModelIntegrationTests(unittest.TestCase):
                 check_args_fn(*args, **kwargs)
             return test._unpatched_generation_mixin_generate(self, *args, **kwargs)
 
-        transformers.GenerationMixin.generate = generate
+        transformers_openvla_oft.GenerationMixin.generate = generate
 
     @slow
     def test_tiny_logits_librispeech(self):

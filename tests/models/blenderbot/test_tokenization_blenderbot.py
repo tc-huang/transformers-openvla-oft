@@ -16,9 +16,9 @@
 """Tests for Blenderbot Tokenizers, including common tests for BlenderbotSmallTokenizer."""
 import unittest
 
-from transformers import BlenderbotTokenizer, BlenderbotTokenizerFast
-from transformers.testing_utils import require_jinja
-from transformers.utils import cached_property
+from transformers_openvla_oft import BlenderbotTokenizer, BlenderbotTokenizerFast
+from transformers_openvla_oft.testing_utils import require_jinja
+from transformers_openvla_oft.utils import cached_property
 
 
 class Blenderbot3BTokenizerTests(unittest.TestCase):

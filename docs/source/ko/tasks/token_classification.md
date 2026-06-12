@@ -107,7 +107,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티에
 다음으로 `tokens` 필드를 전처리하기 위해 DistilBERT 토크나이저를 가져옵니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -163,14 +163,14 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티에
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DataCollatorForTokenClassification
+>>> from transformers_openvla_oft import DataCollatorForTokenClassification
 
 >>> data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DataCollatorForTokenClassification
+>>> from transformers_openvla_oft import DataCollatorForTokenClassification
 
 >>> data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer, return_tensors="tf")
 ```
@@ -267,7 +267,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티에
 이제 모델을 훈련시킬 준비가 되었습니다! [`AutoModelForSequenceClassification`]로 DistilBERT를 가져오고 예상되는 레이블 수와 레이블 매핑을 지정하세요:
 
 ```py
->>> from transformers import AutoModelForTokenClassification, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForTokenClassification, TrainingArguments, Trainer
 
 >>> model = AutoModelForTokenClassification.from_pretrained(
 ...     "distilbert/distilbert-base-uncased", num_labels=13, id2label=id2label, label2id=label2id
@@ -307,7 +307,7 @@ Hugging Face 계정에 로그인하여 모델을 업로드하고 커뮤니티에
 >>> trainer.train()
 ```
 
-훈련이 완료되면, [`~transformers.Trainer.push_to_hub`] 메소드를 사용하여 모델을 허브에 공유할 수 있습니다.
+훈련이 완료되면, [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드를 사용하여 모델을 허브에 공유할 수 있습니다.
 
 ```py
 >>> trainer.push_to_hub()
@@ -322,7 +322,7 @@ Keras를 사용하여 모델을 파인 튜닝하는 방법에 익숙하지 않�
 TensorFlow에서 모델을 파인 튜닝하려면, 먼저 옵티마이저 함수와 학습률 스케쥴, 그리고 일부 훈련 하이퍼파라미터를 설정해야 합니다:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_train_epochs = 3
@@ -338,14 +338,14 @@ TensorFlow에서 모델을 파인 튜닝하려면, 먼저 옵티마이저 함수
 그런 다음 [`TFAutoModelForSequenceClassification`]을 사용하여 DistilBERT를 가져오고, 예상되는 레이블 수와 레이블 매핑을 지정합니다:
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained(
 ...     "distilbert/distilbert-base-uncased", num_labels=13, id2label=id2label, label2id=label2id
 ... )
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`]을 사용하여 데이터 세트를 `tf.data.Dataset` 형식으로 변환합니다:
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]을 사용하여 데이터 세트를 `tf.data.Dataset` 형식으로 변환합니다:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -373,18 +373,18 @@ TensorFlow에서 모델을 파인 튜닝하려면, 먼저 옵티마이저 함수
 
 훈련을 시작하기 전에 설정해야할 마지막 두 가지는 예측에서 seqeval 점수를 계산하고, 모델을 허브에 업로드할 방법을 제공하는 것입니다. 모두 [Keras callbacks](../main_classes/keras_callbacks)를 사용하여 수행됩니다.
 
-[`~transformers.KerasMetricCallback`]에 `compute_metrics` 함수를 전달하세요:
+[`~transformers_openvla_oft.KerasMetricCallback`]에 `compute_metrics` 함수를 전달하세요:
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_validation_set)
 ```
 
-[`~transformers.PushToHubCallback`]에서 모델과 토크나이저를 업로드할 위치를 지정합니다:
+[`~transformers_openvla_oft.PushToHubCallback`]에서 모델과 토크나이저를 업로드할 위치를 지정합니다:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="my_awesome_wnut_model",
@@ -429,7 +429,7 @@ TensorFlow에서 모델을 파인 튜닝하려면, 먼저 옵티마이저 함수
 파인 튜닝된 모델로 추론을 시도하는 가장 간단한 방법은 [`pipeline`]를 사용하는 것입니다. 모델로 NER의 `pipeline`을 인스턴스화하고, 텍스트를 전달해보세요:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline("ner", model="stevhliu/my_awesome_wnut_model")
 >>> classifier(text)
@@ -472,7 +472,7 @@ TensorFlow에서 모델을 파인 튜닝하려면, 먼저 옵티마이저 함수
 텍스트를 토큰화하고 PyTorch 텐서를 반환합니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_wnut_model")
 >>> inputs = tokenizer(text, return_tensors="pt")
@@ -481,7 +481,7 @@ TensorFlow에서 모델을 파인 튜닝하려면, 먼저 옵티마이저 함수
 입력을 모델에 전달하고 `logits`을 반환합니다:
 
 ```py
->>> from transformers import AutoModelForTokenClassification
+>>> from transformers_openvla_oft import AutoModelForTokenClassification
 
 >>> model = AutoModelForTokenClassification.from_pretrained("stevhliu/my_awesome_wnut_model")
 >>> with torch.no_grad():
@@ -517,7 +517,7 @@ TensorFlow에서 모델을 파인 튜닝하려면, 먼저 옵티마이저 함수
 텍스트를 토큰화하고 TensorFlow 텐서를 반환합니다:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_wnut_model")
 >>> inputs = tokenizer(text, return_tensors="tf")
@@ -526,7 +526,7 @@ TensorFlow에서 모델을 파인 튜닝하려면, 먼저 옵티마이저 함수
 입력값을 모델에 전달하고 `logits`을 반환합니다:
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained("stevhliu/my_awesome_wnut_model")
 >>> logits = model(**inputs).logits

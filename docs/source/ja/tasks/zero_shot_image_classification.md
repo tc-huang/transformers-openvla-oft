@@ -48,7 +48,7 @@ pip install -q transformers
 [Hugging Face Hub のチェックポイント](https://huggingface.co/models?pipeline_tag=zero-shot-image-classification&sort=downloads) からパイプラインをインスタンス化します。
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> checkpoint = "openai/clip-vit-large-patch14"
 >>> detector = pipeline(model=checkpoint, task="zero-shot-image-classification")
@@ -92,7 +92,7 @@ pip install -q transformers
 ここでは、前と同じチェックポイントを使用します。
 
 ```py
->>> from transformers import AutoProcessor, AutoModelForZeroShotImageClassification
+>>> from transformers_openvla_oft import AutoProcessor, AutoModelForZeroShotImageClassification
 
 >>> model = AutoModelForZeroShotImageClassification.from_pretrained(checkpoint)
 >>> processor = AutoProcessor.from_pretrained(checkpoint)

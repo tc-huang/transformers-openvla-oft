@@ -20,8 +20,8 @@ from os.path import dirname
 from parameterized import parameterized
 
 from tests.trainer.test_trainer import TrainerIntegrationCommon  # noqa
-from transformers import is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import is_torch_available
+from transformers_openvla_oft.testing_utils import (
     TestCasePlus,
     execute_subprocess_async,
     get_gpu_count,
@@ -30,7 +30,7 @@ from transformers.testing_utils import (
     require_torch_gpu,
     slow,
 )
-from transformers.trainer_utils import set_seed
+from transformers_openvla_oft.trainer_utils import set_seed
 
 
 if is_torch_available():

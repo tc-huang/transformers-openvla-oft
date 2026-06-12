@@ -17,8 +17,8 @@ import unittest
 
 from parameterized import parameterized
 
-from transformers import GPTBigCodeConfig, is_torch_available
-from transformers.testing_utils import require_torch, slow, torch_device
+from transformers_openvla_oft import GPTBigCodeConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import require_torch, slow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -29,15 +29,15 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         GPT2TokenizerFast,
         GPTBigCodeForCausalLM,
         GPTBigCodeForSequenceClassification,
         GPTBigCodeForTokenClassification,
         GPTBigCodeModel,
     )
-    from transformers.models.gpt_bigcode.modeling_gpt_bigcode import GPTBigCodeAttention
-    from transformers.pytorch_utils import is_torch_greater_or_equal_than_1_12
+    from transformers_openvla_oft.models.gpt_bigcode.modeling_gpt_bigcode import GPTBigCodeAttention
+    from transformers_openvla_oft.pytorch_utils import is_torch_greater_or_equal_than_1_12
 else:
     is_torch_greater_or_equal_than_1_12 = False
 

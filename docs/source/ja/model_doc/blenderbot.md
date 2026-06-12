@@ -56,7 +56,7 @@ Blender チャットボット モデルは、[Recipes for building an open-domai
 モデルの使用例を次に示します。
 
 ```python
->>> from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
+>>> from transformers_openvla_oft import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 
 >>> mname = "facebook/blenderbot-400M-distill"
 >>> model = BlenderbotForConditionalGeneration.from_pretrained(mname)
@@ -90,14 +90,14 @@ Blender チャットボット モデルは、[Recipes for building an open-domai
 
 ## BlenderbotModel
 
-*forward* および *generate* の引数については、`transformers.BartModel`を参照してください。
+*forward* および *generate* の引数については、`transformers_openvla_oft.BartModel`を参照してください。
 
 [[autodoc]] BlenderbotModel
     - forward
 
 ## BlenderbotForConditionalGeneration
 
-*forward* と *generate* の引数については、[`~transformers.BartForConditionalGeneration`] を参照してください。
+*forward* と *generate* の引数については、[`~transformers_openvla_oft.BartForConditionalGeneration`] を参照してください。
 
 [[autodoc]] BlenderbotForConditionalGeneration
     - forward

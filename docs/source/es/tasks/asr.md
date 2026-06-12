@@ -104,7 +104,7 @@ Hay dos campos:
 El siguiente paso es cargar un procesador Wav2Vec2 para procesar la señal de audio:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base")
 ```
@@ -235,7 +235,7 @@ Si no tienes experiencia haciéndole fine-tuning a un modelo con el [`Trainer`],
 ¡Ya puedes empezar a entrenar tu modelo! Para ello, carga Wav2Vec2 con [`AutoModelForCTC`]. Especifica la reducción que quieres aplicar con el parámetro `ctc_loss_reduction`. A menudo, es mejor usar el promedio en lugar de la sumatoria que se hace por defecto.
 
 ```py
->>> from transformers import AutoModelForCTC, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForCTC, TrainingArguments, Trainer
 
 >>> model = AutoModelForCTC.from_pretrained(
 ...     "facebook/wav2vec2-base",
@@ -284,7 +284,7 @@ En este punto, solo quedan tres pasos:
 >>> trainer.train()
 ```
 
-Una vez que el entrenamiento haya sido completado, comparte tu modelo en el Hub con el método [`~transformers.Trainer.push_to_hub`] para que todo el mundo pueda usar tu modelo:
+Una vez que el entrenamiento haya sido completado, comparte tu modelo en el Hub con el método [`~transformers_openvla_oft.Trainer.push_to_hub`] para que todo el mundo pueda usar tu modelo:
 
 ```py
 >>> trainer.push_to_hub()
@@ -316,7 +316,7 @@ Carga el archivo de audio sobre el cual quieras correr la inferencia. ¡Recuerda
 La manera más simple de probar tu modelo para hacer inferencia es usarlo en un [`pipeline`]. Puedes instanciar un `pipeline` para reconocimiento automático del habla con tu modelo y pasarle tu archivo de audio:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline("automatic-speech-recognition", model="stevhliu/my_awesome_asr_minds_model")
 >>> transcriber(audio_file)
@@ -336,7 +336,7 @@ También puedes replicar de forma manual los resultados del `pipeline` si lo des
 Carga un procesador para preprocesar el archivo de audio y la transcripción y devuelve el `input` como un tensor de PyTorch:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("stevhliu/my_awesome_asr_mind_model")
 >>> inputs = processor(dataset[0]["audio"]["array"], sampling_rate=sampling_rate, return_tensors="pt")
@@ -345,7 +345,7 @@ Carga un procesador para preprocesar el archivo de audio y la transcripción y d
 Pásale tus entradas al modelo y devuelve los logits:
 
 ```py
->>> from transformers import AutoModelForCTC
+>>> from transformers_openvla_oft import AutoModelForCTC
 
 >>> model = AutoModelForCTC.from_pretrained("stevhliu/my_awesome_asr_mind_model")
 >>> with torch.no_grad():

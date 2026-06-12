@@ -24,8 +24,8 @@ import unittest
 
 import numpy as np
 
-from transformers import is_tf_available, is_torch_available, is_vision_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import is_tf_available, is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import (
     is_pt_tf_cross_test,
     require_tf,
     require_torch,
@@ -33,7 +33,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils.generic import ModelOutput
+from transformers_openvla_oft.utils.generic import ModelOutput
 
 from ...test_modeling_tf_common import floats_tensor, ids_tensor
 from ..gpt2.test_modeling_tf_gpt2 import TFGPT2ModelTester
@@ -43,7 +43,7 @@ from ..vit.test_modeling_tf_vit import TFViTModelTester
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoConfig,
         AutoImageProcessor,
         AutoTokenizer,
@@ -54,17 +54,17 @@ if is_tf_available():
         TFViTModel,
         VisionEncoderDecoderConfig,
     )
-    from transformers.modeling_tf_outputs import TFBaseModelOutput
+    from transformers_openvla_oft.modeling_tf_outputs import TFBaseModelOutput
 
 if is_torch_available():
     import torch
 
-    from transformers import GPT2LMHeadModel, VisionEncoderDecoderModel, ViTModel
+    from transformers_openvla_oft import GPT2LMHeadModel, VisionEncoderDecoderModel, ViTModel
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import ViTImageProcessor
+    from transformers_openvla_oft import ViTImageProcessor
 
 
 @require_tf

@@ -30,7 +30,7 @@ La seguente documentazione riflette il formato dei comandi di **transformers-cli
 Puoi convertire qualunque checkpoint Tensorflow di BERT (in particolare 
 [i modeli pre-allenati rilasciati da Google](https://github.com/google-research/bert#pre-trained-models)) 
 in un file di salvataggio Pytorch utilizzando lo script 
-[convert_bert_original_tf_checkpoint_to_pytorch.py](https://github.com/huggingface/transformers/tree/main/src/transformers/models/bert/convert_bert_original_tf_checkpoint_to_pytorch.py).
+[convert_bert_original_tf_checkpoint_to_pytorch.py](https://github.com/huggingface/transformers/tree/main/src/transformers_openvla_oft/models/bert/convert_bert_original_tf_checkpoint_to_pytorch.py).
 
 Questo CLI prende come input un checkpoint di Tensorflow (tre files che iniziano con `bert_model.ckpt`) ed il relativo 
 file di configurazione (`bert_config.json`), crea un modello Pytorch per questa configurazione, carica i pesi dal
@@ -60,7 +60,7 @@ Puoi scaricare i modelli pre-allenati di Google per la conversione [qua](https:/
 ## ALBERT
 
 Per il modello ALBERT, converti checkpoint di Tensoflow in Pytorch utilizzando lo script 
-[convert_albert_original_tf_checkpoint_to_pytorch.py](https://github.com/huggingface/transformers/tree/main/src/transformers/models/albert/convert_albert_original_tf_checkpoint_to_pytorch.py).
+[convert_albert_original_tf_checkpoint_to_pytorch.py](https://github.com/huggingface/transformers/tree/main/src/transformers_openvla_oft/models/albert/convert_albert_original_tf_checkpoint_to_pytorch.py).
 
 Il CLI prende come input un checkpoint di Tensorflow (tre files che iniziano con `model.ckpt-best`) e i relativi file di 
 configurazione (`albert_config.json`), dopodichè crea e salva un modello Pytorch. Per lanciare questa conversione 

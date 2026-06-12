@@ -77,10 +77,10 @@ pip install transformers --upgrade
 
 ```py
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 # 최소 버전의 Transformers가 설치되어 있지 않다면 오류가 발생합니다.
-from transformers.utils import check_min_version
+from transformers_openvla_oft.utils import check_min_version
 
 check_min_version("4.21.0")
 
@@ -112,7 +112,7 @@ XLA 활성화 함수(`xla_generate()`와 같은)를 처음 실행할 때 내부�
 
 ```py
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2", padding_side="left", pad_token="</s>")
 model = TFAutoModelForCausalLM.from_pretrained("openai-community/gpt2")
@@ -133,7 +133,7 @@ print(f"Generated -- {decoded_text}")
 ```py
 import time
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2", padding_side="left", pad_token="</s>")
 model = TFAutoModelForCausalLM.from_pretrained("openai-community/gpt2")

@@ -5,7 +5,7 @@ from unittest.mock import patch
 
 import run_glue_with_pabee
 
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 logging.basicConfig(level=logging.DEBUG)

@@ -104,7 +104,7 @@ pip install -q datasets transformers evaluate
 次のステップでは、SegFormer 画像プロセッサをロードして、モデルの画像と注釈を準備します。このデータセットのような一部のデータセットは、バックグラウンド クラスとしてゼロインデックスを使用します。ただし、実際には背景クラスは 150 個のクラスに含まれていないため、`reduce_labels=True`を設定してすべてのラベルから 1 つを引く必要があります。ゼロインデックスは `255` に置き換えられるため、SegFormer の損失関数によって無視されます。
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> checkpoint = "nvidia/mit-b0"
 >>> image_processor = AutoImageProcessor.from_pretrained(checkpoint, reduce_labels=True)
@@ -304,7 +304,7 @@ pip install -q datasets transformers evaluate
 これでモデルのトレーニングを開始する準備が整いました。 [`AutoModelForSemanticSegmentation`] を使用して SegFormer をロードし、ラベル ID とラベル クラス間のマッピングをモデルに渡します。
 
 ```py
->>> from transformers import AutoModelForSemanticSegmentation, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForSemanticSegmentation, TrainingArguments, Trainer
 
 >>> model = AutoModelForSemanticSegmentation.from_pretrained(checkpoint, id2label=id2label, label2id=label2id)
 ```
@@ -344,7 +344,7 @@ pip install -q datasets transformers evaluate
 >>> trainer.train()
 ```
 
-トレーニングが完了したら、 [`~transformers.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
+トレーニングが完了したら、 [`~transformers_openvla_oft.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
 
 ```py
 >>> trainer.push_to_hub()
@@ -371,7 +371,7 @@ TensorFlow でモデルを微調整するには、次の手順に従います。
 まず、ハイパーパラメーター、オプティマイザー、学習率スケジュールを定義します。
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 2
 >>> num_epochs = 50
@@ -391,7 +391,7 @@ TensorFlow でモデルを微調整するには、次の手順に従います。
 オプティマイザ。 Transformers モデルにはすべてデフォルトのタスク関連の損失関数があるため、次の場合を除き、損失関数を指定する必要はないことに注意してください。
 
 ```py
->>> from transformers import TFAutoModelForSemanticSegmentation
+>>> from transformers_openvla_oft import TFAutoModelForSemanticSegmentation
 
 >>> model = TFAutoModelForSemanticSegmentation.from_pretrained(
 ...     checkpoint,
@@ -404,7 +404,7 @@ TensorFlow でモデルを微調整するには、次の手順に従います。
 [`~datasets.Dataset.to_tf_dataset`] と [`DefaultDataCollat​​or`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 
@@ -428,7 +428,7 @@ TensorFlow でモデルを微調整するには、次の手順に従います。
 そして [`PushToHubCallback`] を使用してモデルをアップロードします。
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback, PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback, PushToHubCallback
 
 >>> metric_callback = KerasMetricCallback(
 ...     metric_fn=compute_metrics, eval_dataset=tf_eval_dataset, batch_size=batch_size, label_cols=["labels"]
@@ -477,7 +477,7 @@ TensorFlow でモデルを微調整するには、次の手順に従います。
 推論用に微調整されたモデルを試す最も簡単な方法は、それを [`pipeline`] で使用することです。モデルを使用して画像セグメンテーション用の `pipeline`をインスタンス化し、それに画像を渡します。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> segmenter = pipeline("image-segmentation", model="my_awesome_seg_model")
 >>> segmenter(image)
@@ -548,7 +548,7 @@ TensorFlow でモデルを微調整するには、次の手順に従います。
 画像プロセッサをロードして画像を前処理し、入力を TensorFlow テンソルとして返します。
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("MariaK/scene_segmentation")
 >>> inputs = image_processor(image, return_tensors="tf")
@@ -557,7 +557,7 @@ TensorFlow でモデルを微調整するには、次の手順に従います。
 入力をモデルに渡し、`logits`を返します。
 
 ```py
->>> from transformers import TFAutoModelForSemanticSegmentation
+>>> from transformers_openvla_oft import TFAutoModelForSemanticSegmentation
 
 >>> model = TFAutoModelForSemanticSegmentation.from_pretrained("MariaK/scene_segmentation")
 >>> logits = model(**inputs).logits

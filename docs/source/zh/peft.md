@@ -56,7 +56,7 @@ Transformers原生支持一些PEFT方法，这意味着你可以加载本地存�
 2. 将其传递给[`AutoModelForCausalLM`]类
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 peft_model_id = "ybelkada/opt-350m-lora"
 model = AutoModelForCausalLM.from_pretrained(peft_model_id)
@@ -72,7 +72,7 @@ model = AutoModelForCausalLM.from_pretrained(peft_model_id)
 您也可以通过`load_adapter`方法来加载 PEFT adapter。
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model_id = "facebook/opt-350m"
 peft_model_id = "ybelkada/opt-350m-lora"
@@ -86,7 +86,7 @@ model.load_adapter(peft_model_id)
 `bitsandbytes`集成支持8bit和4bit精度数据类型，这对于加载大模型非常有用，因为它可以节省内存（请参阅`bitsandbytes`[指南](./quantization#bitsandbytes-integration)以了解更多信息）。要有效地将模型分配到您的硬件，请在[`~PreTrainedModel.from_pretrained`]中添加`load_in_8bit`或`load_in_4bit`参数，并将`device_map="auto"`设置为：
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 peft_model_id = "ybelkada/opt-350m-lora"
 model = AutoModelForCausalLM.from_pretrained(peft_model_id, device_map="auto", load_in_8bit=True)
@@ -97,7 +97,7 @@ model = AutoModelForCausalLM.from_pretrained(peft_model_id, device_map="auto", l
 你可以使用[`~peft.PeftModel.add_adapter`]方法为一个已有adapter的模型添加一个新的adapter，只要新adapter的类型与当前adapter相同即可。例如，如果你有一个附加到模型上的LoRA adapter：
 
 ```py
-from transformers import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
 from peft import PeftConfig
 
 model_id = "facebook/opt-350m"
@@ -137,7 +137,7 @@ print(tokenizer.decode(output_enabled[0], skip_special_tokens=True))
 
 
 ```py
-from transformers import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, OPTForCausalLM, AutoTokenizer
 from peft import PeftConfig
 
 model_id = "facebook/opt-350m"

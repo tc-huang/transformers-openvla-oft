@@ -233,7 +233,7 @@ training_args = TrainingArguments(per_device_train_batch_size=4, optim="adamw_bn
 ```py
 import bitsandbytes as bnb
 from torch import nn
-from transformers.trainer_pt_utils import get_parameter_names
+from transformers_openvla_oft.trainer_pt_utils import get_parameter_names
 
 training_args = TrainingArguments(per_device_train_batch_size=4, **default_args)
 

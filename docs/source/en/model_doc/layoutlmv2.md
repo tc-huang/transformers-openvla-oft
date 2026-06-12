@@ -104,19 +104,19 @@ image = Image.open(
 width, height = image.size
 ```
 
-However, this model includes a brand new [`~transformers.LayoutLMv2Processor`] which can be used to directly
+However, this model includes a brand new [`~transformers_openvla_oft.LayoutLMv2Processor`] which can be used to directly
 prepare data for the model (including applying OCR under the hood). More information can be found in the "Usage"
 section below.
 
-- Internally, [`~transformers.LayoutLMv2Model`] will send the `image` input through its visual backbone to
+- Internally, [`~transformers_openvla_oft.LayoutLMv2Model`] will send the `image` input through its visual backbone to
   obtain a lower-resolution feature map, whose shape is equal to the `image_feature_pool_shape` attribute of
-  [`~transformers.LayoutLMv2Config`]. This feature map is then flattened to obtain a sequence of image tokens. As
+  [`~transformers_openvla_oft.LayoutLMv2Config`]. This feature map is then flattened to obtain a sequence of image tokens. As
   the size of the feature map is 7x7 by default, one obtains 49 image tokens. These are then concatenated with the text
   tokens, and send through the Transformer encoder. This means that the last hidden states of the model will have a
   length of 512 + 49 = 561, if you pad the text tokens up to the max length. More generally, the last hidden states
   will have a shape of `seq_length` + `image_feature_pool_shape[0]` *
   `config.image_feature_pool_shape[1]`.
-- When calling [`~transformers.LayoutLMv2Model.from_pretrained`], a warning will be printed with a long list of
+- When calling [`~transformers_openvla_oft.LayoutLMv2Model.from_pretrained`], a warning will be printed with a long list of
   parameter names that are not initialized. This is not a problem, as these parameters are batch normalization
   statistics, which are going to have values when fine-tuning on a custom dataset.
 - If you want to train the model in a distributed environment, make sure to call [`synchronize_batch_norm`] on the
@@ -157,7 +157,7 @@ for a multi-modal model like LayoutLMv2. Note that you can still use both separa
 modality.
 
 ```python
-from transformers import LayoutLMv2ImageProcessor, LayoutLMv2TokenizerFast, LayoutLMv2Processor
+from transformers_openvla_oft import LayoutLMv2ImageProcessor, LayoutLMv2TokenizerFast, LayoutLMv2Processor
 
 image_processor = LayoutLMv2ImageProcessor()  # apply_ocr is set to True by default
 tokenizer = LayoutLMv2TokenizerFast.from_pretrained("microsoft/layoutlmv2-base-uncased")
@@ -188,7 +188,7 @@ This is the simplest case, in which the processor (actually the image processor)
 the words and normalized bounding boxes.
 
 ```python
-from transformers import LayoutLMv2Processor
+from transformers_openvla_oft import LayoutLMv2Processor
 from PIL import Image
 
 processor = LayoutLMv2Processor.from_pretrained("microsoft/layoutlmv2-base-uncased")
@@ -210,7 +210,7 @@ In case one wants to do OCR themselves, one can initialize the image processor w
 the processor.
 
 ```python
-from transformers import LayoutLMv2Processor
+from transformers_openvla_oft import LayoutLMv2Processor
 from PIL import Image
 
 processor = LayoutLMv2Processor.from_pretrained("microsoft/layoutlmv2-base-uncased", revision="no_ocr")
@@ -234,7 +234,7 @@ will only label the first wordpiece of a word, and label the remaining wordpiece
 initialize the tokenizer with `only_label_first_subword` set to `False`.
 
 ```python
-from transformers import LayoutLMv2Processor
+from transformers_openvla_oft import LayoutLMv2Processor
 from PIL import Image
 
 processor = LayoutLMv2Processor.from_pretrained("microsoft/layoutlmv2-base-uncased", revision="no_ocr")
@@ -256,7 +256,7 @@ For visual question answering tasks (such as DocVQA), you can provide a question
 processor will apply OCR on the image, and create [CLS] question tokens [SEP] word tokens [SEP].
 
 ```python
-from transformers import LayoutLMv2Processor
+from transformers_openvla_oft import LayoutLMv2Processor
 from PIL import Image
 
 processor = LayoutLMv2Processor.from_pretrained("microsoft/layoutlmv2-base-uncased")
@@ -276,7 +276,7 @@ For visual question answering tasks (such as DocVQA), you can provide a question
 perform OCR yourself, you can provide your own words and (normalized) bounding boxes to the processor.
 
 ```python
-from transformers import LayoutLMv2Processor
+from transformers_openvla_oft import LayoutLMv2Processor
 from PIL import Image
 
 processor = LayoutLMv2Processor.from_pretrained("microsoft/layoutlmv2-base-uncased", revision="no_ocr")

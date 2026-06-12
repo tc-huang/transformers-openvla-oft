@@ -16,9 +16,9 @@ import unittest
 
 import requests
 
-from transformers import MODEL_FOR_VISION_2_SEQ_MAPPING, TF_MODEL_FOR_VISION_2_SEQ_MAPPING, is_vision_available
-from transformers.pipelines import pipeline
-from transformers.testing_utils import (
+from transformers_openvla_oft import MODEL_FOR_VISION_2_SEQ_MAPPING, TF_MODEL_FOR_VISION_2_SEQ_MAPPING, is_vision_available
+from transformers_openvla_oft.pipelines import pipeline
+from transformers_openvla_oft.testing_utils import (
     is_pipeline_test,
     require_tf,
     require_torch,

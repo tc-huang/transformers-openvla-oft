@@ -47,7 +47,7 @@ There are 2 main ways to use SigLIP: either using the pipeline API, which abstra
 The pipeline allows to use the model in a few lines of code:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> from PIL import Image
 >>> import requests
 
@@ -72,7 +72,7 @@ If you want to do the pre- and postprocessing yourself, here's how to do that:
 ```python
 >>> from PIL import Image
 >>> import requests
->>> from transformers import AutoProcessor, AutoModel
+>>> from transformers_openvla_oft import AutoProcessor, AutoModel
 >>> import torch
 
 >>> model = AutoModel.from_pretrained("google/siglip-base-patch16-224")

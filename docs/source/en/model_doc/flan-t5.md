@@ -23,7 +23,7 @@ FLAN-T5 was released in the paper [Scaling Instruction-Finetuned Language Models
 One can directly use FLAN-T5 weights without finetuning the model:
 
 ```python
->>> from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-small")
 >>> tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-small")

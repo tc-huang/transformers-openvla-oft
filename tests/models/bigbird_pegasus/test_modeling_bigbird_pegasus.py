@@ -19,8 +19,8 @@ import copy
 import tempfile
 import unittest
 
-from transformers import BigBirdPegasusConfig, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import BigBirdPegasusConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     require_sentencepiece,
     require_tokenizers,
     require_torch,
@@ -38,7 +38,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         BigBirdPegasusForCausalLM,
         BigBirdPegasusForConditionalGeneration,
         BigBirdPegasusForQuestionAnswering,
@@ -46,7 +46,7 @@ if is_torch_available():
         BigBirdPegasusModel,
         PegasusTokenizer,
     )
-    from transformers.models.bigbird_pegasus.modeling_bigbird_pegasus import (
+    from transformers_openvla_oft.models.bigbird_pegasus.modeling_bigbird_pegasus import (
         BigBirdPegasusDecoder,
         BigBirdPegasusEncoder,
     )

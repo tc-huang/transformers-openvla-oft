@@ -76,7 +76,7 @@ Cada clase de alimento - o label - corresponde a un número; `79` indica una cos
 Carga el image processor de ViT para procesar la imagen en un tensor:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
 ```
@@ -108,7 +108,7 @@ Utiliza el método [`with_transform`](https://huggingface.co/docs/datasets/packa
 Utiliza [`DefaultDataCollator`] para crear un batch de ejemplos. A diferencia de otros data collators en 🤗 Transformers, el DefaultDataCollator no aplica un preprocesamiento adicional como el padding.
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
@@ -117,7 +117,7 @@ Utiliza [`DefaultDataCollator`] para crear un batch de ejemplos. A diferencia de
 Carga ViT con [`AutoModelForImageClassification`]. Especifica el número de labels, y pasa al modelo el mapping entre el número de label y la clase de label:
 
 ```py
->>> from transformers import AutoModelForImageClassification, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForImageClassification, TrainingArguments, Trainer
 
 >>> model = AutoModelForImageClassification.from_pretrained(
 ...     "google/vit-base-patch16-224-in21k",

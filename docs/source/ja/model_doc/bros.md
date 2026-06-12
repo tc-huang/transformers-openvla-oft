@@ -39,7 +39,7 @@ BROS は、明示的な視覚機能に依存せずに、FUNSD、SROIE、CORD、S
 
 ## Usage tips and examples
 
-- [`~transformers.BrosModel.forward`] には、`input_ids` と `bbox` (バウンディング ボックス) が必要です。各境界ボックスは、(x0、y0、x1、y1) 形式 (左上隅、右下隅) である必要があります。境界ボックスの取得は外部 OCR システムに依存します。 「x」座標はドキュメント画像の幅で正規化する必要があり、「y」座標はドキュメント画像の高さで正規化する必要があります。
+- [`~transformers_openvla_oft.BrosModel.forward`] には、`input_ids` と `bbox` (バウンディング ボックス) が必要です。各境界ボックスは、(x0、y0、x1、y1) 形式 (左上隅、右下隅) である必要があります。境界ボックスの取得は外部 OCR システムに依存します。 「x」座標はドキュメント画像の幅で正規化する必要があり、「y」座標はドキュメント画像の高さで正規化する必要があります。
 
 ```python
 def expand_and_normalize_bbox(bboxes, doc_width, doc_height):
@@ -50,7 +50,7 @@ def expand_and_normalize_bbox(bboxes, doc_width, doc_height):
     bboxes[:, [1, 3]] = bboxes[:, [1, 3]] / height
 ```
 
-- [`~transformers.BrosForTokenClassification.forward`、`~transformers.BrosSpadeEEForTokenClassification.forward`、`~transformers.BrosSpadeEEForTokenClassification.forward`] では、損失計算に `input_ids` と `bbox` だけでなく `box_first_token_mask` も必要です。これは、各ボックスの先頭以外のトークンを除外するためのマスクです。このマスクは、単語から `input_ids` を作成するときに境界ボックスの開始トークン インデックスを保存することで取得できます。次のコードで`box_first_token_mask`を作成できます。
+- [`~transformers_openvla_oft.BrosForTokenClassification.forward`、`~transformers_openvla_oft.BrosSpadeEEForTokenClassification.forward`、`~transformers_openvla_oft.BrosSpadeEEForTokenClassification.forward`] では、損失計算に `input_ids` と `bbox` だけでなく `box_first_token_mask` も必要です。これは、各ボックスの先頭以外のトークンを除外するためのマスクです。このマスクは、単語から `input_ids` を作成するときに境界ボックスの開始トークン インデックスを保存することで取得できます。次のコードで`box_first_token_mask`を作成できます。
 
 ```python
 def make_box_first_token_mask(bboxes, words, tokenizer, max_seq_length=512):

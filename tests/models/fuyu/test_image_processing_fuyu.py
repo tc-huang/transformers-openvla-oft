@@ -2,8 +2,8 @@ import unittest
 
 import numpy as np
 
-from transformers import is_torch_available, is_vision_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import (
     require_torch,
     require_torchvision,
     require_vision,
@@ -13,7 +13,7 @@ from transformers.testing_utils import (
 if is_torch_available() and is_vision_available():
     import torch
 
-    from transformers import FuyuImageProcessor
+    from transformers_openvla_oft import FuyuImageProcessor
 
 if is_vision_available():
     from PIL import Image

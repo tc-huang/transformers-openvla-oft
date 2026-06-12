@@ -73,7 +73,7 @@ para habilitar o treinamento distribuído!
 
 ```diff
 + from accelerate import Accelerator
-  from transformers import AdamW, AutoModelForSequenceClassification, get_scheduler
+  from transformers_openvla_oft import AdamW, AutoModelForSequenceClassification, get_scheduler
 
 + accelerator = Accelerator()
 

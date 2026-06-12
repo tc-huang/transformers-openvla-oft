@@ -44,7 +44,7 @@ performance, especially for generation, as well as removing the need to use `tru
 
 You can convert custom code checkpoints to full Transformers checkpoints using the `convert_custom_code_checkpoint.py` 
 script located in the
-[Falcon model directory](https://github.com/huggingface/transformers/tree/main/src/transformers/models/falcon)
+[Falcon model directory](https://github.com/huggingface/transformers/tree/main/src/transformers_openvla_oft/models/falcon)
 of the Transformers library. To use this script, simply call it with 
 `python convert_custom_code_checkpoint.py --checkpoint_dir my_model`. This will convert your checkpoint in-place, and
 you can immediately load it from the directory afterwards with e.g. `from_pretrained()`. If your model hasn't been

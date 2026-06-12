@@ -23,7 +23,7 @@ from typing import Callable, Optional
 
 import numpy as np
 
-from transformers import (
+from transformers_openvla_oft import (
     BatchEncoding,
     BertTokenizer,
     BertTokenizerFast,
@@ -33,8 +33,8 @@ from transformers import (
     TokenSpan,
     is_tokenizers_available,
 )
-from transformers.models.gpt2.tokenization_gpt2 import GPT2Tokenizer
-from transformers.testing_utils import CaptureStderr, require_flax, require_tf, require_tokenizers, require_torch, slow
+from transformers_openvla_oft.models.gpt2.tokenization_gpt2 import GPT2Tokenizer
+from transformers_openvla_oft.testing_utils import CaptureStderr, require_flax, require_tf, require_tokenizers, require_torch, slow
 
 
 if is_tokenizers_available():

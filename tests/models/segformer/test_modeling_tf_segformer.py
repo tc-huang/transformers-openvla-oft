@@ -20,9 +20,9 @@ import inspect
 import unittest
 from typing import List, Tuple
 
-from transformers import SegformerConfig
-from transformers.file_utils import is_tf_available, is_vision_available
-from transformers.testing_utils import require_tf, slow
+from transformers_openvla_oft import SegformerConfig
+from transformers_openvla_oft.file_utils import is_tf_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_tf, slow
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_tf_common import TFModelTesterMixin, floats_tensor, ids_tensor
@@ -33,12 +33,12 @@ if is_tf_available():
     import numpy as np
     import tensorflow as tf
 
-    from transformers import TFSegformerForImageClassification, TFSegformerForSemanticSegmentation, TFSegformerModel
+    from transformers_openvla_oft import TFSegformerForImageClassification, TFSegformerForSemanticSegmentation, TFSegformerModel
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import SegformerImageProcessor
+    from transformers_openvla_oft import SegformerImageProcessor
 
 
 class TFSegformerConfigTester(ConfigTester):
@@ -378,7 +378,7 @@ class TFSegformerModelTest(TFModelTesterMixin, PipelineTesterMixin, unittest.Tes
 
             if model_class.__name__ == "TFSegformerForSemanticSegmentation":
                 # Semantic segmentation loss is computed similarly as
-                # https://github.com/huggingface/transformers/blob/main/src/transformers/modeling_tf_utils.py#L210.
+                # https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/modeling_tf_utils.py#L210.
                 self.assertEqual(loss.shape, (1,))
             else:
                 self.assertEqual(loss.shape, [loss_size])

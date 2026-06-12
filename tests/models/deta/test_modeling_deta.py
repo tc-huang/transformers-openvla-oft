@@ -19,9 +19,9 @@ import inspect
 import math
 import unittest
 
-from transformers import DetaConfig, ResNetConfig, is_torch_available, is_torchvision_available, is_vision_available
-from transformers.file_utils import cached_property
-from transformers.testing_utils import require_torchvision, require_vision, slow, torch_device
+from transformers_openvla_oft import DetaConfig, ResNetConfig, is_torch_available, is_torchvision_available, is_vision_available
+from transformers_openvla_oft.file_utils import cached_property
+from transformers_openvla_oft.testing_utils import require_torchvision, require_vision, slow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -33,13 +33,13 @@ if is_torch_available():
     import torch
 
 if is_torchvision_available():
-    from transformers import DetaForObjectDetection, DetaModel
+    from transformers_openvla_oft import DetaForObjectDetection, DetaModel
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import AutoImageProcessor
+    from transformers_openvla_oft import AutoImageProcessor
 
 
 class DetaModelTester:

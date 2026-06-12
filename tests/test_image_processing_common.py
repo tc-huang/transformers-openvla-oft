@@ -19,10 +19,10 @@ import os
 import pathlib
 import tempfile
 
-from transformers import BatchFeature
-from transformers.image_utils import AnnotationFormat, AnnotionFormat
-from transformers.testing_utils import check_json_file_has_correct_format, require_torch, require_vision
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft import BatchFeature
+from transformers_openvla_oft.image_utils import AnnotationFormat, AnnotionFormat
+from transformers_openvla_oft.testing_utils import check_json_file_has_correct_format, require_torch, require_vision
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 
 if is_torch_available():

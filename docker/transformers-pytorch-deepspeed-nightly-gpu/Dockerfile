@@ -57,7 +57,7 @@ RUN python3 -m pip uninstall -y deepspeed
 #RUN cd TensorRT/py && python3 setup.py install --fx-only
 
 # When installing in editable mode, `transformers` is not recognized as a package.
-# this line must be added in order for python to be aware of transformers.
+# this line must be added in order for python to be aware of transformers_openvla_oft.
 RUN cd transformers && python3 setup.py develop
 
 # Disable for now as deepspeed is not installed above. To be enabled once the issue is fixed.

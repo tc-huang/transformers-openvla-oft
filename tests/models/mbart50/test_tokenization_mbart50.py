@@ -16,8 +16,8 @@ import shutil
 import tempfile
 import unittest
 
-from transformers import SPIECE_UNDERLINE, BatchEncoding, MBart50Tokenizer, MBart50TokenizerFast, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import SPIECE_UNDERLINE, BatchEncoding, MBart50Tokenizer, MBart50TokenizerFast, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     get_tests_dir,
     nested_simplify,
     require_sentencepiece,
@@ -32,7 +32,7 @@ from ...test_tokenization_common import TokenizerTesterMixin
 SAMPLE_VOCAB = get_tests_dir("fixtures/test_sentencepiece.model")
 
 if is_torch_available():
-    from transformers.models.mbart.modeling_mbart import shift_tokens_right
+    from transformers_openvla_oft.models.mbart.modeling_mbart import shift_tokens_right
 
 EN_CODE = 250004
 RO_CODE = 250020

@@ -50,7 +50,7 @@ OWL-ViTによる推論を試す最も簡単な方法は、OWL-ViTを[`pipeline`]
 [Hugging Face Hub のチェックポイント](https://huggingface.co/models?other=owlvit) からのゼロショット オブジェクト検出の場合:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> checkpoint = "google/owlvit-base-patch32"
 >>> detector = pipeline(model=checkpoint, task="zero-shot-object-detection")
@@ -136,7 +136,7 @@ OWL-ViTによる推論を試す最も簡単な方法は、OWL-ViTを[`pipeline`]
 ここでは、前と同じチェックポイントを使用します。
 
 ```py
->>> from transformers import AutoProcessor, AutoModelForZeroShotObjectDetection
+>>> from transformers_openvla_oft import AutoProcessor, AutoModelForZeroShotObjectDetection
 
 >>> model = AutoModelForZeroShotObjectDetection.from_pretrained(checkpoint)
 >>> processor = AutoProcessor.from_pretrained(checkpoint)

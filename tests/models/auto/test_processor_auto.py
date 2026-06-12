@@ -24,8 +24,8 @@ from shutil import copyfile
 from huggingface_hub import HfFolder, Repository, create_repo, delete_repo
 from requests.exceptions import HTTPError
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     CONFIG_MAPPING,
     FEATURE_EXTRACTOR_MAPPING,
     PROCESSOR_MAPPING,
@@ -40,9 +40,9 @@ from transformers import (
     Wav2Vec2FeatureExtractor,
     Wav2Vec2Processor,
 )
-from transformers.testing_utils import TOKEN, USER, get_tests_dir, is_staging_test
-from transformers.tokenization_utils import TOKENIZER_CONFIG_FILE
-from transformers.utils import FEATURE_EXTRACTOR_NAME, PROCESSOR_NAME, is_tokenizers_available
+from transformers_openvla_oft.testing_utils import TOKEN, USER, get_tests_dir, is_staging_test
+from transformers_openvla_oft.tokenization_utils import TOKENIZER_CONFIG_FILE
+from transformers_openvla_oft.utils import FEATURE_EXTRACTOR_NAME, PROCESSOR_NAME, is_tokenizers_available
 
 
 sys.path.append(str(Path(__file__).parent.parent.parent.parent / "utils"))
@@ -62,7 +62,7 @@ class AutoFeatureExtractorTest(unittest.TestCase):
     vocab_tokens = ["[UNK]", "[CLS]", "[SEP]", "[PAD]", "[MASK]", "bla", "blou"]
 
     def setUp(self):
-        transformers.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
+        transformers_openvla_oft.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
 
     def test_processor_from_model_shortcut(self):
         processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base-960h")

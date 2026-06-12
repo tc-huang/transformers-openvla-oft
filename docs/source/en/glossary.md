@@ -32,7 +32,7 @@ This argument indicates to the model which tokens should be attended to, and whi
 For example, consider these two sequences:
 
 ```python
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -210,7 +210,7 @@ Each tokenizer works differently but the underlying mechanism remains the same. 
 tokenizer, which is a [WordPiece](https://arxiv.org/pdf/1609.08144.pdf) tokenizer:
 
 ```python
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -465,7 +465,7 @@ We can use our tokenizer to automatically generate such a sentence by passing th
 arguments (and not a list, like before) like this:
 
 ```python
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-cased")
 >>> sequence_a = "HuggingFace is based in NYC"

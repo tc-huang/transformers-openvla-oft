@@ -29,7 +29,7 @@ from torch.utils.data import BatchSampler, DataLoader, RandomSampler
 from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm
 
-from transformers import get_linear_schedule_with_warmup
+from transformers_openvla_oft import get_linear_schedule_with_warmup
 from utils import logger
 
 

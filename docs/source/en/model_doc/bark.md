@@ -37,7 +37,7 @@ Bark can be optimized with just a few extra lines of code, which **significantly
 You can speed up inference and reduce memory footprint by 50% simply by loading the model in half-precision.
 
 ```python
-from transformers import BarkModel
+from transformers_openvla_oft import BarkModel
 import torch
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -108,7 +108,7 @@ At batch size 8, on an NVIDIA A100, Flash Attention 2 is also 10% faster than Be
 You can combine optimization techniques, and use CPU offload, half-precision and Flash Attention 2 (or 🤗 Better Transformer) all at once.
 
 ```python
-from transformers import BarkModel
+from transformers_openvla_oft import BarkModel
 import torch
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -128,7 +128,7 @@ Suno offers a library of voice presets in a number of languages [here](https://s
 These presets are also uploaded in the hub [here](https://huggingface.co/suno/bark-small/tree/main/speaker_embeddings) or [here](https://huggingface.co/suno/bark/tree/main/speaker_embeddings).
 
 ```python
->>> from transformers import AutoProcessor, BarkModel
+>>> from transformers_openvla_oft import AutoProcessor, BarkModel
 
 >>> processor = AutoProcessor.from_pretrained("suno/bark")
 >>> model = BarkModel.from_pretrained("suno/bark")

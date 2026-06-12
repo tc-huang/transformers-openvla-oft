@@ -22,7 +22,7 @@
 
 
 # this script needs to be run from the top level of the transformers repo
-if [ ! -d "src/transformers" ]; then
+if [ ! -d "src/transformers_openvla_oft" ]; then
     echo "Error: This script needs to be run from the top of the transformers repo"
     exit 1
 fi

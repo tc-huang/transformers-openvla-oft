@@ -29,7 +29,7 @@ rendered properly in your Markdown viewer.
 この例では、ResNetクラスのいくつかの引数を取得し、調整したいかもしれないとします。異なる設定は、異なるタイプのResNetを提供します。その後、これらの引数を確認した後、それらの引数を単に格納します。
 
 ```python
-from transformers import PretrainedConfig
+from transformers_openvla_oft import PretrainedConfig
 from typing import List
 
 
@@ -104,7 +104,7 @@ ResNet の設定ができたので、モデルを書き始めることができ�
 前述したように、この例をシンプルに保つために、モデルの緩いラッパーのみを書きます。このクラスを書く前に行う必要がある唯一のことは、ブロックタイプと実際のブロッククラスの間のマップです。その後、すべてを `ResNet` クラスに渡して設定からモデルを定義します：
 
 ```py
-from transformers import PreTrainedModel
+from transformers_openvla_oft import PreTrainedModel
 from timm.models.resnet import BasicBlock, Bottleneck, ResNet
 from .configuration_resnet import ResnetConfig
 
@@ -298,7 +298,7 @@ resnet50d.push_to_hub("custom-resnet50d")
 
 
 ```py
-from transformers import AutoModelForImageClassification
+from transformers_openvla_oft import AutoModelForImageClassification
 
 model = AutoModelForImageClassification.from_pretrained("sgugger/custom-resnet50d", trust_remote_code=True)
 ```
@@ -325,7 +325,7 @@ model = AutoModelForImageClassification.from_pretrained(
 次のようにそれらを自動クラスに追加できます：
 
 ```py
-from transformers import AutoConfig, AutoModel, AutoModelForImageClassification
+from transformers_openvla_oft import AutoConfig, AutoModel, AutoModelForImageClassification
 
 AutoConfig.register("resnet", ResnetConfig)
 AutoModel.register(ResnetConfig, ResnetModel)

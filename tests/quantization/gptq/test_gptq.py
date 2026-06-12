@@ -18,8 +18,8 @@ import unittest
 
 import pytest
 
-from transformers import AutoModelForCausalLM, AutoTokenizer, GPTQConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, GPTQConfig
+from transformers_openvla_oft.testing_utils import (
     is_torch_available,
     require_accelerate,
     require_auto_gptq,

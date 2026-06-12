@@ -121,7 +121,7 @@ checkpoint: 检查点
 我们为快速使用模型提供了 `pipeline` （流水线）API。流水线聚合了预训练模型和对应的文本预处理。下面是一个快速使用流水线去判断正负面情绪的例子：
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # 使用情绪分析流水线
 >>> classifier = pipeline('sentiment-analysis')
@@ -134,7 +134,7 @@ checkpoint: 检查点
 许多的 NLP 任务都有开箱即用的预训练流水线。比如说，我们可以轻松的从给定文本中抽取问题答案：
 
 ``` python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # 使用问答流水线
 >>> question_answerer = pipeline('question-answering')
@@ -150,7 +150,7 @@ checkpoint: 检查点
 
 要在你的任务上下载和使用任意预训练模型也很简单，只需三行代码。这里是 PyTorch 版的示例：
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -160,7 +160,7 @@ checkpoint: 检查点
 ```
 这里是等效的 TensorFlow 代码：
 ```python
->>> from transformers import AutoTokenizer, TFAutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

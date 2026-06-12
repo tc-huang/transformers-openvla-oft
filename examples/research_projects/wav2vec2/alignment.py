@@ -9,7 +9,7 @@ import torch
 import torchaudio
 from tqdm import tqdm
 
-from transformers import AutoConfig, AutoModelForCTC, AutoProcessor
+from transformers_openvla_oft import AutoConfig, AutoModelForCTC, AutoProcessor
 
 
 class Wav2Vec2Aligner:

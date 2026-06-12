@@ -41,7 +41,7 @@ There are 2 main ways to use Depth Anything: either using the pipeline API, whic
 The pipeline allows to use the model in a few lines of code:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> from PIL import Image
 >>> import requests
 
@@ -61,7 +61,7 @@ The pipeline allows to use the model in a few lines of code:
 If you want to do the pre- and postprocessing yourself, here's how to do that:
 
 ```python
->>> from transformers import AutoImageProcessor, AutoModelForDepthEstimation
+>>> from transformers_openvla_oft import AutoImageProcessor, AutoModelForDepthEstimation
 >>> import torch
 >>> import numpy as np
 >>> from PIL import Image

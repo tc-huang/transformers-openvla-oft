@@ -2,8 +2,8 @@ import unittest
 import warnings
 from dataclasses import dataclass
 
-from transformers.convert_slow_tokenizer import SpmConverter
-from transformers.testing_utils import get_tests_dir
+from transformers_openvla_oft.convert_slow_tokenizer import SpmConverter
+from transformers_openvla_oft.testing_utils import get_tests_dir
 
 
 @dataclass

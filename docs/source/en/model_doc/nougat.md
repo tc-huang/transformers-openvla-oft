@@ -57,7 +57,7 @@ into a single instance to both extract the input features and decode the predict
 >>> import re
 >>> from PIL import Image
 
->>> from transformers import NougatProcessor, VisionEncoderDecoderModel
+>>> from transformers_openvla_oft import NougatProcessor, VisionEncoderDecoderModel
 >>> from datasets import load_dataset
 >>> import torch
 

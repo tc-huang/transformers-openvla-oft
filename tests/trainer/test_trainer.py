@@ -35,7 +35,7 @@ from huggingface_hub import HfFolder, ModelCard, delete_repo, list_repo_commits,
 from parameterized import parameterized
 from requests.exceptions import HTTPError
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoTokenizer,
     IntervalStrategy,
     PretrainedConfig,
@@ -45,8 +45,8 @@ from transformers import (
     is_torch_available,
     logging,
 )
-from transformers.hyperparameter_search import ALL_HYPERPARAMETER_SEARCH_BACKENDS
-from transformers.testing_utils import (
+from transformers_openvla_oft.hyperparameter_search import ALL_HYPERPARAMETER_SEARCH_BACKENDS
+from transformers_openvla_oft.testing_utils import (
     ENDPOINT_STAGING,
     TOKEN,
     USER,
@@ -86,9 +86,9 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR, HPSearchBackend, check_target_module_exists
-from transformers.training_args import OptimizerNames
-from transformers.utils import (
+from transformers_openvla_oft.trainer_utils import PREFIX_CHECKPOINT_DIR, HPSearchBackend, check_target_module_exists
+from transformers_openvla_oft.training_args import OptimizerNames
+from transformers_openvla_oft.utils import (
     SAFE_WEIGHTS_INDEX_NAME,
     SAFE_WEIGHTS_NAME,
     WEIGHTS_INDEX_NAME,
@@ -99,7 +99,7 @@ from transformers.utils import (
     is_safetensors_available,
     is_torchdistx_available,
 )
-from transformers.utils.hp_naming import TrialShortNamer
+from transformers_openvla_oft.utils.hp_naming import TrialShortNamer
 
 
 if is_torch_available():
@@ -107,8 +107,8 @@ if is_torch_available():
     from torch import nn
     from torch.utils.data import IterableDataset
 
-    import transformers.optimization
-    from transformers import (
+    import transformers_openvla_oft.optimization
+    from transformers_openvla_oft import (
         AutoModelForCausalLM,
         AutoModelForSequenceClassification,
         EarlyStoppingCallback,
@@ -123,8 +123,8 @@ if is_torch_available():
         Trainer,
         TrainerState,
     )
-    from transformers.modeling_utils import unwrap_model
-    from transformers.trainer_pt_utils import AcceleratorConfig
+    from transformers_openvla_oft.modeling_utils import unwrap_model
+    from transformers_openvla_oft.trainer_pt_utils import AcceleratorConfig
 
     if is_safetensors_available():
         import safetensors.torch
@@ -805,7 +805,7 @@ class TrainerIntegrationPrerunTest(TestCasePlus, TrainerIntegrationCommon):
     def test_adafactor_lr_none(self):
         # test the special case where lr=None, since Trainer can't not have lr_scheduler
 
-        from transformers.optimization import Adafactor, AdafactorSchedule
+        from transformers_openvla_oft.optimization import Adafactor, AdafactorSchedule
 
         train_dataset = RegressionDataset()
         args = TrainingArguments("./regression")
@@ -3548,12 +3548,12 @@ if is_torch_available():
     optim_test_params = [
         (
             TrainingArguments(optim=OptimizerNames.ADAMW_HF, output_dir="None"),
-            transformers.optimization.AdamW,
+            transformers_openvla_oft.optimization.AdamW,
             default_adam_kwargs,
         ),
         (
             TrainingArguments(optim=OptimizerNames.ADAMW_HF.value, output_dir="None"),
-            transformers.optimization.AdamW,
+            transformers_openvla_oft.optimization.AdamW,
             default_adam_kwargs,
         ),
         (
@@ -3563,7 +3563,7 @@ if is_torch_available():
         ),
         (
             TrainingArguments(optim=OptimizerNames.ADAFACTOR, output_dir="None"),
-            transformers.optimization.Adafactor,
+            transformers_openvla_oft.optimization.Adafactor,
             {
                 "scale_parameter": False,
                 "relative_step": False,

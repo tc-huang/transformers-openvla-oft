@@ -30,8 +30,8 @@ import evaluate
 import tensorflow as tf
 from datasets import ClassLabel, load_dataset
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     CONFIG_MAPPING,
     AutoConfig,
     AutoTokenizer,
@@ -43,8 +43,8 @@ from transformers import (
     create_optimizer,
     set_seed,
 )
-from transformers.utils import send_example_telemetry
-from transformers.utils.versions import require_version
+from transformers_openvla_oft.utils import send_example_telemetry
+from transformers_openvla_oft.utils.versions import require_version
 
 
 logger = logging.getLogger(__name__)
@@ -232,7 +232,7 @@ def main():
     # accelerator.is_local_main_process is only True for one process per machine.
     logger.setLevel(logging.INFO)
     datasets.utils.logging.set_verbosity_warning()
-    transformers.utils.logging.set_verbosity_info()
+    transformers_openvla_oft.utils.logging.set_verbosity_info()
 
     # If passed along, set the training seed now.
     if training_args.seed is not None:

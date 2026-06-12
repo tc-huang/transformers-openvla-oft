@@ -17,19 +17,19 @@ import inspect
 import os
 import re
 
-from transformers.configuration_utils import PretrainedConfig
-from transformers.utils import direct_transformers_import
+from transformers_openvla_oft.configuration_utils import PretrainedConfig
+from transformers_openvla_oft.utils import direct_transformers_import
 
 
 # All paths are set with the intent you should run this script from the root of the repo with the command
 # python utils/check_config_docstrings.py
-PATH_TO_TRANSFORMERS = "src/transformers"
+PATH_TO_TRANSFORMERS = "src/transformers_openvla_oft"
 
 
 # This is to make sure the transformers module imported is the one in the repo.
 transformers = direct_transformers_import(PATH_TO_TRANSFORMERS)
 
-CONFIG_MAPPING = transformers.models.auto.configuration_auto.CONFIG_MAPPING
+CONFIG_MAPPING = transformers_openvla_oft.models.auto.configuration_auto.CONFIG_MAPPING
 
 SPECIAL_CASES_TO_ALLOW = {
     # 'max_position_embeddings' is not used in modeling file, but needed for eval frameworks like Huggingface's lighteval (https://github.com/huggingface/lighteval/blob/af24080ea4f16eaf1683e353042a2dfc9099f038/src/lighteval/models/base_model.py#L264).

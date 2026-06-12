@@ -15,21 +15,21 @@
 import unittest
 from unittest import skip
 
-from transformers import is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import is_torch_available
+from transformers_openvla_oft.testing_utils import (
     require_torch,
     require_torch_accelerator,
     require_torch_fp16,
     slow,
     torch_device,
 )
-from transformers.trainer_utils import set_seed
+from transformers_openvla_oft.trainer_utils import set_seed
 
 
 if is_torch_available():
     import torch
 
-    from transformers import JukeboxModel, JukeboxPrior, JukeboxTokenizer
+    from transformers_openvla_oft import JukeboxModel, JukeboxPrior, JukeboxTokenizer
 
 
 @require_torch

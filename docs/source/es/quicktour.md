@@ -84,7 +84,7 @@ pip install tensorflow
 Importa [`pipeline`] y especifica la tarea que deseas completar:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> clasificador = pipeline("sentiment-analysis", model="pysentimiento/robertuito-sentiment-analysis")
 ```
@@ -108,7 +108,7 @@ Crea un [`pipeline`] con la tarea que deseas resolver y el modelo que quieres us
 
 ```py
 >>> import torch
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> reconocedor_de_voz = pipeline(
 ...     "automatic-speech-recognition", model="jonatasgrosman/wav2vec2-large-xlsr-53-spanish", device=0
@@ -153,7 +153,7 @@ El [`pipeline`] puede acomodarse a cualquier modelo del [Model Hub](https://hugg
 Usa [`AutoModelForSequenceClassification`] y ['AutoTokenizer'] para cargar un modelo preentrenado y un tokenizador asociado (más en un `AutoClass` debajo):
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained(model_name)
 >>> tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -165,7 +165,7 @@ Usa [`AutoModelForSequenceClassification`] y ['AutoTokenizer'] para cargar un mo
 Usa [`TFAutoModelForSequenceClassification`] y ['AutoTokenizer'] para cargar un modelo preentrenado y un tokenizador asociado (más en un `TFAutoClass` debajo):
 
 ```py
->>> from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained(model_name)
 >>> tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -199,7 +199,7 @@ Un tokenizador es responsable de procesar el texto a un formato que sea entendib
 Carga un tokenizador con [`AutoTokenizer`]:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> nombre_del_modelo = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> tokenizer = AutoTokenizer.from_pretrained(nombre_del_modelo)
@@ -260,7 +260,7 @@ Lee el tutorial de [preprocessing](./preprocessing) para más detalles acerca de
 🤗 Transformers provee una forma simple y unificada de cargar tus instancias preentrenadas. Esto significa que puedes cargar un [`AutoModel`] como cargarías un [`AutoTokenizer`]. La única diferencia es seleccionar el [`AutoModel`] correcto para la tarea. Ya que estás clasificando texto, o secuencias, carga [`AutoModelForSequenceClassification`]:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> pt_model = AutoModelForSequenceClassification.from_pretrained(model_name)
@@ -293,7 +293,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 🤗 Transformers provee una forma simple y unificada de cargar tus instancias preentrenadas. Esto significa que puedes cargar un [`TFAutoModel`] como cargarías un [`AutoTokenizer`]. La única diferencia es seleccionar el [`TFAutoModel`] correcto para la tarea. Ya que estás clasificando texto, o secuencias, carga [`TFAutoModelForSequenceClassification`]:
 
 ```py
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> tf_model = TFAutoModelForSequenceClassification.from_pretrained(model_name)
@@ -383,7 +383,7 @@ Una característica particularmente interesante de 🤗 Transformers es la habil
 <pt>
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained(tf_save_directory)
 >>> pt_model = AutoModelForSequenceClassification.from_pretrained(tf_save_directory, from_tf=True)
@@ -392,7 +392,7 @@ Una característica particularmente interesante de 🤗 Transformers es la habil
 <tf>
 
 ```py
->>> from transformers import TFAutoModel
+>>> from transformers_openvla_oft import TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained(pt_save_directory)
 >>> tf_model = TFAutoModelForSequenceClassification.from_pretrained(pt_save_directory, from_pt=True)

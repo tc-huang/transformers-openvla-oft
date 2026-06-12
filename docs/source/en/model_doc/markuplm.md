@@ -62,7 +62,7 @@ token-level inputs of the model (`input_ids` etc.). Note that you can still use 
 if you only want to handle one of the two tasks.
 
 ```python
-from transformers import MarkupLMFeatureExtractor, MarkupLMTokenizerFast, MarkupLMProcessor
+from transformers_openvla_oft import MarkupLMFeatureExtractor, MarkupLMTokenizerFast, MarkupLMProcessor
 
 feature_extractor = MarkupLMFeatureExtractor()
 tokenizer = MarkupLMTokenizerFast.from_pretrained("microsoft/markuplm-base")
@@ -88,7 +88,7 @@ use cases work for both batched and non-batched inputs (we illustrate them for n
 This is the simplest case, in which the processor will use the feature extractor to get all nodes and xpaths from the HTML.
 
 ```python
->>> from transformers import MarkupLMProcessor
+>>> from transformers_openvla_oft import MarkupLMProcessor
 
 >>> processor = MarkupLMProcessor.from_pretrained("microsoft/markuplm-base")
 
@@ -116,7 +116,7 @@ In case one already has obtained all nodes and xpaths, one doesn't need the feat
 provide the nodes and corresponding xpaths themselves to the processor, and make sure to set `parse_html` to `False`.
 
 ```python
->>> from transformers import MarkupLMProcessor
+>>> from transformers_openvla_oft import MarkupLMProcessor
 
 >>> processor = MarkupLMProcessor.from_pretrained("microsoft/markuplm-base")
 >>> processor.parse_html = False
@@ -137,7 +137,7 @@ By default, it will only label the first wordpiece of a word, and label the rema
 initialize the tokenizer with `only_label_first_subword` set to `False`.
 
 ```python
->>> from transformers import MarkupLMProcessor
+>>> from transformers_openvla_oft import MarkupLMProcessor
 
 >>> processor = MarkupLMProcessor.from_pretrained("microsoft/markuplm-base")
 >>> processor.parse_html = False
@@ -156,7 +156,7 @@ For question answering tasks on web pages, you can provide a question to the pro
 processor will use the feature extractor to get all nodes and xpaths, and create [CLS] question tokens [SEP] word tokens [SEP].
 
 ```python
->>> from transformers import MarkupLMProcessor
+>>> from transformers_openvla_oft import MarkupLMProcessor
 
 >>> processor = MarkupLMProcessor.from_pretrained("microsoft/markuplm-base")
 
@@ -184,7 +184,7 @@ For question answering tasks (such as WebSRC), you can provide a question to the
 all nodes and xpaths yourself, you can provide them directly to the processor. Make sure to set `parse_html` to `False`.
 
 ```python
->>> from transformers import MarkupLMProcessor
+>>> from transformers_openvla_oft import MarkupLMProcessor
 
 >>> processor = MarkupLMProcessor.from_pretrained("microsoft/markuplm-base")
 >>> processor.parse_html = False

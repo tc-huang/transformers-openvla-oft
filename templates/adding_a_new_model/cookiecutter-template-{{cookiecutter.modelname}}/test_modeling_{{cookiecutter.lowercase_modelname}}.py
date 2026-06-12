@@ -19,10 +19,10 @@
 import unittest
 
 from ...test_modeling_common import floats_tensor
-from transformers import is_torch_available
-from transformers.testing_utils import require_torch, slow, torch_device
+from transformers_openvla_oft import is_torch_available
+from transformers_openvla_oft.testing_utils import require_torch, slow, torch_device
 
-from transformers import {{cookiecutter.camelcase_modelname}}Config
+from transformers_openvla_oft import {{cookiecutter.camelcase_modelname}}Config
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, ids_tensor, random_attention_mask
 
@@ -30,7 +30,7 @@ from ...test_modeling_common import ModelTesterMixin, ids_tensor, random_attenti
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         {{cookiecutter.camelcase_modelname}}ForCausalLM,
         {{cookiecutter.camelcase_modelname}}ForMaskedLM,
         {{cookiecutter.camelcase_modelname}}ForMultipleChoice,
@@ -39,7 +39,7 @@ if is_torch_available():
         {{cookiecutter.camelcase_modelname}}ForTokenClassification,
         {{cookiecutter.camelcase_modelname}}Model,
     )
-    from transformers.models.{{cookiecutter.lowercase_modelname}}.modeling_{{cookiecutter.lowercase_modelname}} import (
+    from transformers_openvla_oft.models.{{cookiecutter.lowercase_modelname}}.modeling_{{cookiecutter.lowercase_modelname}} import (
         {{cookiecutter.uppercase_modelname}}    )
 
 
@@ -484,9 +484,9 @@ import copy
 import tempfile
 import unittest
 
-from transformers import is_torch_available
-from transformers.utils import cached_property
-from transformers.testing_utils import require_sentencepiece, require_tokenizers, require_torch, slow, torch_device
+from transformers_openvla_oft import is_torch_available
+from transformers_openvla_oft.utils import cached_property
+from transformers_openvla_oft.testing_utils import require_sentencepiece, require_tokenizers, require_torch, slow, torch_device
 
 from ...test_configuration_common import ConfigTester
 from ...generation.test_utils import GenerationTesterMixin
@@ -496,7 +496,7 @@ from ...test_modeling_common import ModelTesterMixin, ids_tensor
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         {{cookiecutter.camelcase_modelname}}Config,
         {{cookiecutter.camelcase_modelname}}ForConditionalGeneration,
         {{cookiecutter.camelcase_modelname}}ForQuestionAnswering,
@@ -505,7 +505,7 @@ if is_torch_available():
         {{cookiecutter.camelcase_modelname}}Model,
         {{cookiecutter.camelcase_modelname}}Tokenizer,
     )
-    from transformers.models.{{cookiecutter.lowercase_modelname}}.modeling_{{cookiecutter.lowercase_modelname}} import (
+    from transformers_openvla_oft.models.{{cookiecutter.lowercase_modelname}}.modeling_{{cookiecutter.lowercase_modelname}} import (
         {{cookiecutter.camelcase_modelname}}Decoder,
         {{cookiecutter.camelcase_modelname}}Encoder,
     )

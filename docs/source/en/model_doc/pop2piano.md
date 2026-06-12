@@ -70,7 +70,7 @@ Please note that you may need to restart your runtime after installation.
 
 ```python
 >>> from datasets import load_dataset
->>> from transformers import Pop2PianoForConditionalGeneration, Pop2PianoProcessor
+>>> from transformers_openvla_oft import Pop2PianoForConditionalGeneration, Pop2PianoProcessor
 
 >>> model = Pop2PianoForConditionalGeneration.from_pretrained("sweetcocoa/pop2piano")
 >>> processor = Pop2PianoProcessor.from_pretrained("sweetcocoa/pop2piano")
@@ -90,7 +90,7 @@ Please note that you may need to restart your runtime after installation.
 
 ```python
 >>> import librosa
->>> from transformers import Pop2PianoForConditionalGeneration, Pop2PianoProcessor
+>>> from transformers_openvla_oft import Pop2PianoForConditionalGeneration, Pop2PianoProcessor
 
 >>> audio, sr = librosa.load("<your_audio_file_here>", sr=44100)  # feel free to change the sr to a suitable value.
 >>> model = Pop2PianoForConditionalGeneration.from_pretrained("sweetcocoa/pop2piano")
@@ -108,7 +108,7 @@ Please note that you may need to restart your runtime after installation.
 
 ```python
 >>> import librosa
->>> from transformers import Pop2PianoForConditionalGeneration, Pop2PianoProcessor
+>>> from transformers_openvla_oft import Pop2PianoForConditionalGeneration, Pop2PianoProcessor
 
 >>> # feel free to change the sr to a suitable value.
 >>> audio1, sr1 = librosa.load("<your_first_audio_file_here>", sr=44100)  
@@ -137,7 +137,7 @@ Please note that you may need to restart your runtime after installation.
 
 ```python
 >>> import librosa
->>> from transformers import Pop2PianoForConditionalGeneration, Pop2PianoFeatureExtractor, Pop2PianoTokenizer
+>>> from transformers_openvla_oft import Pop2PianoForConditionalGeneration, Pop2PianoFeatureExtractor, Pop2PianoTokenizer
 
 >>> # feel free to change the sr to a suitable value.
 >>> audio1, sr1 = librosa.load("<your_first_audio_file_here>", sr=44100)  

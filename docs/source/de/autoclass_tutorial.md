@@ -38,7 +38,7 @@ Nahezu jede NLP-Aufgabe beginnt mit einem Tokenizer. Ein Tokenizer wandelt Ihre 
 Laden Sie einen Tokenizer mit [`AutoTokenizer.from_pretrained`]:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -60,7 +60,7 @@ Für Audio- und Bildverarbeitungsaufgaben verarbeitet ein Merkmalsextraktor das 
 Laden Sie einen Merkmalsextraktor mit [`AutoFeatureExtractor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained(
 ...     "ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"
@@ -74,7 +74,7 @@ Multimodale Aufgaben erfordern einen Prozessor, der zwei Arten von Vorverarbeitu
 Laden Sie einen Prozessor mit [`AutoProcessor.from_pretrained`]:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("microsoft/layoutlmv2-base-uncased")
 ```
@@ -86,7 +86,7 @@ Laden Sie einen Prozessor mit [`AutoProcessor.from_pretrained`]:
 Mit den `AutoModelFor`-Klassen können Sie schließlich ein vortrainiertes Modell für eine bestimmte Aufgabe laden (siehe [hier](model_doc/auto) für eine vollständige Liste der verfügbaren Aufgaben). Laden Sie zum Beispiel ein Modell für die Sequenzklassifikation mit [`AutoModelForSequenceClassification.from_pretrained`]:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -94,7 +94,7 @@ Mit den `AutoModelFor`-Klassen können Sie schließlich ein vortrainiertes Model
 Sie können denselben Prüfpunkt problemlos wiederverwenden, um eine Architektur für eine andere Aufgabe zu laden:
 
 ```py
->>> from transformers import AutoModelForTokenClassification
+>>> from transformers_openvla_oft import AutoModelForTokenClassification
 
 >>> model = AutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -113,7 +113,7 @@ Im Allgemeinen empfehlen wir die Verwendung der Klasse "AutoTokenizer" und der K
 Mit den Klassen `TFAutoModelFor` schließlich können Sie ein vortrainiertes Modell für eine bestimmte Aufgabe laden (siehe [hier](model_doc/auto) für eine vollständige Liste der verfügbaren Aufgaben). Laden Sie zum Beispiel ein Modell für die Sequenzklassifikation mit [`TFAutoModelForSequenceClassification.from_pretrained`]:
 
 ```py
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -121,7 +121,7 @@ Mit den Klassen `TFAutoModelFor` schließlich können Sie ein vortrainiertes Mod
 Sie können denselben Prüfpunkt problemlos wiederverwenden, um eine Architektur für eine andere Aufgabe zu laden:
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```

@@ -23,7 +23,7 @@ import numpy as np
 from parameterized import parameterized
 from pytest import mark
 
-from transformers import (
+from transformers_openvla_oft import (
     EncodecConfig,
     MusicgenConfig,
     MusicgenDecoderConfig,
@@ -31,7 +31,7 @@ from transformers import (
     PretrainedConfig,
     T5Config,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     is_torch_available,
     require_flash_attn,
     require_torch,
@@ -41,7 +41,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import cached_property, is_torch_bf16_available_on_device, is_torch_fp16_available_on_device
+from transformers_openvla_oft.utils import cached_property, is_torch_bf16_available_on_device, is_torch_fp16_available_on_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -52,13 +52,13 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         MusicgenForCausalLM,
         MusicgenForConditionalGeneration,
         MusicgenModel,
         set_seed,
     )
-    from transformers.generation import (
+    from transformers_openvla_oft.generation import (
         GenerateDecoderOnlyOutput,
         GenerateEncoderDecoderOutput,
     )

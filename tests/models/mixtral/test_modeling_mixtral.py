@@ -20,8 +20,8 @@ import unittest
 
 import pytest
 
-from transformers import MixtralConfig, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import MixtralConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     is_flaky,
     require_flash_attn,
     require_torch,
@@ -40,7 +40,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import MixtralForCausalLM, MixtralForSequenceClassification, MixtralModel
+    from transformers_openvla_oft import MixtralForCausalLM, MixtralForSequenceClassification, MixtralModel
 
 
 class MixtralModelTester:

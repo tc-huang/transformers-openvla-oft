@@ -42,7 +42,7 @@ This model was contributed by [Tianyi Tang](https://huggingface.co/StevenTang). 
 For summarization, it is an example to use MVP and MVP with summarization-specific prompts.
 
 ```python
->>> from transformers import MvpTokenizer, MvpForConditionalGeneration
+>>> from transformers_openvla_oft import MvpTokenizer, MvpForConditionalGeneration
 
 >>> tokenizer = MvpTokenizer.from_pretrained("RUCAIBox/mvp")
 >>> model = MvpForConditionalGeneration.from_pretrained("RUCAIBox/mvp")
@@ -63,7 +63,7 @@ For summarization, it is an example to use MVP and MVP with summarization-specif
 
 For data-to-text generation, it is an example to use MVP and multi-task pre-trained variants.
 ```python
->>> from transformers import MvpTokenizerFast, MvpForConditionalGeneration
+>>> from transformers_openvla_oft import MvpTokenizerFast, MvpForConditionalGeneration
 
 >>> tokenizer = MvpTokenizerFast.from_pretrained("RUCAIBox/mvp")
 >>> model = MvpForConditionalGeneration.from_pretrained("RUCAIBox/mvp")
@@ -85,7 +85,7 @@ For data-to-text generation, it is an example to use MVP and multi-task pre-trai
 For lightweight tuning, *i.e.*, fixing the model and only tuning prompts, you can load MVP with randomly initialized prompts or with task-specific prompts. Our code also supports Prefix-tuning with BART following the [original paper](https://arxiv.org/abs/2101.00190).
 
 ```python
->>> from transformers import MvpForConditionalGeneration
+>>> from transformers_openvla_oft import MvpForConditionalGeneration
 
 >>> model = MvpForConditionalGeneration.from_pretrained("RUCAIBox/mvp", use_prompt=True)
 >>> # the number of trainable parameters (full tuning)

@@ -39,7 +39,7 @@ The abstract from the paper is the following:
 First, load the processor and a checkpoint of the model:
 
 ```python
->>> from transformers import AutoProcessor, SeamlessM4TModel
+>>> from transformers_openvla_oft import AutoProcessor, SeamlessM4TModel
 
 >>> processor = AutoProcessor.from_pretrained("facebook/hf-seamless-m4t-medium")
 >>> model = SeamlessM4TModel.from_pretrained("facebook/hf-seamless-m4t-medium")
@@ -98,14 +98,14 @@ This time, let's translate to French.
 For example, you can replace the audio-to-audio generation snippet with the model dedicated to the S2ST task, the rest is exactly the same code: 
 
 ```python
->>> from transformers import SeamlessM4TForSpeechToSpeech
+>>> from transformers_openvla_oft import SeamlessM4TForSpeechToSpeech
 >>> model = SeamlessM4TForSpeechToSpeech.from_pretrained("facebook/hf-seamless-m4t-medium")
 ```
 
 Or you can replace the text-to-text generation snippet with the model dedicated to the T2TT task, you only have to remove `generate_speech=False`.
 
 ```python
->>> from transformers import SeamlessM4TForTextToText
+>>> from transformers_openvla_oft import SeamlessM4TForTextToText
 >>> model = SeamlessM4TForTextToText.from_pretrained("facebook/hf-seamless-m4t-medium")
 ```
 
@@ -160,13 +160,13 @@ This model was contributed by [ylacombe](https://huggingface.co/ylacombe). The o
 
 ## SeamlessM4TForTextToText
 
-[[autodoc]] transformers.SeamlessM4TForTextToText
+[[autodoc]] transformers_openvla_oft.SeamlessM4TForTextToText
     - forward
     - generate
 
 ## SeamlessM4TForSpeechToText
 
-[[autodoc]] transformers.SeamlessM4TForSpeechToText
+[[autodoc]] transformers_openvla_oft.SeamlessM4TForSpeechToText
     - forward
     - generate
 

@@ -19,23 +19,23 @@ import tempfile
 import unittest
 from typing import List
 
-from transformers import (
+from transformers_openvla_oft import (
     MarkupLMProcessor,
     MarkupLMTokenizer,
     PreTrainedTokenizer,
     PreTrainedTokenizerBase,
     PreTrainedTokenizerFast,
 )
-from transformers.models.markuplm.tokenization_markuplm import VOCAB_FILES_NAMES
-from transformers.testing_utils import require_bs4, require_tokenizers, require_torch, slow
-from transformers.utils import FEATURE_EXTRACTOR_NAME, cached_property, is_bs4_available, is_tokenizers_available
+from transformers_openvla_oft.models.markuplm.tokenization_markuplm import VOCAB_FILES_NAMES
+from transformers_openvla_oft.testing_utils import require_bs4, require_tokenizers, require_torch, slow
+from transformers_openvla_oft.utils import FEATURE_EXTRACTOR_NAME, cached_property, is_bs4_available, is_tokenizers_available
 
 
 if is_bs4_available():
-    from transformers import MarkupLMFeatureExtractor
+    from transformers_openvla_oft import MarkupLMFeatureExtractor
 
 if is_tokenizers_available():
-    from transformers import MarkupLMTokenizerFast
+    from transformers_openvla_oft import MarkupLMTokenizerFast
 
 
 @require_bs4

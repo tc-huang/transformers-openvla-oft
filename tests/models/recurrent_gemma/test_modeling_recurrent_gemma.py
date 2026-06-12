@@ -17,8 +17,8 @@ import unittest
 
 from parameterized import parameterized
 
-from transformers import AutoModelForCausalLM, AutoTokenizer, RecurrentGemmaConfig, is_torch_available, set_seed
-from transformers.testing_utils import (
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, RecurrentGemmaConfig, is_torch_available, set_seed
+from transformers_openvla_oft.testing_utils import (
     require_bitsandbytes,
     require_read_token,
     require_torch,
@@ -36,7 +36,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import RecurrentGemmaForCausalLM, RecurrentGemmaModel
+    from transformers_openvla_oft import RecurrentGemmaForCausalLM, RecurrentGemmaModel
 
 
 class RecurrentGemmaModelTester:

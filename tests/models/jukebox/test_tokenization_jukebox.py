@@ -15,8 +15,8 @@
 
 import unittest
 
-from transformers import JukeboxTokenizer
-from transformers.testing_utils import require_torch
+from transformers_openvla_oft import JukeboxTokenizer
+from transformers_openvla_oft.testing_utils import require_torch
 
 
 class JukeboxTokenizationTest(unittest.TestCase):

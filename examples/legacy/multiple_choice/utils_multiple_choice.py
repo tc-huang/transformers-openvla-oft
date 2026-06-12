@@ -28,7 +28,7 @@ from typing import List, Optional
 import tqdm
 from filelock import FileLock
 
-from transformers import PreTrainedTokenizer, is_tf_available, is_torch_available
+from transformers_openvla_oft import PreTrainedTokenizer, is_tf_available, is_torch_available
 
 
 logger = logging.getLogger(__name__)

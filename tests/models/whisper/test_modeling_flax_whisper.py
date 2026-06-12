@@ -17,11 +17,11 @@ import inspect
 import tempfile
 import unittest
 
-import transformers
-from transformers import WhisperConfig, is_flax_available
-from transformers.testing_utils import is_pt_flax_cross_test, require_flax, slow
-from transformers.utils import cached_property
-from transformers.utils.import_utils import is_datasets_available
+import transformers_openvla_oft
+from transformers_openvla_oft import WhisperConfig, is_flax_available
+from transformers_openvla_oft.testing_utils import is_pt_flax_cross_test, require_flax, slow
+from transformers_openvla_oft.utils import cached_property
+from transformers_openvla_oft.utils.import_utils import is_datasets_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_flax_common import FlaxModelTesterMixin, floats_tensor
@@ -37,7 +37,7 @@ if is_flax_available():
     from flax.core.frozen_dict import unfreeze
     from flax.traverse_util import flatten_dict
 
-    from transformers import (
+    from transformers_openvla_oft import (
         FLAX_MODEL_MAPPING,
         FlaxWhisperForAudioClassification,
         FlaxWhisperForConditionalGeneration,
@@ -45,8 +45,8 @@ if is_flax_available():
         WhisperFeatureExtractor,
         WhisperProcessor,
     )
-    from transformers.modeling_flax_pytorch_utils import load_flax_weights_in_pytorch_model
-    from transformers.models.whisper.modeling_flax_whisper import sinusoidal_embedding_init
+    from transformers_openvla_oft.modeling_flax_pytorch_utils import load_flax_weights_in_pytorch_model
+    from transformers_openvla_oft.models.whisper.modeling_flax_whisper import sinusoidal_embedding_init
 
 
 @require_flax

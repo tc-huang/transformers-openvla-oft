@@ -17,7 +17,7 @@ import fire
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 from utils import Seq2SeqDataset, pickle_save
 
 

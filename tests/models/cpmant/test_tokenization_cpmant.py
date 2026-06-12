@@ -16,8 +16,8 @@
 import os
 import unittest
 
-from transformers.models.cpmant.tokenization_cpmant import VOCAB_FILES_NAMES, CpmAntTokenizer
-from transformers.testing_utils import require_jieba, tooslow
+from transformers_openvla_oft.models.cpmant.tokenization_cpmant import VOCAB_FILES_NAMES, CpmAntTokenizer
+from transformers_openvla_oft.testing_utils import require_jieba, tooslow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

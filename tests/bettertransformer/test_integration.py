@@ -16,8 +16,8 @@
 import tempfile
 import unittest
 
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from transformers.testing_utils import (
+from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers_openvla_oft.testing_utils import (
     is_torch_available,
     require_optimum,
     require_torch,

@@ -19,8 +19,8 @@ import unittest
 
 import numpy as np
 
-from transformers import AutoTokenizer, BarkProcessor
-from transformers.testing_utils import require_torch, slow
+from transformers_openvla_oft import AutoTokenizer, BarkProcessor
+from transformers_openvla_oft.testing_utils import require_torch, slow
 
 
 @require_torch

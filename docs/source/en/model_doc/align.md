@@ -37,7 +37,7 @@ ALIGN uses EfficientNet to get visual features and BERT to get the text features
 import requests
 import torch
 from PIL import Image
-from transformers import AlignProcessor, AlignModel
+from transformers_openvla_oft import AlignProcessor, AlignModel
 
 processor = AlignProcessor.from_pretrained("kakaobrain/align-base")
 model = AlignModel.from_pretrained("kakaobrain/align-base")

@@ -30,7 +30,7 @@ Let's make this concrete with a quick example using the `BlenderBot` model. Blen
 template, which mostly just adds whitespace between rounds of dialogue:
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> tokenizer = AutoTokenizer.from_pretrained("facebook/blenderbot-400M-distill")
 
 >>> chat = [
@@ -48,7 +48,7 @@ that string will also be tokenized for us. To see a more complex template in act
 `mistralai/Mistral-7B-Instruct-v0.1` model.
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
 
 >>> chat = [
@@ -74,7 +74,7 @@ to use `add_generation_prompt=True` to add a [generation prompt](#what-are-gener
 Here's an example of preparing input for `model.generate()`, using the `Zephyr` assistant model:
 
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 checkpoint = "HuggingFaceH4/zephyr-7b-beta"
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
@@ -127,7 +127,7 @@ has been merged into the [`TextGenerationPipeline`]. Let's try the `Zephyr` exam
 a pipeline:
 
 ```python
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline("text-generation", "HuggingFaceH4/zephyr-7b-beta")
 messages = [
@@ -205,7 +205,7 @@ can simply continue like any other language model training task. When training, 
 training. Let's see an example:
 
 ```python
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 from datasets import Dataset
 
 tokenizer = AutoTokenizer.from_pretrained("HuggingFaceH4/zephyr-7b-beta")
@@ -240,7 +240,7 @@ default template for that model class is used instead. Let's take a look at the 
 
 ```python
 
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> tokenizer = AutoTokenizer.from_pretrained("facebook/blenderbot-400M-distill")
 
 >>> tokenizer.default_chat_template

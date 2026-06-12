@@ -25,15 +25,15 @@ import datasets
 from parameterized import parameterized
 
 import tests.trainer.test_trainer
-import transformers
+import transformers_openvla_oft
 from tests.trainer.test_trainer import TrainerIntegrationCommon  # noqa
-from transformers import AutoModel, TrainingArguments, is_torch_available, logging
-from transformers.integrations.deepspeed import (
+from transformers_openvla_oft import AutoModel, TrainingArguments, is_torch_available, logging
+from transformers_openvla_oft.integrations.deepspeed import (
     HfDeepSpeedConfig,
     is_deepspeed_available,
     unset_hf_deepspeed_config,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     CaptureLogger,
     CaptureStd,
     CaptureStderr,
@@ -49,8 +49,8 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.trainer_utils import get_last_checkpoint, set_seed
-from transformers.utils import SAFE_WEIGHTS_NAME, is_torch_bf16_available_on_device
+from transformers_openvla_oft.trainer_utils import get_last_checkpoint, set_seed
+from transformers_openvla_oft.utils import SAFE_WEIGHTS_NAME, is_torch_bf16_available_on_device
 
 
 if is_torch_available():
@@ -122,7 +122,7 @@ def require_deepspeed_aio(test_case):
 if is_deepspeed_available():
     from deepspeed.utils import logger as deepspeed_logger  # noqa
     from deepspeed.utils.zero_to_fp32 import load_state_dict_from_zero_checkpoint
-    from transformers.integrations.deepspeed import deepspeed_config, is_deepspeed_zero3_enabled  # noqa
+    from transformers_openvla_oft.integrations.deepspeed import deepspeed_config, is_deepspeed_zero3_enabled  # noqa
 
 
 def get_launcher(distributed=False):
@@ -210,7 +210,7 @@ class CoreIntegrationDeepSpeed(TestCasePlus, TrainerIntegrationCommon):
 
         with LoggingLevel(logging.INFO):
             with mockenv_context(**self.dist_env_1_gpu):
-                logger = logging.get_logger("transformers.modeling_utils")
+                logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
                 with CaptureLogger(logger) as cl:
                     AutoModel.from_pretrained(T5_TINY)
         self.assertIn("Detected DeepSpeed ZeRO-3", cl.out)
@@ -224,7 +224,7 @@ class CoreIntegrationDeepSpeed(TestCasePlus, TrainerIntegrationCommon):
 
         with LoggingLevel(logging.INFO):
             with mockenv_context(**self.dist_env_1_gpu):
-                logger = logging.get_logger("transformers.modeling_utils")
+                logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
                 with CaptureLogger(logger) as cl:
                     AutoModel.from_pretrained(T5_TINY)
         self.assertNotIn("Detected DeepSpeed ZeRO-3", cl.out)
@@ -234,7 +234,7 @@ class CoreIntegrationDeepSpeed(TestCasePlus, TrainerIntegrationCommon):
         import deepspeed
         import torch
 
-        from transformers.models.gpt2.modeling_gpt2 import GPT2PreTrainedModel
+        from transformers_openvla_oft.models.gpt2.modeling_gpt2 import GPT2PreTrainedModel
 
         class TinyGPT2WithUninitializedWeights(GPT2PreTrainedModel):
             def __init__(self, config):
@@ -267,7 +267,7 @@ class CoreIntegrationDeepSpeed(TestCasePlus, TrainerIntegrationCommon):
 
         with LoggingLevel(logging.INFO):
             with mockenv_context(**self.dist_env_1_gpu):
-                logger = logging.get_logger("transformers.modeling_utils")
+                logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
                 with CaptureLogger(logger) as cl:
                     model = TinyGPT2WithUninitializedWeights.from_pretrained(GPT2_TINY)
         self.assertIn("Detected DeepSpeed ZeRO-3", cl.out)
@@ -289,7 +289,7 @@ class CoreIntegrationDeepSpeed(TestCasePlus, TrainerIntegrationCommon):
 
         with LoggingLevel(logging.INFO):
             with mockenv_context(**self.dist_env_1_gpu):
-                logger = logging.get_logger("transformers.modeling_utils")
+                logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
                 with CaptureLogger(logger) as cl:
                     model = TinyGPT2WithUninitializedWeights.from_pretrained(GPT2_TINY)
         self.assertNotIn("Detected DeepSpeed ZeRO-3", cl.out)
@@ -323,7 +323,7 @@ class CoreIntegrationDeepSpeed(TestCasePlus, TrainerIntegrationCommon):
 
         with LoggingLevel(logging.INFO):
             with mockenv_context(**self.dist_env_1_gpu):
-                logger = logging.get_logger("transformers.modeling_utils")
+                logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
                 with CaptureLogger(logger) as cl:
                     model = AutoModel.from_pretrained(GPTJ_TINY)
         self.assertIn("Detected DeepSpeed ZeRO-3", cl.out)
@@ -341,12 +341,12 @@ class CoreIntegrationDeepSpeed(TestCasePlus, TrainerIntegrationCommon):
             sinusoid_inp = torch.einsum("i , j -> i j", torch.arange(num_pos, dtype=inv_freq.dtype), inv_freq)
             return torch.cat((torch.sin(sinusoid_inp), torch.cos(sinusoid_inp)), dim=1)
 
-        good_deepspeed_create_sinusoidal_positions = transformers.models.gptj.modeling_gptj.create_sinusoidal_positions
-        transformers.models.gptj.modeling_gptj.create_sinusoidal_positions = bad_deepspeed_create_sinusoidal_positions
+        good_deepspeed_create_sinusoidal_positions = transformers_openvla_oft.models.gptj.modeling_gptj.create_sinusoidal_positions
+        transformers_openvla_oft.models.gptj.modeling_gptj.create_sinusoidal_positions = bad_deepspeed_create_sinusoidal_positions
 
         with LoggingLevel(logging.INFO):
             with mockenv_context(**self.dist_env_1_gpu):
-                logger = logging.get_logger("transformers.modeling_utils")
+                logger = logging.get_logger("transformers_openvla_oft.modeling_utils")
                 with CaptureLogger(logger) as cl:
                     model = AutoModel.from_pretrained(GPTJ_TINY)
         self.assertIn("Detected DeepSpeed ZeRO-3", cl.out)
@@ -938,7 +938,7 @@ class TrainerIntegrationDeepSpeed(TrainerIntegrationDeepSpeedWithCustomConfig, T
         # deepspeed doesn't fallback to AdamW, which would prevent the optimizer states from loading
         # correctly
 
-        from transformers import T5ForConditionalGeneration, T5Tokenizer, Trainer  # noqa
+        from transformers_openvla_oft import T5ForConditionalGeneration, T5Tokenizer, Trainer  # noqa
 
         output_dir = self.get_auto_remove_tmp_dir()  # "./xxx", after=False, before=False)
 

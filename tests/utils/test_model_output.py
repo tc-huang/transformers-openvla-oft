@@ -18,15 +18,15 @@ import unittest
 from dataclasses import dataclass
 from typing import Optional
 
-from transformers import AlbertForMaskedLM
-from transformers.testing_utils import require_torch
-from transformers.utils import ModelOutput, is_torch_available
+from transformers_openvla_oft import AlbertForMaskedLM
+from transformers_openvla_oft.testing_utils import require_torch
+from transformers_openvla_oft.utils import ModelOutput, is_torch_available
 
 
 if is_torch_available():
     import torch
 
-    from transformers.pytorch_utils import is_torch_greater_or_equal_than_2_2
+    from transformers_openvla_oft.pytorch_utils import is_torch_greater_or_equal_than_2_2
 
 
 @dataclass

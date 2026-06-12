@@ -32,8 +32,8 @@ import pytest
 from datasets import load_dataset
 from huggingface_hub import snapshot_download
 
-from transformers import Wav2Vec2Config, is_tf_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import Wav2Vec2Config, is_tf_available
+from transformers_openvla_oft.testing_utils import (
     CaptureLogger,
     is_flaky,
     is_pt_tf_cross_test,
@@ -43,7 +43,7 @@ from transformers.testing_utils import (
     run_test_in_subprocess,
     slow,
 )
-from transformers.utils import is_librosa_available, is_pyctcdecode_available
+from transformers_openvla_oft.utils import is_librosa_available, is_pyctcdecode_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_tf_common import TFModelTesterMixin, ids_tensor
@@ -53,21 +53,21 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoFeatureExtractor,
         TFWav2Vec2ForCTC,
         TFWav2Vec2ForSequenceClassification,
         TFWav2Vec2Model,
         Wav2Vec2Processor,
     )
-    from transformers.models.wav2vec2.modeling_tf_wav2vec2 import _compute_mask_indices
+    from transformers_openvla_oft.models.wav2vec2.modeling_tf_wav2vec2 import _compute_mask_indices
 
 
 if is_pyctcdecode_available():
     import pyctcdecode.decoder
 
-    from transformers import Wav2Vec2ProcessorWithLM
-    from transformers.models.wav2vec2_with_lm import processing_wav2vec2_with_lm
+    from transformers_openvla_oft import Wav2Vec2ProcessorWithLM
+    from transformers_openvla_oft.models.wav2vec2_with_lm import processing_wav2vec2_with_lm
 
 
 if is_librosa_available():
@@ -444,7 +444,7 @@ class TFWav2Vec2ModelTest(TFModelTesterMixin, PipelineTesterMixin, unittest.Test
         # the default labels and frequently overflows to inf or exceeds numerical tolerances between TF/PT
         import torch
 
-        import transformers
+        import transformers_openvla_oft
 
         for model_class in self.all_model_classes:
             config, inputs_dict = self.model_tester.prepare_config_and_inputs_for_common()
@@ -467,10 +467,10 @@ class TFWav2Vec2ModelTest(TFModelTesterMixin, PipelineTesterMixin, unittest.Test
             tf_inputs_dict = self._prepare_for_class(inputs_dict, model_class)
 
             # Check we can load pt model in tf and vice-versa with model => model functions
-            tf_model = transformers.load_pytorch_model_in_tf2_model(
+            tf_model = transformers_openvla_oft.load_pytorch_model_in_tf2_model(
                 tf_model, pt_model, tf_inputs=tf_inputs_dict, allow_missing_keys=allow_missing_keys
             )
-            pt_model = transformers.load_tf2_model_in_pytorch_model(
+            pt_model = transformers_openvla_oft.load_tf2_model_in_pytorch_model(
                 pt_model, tf_model, allow_missing_keys=allow_missing_keys
             )
 
@@ -481,13 +481,13 @@ class TFWav2Vec2ModelTest(TFModelTesterMixin, PipelineTesterMixin, unittest.Test
             with tempfile.TemporaryDirectory() as tmpdirname:
                 pt_checkpoint_path = os.path.join(tmpdirname, "pt_model.bin")
                 torch.save(pt_model.state_dict(), pt_checkpoint_path)
-                tf_model = transformers.load_pytorch_checkpoint_in_tf2_model(
+                tf_model = transformers_openvla_oft.load_pytorch_checkpoint_in_tf2_model(
                     tf_model, pt_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
                 tf_checkpoint_path = os.path.join(tmpdirname, "tf_model.h5")
                 tf_model.save_weights(tf_checkpoint_path)
-                pt_model = transformers.load_tf2_checkpoint_in_pytorch_model(
+                pt_model = transformers_openvla_oft.load_tf2_checkpoint_in_pytorch_model(
                     pt_model, tf_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
@@ -629,7 +629,7 @@ class TFWav2Vec2RobustModelTest(TFModelTesterMixin, unittest.TestCase):
         # the default labels and frequently overflows to inf or exceeds numerical tolerances between TF/PT
         import torch
 
-        import transformers
+        import transformers_openvla_oft
 
         for model_class in self.all_model_classes:
             config, inputs_dict = self.model_tester.prepare_config_and_inputs_for_common()
@@ -652,10 +652,10 @@ class TFWav2Vec2RobustModelTest(TFModelTesterMixin, unittest.TestCase):
             tf_inputs_dict = self._prepare_for_class(inputs_dict, model_class)
 
             # Check we can load pt model in tf and vice-versa with model => model functions
-            tf_model = transformers.load_pytorch_model_in_tf2_model(
+            tf_model = transformers_openvla_oft.load_pytorch_model_in_tf2_model(
                 tf_model, pt_model, tf_inputs=tf_inputs_dict, allow_missing_keys=allow_missing_keys
             )
-            pt_model = transformers.load_tf2_model_in_pytorch_model(
+            pt_model = transformers_openvla_oft.load_tf2_model_in_pytorch_model(
                 pt_model, tf_model, allow_missing_keys=allow_missing_keys
             )
 
@@ -666,13 +666,13 @@ class TFWav2Vec2RobustModelTest(TFModelTesterMixin, unittest.TestCase):
             with tempfile.TemporaryDirectory() as tmpdirname:
                 pt_checkpoint_path = os.path.join(tmpdirname, "pt_model.bin")
                 torch.save(pt_model.state_dict(), pt_checkpoint_path)
-                tf_model = transformers.load_pytorch_checkpoint_in_tf2_model(
+                tf_model = transformers_openvla_oft.load_pytorch_checkpoint_in_tf2_model(
                     tf_model, pt_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
                 tf_checkpoint_path = os.path.join(tmpdirname, "tf_model.h5")
                 tf_model.save_weights(tf_checkpoint_path)
-                pt_model = transformers.load_tf2_checkpoint_in_pytorch_model(
+                pt_model = transformers_openvla_oft.load_tf2_checkpoint_in_pytorch_model(
                     pt_model, tf_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 

@@ -22,7 +22,7 @@ import requests
 from datasets import load_dataset
 from huggingface_hub.utils import insecure_hashlib
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_IMAGE_SEGMENTATION_MAPPING,
     MODEL_FOR_INSTANCE_SEGMENTATION_MAPPING,
     MODEL_FOR_SEMANTIC_SEGMENTATION_MAPPING,
@@ -35,7 +35,7 @@ from transformers import (
     is_vision_available,
     pipeline,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     is_pipeline_test,
     nested_simplify,
     require_tf,
@@ -186,14 +186,14 @@ class ImageSegmentationPipelineTests(unittest.TestCase):
         self.assertEqual(
             str(e.exception),
             "Subtask panoptic is not supported for model <class"
-            " 'transformers.models.mobilevit.modeling_mobilevit.MobileViTForSemanticSegmentation'>",
+            " 'transformers_openvla_oft.models.mobilevit.modeling_mobilevit.MobileViTForSemanticSegmentation'>",
         )
         with self.assertRaises(ValueError) as e:
             pipe("http://images.cocodataset.org/val2017/000000039769.jpg", subtask="instance")
         self.assertEqual(
             str(e.exception),
             "Subtask instance is not supported for model <class"
-            " 'transformers.models.mobilevit.modeling_mobilevit.MobileViTForSemanticSegmentation'>",
+            " 'transformers_openvla_oft.models.mobilevit.modeling_mobilevit.MobileViTForSemanticSegmentation'>",
         )
 
     @require_torch

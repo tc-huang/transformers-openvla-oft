@@ -18,10 +18,10 @@ import unittest
 from pathlib import Path
 from shutil import copyfile
 
-from transformers import Speech2TextFeatureExtractor, Speech2TextProcessor, Speech2TextTokenizer
-from transformers.models.speech_to_text.tokenization_speech_to_text import VOCAB_FILES_NAMES, save_json
-from transformers.testing_utils import get_tests_dir, require_sentencepiece, require_torch, require_torchaudio
-from transformers.utils import FEATURE_EXTRACTOR_NAME
+from transformers_openvla_oft import Speech2TextFeatureExtractor, Speech2TextProcessor, Speech2TextTokenizer
+from transformers_openvla_oft.models.speech_to_text.tokenization_speech_to_text import VOCAB_FILES_NAMES, save_json
+from transformers_openvla_oft.testing_utils import get_tests_dir, require_sentencepiece, require_torch, require_torchaudio
+from transformers_openvla_oft.utils import FEATURE_EXTRACTOR_NAME
 
 from .test_feature_extraction_speech_to_text import floats_list
 

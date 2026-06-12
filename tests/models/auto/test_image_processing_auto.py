@@ -19,8 +19,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     CONFIG_MAPPING,
     IMAGE_PROCESSOR_MAPPING,
     AutoConfig,
@@ -28,7 +28,7 @@ from transformers import (
     CLIPConfig,
     CLIPImageProcessor,
 )
-from transformers.testing_utils import DUMMY_UNKNOWN_IDENTIFIER
+from transformers_openvla_oft.testing_utils import DUMMY_UNKNOWN_IDENTIFIER
 
 
 sys.path.append(str(Path(__file__).parent.parent.parent.parent / "utils"))
@@ -39,7 +39,7 @@ from test_module.custom_image_processing import CustomImageProcessor  # noqa E40
 
 class AutoImageProcessorTest(unittest.TestCase):
     def setUp(self):
-        transformers.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
+        transformers_openvla_oft.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
 
     def test_image_processor_from_model_shortcut(self):
         config = AutoImageProcessor.from_pretrained("openai/clip-vit-base-patch32")

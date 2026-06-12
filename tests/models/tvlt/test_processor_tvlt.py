@@ -19,17 +19,17 @@ import unittest
 import numpy as np
 import pytest
 
-from transformers import is_speech_available, is_vision_available
-from transformers.testing_utils import require_torch
+from transformers_openvla_oft import is_speech_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_torch
 
 
 if is_vision_available():
-    from transformers import TvltImageProcessor
+    from transformers_openvla_oft import TvltImageProcessor
 
 if is_speech_available():
-    from transformers import TvltFeatureExtractor
+    from transformers_openvla_oft import TvltFeatureExtractor
 
-from transformers import TvltProcessor
+from transformers_openvla_oft import TvltProcessor
 
 
 @require_torch

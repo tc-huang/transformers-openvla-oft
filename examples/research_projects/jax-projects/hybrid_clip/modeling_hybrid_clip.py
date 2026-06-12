@@ -21,10 +21,10 @@ import jax.numpy as jnp
 from configuration_hybrid_clip import HybridCLIPConfig
 from flax.core.frozen_dict import FrozenDict
 
-from transformers import FLAX_MODEL_MAPPING, FlaxCLIPVisionModel
-from transformers.modeling_flax_utils import FlaxPreTrainedModel
-from transformers.models.clip.modeling_flax_clip import FlaxCLIPOutput
-from transformers.utils import logging
+from transformers_openvla_oft import FLAX_MODEL_MAPPING, FlaxCLIPVisionModel
+from transformers_openvla_oft.modeling_flax_utils import FlaxPreTrainedModel
+from transformers_openvla_oft.models.clip.modeling_flax_clip import FlaxCLIPOutput
+from transformers_openvla_oft.utils import logging
 
 
 logger = logging.get_logger(__name__)
@@ -219,8 +219,8 @@ class FlaxHybridCLIP(FlaxPreTrainedModel):
                 Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you
                 provide it.
 
-                Indices can be obtained using :class:`~transformers.PreTrainedTokenizer`. See
-                :meth:`transformers.PreTrainedTokenizer.encode` and :meth:`transformers.PreTrainedTokenizer.__call__`
+                Indices can be obtained using :class:`~transformers_openvla_oft.PreTrainedTokenizer`. See
+                :meth:`transformers_openvla_oft.PreTrainedTokenizer.encode` and :meth:`transformers_openvla_oft.PreTrainedTokenizer.__call__`
                 for details.
 
                 `What are input IDs? <../glossary.html#input-ids>`__
@@ -273,8 +273,8 @@ class FlaxHybridCLIP(FlaxPreTrainedModel):
         Args:
             pixel_values (:obj:`numpy.ndarray` of shape :obj:`(batch_size, num_channels, height, width)`):
                 Pixel values. Padding will be ignored by default should you provide it. Pixel values can be obtained
-                using :class:`~transformers.ImageFeatureExtractionMixin`. See
-                :meth:`transformers.ImageFeatureExtractionMixin.__call__` for details.
+                using :class:`~transformers_openvla_oft.ImageFeatureExtractionMixin`. See
+                :meth:`transformers_openvla_oft.ImageFeatureExtractionMixin.__call__` for details.
 
         Returns:
             image_features (:obj:`jnp.ndarray` of shape :obj:`(batch_size, output_dim`): The image embeddings
@@ -315,7 +315,7 @@ class FlaxHybridCLIP(FlaxPreTrainedModel):
 
                     - A string, the `model id` of a pretrained model hosted inside a model repo on huggingface.co.
                     - A path to a `directory` containing model weights saved using
-                      :func:`~transformers.FlaxPreTrainedModel.save_pretrained`, e.g., ``./my_model_directory/``.
+                      :func:`~transformers_openvla_oft.FlaxPreTrainedModel.save_pretrained`, e.g., ``./my_model_directory/``.
                     - A path or url to a `PyTorch checkpoint folder` (e.g, ``./pt_model``). In
                       this case, ``from_pt`` should be set to :obj:`True` and a configuration object should be provided
                       as ``config`` argument. This loading path is slower than converting the PyTorch checkpoint in
@@ -326,7 +326,7 @@ class FlaxHybridCLIP(FlaxPreTrainedModel):
 
                     - A string, the `model id` of a pretrained model hosted inside a model repo on huggingface.co.
                     - A path to a `directory` containing model weights saved using
-                      :func:`~transformers.FlaxPreTrainedModel.save_pretrained`, e.g., ``./my_model_directory/``.
+                      :func:`~transformers_openvla_oft.FlaxPreTrainedModel.save_pretrained`, e.g., ``./my_model_directory/``.
                     - A path or url to a `PyTorch checkpoint folder` (e.g, ``./pt_model``). In
                       this case, ``from_pt`` should be set to :obj:`True` and a configuration object should be provided
                       as ``config`` argument. This loading path is slower than converting the PyTorch checkpoint in
@@ -347,7 +347,7 @@ class FlaxHybridCLIP(FlaxPreTrainedModel):
 
         Example::
 
-            >>> from transformers import FlaxHybridCLIP
+            >>> from transformers_openvla_oft import FlaxHybridCLIP
             >>> # initialize a model from pretrained BERT and CLIP models. Note that the projection layers will be randomly initialized.
             >>> # If using CLIP's vision model the vision projection layer will be initialized using pre-trained weights
             >>> model = FlaxHybridCLIP.from_text_vision_pretrained('google-bert/bert-base-uncased', 'openai/clip-vit-base-patch32')
@@ -377,10 +377,10 @@ class FlaxHybridCLIP(FlaxPreTrainedModel):
             assert (
                 text_model_name_or_path is not None
             ), "If `model` is not defined as an argument, a `text_model_name_or_path` has to be defined"
-            from transformers import FlaxAutoModel
+            from transformers_openvla_oft import FlaxAutoModel
 
             if "config" not in kwargs_text:
-                from transformers import AutoConfig
+                from transformers_openvla_oft import AutoConfig
 
                 text_config = AutoConfig.from_pretrained(text_model_name_or_path)
                 kwargs_text["config"] = text_config
@@ -392,10 +392,10 @@ class FlaxHybridCLIP(FlaxPreTrainedModel):
             assert (
                 vision_model_name_or_path is not None
             ), "If `model` is not defined as an argument, a `vision_model_name_or_path` has to be defined"
-            from transformers import FlaxAutoModel
+            from transformers_openvla_oft import FlaxAutoModel
 
             if "config" not in kwargs_vision:
-                from transformers import AutoConfig
+                from transformers_openvla_oft import AutoConfig
 
                 vision_config = AutoConfig.from_pretrained(vision_model_name_or_path)
                 kwargs_vision["config"] = vision_config

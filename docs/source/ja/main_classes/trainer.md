@@ -55,7 +55,7 @@ rendered properly in your Markdown viewer.
 
 ```python
 from torch import nn
-from transformers import Trainer
+from transformers_openvla_oft import Trainer
 
 
 class CustomTrainer(Trainer):
@@ -148,7 +148,7 @@ logging.basicConfig(
 log_level = training_args.get_process_log_level()
 logger.setLevel(log_level)
 datasets.utils.logging.set_verbosity(log_level)
-transformers.utils.logging.set_verbosity(log_level)
+transformers_openvla_oft.utils.logging.set_verbosity(log_level)
 
 trainer = Trainer(...)
 ```

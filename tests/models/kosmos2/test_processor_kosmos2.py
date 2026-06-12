@@ -22,20 +22,20 @@ import numpy as np
 import pytest
 import requests
 
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     get_tests_dir,
     require_sentencepiece,
     require_tokenizers,
     require_torch,
     require_vision,
 )
-from transformers.utils import is_vision_available
+from transformers_openvla_oft.utils import is_vision_available
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoProcessor,
         CLIPImageProcessor,
         Kosmos2Processor,

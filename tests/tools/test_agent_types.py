@@ -18,9 +18,9 @@ import unittest
 import uuid
 from pathlib import Path
 
-from transformers.testing_utils import get_tests_dir, require_soundfile, require_torch, require_vision
-from transformers.tools.agent_types import AgentAudio, AgentImage, AgentText
-from transformers.utils import is_soundfile_availble, is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import get_tests_dir, require_soundfile, require_torch, require_vision
+from transformers_openvla_oft.tools.agent_types import AgentAudio, AgentImage, AgentText
+from transformers_openvla_oft.utils import is_soundfile_availble, is_torch_available, is_vision_available
 
 
 if is_torch_available():

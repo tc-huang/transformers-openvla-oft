@@ -65,7 +65,7 @@ This model was contributed by [thomwolf](https://huggingface.co/thomwolf). The o
 The `generate()` method can be used to generate text using GPT2 model.
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> model = AutoModelForCausalLM.from_pretrained("gpt2")
 >>> tokenizer = AutoTokenizer.from_pretrained("gpt2")
@@ -103,7 +103,7 @@ To load a model using Flash Attention 2, we can pass the argument `attn_implemen
 
 ```python
 >>> import torch
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 >>> device = "cuda" # the device to load the model onto
 
 >>> model = AutoModelForCausalLM.from_pretrained("gpt2", torch_dtype=torch.float16, attn_implementation="flash_attention_2")

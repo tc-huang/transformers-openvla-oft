@@ -18,8 +18,8 @@ import unittest
 
 from datasets import load_dataset
 
-from transformers import Wav2Vec2BertConfig, is_torch_available
-from transformers.testing_utils import (
+from transformers_openvla_oft import Wav2Vec2BertConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import (
     is_pt_flax_cross_test,
     require_torch,
     require_torch_accelerator,
@@ -42,7 +42,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoFeatureExtractor,
         Wav2Vec2BertForAudioFrameClassification,
         Wav2Vec2BertForCTC,
@@ -50,7 +50,7 @@ if is_torch_available():
         Wav2Vec2BertForXVector,
         Wav2Vec2BertModel,
     )
-    from transformers.models.wav2vec2_bert.modeling_wav2vec2_bert import (
+    from transformers_openvla_oft.models.wav2vec2_bert.modeling_wav2vec2_bert import (
         _compute_mask_indices,
         _sample_negative_indices,
     )

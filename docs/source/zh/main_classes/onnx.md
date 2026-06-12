@@ -16,7 +16,7 @@ rendered properly in your Markdown viewer.
 
 # 导出 🤗 Transformers 模型到 ONNX
 
-🤗 Transformers提供了一个`transformers.onnx`包，通过利用配置对象，您可以将模型checkpoints转换为ONNX图。
+🤗 Transformers提供了一个`transformers_openvla_oft.onnx`包，通过利用配置对象，您可以将模型checkpoints转换为ONNX图。
 
 有关更多详细信息，请参阅导出 🤗 Transformers 模型的[指南](../serialization)。
 

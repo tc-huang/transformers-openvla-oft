@@ -5,7 +5,7 @@ from unittest.mock import patch
 
 import run_glue_deebert
 
-from transformers.testing_utils import TestCasePlus, get_gpu_count, require_torch_non_multi_gpu, slow
+from transformers_openvla_oft.testing_utils import TestCasePlus, get_gpu_count, require_torch_non_multi_gpu, slow
 
 
 logging.basicConfig(level=logging.DEBUG)

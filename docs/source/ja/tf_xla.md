@@ -80,10 +80,10 @@ pip install transformers --upgrade
 
 ```py
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 # Will error if the minimal version of Transformers is not installed.
-from transformers.utils import check_min_version
+from transformers_openvla_oft.utils import check_min_version
 
 check_min_version("4.21.0")
 
@@ -116,7 +116,7 @@ XLAを有効にした関数（上記の`xla_generate()`など）を初めて実�
 
 ```py
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2", padding_side="left", pad_token="</s>")
 model = TFAutoModelForCausalLM.from_pretrained("openai-community/gpt2")
@@ -137,7 +137,7 @@ print(f"Generated -- {decoded_text}")
 ```py
 import time
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2", padding_side="left", pad_token="</s>")
 model = TFAutoModelForCausalLM.from_pretrained("openai-community/gpt2")

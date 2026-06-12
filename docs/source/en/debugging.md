@@ -219,7 +219,7 @@ to the normal command line arguments, or pass `debug="underflow_overflow"` when 
 If you're using your own training loop or another Trainer you can accomplish the same with:
 
 ```python
-from transformers.debug_utils import DebugUnderflowOverflow
+from transformers_openvla_oft.debug_utils import DebugUnderflowOverflow
 
 debug_overflow = DebugUnderflowOverflow(model)
 ```
@@ -413,7 +413,7 @@ Additionally, if you're instantiating the debugger in your own code, you can adj
 its default, e.g.:
 
 ```python
-from transformers.debug_utils import DebugUnderflowOverflow
+from transformers_openvla_oft.debug_utils import DebugUnderflowOverflow
 
 debug_overflow = DebugUnderflowOverflow(model, max_frames_to_save=100)
 ```

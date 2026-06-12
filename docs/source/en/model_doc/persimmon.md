@@ -51,7 +51,7 @@ Tips:
 git clone https://github.com/persimmon-ai-labs/adept-inference
 wget https://axtkn4xl5cip.objectstorage.us-phoenix-1.oci.customer-oci.com/n/axtkn4xl5cip/b/adept-public-data/o/8b_base_model_release.tar
 tar -xvf 8b_base_model_release.tar
-python src/transformers/models/persimmon/convert_persimmon_weights_to_hf.py  --input_dir /path/to/downloaded/persimmon/weights/ --output_dir /output/path \
+python src/transformers_openvla_oft/models/persimmon/convert_persimmon_weights_to_hf.py  --input_dir /path/to/downloaded/persimmon/weights/ --output_dir /output/path \
     --pt_model_path /path/to/8b_chat_model_release/iter_0001251/mp_rank_00/model_optim_rng.pt
     --ada_lib_path /path/to/adept-inference
 ```
@@ -65,7 +65,7 @@ tar -xvf 8b_base_model_release.tar
 Thereafter, models can be loaded via:
 
 ```py
-from transformers import PersimmonForCausalLM, PersimmonTokenizer
+from transformers_openvla_oft import PersimmonForCausalLM, PersimmonTokenizer
 
 model = PersimmonForCausalLM.from_pretrained("/output/path")
 tokenizer = PersimmonTokenizer.from_pretrained("/output/path")

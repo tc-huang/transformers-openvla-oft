@@ -114,7 +114,7 @@ DatasetDict({
 다음으로 오디오 신호를 처리하기 위한 Wav2Vec2 프로세서를 가져옵니다:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("facebook/wav2vec2-base")
 ```
@@ -248,7 +248,7 @@ MInDS-14 데이터 세트의 샘플링 레이트는 8000kHz이므로([데이터 
 이제 모델 훈련을 시작할 준비가 되었습니다! [`AutoModelForCTC`]로 Wav2Vec2를 가져오세요. `ctc_loss_reduction` 매개변수로 CTC 손실에 적용할 축소(reduction) 방법을 지정하세요. 기본값인 합계 대신 평균을 사용하는 것이 더 좋은 경우가 많습니다:
 
 ```py
->>> from transformers import AutoModelForCTC, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForCTC, TrainingArguments, Trainer
 
 >>> model = AutoModelForCTC.from_pretrained(
 ...     "facebook/wav2vec2-base",
@@ -298,7 +298,7 @@ MInDS-14 데이터 세트의 샘플링 레이트는 8000kHz이므로([데이터 
 >>> trainer.train()
 ```
 
-훈련이 완료되면 모두가 모델을 사용할 수 있도록 [`~transformers.Trainer.push_to_hub`] 메소드를 사용하여 모델을 Hub에 공유하세요:
+훈련이 완료되면 모두가 모델을 사용할 수 있도록 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드를 사용하여 모델을 Hub에 공유하세요:
 
 ```py
 >>> trainer.push_to_hub()
@@ -330,7 +330,7 @@ MInDS-14 데이터 세트의 샘플링 레이트는 8000kHz이므로([데이터 
 추론을 위해 미세 조정된 모델을 시험해보는 가장 간단한 방법은 [`pipeline`]을 사용하는 것입니다. 모델을 사용하여 자동 음성 인식을 위한 `pipeline`을 인스턴스화하고 오디오 파일을 전달하세요:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline("automatic-speech-recognition", model="stevhliu/my_awesome_asr_minds_model")
 >>> transcriber(audio_file)
@@ -350,7 +350,7 @@ MInDS-14 데이터 세트의 샘플링 레이트는 8000kHz이므로([데이터 
 오디오 파일과 텍스트를 전처리하고 PyTorch 텐서로 `input`을 반환할 프로세서를 가져오세요:
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("stevhliu/my_awesome_asr_mind_model")
 >>> inputs = processor(dataset[0]["audio"]["array"], sampling_rate=sampling_rate, return_tensors="pt")
@@ -359,7 +359,7 @@ MInDS-14 데이터 세트의 샘플링 레이트는 8000kHz이므로([데이터 
 입력을 모델에 전달하고 로짓을 반환하세요:
 
 ```py
->>> from transformers import AutoModelForCTC
+>>> from transformers_openvla_oft import AutoModelForCTC
 
 >>> model = AutoModelForCTC.from_pretrained("stevhliu/my_awesome_asr_mind_model")
 >>> with torch.no_grad():

@@ -22,8 +22,8 @@ import unittest
 
 import numpy as np
 
-from transformers import Speech2TextFeatureExtractor
-from transformers.testing_utils import check_json_file_has_correct_format, require_torch, require_torchaudio
+from transformers_openvla_oft import Speech2TextFeatureExtractor
+from transformers_openvla_oft.testing_utils import check_json_file_has_correct_format, require_torch, require_torchaudio
 
 from ...test_sequence_feature_extraction_common import SequenceFeatureExtractionTestMixin
 
@@ -308,7 +308,7 @@ class Speech2TextFeatureExtractionTest(SequenceFeatureExtractionTestMixin, unitt
 # exact same tests than before, except that we simulate that torchaudio is not available
 @require_torch
 @unittest.mock.patch(
-    "transformers.models.speech_to_text.feature_extraction_speech_to_text.is_speech_available", lambda: False
+    "transformers_openvla_oft.models.speech_to_text.feature_extraction_speech_to_text.is_speech_available", lambda: False
 )
 class Speech2TextFeatureExtractionWithoutTorchaudioTest(Speech2TextFeatureExtractionTest):
     def test_using_audio_utils(self):
@@ -318,6 +318,6 @@ class Speech2TextFeatureExtractionWithoutTorchaudioTest(Speech2TextFeatureExtrac
         self.assertTrue(hasattr(feat_extract, "window"))
         self.assertTrue(hasattr(feat_extract, "mel_filters"))
 
-        from transformers.models.speech_to_text.feature_extraction_speech_to_text import is_speech_available
+        from transformers_openvla_oft.models.speech_to_text.feature_extraction_speech_to_text import is_speech_available
 
         self.assertFalse(is_speech_available())

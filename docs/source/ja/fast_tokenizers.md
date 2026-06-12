@@ -45,7 +45,7 @@ rendered properly in your Markdown viewer.
 
 
 ```python
->>> from transformers import PreTrainedTokenizerFast
+>>> from transformers_openvla_oft import PreTrainedTokenizerFast
 
 >>> fast_tokenizer = PreTrainedTokenizerFast(tokenizer_object=tokenizer)
 ```
@@ -64,7 +64,7 @@ JSONファイルからトークナイザーを読み込むには、まずトー�
 
 
 ```python
->>> from transformers import PreTrainedTokenizerFast
+>>> from transformers_openvla_oft import PreTrainedTokenizerFast
 
 >>> fast_tokenizer = PreTrainedTokenizerFast(tokenizer_file="tokenizer.json")
 ```

@@ -16,8 +16,8 @@
 import gc
 import unittest
 
-from transformers import CTRLConfig, is_torch_available
-from transformers.testing_utils import backend_empty_cache, require_torch, slow, torch_device
+from transformers_openvla_oft import CTRLConfig, is_torch_available
+from transformers_openvla_oft.testing_utils import backend_empty_cache, require_torch, slow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -28,7 +28,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         CTRLForSequenceClassification,
         CTRLLMHeadModel,
         CTRLModel,

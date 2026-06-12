@@ -89,7 +89,7 @@ GPU memory occupied: 1343 MB.
 
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-large-uncased").to("cuda")
@@ -150,7 +150,7 @@ default_args = {
 [`Trainer`]를 사용하여, GPU 성능 최적화 기술을 사용하지 않고 배치 크기가 4인 모델을 훈련시키겠습니다:
 
 ```py
->>> from transformers import TrainingArguments, Trainer, logging
+>>> from transformers_openvla_oft import TrainingArguments, Trainer, logging
 
 >>> logging.set_verbosity_error()
 

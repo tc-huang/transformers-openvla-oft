@@ -191,7 +191,7 @@ RUN_SLOW=1 pytest -m accelerate_tests tests/models/opt/test_modeling_opt.py
 ### Run documentation tests 
 
 In order to test whether the documentation examples are correct, you should check that the `doctests` are passing. 
-As an example, let's use [`WhisperModel.forward`'s docstring](https://github.com/huggingface/transformers/blob/main/src/transformers/models/whisper/modeling_whisper.py#L1017-L1035): 
+As an example, let's use [`WhisperModel.forward`'s docstring](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/whisper/modeling_whisper.py#L1017-L1035): 
 
 ```python 
 r"""
@@ -200,7 +200,7 @@ Returns:
 Example:
     ```python
     >>> import torch
-    >>> from transformers import WhisperModel, WhisperFeatureExtractor
+    >>> from transformers_openvla_oft import WhisperModel, WhisperFeatureExtractor
     >>> from datasets import load_dataset
 
     >>> model = WhisperModel.from_pretrained("openai/whisper-base")
@@ -505,7 +505,7 @@ Inside tests:
 - How many GPUs are available:
 
 ```python
-from transformers.testing_utils import get_gpu_count
+from transformers_openvla_oft.testing_utils import get_gpu_count
 
 n_gpu = get_gpu_count()  # works with torch and tf
 ```
@@ -730,7 +730,7 @@ as in the previous example.
 
 In tests often we need to know where things are relative to the current test file, and it's not trivial since the test
 could be invoked from more than one directory or could reside in sub-directories with different depths. A helper class
-`transformers.test_utils.TestCasePlus` solves this problem by sorting out all the basic paths and provides easy
+`transformers_openvla_oft.test_utils.TestCasePlus` solves this problem by sorting out all the basic paths and provides easy
 accessors to them:
 
 - `pathlib` objects (all fully resolved):
@@ -752,10 +752,10 @@ accessors to them:
   - `src_dir_str`
 
 To start using those all you need is to make sure that the test resides in a subclass of
-`transformers.test_utils.TestCasePlus`. For example:
+`transformers_openvla_oft.test_utils.TestCasePlus`. For example:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class PathExampleTest(TestCasePlus):
@@ -767,7 +767,7 @@ If you don't need to manipulate paths via `pathlib` or you just need a path as a
 `str()` on the `pathlib` object or use the accessors ending with `_str`. For example:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class PathExampleTest(TestCasePlus):
@@ -784,13 +784,13 @@ them. Therefore, using packages like `tempfile`, which address these needs is es
 However, when debugging tests, you need to be able to see what goes into the temporary file or directory and you want
 to know it's exact path and not having it randomized on every test re-run.
 
-A helper class `transformers.test_utils.TestCasePlus` is best used for such purposes. It's a sub-class of
+A helper class `transformers_openvla_oft.test_utils.TestCasePlus` is best used for such purposes. It's a sub-class of
 `unittest.TestCase`, so we can easily inherit from it in the test modules.
 
 Here is an example of its usage:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class ExamplesTests(TestCasePlus):
@@ -851,7 +851,7 @@ If you need to temporary override `sys.path` to import from another test for exa
 
 ```python
 import os
-from transformers.testing_utils import ExtendSysPath
+from transformers_openvla_oft.testing_utils import ExtendSysPath
 
 bindir = os.path.abspath(os.path.dirname(__file__))
 with ExtendSysPath(f"{bindir}/.."):
@@ -960,7 +960,7 @@ an hour for the test suite to complete on CI. Therefore, with some exceptions fo
 marked as in the example below:
 
 ```python no-style
-from transformers.testing_utils import slow
+from transformers_openvla_oft.testing_utils import slow
 @slow
 def test_integration_foo():
 ```
@@ -1104,7 +1104,7 @@ But, then we have a helper context manager wrapper to automatically take care of
 some `\r`'s in it or not, so it's a simple:
 
 ```python
-from transformers.testing_utils import CaptureStdout
+from transformers_openvla_oft.testing_utils import CaptureStdout
 
 with CaptureStdout() as cs:
     function_that_writes_to_stdout()
@@ -1114,7 +1114,7 @@ print(cs.out)
 Here is a full test example:
 
 ```python
-from transformers.testing_utils import CaptureStdout
+from transformers_openvla_oft.testing_utils import CaptureStdout
 
 msg = "Secret message\r"
 final = "Hello World"
@@ -1126,7 +1126,7 @@ assert cs.out == final + "\n", f"captured: {cs.out}, expecting {final}"
 If you'd like to capture `stderr` use the `CaptureStderr` class instead:
 
 ```python
-from transformers.testing_utils import CaptureStderr
+from transformers_openvla_oft.testing_utils import CaptureStderr
 
 with CaptureStderr() as cs:
     function_that_writes_to_stderr()
@@ -1136,7 +1136,7 @@ print(cs.err)
 If you need to capture both streams at once, use the parent `CaptureStd` class:
 
 ```python
-from transformers.testing_utils import CaptureStd
+from transformers_openvla_oft.testing_utils import CaptureStd
 
 with CaptureStd() as cs:
     function_that_writes_to_stdout_and_stderr()
@@ -1152,12 +1152,12 @@ from the context.
 If you need to validate the output of a logger, you can use `CaptureLogger`:
 
 ```python
-from transformers import logging
-from transformers.testing_utils import CaptureLogger
+from transformers_openvla_oft import logging
+from transformers_openvla_oft.testing_utils import CaptureLogger
 
 msg = "Testing 1, 2, 3"
 logging.set_verbosity_info()
-logger = logging.get_logger("transformers.models.bart.tokenization_bart")
+logger = logging.get_logger("transformers_openvla_oft.models.bart.tokenization_bart")
 with CaptureLogger(logger) as cl:
     logger.info(msg)
 assert cl.out, msg + "\n"
@@ -1166,10 +1166,10 @@ assert cl.out, msg + "\n"
 ### Testing with environment variables
 
 If you want to test the impact of environment variables for a specific test you can use a helper decorator
-`transformers.testing_utils.mockenv`
+`transformers_openvla_oft.testing_utils.mockenv`
 
 ```python
-from transformers.testing_utils import mockenv
+from transformers_openvla_oft.testing_utils import mockenv
 
 
 class HfArgumentParserTest(unittest.TestCase):
@@ -1179,10 +1179,10 @@ class HfArgumentParserTest(unittest.TestCase):
 ```
 
 At times an external program needs to be called, which requires setting `PYTHONPATH` in `os.environ` to include
-multiple local paths. A helper class `transformers.test_utils.TestCasePlus` comes to help:
+multiple local paths. A helper class `transformers_openvla_oft.test_utils.TestCasePlus` comes to help:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class EnvExampleTest(TestCasePlus):

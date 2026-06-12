@@ -20,7 +20,7 @@ import random
 import unittest
 from pathlib import Path
 
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     is_pipeline_test,
     require_decord,
     require_pytesseract,
@@ -29,7 +29,7 @@ from transformers.testing_utils import (
     require_torch_or_tf,
     require_vision,
 )
-from transformers.utils import direct_transformers_import, logging
+from transformers_openvla_oft.utils import direct_transformers_import, logging
 
 from .pipelines.test_pipelines_audio_classification import AudioClassificationPipelineTests
 from .pipelines.test_pipelines_automatic_speech_recognition import AutomaticSpeechRecognitionPipelineTests
@@ -114,7 +114,7 @@ with open(TINY_MODEL_SUMMARY_FILE_PATH) as fp:
     tiny_model_summary = json.load(fp)
 
 
-PATH_TO_TRANSFORMERS = os.path.join(Path(__file__).parent.parent, "src/transformers")
+PATH_TO_TRANSFORMERS = os.path.join(Path(__file__).parent.parent, "src/transformers_openvla_oft")
 
 
 # Dynamically import the Transformers module to grab the attribute classes of the processor form their names.

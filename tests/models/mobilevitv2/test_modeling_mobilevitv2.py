@@ -17,9 +17,9 @@
 
 import unittest
 
-from transformers import MobileViTV2Config
-from transformers.testing_utils import require_torch, require_torch_multi_gpu, require_vision, slow, torch_device
-from transformers.utils import cached_property, is_torch_available, is_vision_available
+from transformers_openvla_oft import MobileViTV2Config
+from transformers_openvla_oft.testing_utils import require_torch, require_torch_multi_gpu, require_vision, slow, torch_device
+from transformers_openvla_oft.utils import cached_property, is_torch_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, floats_tensor, ids_tensor
@@ -29,8 +29,8 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import MobileViTV2ForImageClassification, MobileViTV2ForSemanticSegmentation, MobileViTV2Model
-    from transformers.models.mobilevitv2.modeling_mobilevitv2 import (
+    from transformers_openvla_oft import MobileViTV2ForImageClassification, MobileViTV2ForSemanticSegmentation, MobileViTV2Model
+    from transformers_openvla_oft.models.mobilevitv2.modeling_mobilevitv2 import (
         make_divisible,
     )
 
@@ -38,7 +38,7 @@ if is_torch_available():
 if is_vision_available():
     from PIL import Image
 
-    from transformers import MobileViTImageProcessor
+    from transformers_openvla_oft import MobileViTImageProcessor
 
 
 class MobileViTV2ConfigTester(ConfigTester):

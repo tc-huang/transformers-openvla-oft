@@ -24,9 +24,9 @@ from huggingface_hub.file_download import http_get
 from requests import ConnectTimeout, ReadTimeout
 
 from tests.pipelines.test_pipelines_document_question_answering import INVOICE_URL
-from transformers import is_torch_available, is_vision_available
-from transformers.image_utils import ChannelDimension, get_channel_dimension_axis, make_list_of_images
-from transformers.testing_utils import is_flaky, require_torch, require_vision
+from transformers_openvla_oft import is_torch_available, is_vision_available
+from transformers_openvla_oft.image_utils import ChannelDimension, get_channel_dimension_axis, make_list_of_images
+from transformers_openvla_oft.testing_utils import is_flaky, require_torch, require_vision
 
 
 if is_torch_available():
@@ -35,8 +35,8 @@ if is_torch_available():
 if is_vision_available():
     import PIL.Image
 
-    from transformers import ImageFeatureExtractionMixin
-    from transformers.image_utils import get_image_size, infer_channel_dimension_format, load_image
+    from transformers_openvla_oft import ImageFeatureExtractionMixin
+    from transformers_openvla_oft.image_utils import get_image_size, infer_channel_dimension_format, load_image
 
 
 def get_random_image(height, width):

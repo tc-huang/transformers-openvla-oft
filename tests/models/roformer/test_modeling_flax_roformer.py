@@ -16,8 +16,8 @@ import unittest
 
 import numpy as np
 
-from transformers import RoFormerConfig, is_flax_available
-from transformers.testing_utils import require_flax, slow
+from transformers_openvla_oft import RoFormerConfig, is_flax_available
+from transformers_openvla_oft.testing_utils import require_flax, slow
 
 from ...test_modeling_flax_common import FlaxModelTesterMixin, ids_tensor, random_attention_mask
 
@@ -25,7 +25,7 @@ from ...test_modeling_flax_common import FlaxModelTesterMixin, ids_tensor, rando
 if is_flax_available():
     import jax.numpy as jnp
 
-    from transformers.models.roformer.modeling_flax_roformer import (
+    from transformers_openvla_oft.models.roformer.modeling_flax_roformer import (
         FlaxRoFormerForMaskedLM,
         FlaxRoFormerForMultipleChoice,
         FlaxRoFormerForQuestionAnswering,

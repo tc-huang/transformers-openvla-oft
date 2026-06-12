@@ -18,10 +18,10 @@ import os
 import unittest
 from typing import Tuple
 
-from transformers import Wav2Vec2PhonemeCTCTokenizer
-from transformers.models.wav2vec2.tokenization_wav2vec2 import VOCAB_FILES_NAMES
-from transformers.models.wav2vec2_phoneme.tokenization_wav2vec2_phoneme import Wav2Vec2PhonemeCTCTokenizerOutput
-from transformers.testing_utils import require_phonemizer
+from transformers_openvla_oft import Wav2Vec2PhonemeCTCTokenizer
+from transformers_openvla_oft.models.wav2vec2.tokenization_wav2vec2 import VOCAB_FILES_NAMES
+from transformers_openvla_oft.models.wav2vec2_phoneme.tokenization_wav2vec2_phoneme import Wav2Vec2PhonemeCTCTokenizerOutput
+from transformers_openvla_oft.testing_utils import require_phonemizer
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

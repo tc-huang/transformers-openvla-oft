@@ -2,8 +2,8 @@ from arguments import TokenizerTrainingArguments
 from datasets import load_dataset
 from tqdm import tqdm
 
-from transformers import AutoTokenizer, HfArgumentParser
-from transformers.models.gpt2.tokenization_gpt2 import bytes_to_unicode
+from transformers_openvla_oft import AutoTokenizer, HfArgumentParser
+from transformers_openvla_oft.models.gpt2.tokenization_gpt2 import bytes_to_unicode
 
 
 # Iterator for Training

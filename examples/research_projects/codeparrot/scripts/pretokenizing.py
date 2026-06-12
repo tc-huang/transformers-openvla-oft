@@ -4,7 +4,7 @@ import time
 from arguments import PretokenizationArguments
 from datasets import load_dataset
 
-from transformers import AutoTokenizer, HfArgumentParser
+from transformers_openvla_oft import AutoTokenizer, HfArgumentParser
 
 
 def tokenize(example):

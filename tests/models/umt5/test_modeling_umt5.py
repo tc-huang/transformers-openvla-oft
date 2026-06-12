@@ -18,16 +18,16 @@ import pickle
 import tempfile
 import unittest
 
-from transformers import UMT5Config, is_torch_available
-from transformers.models.auto.modeling_auto import MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING_NAMES
-from transformers.testing_utils import (
+from transformers_openvla_oft import UMT5Config, is_torch_available
+from transformers_openvla_oft.models.auto.modeling_auto import MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING_NAMES
+from transformers_openvla_oft.testing_utils import (
     require_sentencepiece,
     require_tokenizers,
     require_torch,
     slow,
     torch_device,
 )
-from transformers.utils import is_torch_fx_available
+from transformers_openvla_oft.utils import is_torch_fx_available
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -36,13 +36,13 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 
 
 if is_torch_fx_available():
-    from transformers.utils.fx import symbolic_trace
+    from transformers_openvla_oft.utils.fx import symbolic_trace
 
 
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoTokenizer,
         UMT5EncoderModel,
         UMT5ForConditionalGeneration,
@@ -321,7 +321,7 @@ class UMT5ModelTest(ModelTesterMixin, GenerationTesterMixin, PipelineTesterMixin
         self.model_tester = UMT5ModelTester(self)
 
     # `QAPipelineTests` is not working well with slow tokenizers (for some models) and we don't want to touch the file
-    # `src/transformers/data/processors/squad.py` (where this test fails for this model)
+    # `src/transformers_openvla_oft/data/processors/squad.py` (where this test fails for this model)
     def is_pipeline_test_to_skip(
         self, pipeline_test_casse_name, config_class, model_architecture, tokenizer_name, processor_name
     ):

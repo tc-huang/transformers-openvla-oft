@@ -14,7 +14,7 @@
 
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_OBJECT_DETECTION_MAPPING,
     AutoFeatureExtractor,
     AutoModelForObjectDetection,
@@ -22,7 +22,7 @@ from transformers import (
     is_vision_available,
     pipeline,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     is_pipeline_test,
     nested_simplify,
     require_pytesseract,

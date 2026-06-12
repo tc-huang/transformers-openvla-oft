@@ -29,7 +29,7 @@ import numpy as np
 from datasets import load_dataset
 from packaging.version import parse
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoConfig,
     AutoTokenizer,
     HfArgumentParser,
@@ -40,7 +40,7 @@ from transformers import (
     create_optimizer,
     set_seed,
 )
-from transformers.utils import CONFIG_NAME, TF2_WEIGHTS_NAME, send_example_telemetry
+from transformers_openvla_oft.utils import CONFIG_NAME, TF2_WEIGHTS_NAME, send_example_telemetry
 
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"  # Reduce the amount of console output from TF
@@ -217,7 +217,7 @@ class ModelArguments:
 
 def main():
     # region Argument parsing
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 

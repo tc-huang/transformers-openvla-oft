@@ -22,7 +22,7 @@ from pathlib import Path
 
 from git import Repo
 
-from transformers.testing_utils import CaptureStdout
+from transformers_openvla_oft.testing_utils import CaptureStdout
 
 
 REPO_PATH = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
@@ -48,7 +48,7 @@ from tests_fetcher import (  # noqa: E402
 )
 
 
-BERT_MODELING_FILE = "src/transformers/models/bert/modeling_bert.py"
+BERT_MODELING_FILE = "src/transformers_openvla_oft/models/bert/modeling_bert.py"
 BERT_MODEL_FILE = """from ...modeling_utils import PreTrainedModel
 from ...utils import is_torch_available
 from .configuration_bert import BertConfig
@@ -139,7 +139,7 @@ def create_tmp_repo(tmp_dir, models=None):
     test_dir = tmp_dir / "tests"
     test_dir.mkdir(exist_ok=True)
     with open(test_dir / "test_modeling_common.py", "w") as f:
-        f.write("from transformers.modeling_utils import PreTrainedModel\ncode")
+        f.write("from transformers_openvla_oft.modeling_utils import PreTrainedModel\ncode")
 
     for model, cls in zip(models, class_names):
         test_model_dir = test_dir / "models" / model
@@ -147,7 +147,7 @@ def create_tmp_repo(tmp_dir, models=None):
         (test_model_dir / "__init__.py").touch()
         with open(test_model_dir / f"test_modeling_{model}.py", "w") as f:
             f.write(
-                f"from transformers import {cls}Config, {cls}Model\nfrom ...test_modeling_common import ModelTesterMixin\n\ncode"
+                f"from transformers_openvla_oft import {cls}Config, {cls}Model\nfrom ...test_modeling_common import ModelTesterMixin\n\ncode"
             )
 
     example_dir = tmp_dir / "examples"
@@ -160,7 +160,7 @@ def create_tmp_repo(tmp_dir, models=None):
         glue_dir = framework_dir / "text-classification"
         glue_dir.mkdir(exist_ok=True)
         with open(glue_dir / "run_glue.py", "w") as f:
-            f.write("from transformers import BertModel\n\ncode")
+            f.write("from transformers_openvla_oft import BertModel\n\ncode")
 
     repo.index.add(["examples", "src", "tests"])
     repo.index.commit("Initial commit")
@@ -178,14 +178,14 @@ def patch_transformer_repo_path(new_folder):
     old_repo_path = tests_fetcher.PATH_TO_REPO
     tests_fetcher.PATH_TO_REPO = Path(new_folder).resolve()
     tests_fetcher.PATH_TO_EXAMPLES = tests_fetcher.PATH_TO_REPO / "examples"
-    tests_fetcher.PATH_TO_TRANFORMERS = tests_fetcher.PATH_TO_REPO / "src/transformers"
+    tests_fetcher.PATH_TO_TRANFORMERS = tests_fetcher.PATH_TO_REPO / "src/transformers_openvla_oft"
     tests_fetcher.PATH_TO_TESTS = tests_fetcher.PATH_TO_REPO / "tests"
     try:
         yield
     finally:
         tests_fetcher.PATH_TO_REPO = old_repo_path
         tests_fetcher.PATH_TO_EXAMPLES = tests_fetcher.PATH_TO_REPO / "examples"
-        tests_fetcher.PATH_TO_TRANFORMERS = tests_fetcher.PATH_TO_REPO / "src/transformers"
+        tests_fetcher.PATH_TO_TRANFORMERS = tests_fetcher.PATH_TO_REPO / "src/transformers_openvla_oft"
         tests_fetcher.PATH_TO_TESTS = tests_fetcher.PATH_TO_REPO / "tests"
 
 
@@ -280,14 +280,14 @@ class TestFetcherTester(unittest.TestCase):
 
             commit_changes(bert_file, BERT_MODEL_FILE_NEW_CODE, repo)
             assert get_diff(repo, repo.head.commit, repo.head.commit.parents) == [
-                "src/transformers/models/bert/modeling_bert.py"
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py"
             ]
 
-            commit_changes("src/transformers/utils/hub.py", "import huggingface_hub\n\nnew code", repo)
-            assert get_diff(repo, repo.head.commit, repo.head.commit.parents) == ["src/transformers/utils/hub.py"]
+            commit_changes("src/transformers_openvla_oft/utils/hub.py", "import huggingface_hub\n\nnew code", repo)
+            assert get_diff(repo, repo.head.commit, repo.head.commit.parents) == ["src/transformers_openvla_oft/utils/hub.py"]
             assert get_diff(repo, repo.head.commit, [initial_commit]) == [
-                "src/transformers/models/bert/modeling_bert.py",
-                "src/transformers/utils/hub.py",
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py",
+                "src/transformers_openvla_oft/utils/hub.py",
             ]
 
     def test_extract_imports_relative(self):
@@ -296,25 +296,25 @@ class TestFetcherTester(unittest.TestCase):
             create_tmp_repo(tmp_folder)
 
             expected_bert_imports = [
-                ("src/transformers/modeling_utils.py", ["PreTrainedModel"]),
-                ("src/transformers/utils/__init__.py", ["is_torch_available"]),
-                ("src/transformers/models/bert/configuration_bert.py", ["BertConfig"]),
+                ("src/transformers_openvla_oft/modeling_utils.py", ["PreTrainedModel"]),
+                ("src/transformers_openvla_oft/utils/__init__.py", ["is_torch_available"]),
+                ("src/transformers_openvla_oft/models/bert/configuration_bert.py", ["BertConfig"]),
             ]
             expected_utils_imports = [
-                ("src/transformers/utils/hub.py", ["cached_file"]),
-                ("src/transformers/utils/imports.py", ["is_torch_available"]),
+                ("src/transformers_openvla_oft/utils/hub.py", ["cached_file"]),
+                ("src/transformers_openvla_oft/utils/imports.py", ["is_torch_available"]),
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert extract_imports(BERT_MODELING_FILE) == expected_bert_imports
-                assert extract_imports("src/transformers/utils/__init__.py") == expected_utils_imports
+                assert extract_imports("src/transformers_openvla_oft/utils/__init__.py") == expected_utils_imports
 
             with open(tmp_folder / BERT_MODELING_FILE, "w") as f:
                 f.write(
                     "from ...utils import cached_file, is_torch_available\nfrom .configuration_bert import BertConfig\n"
                 )
             expected_bert_imports = [
-                ("src/transformers/utils/__init__.py", ["cached_file", "is_torch_available"]),
-                ("src/transformers/models/bert/configuration_bert.py", ["BertConfig"]),
+                ("src/transformers_openvla_oft/utils/__init__.py", ["cached_file", "is_torch_available"]),
+                ("src/transformers_openvla_oft/models/bert/configuration_bert.py", ["BertConfig"]),
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert extract_imports(BERT_MODELING_FILE) == expected_bert_imports
@@ -325,8 +325,8 @@ class TestFetcherTester(unittest.TestCase):
                     "from ...utils import (\n    cached_file,\n    is_torch_available\n)\nfrom .configuration_bert import BertConfig\n"
                 )
             expected_bert_imports = [
-                ("src/transformers/models/bert/configuration_bert.py", ["BertConfig"]),
-                ("src/transformers/utils/__init__.py", ["cached_file", "is_torch_available"]),
+                ("src/transformers_openvla_oft/models/bert/configuration_bert.py", ["BertConfig"]),
+                ("src/transformers_openvla_oft/utils/__init__.py", ["cached_file", "is_torch_available"]),
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert extract_imports(BERT_MODELING_FILE) == expected_bert_imports
@@ -338,11 +338,11 @@ class TestFetcherTester(unittest.TestCase):
 
             with open(tmp_folder / BERT_MODELING_FILE, "w") as f:
                 f.write(
-                    "from transformers.utils import cached_file, is_torch_available\nfrom transformers.models.bert.configuration_bert import BertConfig\n"
+                    "from transformers_openvla_oft.utils import cached_file, is_torch_available\nfrom transformers_openvla_oft.models.bert.configuration_bert import BertConfig\n"
                 )
             expected_bert_imports = [
-                ("src/transformers/utils/__init__.py", ["cached_file", "is_torch_available"]),
-                ("src/transformers/models/bert/configuration_bert.py", ["BertConfig"]),
+                ("src/transformers_openvla_oft/utils/__init__.py", ["cached_file", "is_torch_available"]),
+                ("src/transformers_openvla_oft/models/bert/configuration_bert.py", ["BertConfig"]),
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert extract_imports(BERT_MODELING_FILE) == expected_bert_imports
@@ -350,11 +350,11 @@ class TestFetcherTester(unittest.TestCase):
             # Test with multi-line imports
             with open(tmp_folder / BERT_MODELING_FILE, "w") as f:
                 f.write(
-                    "from transformers.utils import (\n    cached_file,\n    is_torch_available\n)\nfrom transformers.models.bert.configuration_bert import BertConfig\n"
+                    "from transformers_openvla_oft.utils import (\n    cached_file,\n    is_torch_available\n)\nfrom transformers_openvla_oft.models.bert.configuration_bert import BertConfig\n"
                 )
             expected_bert_imports = [
-                ("src/transformers/models/bert/configuration_bert.py", ["BertConfig"]),
-                ("src/transformers/utils/__init__.py", ["cached_file", "is_torch_available"]),
+                ("src/transformers_openvla_oft/models/bert/configuration_bert.py", ["BertConfig"]),
+                ("src/transformers_openvla_oft/utils/__init__.py", ["cached_file", "is_torch_available"]),
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert extract_imports(BERT_MODELING_FILE) == expected_bert_imports
@@ -362,11 +362,11 @@ class TestFetcherTester(unittest.TestCase):
             # Test with base imports
             with open(tmp_folder / BERT_MODELING_FILE, "w") as f:
                 f.write(
-                    "from transformers.utils import (\n    cached_file,\n    is_torch_available\n)\nfrom transformers import BertConfig\n"
+                    "from transformers_openvla_oft.utils import (\n    cached_file,\n    is_torch_available\n)\nfrom transformers import BertConfig\n"
                 )
             expected_bert_imports = [
-                ("src/transformers/__init__.py", ["BertConfig"]),
-                ("src/transformers/utils/__init__.py", ["cached_file", "is_torch_available"]),
+                ("src/transformers_openvla_oft/__init__.py", ["BertConfig"]),
+                ("src/transformers_openvla_oft/utils/__init__.py", ["cached_file", "is_torch_available"]),
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert extract_imports(BERT_MODELING_FILE) == expected_bert_imports
@@ -377,17 +377,17 @@ class TestFetcherTester(unittest.TestCase):
             create_tmp_repo(tmp_folder)
 
             expected_bert_dependencies = [
-                "src/transformers/modeling_utils.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/utils/imports.py",
+                "src/transformers_openvla_oft/modeling_utils.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/utils/imports.py",
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert get_module_dependencies(BERT_MODELING_FILE) == expected_bert_dependencies
 
             expected_test_bert_dependencies = [
                 "tests/test_modeling_common.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/models/bert/modeling_bert.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py",
             ]
 
             with patch_transformer_repo_path(tmp_folder):
@@ -397,15 +397,15 @@ class TestFetcherTester(unittest.TestCase):
                 )
 
             # Test with a submodule
-            (tmp_folder / "src/transformers/utils/logging.py").touch()
+            (tmp_folder / "src/transformers_openvla_oft/utils/logging.py").touch()
             with open(tmp_folder / BERT_MODELING_FILE, "a") as f:
                 f.write("from ...utils import logging\n")
 
             expected_bert_dependencies = [
-                "src/transformers/modeling_utils.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/utils/logging.py",
-                "src/transformers/utils/imports.py",
+                "src/transformers_openvla_oft/modeling_utils.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/utils/logging.py",
+                "src/transformers_openvla_oft/utils/imports.py",
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert get_module_dependencies(BERT_MODELING_FILE) == expected_bert_dependencies
@@ -416,10 +416,10 @@ class TestFetcherTester(unittest.TestCase):
                 f.write("from ...utils import CONSTANT\n")
 
             expected_bert_dependencies = [
-                "src/transformers/modeling_utils.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/utils/__init__.py",
-                "src/transformers/utils/imports.py",
+                "src/transformers_openvla_oft/modeling_utils.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/utils/__init__.py",
+                "src/transformers_openvla_oft/utils/imports.py",
             ]
             with patch_transformer_repo_path(tmp_folder):
                 assert get_module_dependencies(BERT_MODELING_FILE) == expected_bert_dependencies
@@ -427,7 +427,7 @@ class TestFetcherTester(unittest.TestCase):
             # Test with an example
             create_tmp_repo(tmp_folder)
 
-            expected_example_dependencies = ["src/transformers/models/bert/modeling_bert.py"]
+            expected_example_dependencies = ["src/transformers_openvla_oft/models/bert/modeling_bert.py"]
 
             with patch_transformer_repo_path(tmp_folder):
                 assert (
@@ -443,24 +443,24 @@ class TestFetcherTester(unittest.TestCase):
                 tree = create_reverse_dependency_tree()
 
             init_edges = [
-                "src/transformers/utils/hub.py",
-                "src/transformers/utils/imports.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/models/bert/modeling_bert.py",
+                "src/transformers_openvla_oft/utils/hub.py",
+                "src/transformers_openvla_oft/utils/imports.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py",
             ]
-            assert {f for f, g in tree if g == "src/transformers/__init__.py"} == set(init_edges)
+            assert {f for f, g in tree if g == "src/transformers_openvla_oft/__init__.py"} == set(init_edges)
 
             bert_edges = [
-                "src/transformers/modeling_utils.py",
-                "src/transformers/utils/imports.py",
-                "src/transformers/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/modeling_utils.py",
+                "src/transformers_openvla_oft/utils/imports.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
             ]
-            assert {f for f, g in tree if g == "src/transformers/models/bert/modeling_bert.py"} == set(bert_edges)
+            assert {f for f, g in tree if g == "src/transformers_openvla_oft/models/bert/modeling_bert.py"} == set(bert_edges)
 
             test_bert_edges = [
                 "tests/test_modeling_common.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/models/bert/modeling_bert.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py",
             ]
             assert {f for f, g in tree if g == "tests/models/bert/test_modeling_bert.py"} == set(test_bert_edges)
 
@@ -471,23 +471,23 @@ class TestFetcherTester(unittest.TestCase):
             with patch_transformer_repo_path(tmp_folder):
                 edges = create_reverse_dependency_tree()
 
-                bert_tree = get_tree_starting_at("src/transformers/models/bert/modeling_bert.py", edges)
-                config_utils_tree = get_tree_starting_at("src/transformers/configuration_utils.py", edges)
+                bert_tree = get_tree_starting_at("src/transformers_openvla_oft/models/bert/modeling_bert.py", edges)
+                config_utils_tree = get_tree_starting_at("src/transformers_openvla_oft/configuration_utils.py", edges)
 
             expected_bert_tree = [
-                "src/transformers/models/bert/modeling_bert.py",
-                [("src/transformers/models/bert/modeling_bert.py", "tests/models/bert/test_modeling_bert.py")],
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py",
+                [("src/transformers_openvla_oft/models/bert/modeling_bert.py", "tests/models/bert/test_modeling_bert.py")],
             ]
             assert bert_tree == expected_bert_tree
 
             expected_config_tree = [
-                "src/transformers/configuration_utils.py",
-                [("src/transformers/configuration_utils.py", "src/transformers/models/bert/configuration_bert.py")],
+                "src/transformers_openvla_oft/configuration_utils.py",
+                [("src/transformers_openvla_oft/configuration_utils.py", "src/transformers_openvla_oft/models/bert/configuration_bert.py")],
                 [
-                    ("src/transformers/models/bert/configuration_bert.py", "tests/models/bert/test_modeling_bert.py"),
+                    ("src/transformers_openvla_oft/models/bert/configuration_bert.py", "tests/models/bert/test_modeling_bert.py"),
                     (
-                        "src/transformers/models/bert/configuration_bert.py",
-                        "src/transformers/models/bert/modeling_bert.py",
+                        "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                        "src/transformers_openvla_oft/models/bert/modeling_bert.py",
                     ),
                 ],
             ]
@@ -500,23 +500,23 @@ class TestFetcherTester(unittest.TestCase):
             create_tmp_repo(tmp_folder)
 
             # There are two possible outputs since the order of the last two lines is non-deterministic.
-            expected_std_out = """src/transformers/models/bert/modeling_bert.py
+            expected_std_out = """src/transformers_openvla_oft/models/bert/modeling_bert.py
   tests/models/bert/test_modeling_bert.py
-src/transformers/configuration_utils.py
-  src/transformers/models/bert/configuration_bert.py
-    src/transformers/models/bert/modeling_bert.py
+src/transformers_openvla_oft/configuration_utils.py
+  src/transformers_openvla_oft/models/bert/configuration_bert.py
+    src/transformers_openvla_oft/models/bert/modeling_bert.py
     tests/models/bert/test_modeling_bert.py"""
 
-            expected_std_out_2 = """src/transformers/models/bert/modeling_bert.py
+            expected_std_out_2 = """src/transformers_openvla_oft/models/bert/modeling_bert.py
   tests/models/bert/test_modeling_bert.py
-src/transformers/configuration_utils.py
-  src/transformers/models/bert/configuration_bert.py
+src/transformers_openvla_oft/configuration_utils.py
+  src/transformers_openvla_oft/models/bert/configuration_bert.py
     tests/models/bert/test_modeling_bert.py
-    src/transformers/models/bert/modeling_bert.py"""
+    src/transformers_openvla_oft/models/bert/modeling_bert.py"""
 
             with patch_transformer_repo_path(tmp_folder), CaptureStdout() as cs:
-                print_tree_deps_of("src/transformers/models/bert/modeling_bert.py")
-                print_tree_deps_of("src/transformers/configuration_utils.py")
+                print_tree_deps_of("src/transformers_openvla_oft/models/bert/modeling_bert.py")
+                print_tree_deps_of("src/transformers_openvla_oft/configuration_utils.py")
 
             assert cs.out.strip() in [expected_std_out, expected_std_out_2]
 
@@ -563,8 +563,8 @@ src/transformers/configuration_utils.py
 
             # impact of BERT modeling file (note that we stop at the inits and don't go down further)
             expected_bert_deps = {
-                "src/transformers/__init__.py",
-                "src/transformers/models/bert/__init__.py",
+                "src/transformers_openvla_oft/__init__.py",
+                "src/transformers_openvla_oft/models/bert/__init__.py",
                 "tests/models/bert/test_modeling_bert.py",
                 "examples/flax/test_flax_examples.py",
                 "examples/flax/text-classification/run_glue.py",
@@ -573,18 +573,18 @@ src/transformers/configuration_utils.py
                 "examples/tensorflow/test_tensorflow_examples.py",
                 "examples/tensorflow/text-classification/run_glue.py",
             }
-            assert set(reverse_map["src/transformers/models/bert/modeling_bert.py"]) == expected_bert_deps
+            assert set(reverse_map["src/transformers_openvla_oft/models/bert/modeling_bert.py"]) == expected_bert_deps
 
             # init gets the direct deps (and their recursive deps)
             expected_init_deps = {
-                "src/transformers/utils/__init__.py",
-                "src/transformers/utils/hub.py",
-                "src/transformers/utils/imports.py",
-                "src/transformers/models/bert/__init__.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/models/bert/modeling_bert.py",
-                "src/transformers/configuration_utils.py",
-                "src/transformers/modeling_utils.py",
+                "src/transformers_openvla_oft/utils/__init__.py",
+                "src/transformers_openvla_oft/utils/hub.py",
+                "src/transformers_openvla_oft/utils/imports.py",
+                "src/transformers_openvla_oft/models/bert/__init__.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py",
+                "src/transformers_openvla_oft/configuration_utils.py",
+                "src/transformers_openvla_oft/modeling_utils.py",
                 "tests/test_modeling_common.py",
                 "tests/models/bert/test_modeling_bert.py",
                 "examples/flax/test_flax_examples.py",
@@ -594,12 +594,12 @@ src/transformers/configuration_utils.py
                 "examples/tensorflow/test_tensorflow_examples.py",
                 "examples/tensorflow/text-classification/run_glue.py",
             }
-            assert set(reverse_map["src/transformers/__init__.py"]) == expected_init_deps
+            assert set(reverse_map["src/transformers_openvla_oft/__init__.py"]) == expected_init_deps
 
             expected_init_deps = {
-                "src/transformers/__init__.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/models/bert/modeling_bert.py",
+                "src/transformers_openvla_oft/__init__.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py",
                 "tests/models/bert/test_modeling_bert.py",
                 "examples/flax/test_flax_examples.py",
                 "examples/flax/text-classification/run_glue.py",
@@ -608,7 +608,7 @@ src/transformers/configuration_utils.py
                 "examples/tensorflow/test_tensorflow_examples.py",
                 "examples/tensorflow/text-classification/run_glue.py",
             }
-            assert set(reverse_map["src/transformers/models/bert/__init__.py"]) == expected_init_deps
+            assert set(reverse_map["src/transformers_openvla_oft/models/bert/__init__.py"]) == expected_init_deps
 
             # Test that with more models init of bert only gets deps to bert.
             create_tmp_repo(tmp_folder, models=["bert", "gpt2"])
@@ -617,9 +617,9 @@ src/transformers/configuration_utils.py
 
             # init gets the direct deps (and their recursive deps)
             expected_init_deps = {
-                "src/transformers/__init__.py",
-                "src/transformers/models/bert/configuration_bert.py",
-                "src/transformers/models/bert/modeling_bert.py",
+                "src/transformers_openvla_oft/__init__.py",
+                "src/transformers_openvla_oft/models/bert/configuration_bert.py",
+                "src/transformers_openvla_oft/models/bert/modeling_bert.py",
                 "tests/models/bert/test_modeling_bert.py",
                 "examples/flax/test_flax_examples.py",
                 "examples/flax/text-classification/run_glue.py",
@@ -628,7 +628,7 @@ src/transformers/configuration_utils.py
                 "examples/tensorflow/test_tensorflow_examples.py",
                 "examples/tensorflow/text-classification/run_glue.py",
             }
-            assert set(reverse_map["src/transformers/models/bert/__init__.py"]) == expected_init_deps
+            assert set(reverse_map["src/transformers_openvla_oft/models/bert/__init__.py"]) == expected_init_deps
 
     def test_create_module_to_test_map(self):
         with tempfile.TemporaryDirectory() as tmp_folder:
@@ -647,11 +647,11 @@ src/transformers/configuration_utils.py
 
             for model in models:
                 if model != "bert":
-                    assert test_map[f"src/transformers/models/{model}/modeling_{model}.py"] == [
+                    assert test_map[f"src/transformers_openvla_oft/models/{model}/modeling_{model}.py"] == [
                         f"tests/models/{model}/test_modeling_{model}.py"
                     ]
                 else:
-                    assert set(test_map[f"src/transformers/models/{model}/modeling_{model}.py"]) == expected_bert_tests
+                    assert set(test_map[f"src/transformers_openvla_oft/models/{model}/modeling_{model}.py"]) == expected_bert_tests
 
             # Init got filtered
             expected_init_tests = {
@@ -662,7 +662,7 @@ src/transformers/configuration_utils.py
                 "tests/models/bert/test_modeling_bert.py",
                 "tests/models/gpt2/test_modeling_gpt2.py",
             }
-            assert set(test_map["src/transformers/__init__.py"]) == expected_init_tests
+            assert set(test_map["src/transformers_openvla_oft/__init__.py"]) == expected_init_tests
 
     def test_infer_tests_to_run(self):
         with tempfile.TemporaryDirectory() as tmp_folder:
@@ -670,7 +670,7 @@ src/transformers/configuration_utils.py
             models = ["bert", "gpt2"] + [f"bert{i}" for i in range(10)]
             repo = create_tmp_repo(tmp_folder, models=models)
 
-            commit_changes("src/transformers/models/bert/modeling_bert.py", BERT_MODEL_FILE_NEW_CODE, repo)
+            commit_changes("src/transformers_openvla_oft/models/bert/modeling_bert.py", BERT_MODEL_FILE_NEW_CODE, repo)
 
             example_tests = {
                 "examples/flax/test_flax_examples.py",
@@ -694,10 +694,10 @@ src/transformers/configuration_utils.py
             branch = repo.create_head("new_model")
             branch.checkout()
 
-            with open(tmp_folder / "src/transformers/__init__.py", "a") as f:
+            with open(tmp_folder / "src/transformers_openvla_oft/__init__.py", "a") as f:
                 f.write("from .models.t5 import T5Config, T5Model\n")
 
-            model_dir = tmp_folder / "src/transformers/models/t5"
+            model_dir = tmp_folder / "src/transformers_openvla_oft/models/t5"
             model_dir.mkdir(exist_ok=True)
 
             with open(model_dir / "__init__.py", "w") as f:
@@ -713,7 +713,7 @@ src/transformers/configuration_utils.py
             (test_dir / "__init__.py").touch()
             with open(test_dir / "test_modeling_t5.py", "w") as f:
                 f.write(
-                    "from transformers import T5Config, T5Model\nfrom ...test_modeling_common import ModelTesterMixin\n\ncode"
+                    "from transformers_openvla_oft import T5Config, T5Model\nfrom ...test_modeling_common import ModelTesterMixin\n\ncode"
                 )
 
             repo.index.add(["src", "tests"])
@@ -755,7 +755,7 @@ src/transformers/configuration_utils.py
 
             commit_changes(
                 "tests/models/bert/test_modeling_bert.py",
-                "from transformers import BertConfig, BertModel\nfrom ...test_modeling_common import ModelTesterMixin\n\ncode1",
+                "from transformers_openvla_oft import BertConfig, BertModel\nfrom ...test_modeling_common import ModelTesterMixin\n\ncode1",
                 repo,
             )
 
@@ -775,7 +775,7 @@ src/transformers/configuration_utils.py
             # Modification in one example trigger the corresponding test
             commit_changes(
                 "examples/pytorch/text-classification/run_glue.py",
-                "from transformers import BertModeln\n\ncode1",
+                "from transformers_openvla_oft import BertModeln\n\ncode1",
                 repo,
             )
 

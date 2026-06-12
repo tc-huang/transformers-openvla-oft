@@ -10,7 +10,7 @@ from datasets import DatasetDict, load_dataset
 from packaging import version
 from torch import nn
 
-from transformers import (
+from transformers_openvla_oft import (
     HfArgumentParser,
     Trainer,
     TrainingArguments,
@@ -20,7 +20,7 @@ from transformers import (
     is_apex_available,
     trainer_utils,
 )
-from transformers.models.wav2vec2.modeling_wav2vec2 import _compute_mask_indices
+from transformers_openvla_oft.models.wav2vec2.modeling_wav2vec2 import _compute_mask_indices
 
 
 if is_apex_available():
@@ -138,12 +138,12 @@ class DataCollatorForWav2Vec2Pretraining:
     for self-supervised pretraining.
 
     Args:
-        model (:class:`~transformers.Wav2Vec2ForPreTraining`):
+        model (:class:`~transformers_openvla_oft.Wav2Vec2ForPreTraining`):
             The Wav2Vec2 model used for pretraining. The data collator needs to have access
             to config and ``_get_feat_extract_output_lengths`` function for correct padding.
-        feature_extractor (:class:`~transformers.Wav2Vec2FeatureExtractor`):
+        feature_extractor (:class:`~transformers_openvla_oft.Wav2Vec2FeatureExtractor`):
             The processor used for proccessing the data.
-        padding (:obj:`bool`, :obj:`str` or :class:`~transformers.tokenization_utils_base.PaddingStrategy`, `optional`, defaults to :obj:`True`):
+        padding (:obj:`bool`, :obj:`str` or :class:`~transformers_openvla_oft.tokenization_utils_base.PaddingStrategy`, `optional`, defaults to :obj:`True`):
             Select a strategy to pad the returned sequences (according to the model's padding side and padding index)
             among:
             * :obj:`True` or :obj:`'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
@@ -211,7 +211,7 @@ class DataCollatorForWav2Vec2Pretraining:
 
 class Wav2Vec2PreTrainer(Trainer):
     """
-    Subclassed :class:`~transformers.Trainer` for Wav2Vec2-like pretraining. Trainer can decay gumbel softmax temperature during training.
+    Subclassed :class:`~transformers_openvla_oft.Trainer` for Wav2Vec2-like pretraining. Trainer can decay gumbel softmax temperature during training.
     """
 
     def __init__(self, *args, max_gumbel_temp=1, min_gumbel_temp=0, gumbel_temp_decay=1.0, **kwargs):
@@ -285,7 +285,7 @@ class Wav2Vec2PreTrainer(Trainer):
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 

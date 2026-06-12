@@ -86,7 +86,7 @@ wav = apply_model(demucs, wav[None])
 You can then use the following snippet to generate music:
 
 ```python
->>> from transformers import AutoProcessor, MusicgenMelodyForConditionalGeneration
+>>> from transformers_openvla_oft import AutoProcessor, MusicgenMelodyForConditionalGeneration
 
 >>> processor = AutoProcessor.from_pretrained("facebook/musicgen-melody")
 >>> model = MusicgenMelodyForConditionalGeneration.from_pretrained("facebook/musicgen-melody")
@@ -104,7 +104,7 @@ You can then use the following snippet to generate music:
 You can also pass the audio signal directly without using Demucs, although the quality of the generation will probably be degraded:
 
 ```python
->>> from transformers import AutoProcessor, MusicgenMelodyForConditionalGeneration
+>>> from transformers_openvla_oft import AutoProcessor, MusicgenMelodyForConditionalGeneration
 
 >>> processor = AutoProcessor.from_pretrained("facebook/musicgen-melody")
 >>> model = MusicgenMelodyForConditionalGeneration.from_pretrained("facebook/musicgen-melody")
@@ -143,7 +143,7 @@ Or save them as a `.wav` file using a third-party library, e.g. `soundfile`:
 The same [`MusicgenMelodyProcessor`] can be used to pre-process a text-only prompt. 
 
 ```python
->>> from transformers import AutoProcessor, MusicgenMelodyForConditionalGeneration
+>>> from transformers_openvla_oft import AutoProcessor, MusicgenMelodyForConditionalGeneration
 
 >>> processor = AutoProcessor.from_pretrained("facebook/musicgen-melody")
 >>> model = MusicgenMelodyForConditionalGeneration.from_pretrained("facebook/musicgen-melody")
@@ -162,7 +162,7 @@ The `guidance_scale` is used in classifier free guidance (CFG), setting the weig
 You can also generate in batch:
 
 ```python
->>> from transformers import AutoProcessor, MusicgenMelodyForConditionalGeneration
+>>> from transformers_openvla_oft import AutoProcessor, MusicgenMelodyForConditionalGeneration
 >>> from datasets import load_dataset
 
 >>> processor = AutoProcessor.from_pretrained("facebook/musicgen-melody")
@@ -189,7 +189,7 @@ You can also generate in batch:
 The inputs for unconditional (or 'null') generation can be obtained through the method [`MusicgenMelodyProcessor.get_unconditional_inputs`]:
 
 ```python
->>> from transformers import MusicgenMelodyForConditionalGeneration, MusicgenMelodyProcessor
+>>> from transformers_openvla_oft import MusicgenMelodyForConditionalGeneration, MusicgenMelodyProcessor
 
 >>> model = MusicgenMelodyForConditionalGeneration.from_pretrained("facebook/musicgen-melody")
 >>> unconditional_inputs = MusicgenMelodyProcessor.from_pretrained("facebook/musicgen-melody").get_unconditional_inputs(num_samples=1)
@@ -202,7 +202,7 @@ The inputs for unconditional (or 'null') generation can be obtained through the 
 The default parameters that control the generation process, such as sampling, guidance scale and number of generated tokens, can be found in the model's generation config, and updated as desired:
 
 ```python
->>> from transformers import MusicgenMelodyForConditionalGeneration
+>>> from transformers_openvla_oft import MusicgenMelodyForConditionalGeneration
 
 >>> model = MusicgenMelodyForConditionalGeneration.from_pretrained("facebook/musicgen-melody")
 
@@ -228,7 +228,7 @@ The MusicGen model can be de-composed into three distinct stages:
 Thus, the MusicGen model can either be used as a standalone decoder model, corresponding to the class [`MusicgenMelodyForCausalLM`], or as a composite model that includes the text encoder and audio encoder, corresponding to the class [`MusicgenMelodyForConditionalGeneration`]. If only the decoder needs to be loaded from the pre-trained checkpoint, it can be loaded by first specifying the correct config, or be accessed through the `.decoder` attribute of the composite model:
 
 ```python
->>> from transformers import AutoConfig, MusicgenMelodyForCausalLM, MusicgenMelodyForConditionalGeneration
+>>> from transformers_openvla_oft import AutoConfig, MusicgenMelodyForCausalLM, MusicgenMelodyForConditionalGeneration
 
 >>> # Option 1: get decoder config and pass to `.from_pretrained`
 >>> decoder_config = AutoConfig.from_pretrained("facebook/musicgen-melody").decoder
@@ -242,10 +242,10 @@ Since the text encoder and audio encoder models are frozen during training, the 
 
 ## Checkpoint Conversion
 
-- After downloading the original checkpoints from [here](https://github.com/facebookresearch/audiocraft/blob/main/docs/MUSICGEN.md#importing--exporting-models), you can convert them using the **conversion script** available at `src/transformers/models/musicgen_melody/convert_musicgen_melody_transformers.py` with the following command:
+- After downloading the original checkpoints from [here](https://github.com/facebookresearch/audiocraft/blob/main/docs/MUSICGEN.md#importing--exporting-models), you can convert them using the **conversion script** available at `src/transformers_openvla_oft/models/musicgen_melody/convert_musicgen_melody_transformers.py` with the following command:
 
 ```bash
-python src/transformers/models/musicgen_melody/convert_musicgen_melody_transformers.py \
+python src/transformers_openvla_oft/models/musicgen_melody/convert_musicgen_melody_transformers.py \
     --checkpoint="facebook/musicgen-melody" --pytorch_dump_folder /output/path 
 ```
 

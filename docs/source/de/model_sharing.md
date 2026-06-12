@@ -136,7 +136,7 @@ Die Weitergabe eines Modells an den Hub ist so einfach wie das Hinzufügen eines
 ... )
 ```
 
-Nach der Feinabstimmung Ihres Modells rufen Sie [`~transformers.Trainer.push_to_hub`] auf [`Trainer`] auf, um das trainierte Modell an den Hub zu übertragen. Transformers fügt sogar automatisch Trainings-Hyperparameter, Trainingsergebnisse und Framework-Versionen zu Ihrer Modellkarte hinzu!
+Nach der Feinabstimmung Ihres Modells rufen Sie [`~transformers_openvla_oft.Trainer.push_to_hub`] auf [`Trainer`] auf, um das trainierte Modell an den Hub zu übertragen. Transformers fügt sogar automatisch Trainings-Hyperparameter, Trainingsergebnisse und Framework-Versionen zu Ihrer Modellkarte hinzu!
 
 ```py
 >>> trainer.push_to_hub()
@@ -150,7 +150,7 @@ Geben Sie ein Modell mit [`PushToHubCallback`] an den Hub weiter. In der [`PushT
 - Die `hub_model_id`, die Ihr Hub-Benutzername und Modellname ist.
 
 ```py
->>> from transformers import PushToHubCallback
+>>> from transformers_openvla_oft import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="./your_model_save_path", tokenizer=tokenizer, hub_model_id="your-username/my-awesome-model"
@@ -178,7 +178,7 @@ Geben Sie den Namen Ihres Modells in "push_to_hub" an:
 Dadurch wird ein Repository unter Ihrem Benutzernamen mit dem Modellnamen `my-awesome-model` erstellt. Benutzer können nun Ihr Modell mit der Funktion `from_pretrained` laden:
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> model = AutoModel.from_pretrained("your_username/my-awesome-model")
 ```

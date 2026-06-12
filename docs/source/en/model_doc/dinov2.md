@@ -31,7 +31,7 @@ The model can be traced using `torch.jit.trace` which leverages JIT compilation 
 
 ```python
 import torch
-from transformers import AutoImageProcessor, AutoModel
+from transformers_openvla_oft import AutoImageProcessor, AutoModel
 from PIL import Image
 import requests
 

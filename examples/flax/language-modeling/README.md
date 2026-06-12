@@ -80,7 +80,7 @@ as loading and storing [`**FacebookAI/roberta-base**`](https://huggingface.co/Fa
 in the local model folder:
 
 ```python
-from transformers import RobertaConfig
+from transformers_openvla_oft import RobertaConfig
 
 config = RobertaConfig.from_pretrained("FacebookAI/roberta-base", vocab_size=50265)
 config.save_pretrained("./norwegian-roberta-base")
@@ -183,7 +183,7 @@ as loading and storing [`**openai-community/gpt2**`](https://huggingface.co/open
 in the local model folder:
 
 ```python
-from transformers import GPT2Config
+from transformers_openvla_oft import GPT2Config
 
 config = GPT2Config.from_pretrained("openai-community/gpt2", resid_pdrop=0.0, embd_pdrop=0.0, attn_pdrop=0.0, vocab_size=50257)
 config.save_pretrained("./norwegian-gpt2")
@@ -298,7 +298,7 @@ as loading and storing [`**google/t5-v1_1-base**`](https://huggingface.co/google
 in the local model folder:
 
 ```python
-from transformers import T5Config
+from transformers_openvla_oft import T5Config
 
 config = T5Config.from_pretrained("google/t5-v1_1-base", vocab_size=tokenizer.get_vocab_size())
 config.save_pretrained("./norwegian-t5-base")
@@ -394,7 +394,7 @@ as loading and storing [`**facebook/bart-base**`](https://huggingface.co/faceboo
 in the local model folder:
 
 ```python
-from transformers import BartConfig
+from transformers_openvla_oft import BartConfig
 config = BartConfig.from_pretrained("facebook/bart-base", vocab_size=50265)
 config.save_pretrained("./norwegian-bart-base")
 ```

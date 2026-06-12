@@ -17,7 +17,7 @@ import torch.distributed as torch_distrib
 from pytorch_lightning.plugins.training_type import DDPPlugin
 from torch.utils.data import DataLoader
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoConfig,
     AutoTokenizer,
     BartForConditionalGeneration,
@@ -28,8 +28,8 @@ from transformers import (
     RagTokenizer,
     T5ForConditionalGeneration,
 )
-from transformers import logging as transformers_logging
-from transformers.integrations import is_ray_available
+from transformers_openvla_oft import logging as transformers_logging
+from transformers_openvla_oft.integrations import is_ray_available
 
 
 if is_ray_available():

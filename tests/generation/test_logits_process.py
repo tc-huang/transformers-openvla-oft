@@ -18,8 +18,8 @@ from typing import List, Union
 
 from parameterized import parameterized
 
-from transformers import is_torch_available
-from transformers.testing_utils import require_torch, torch_device
+from transformers_openvla_oft import is_torch_available
+from transformers_openvla_oft.testing_utils import require_torch, torch_device
 
 from ..test_modeling_common import ids_tensor
 
@@ -28,7 +28,7 @@ if is_torch_available():
     import torch
     from torch import nn
 
-    from transformers.generation import (
+    from transformers_openvla_oft.generation import (
         EncoderNoRepeatNGramLogitsProcessor,
         EncoderRepetitionPenaltyLogitsProcessor,
         EpsilonLogitsWarper,
@@ -53,7 +53,7 @@ if is_torch_available():
         TypicalLogitsWarper,
         UnbatchedClassifierFreeGuidanceLogitsProcessor,
     )
-    from transformers.generation.logits_process import BarkEosPrioritizerLogitsProcessor
+    from transformers_openvla_oft.generation.logits_process import BarkEosPrioritizerLogitsProcessor
 
 
 @require_torch

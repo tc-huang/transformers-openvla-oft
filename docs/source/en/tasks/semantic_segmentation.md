@@ -47,7 +47,7 @@ Semantic segmentation assigns a label or class to every single pixel in an image
 We can use transformers' image segmentation pipeline to quickly infer a semantic segmentation model. Let's take a look at the example image.
 
 ```python
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 from PIL import Image
 import requests
 
@@ -317,7 +317,7 @@ As an example, take a look at this [example dataset](https://huggingface.co/data
 The next step is to load a SegFormer image processor to prepare the images and annotations for the model. Some datasets, like this one, use the zero-index as the background class. However, the background class isn't actually included in the 150 classes, so you'll need to set `reduce_labels=True` to subtract one from all the labels. The zero-index is replaced by `255` so it's ignored by SegFormer's loss function:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> checkpoint = "nvidia/mit-b0"
 >>> image_processor = AutoImageProcessor.from_pretrained(checkpoint, reduce_labels=True)
@@ -516,7 +516,7 @@ If you aren't familiar with finetuning a model with the [`Trainer`], take a look
 You're ready to start training your model now! Load SegFormer with [`AutoModelForSemanticSegmentation`], and pass the model the mapping between label ids and label classes:
 
 ```py
->>> from transformers import AutoModelForSemanticSegmentation, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForSemanticSegmentation, TrainingArguments, Trainer
 
 >>> model = AutoModelForSemanticSegmentation.from_pretrained(checkpoint, id2label=id2label, label2id=label2id)
 ```
@@ -556,7 +556,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [`~transformers.Trainer.push_to_hub`] method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [`~transformers_openvla_oft.Trainer.push_to_hub`] method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -583,7 +583,7 @@ To fine-tune a model in TensorFlow, follow these steps:
 Start by defining the hyperparameters, optimizer and learning rate schedule:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 2
 >>> num_epochs = 50
@@ -603,7 +603,7 @@ Then, load SegFormer with [`TFAutoModelForSemanticSegmentation`] along with the 
 optimizer. Note that Transformers models all have a default task-relevant loss function, so you don't need to specify one unless you want to:
 
 ```py
->>> from transformers import TFAutoModelForSemanticSegmentation
+>>> from transformers_openvla_oft import TFAutoModelForSemanticSegmentation
 
 >>> model = TFAutoModelForSemanticSegmentation.from_pretrained(
 ...     checkpoint,
@@ -616,7 +616,7 @@ optimizer. Note that Transformers models all have a default task-relevant loss f
 Convert your datasets to the `tf.data.Dataset` format using the [`~datasets.Dataset.to_tf_dataset`] and the [`DefaultDataCollator`]:
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 
@@ -640,7 +640,7 @@ Pass your `compute_metrics` function to [`KerasMetricCallback`],
 and use the [`PushToHubCallback`] to upload the model:
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback, PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback, PushToHubCallback
 
 >>> metric_callback = KerasMetricCallback(
 ...     metric_fn=compute_metrics, eval_dataset=tf_eval_dataset, batch_size=batch_size, label_cols=["labels"]
@@ -726,7 +726,7 @@ Next, rescale the logits to the original image size:
 Load an image processor to preprocess the image and return the input as TensorFlow tensors:
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("MariaK/scene_segmentation")
 >>> inputs = image_processor(image, return_tensors="tf")
@@ -735,7 +735,7 @@ Load an image processor to preprocess the image and return the input as TensorFl
 Pass your input to the model and return the `logits`:
 
 ```py
->>> from transformers import TFAutoModelForSemanticSegmentation
+>>> from transformers_openvla_oft import TFAutoModelForSemanticSegmentation
 
 >>> model = TFAutoModelForSemanticSegmentation.from_pretrained("MariaK/scene_segmentation")
 >>> logits = model(**inputs).logits

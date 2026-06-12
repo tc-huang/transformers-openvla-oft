@@ -77,7 +77,7 @@ To load and run a model using Flash Attention 2, refer to the snippet below:
 
 ```python
 >>> import torch
->>> from transformers import OPTForCausalLM, GPT2Tokenizer
+>>> from transformers_openvla_oft import OPTForCausalLM, GPT2Tokenizer
 >>> device = "cuda" # the device to load the model onto
 
 >>> model = OPTForCausalLM.from_pretrained("facebook/opt-350m", torch_dtype=torch.float16, attn_implementation="flash_attention_2")

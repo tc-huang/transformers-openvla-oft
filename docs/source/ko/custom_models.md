@@ -36,7 +36,7 @@ rendered properly in your Markdown viewer.
 그런 다음 몇 가지 유효성을 확인한 후 해당 인수를 저장합니다.
 
 ```python
-from transformers import PretrainedConfig
+from transformers_openvla_oft import PretrainedConfig
 from typing import List
 
 
@@ -112,7 +112,7 @@ resnet50d_config = ResnetConfig.from_pretrained("custom-resnet")
 그런 다음 `ResNet` 클래스로 전달되어 `configuration`을 통해 모델이 선언됩니다:
 
 ```py
-from transformers import PreTrainedModel
+from transformers_openvla_oft import PreTrainedModel
 from timm.models.resnet import BasicBlock, Bottleneck, ResNet
 from .configuration_resnet import ResnetConfig
 
@@ -310,7 +310,7 @@ Hub에 업로드된 모든 파일 및 코드는 멜웨어가 있는지 검사되
 사용자 정의 코드로 모델을 사용하려면 `trust_remote_code=True`로 설정하세요:
 
 ```py
-from transformers import AutoModelForImageClassification
+from transformers_openvla_oft import AutoModelForImageClassification
 
 model = AutoModelForImageClassification.from_pretrained("sgugger/custom-resnet50d", trust_remote_code=True)
 ```
@@ -335,7 +335,7 @@ Hub에서 모델 저장소의 커밋 기록을 찾아볼 때, 모든 커밋의 �
 다음과 같이 auto 클래스에 추가할 수 있습니다:
 
 ```py
-from transformers import AutoConfig, AutoModel, AutoModelForImageClassification
+from transformers_openvla_oft import AutoConfig, AutoModel, AutoModelForImageClassification
 
 AutoConfig.register("resnet", ResnetConfig)
 AutoModel.register(ResnetConfig, ResnetModel)

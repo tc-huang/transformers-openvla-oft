@@ -47,8 +47,8 @@ from torchvision.transforms import CenterCrop, ConvertImageDtype, Normalize, Res
 from torchvision.transforms.functional import InterpolationMode
 from tqdm import tqdm
 
-import transformers
-from transformers import AutoTokenizer, HfArgumentParser, TrainingArguments, is_tensorboard_available, set_seed
+import transformers_openvla_oft
+from transformers_openvla_oft import AutoTokenizer, HfArgumentParser, TrainingArguments, is_tensorboard_available, set_seed
 
 
 logger = logging.getLogger(__name__)
@@ -324,9 +324,9 @@ def main():
     # Setup logging, we only want one process per machine to log things on the screen.
     logger.setLevel(logging.INFO if jax.process_index() == 0 else logging.ERROR)
     if jax.process_index() == 0:
-        transformers.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
     else:
-        transformers.utils.logging.set_verbosity_error()
+        transformers_openvla_oft.utils.logging.set_verbosity_error()
 
     # Set the verbosity to info of the Transformers logger (on main process only):
     logger.info(f"Training/evaluation parameters {training_args}")

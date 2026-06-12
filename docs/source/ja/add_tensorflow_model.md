@@ -43,7 +43,7 @@ PyTorchをTensorFlowモデルの重みに変換する手順、およびMLフレ�
 選択したモデルの`config.json`の`model_type`フィールドをチェックしてみてください
 （[例](https://huggingface.co/google-bert/bert-base-uncased/blob/main/config.json#L14)）。
 🤗 Transformersの該当するモデルフォルダに、名前が"modeling_tf"で始まるファイルがある場合、それは対応するTensorFlow
-アーキテクチャを持っていることを意味します（[例](https://github.com/huggingface/transformers/tree/main/src/transformers/models/bert)）。
+アーキテクチャを持っていることを意味します（[例](https://github.com/huggingface/transformers/tree/main/src/transformers_openvla_oft/models/bert)）。
 
 </Tip>
 
@@ -163,7 +163,7 @@ git push -u origin add_tf_brand_new_bert
 ### 4. Model implementation
 
 さあ、いよいよコーディングを始めましょう。お勧めする出発点は、PyTorchファイルそのものです。
-`src/transformers/models/brand_new_bert/`内の`modeling_brand_new_bert.py`の内容を
+`src/transformers_openvla_oft/models/brand_new_bert/`内の`modeling_brand_new_bert.py`の内容を
 `modeling_tf_brand_new_bert.py`にコピーします。このセクションの目標は、
 🤗 Transformersのインポート構造を更新し、`TFBrandNewBert`と
 `TFBrandNewBert.from_pretrained(model_repo, from_pt=True)`を正常に読み込む動作するTensorFlow *BrandNewBert*モデルを
@@ -176,21 +176,21 @@ git push -u origin add_tf_brand_new_bert
 - 🤗 Transformersのコードベースにパターンが見つかります。特定の操作に直接的な代替がない場合、誰かがすでに同じ問題に対処している可能性が高いです。
 - デフォルトでは、PyTorchと同じ変数名と構造を維持します。これにより、デバッグや問題の追跡、修正の追加が容易になります。
 - 一部のレイヤーには、各フレームワークで異なるデフォルト値があります。注目すべき例は、バッチ正規化レイヤーの epsilon です（PyTorchでは`1e-5`、[TensorFlowでは](https://www.tensorflow.org/api_docs/python/tf/keras/layers/BatchNormalization) `1e-3` です）。ドキュメントを再確認してください！
-- PyTorchの `nn.Parameter` 変数は通常、TF Layerの `build()` 内で初期化する必要があります。次の例を参照してください：[PyTorch](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers/models/vit_mae/modeling_vit_mae.py#L212) / [TensorFlow](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers/models/vit_mae/modeling_tf_vit_mae.py#L220)
+- PyTorchの `nn.Parameter` 変数は通常、TF Layerの `build()` 内で初期化する必要があります。次の例を参照してください：[PyTorch](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers_openvla_oft/models/vit_mae/modeling_vit_mae.py#L212) / [TensorFlow](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers_openvla_oft/models/vit_mae/modeling_tf_vit_mae.py#L220)
 - PyTorchモデルに関数の上部に `#copied from ...` がある場合、TensorFlowモデルも同じアーキテクチャからその関数を借りることができる可能性が高いです。TensorFlowアーキテクチャがある場合です。
 - TensorFlow関数内で `name`属性を正しく設定することは、`from_pt=True`のウェイトのクロスロードロードを行うために重要です。通常、`name`はPyTorchコード内の対応する変数の名前です。`name`が正しく設定されていない場合、モデルウェイトのロード時にエラーメッセージで表示されます。
-- ベースモデルクラス `BrandNewBertModel` のロジックは実際には `TFBrandNewBertMainLayer` にあります。これはKerasレイヤーのサブクラスです（[例](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers/models/bert/modeling_tf_bert.py#L719)）。`TFBrandNewBertModel` は、単にこのレイヤーのラッパーです。
-- モデルを読み込むためには、Kerasモデルをビルドする必要があります。そのため、`TFBrandNewBertPreTrainedModel` はモデルへの入力の例、`dummy_inputs` を持つ必要があります（[例](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers/models/bert/modeling_tf_bert.py#L916)）。
+- ベースモデルクラス `BrandNewBertModel` のロジックは実際には `TFBrandNewBertMainLayer` にあります。これはKerasレイヤーのサブクラスです（[例](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers_openvla_oft/models/bert/modeling_tf_bert.py#L719)）。`TFBrandNewBertModel` は、単にこのレイヤーのラッパーです。
+- モデルを読み込むためには、Kerasモデルをビルドする必要があります。そのため、`TFBrandNewBertPreTrainedModel` はモデルへの入力の例、`dummy_inputs` を持つ必要があります（[例](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers_openvla_oft/models/bert/modeling_tf_bert.py#L916)）。
 - 表示が止まった場合は、助けを求めてください。私たちはあなたのお手伝いにここにいます！ 🤗
 
 モデルファイル自体だけでなく、モデルクラスと関連するドキュメンテーションページへのポインターも追加する必要があります。他のPRのパターンに従ってこの部分を完了できます
 （[例](https://github.com/huggingface/transformers/pull/18020/files)）。
 以下は手動での変更が必要な一覧です：
-- *BrandNewBert*のすべてのパブリッククラスを `src/transformers/__init__.py` に含める
-- *BrandNewBert*クラスを `src/transformers/models/auto/modeling_tf_auto.py` の対応するAutoクラスに追加
+- *BrandNewBert*のすべてのパブリッククラスを `src/transformers_openvla_oft/__init__.py` に含める
+- *BrandNewBert*クラスを `src/transformers_openvla_oft/models/auto/modeling_tf_auto.py` の対応するAutoクラスに追加
 - ドキュメンテーションテストファイルのリストにモデリングファイルを追加する `utils/documentation_tests.txt`
-- `src/transformers/utils/dummy_tf_objects.py` に関連する *BrandNewBert* に関連する遅延ロードクラスを追加
-- `src/transformers/models/brand_new_bert/__init__.py` でパブリッククラスのインポート構造を更新
+- `src/transformers_openvla_oft/utils/dummy_tf_objects.py` に関連する *BrandNewBert* に関連する遅延ロードクラスを追加
+- `src/transformers_openvla_oft/models/brand_new_bert/__init__.py` でパブリッククラスのインポート構造を更新
 - `docs/source/en/model_doc/brand_new_bert.md` に *BrandNewBert* のパブリックメソッドのドキュメンテーションポインターを追加
 - `docs/source/en/model_doc/brand_new_bert.md` の *BrandNewBert* の貢献者リストに自分自身を追加
 - 最後に、`docs/source/en/index.md` の *BrandNewBert* のTensorFlow列に緑色のチェックマーク ✅ を追加

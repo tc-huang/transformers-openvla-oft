@@ -31,7 +31,7 @@ rendered properly in your Markdown viewer.
 例えば、次の2つのシーケンスを考えてみてください：
 
 ```python
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -189,7 +189,7 @@ The encoded versions have different lengths:
 
 
 ```python
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -398,7 +398,7 @@ The encoded versions have different lengths:
 我々は、前述のように、2つのシーケンスを2つの引数として `tokenizer` に渡すことで、このような文を自動的に生成することができます（以前のようにリストではなく）。以下のように：
 
 ```python
->>> from transformers import BertTokenizer
+>>> from transformers_openvla_oft import BertTokenizer
 
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-cased")
 >>> sequence_a = "HuggingFace is based in NYC"

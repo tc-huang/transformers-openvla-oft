@@ -50,7 +50,7 @@ The simplest way to try out inference with OWL-ViT is to use it in a [`pipeline`
 for zero-shot object detection from a [checkpoint on the Hugging Face Hub](https://huggingface.co/models?other=owlvit):
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> checkpoint = "google/owlv2-base-patch16-ensemble"
 >>> detector = pipeline(model=checkpoint, task="zero-shot-object-detection")
@@ -135,7 +135,7 @@ Start by loading the model and associated processor from a [checkpoint on the Hu
 Here we'll use the same checkpoint as before:
 
 ```py
->>> from transformers import AutoProcessor, AutoModelForZeroShotObjectDetection
+>>> from transformers_openvla_oft import AutoProcessor, AutoModelForZeroShotObjectDetection
 
 >>> model = AutoModelForZeroShotObjectDetection.from_pretrained(checkpoint)
 >>> processor = AutoProcessor.from_pretrained(checkpoint)

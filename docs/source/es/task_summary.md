@@ -36,7 +36,7 @@ La clasificación de audio es una tarea que etiqueta datos de audio con un conju
 * clasificación de música: etiquetar música con una etiqueta de género ("metal", "hip-hop", "country")
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="audio-classification", model="superb/hubert-base-superb-er")
 >>> preds = classifier("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -55,7 +55,7 @@ El reconocimiento automático del habla (ASR, por sus siglas en inglés) transcr
 Pero uno de los desafíos clave que las arquitecturas Transformer han ayudado a superar es en los idiomas con recursos limitados. Al preentrenar con grandes cantidades de datos de habla, afinar el modelo solo con una hora de datos de habla etiquetados en un idioma con recursos limitados aún puede producir resultados de alta calidad en comparación con los sistemas ASR anteriores entrenados con 100 veces más datos etiquetados.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline(task="automatic-speech-recognition", model="openai/whisper-small")
 >>> transcriber("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/mlk.flac")
@@ -81,7 +81,7 @@ La clasificación de imágenes etiqueta una imagen completa con un conjunto pred
 * ecología: etiquetar imágenes de especies animales o vegetales para monitorear poblaciones de vida silvestre o rastrear especies en peligro de extinción
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="image-classification")
 >>> preds = classifier(
@@ -105,7 +105,7 @@ A diferencia de la clasificación de imágenes, la detección de objetos identif
 * detección de defectos: detectar grietas o daños estructurales en edificios y defectos de fabricación
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> detector = pipeline(task="object-detection")
 >>> preds = detector(
@@ -128,7 +128,7 @@ La segmentación de imágenes es una tarea a nivel de píxeles que asigna cada p
 Las tareas de segmentación son útiles en vehículos autónomos para crear un mapa a nivel de píxeles del mundo que los rodea para que puedan navegar de manera segura alrededor de peatones y otros vehículos. También es útil en imágenes médicas, donde la mayor granularidad de la tarea puede ayudar a identificar células anormales o características de órganos. La segmentación de imágenes también se puede utilizar en comercio electrónico para probar virtualmente la ropa o crear experiencias de realidad aumentada superponiendo objetos en el mundo real a través de tu cámara.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> segmenter = pipeline(task="image-segmentation")
 >>> preds = segmenter(
@@ -151,7 +151,7 @@ Hay dos enfoques para la estimación de profundidad:
 * monocular: las profundidades se estiman a partir de una sola imagen
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> depth_estimator = pipeline(task="depth-estimation")
 >>> preds = depth_estimator(
@@ -171,7 +171,7 @@ Al igual que las tareas de clasificación en cualquier modalidad, la clasificaci
 * clasificación de contenido: etiquetar texto según algún tema para ayudar a organizar y filtrar información en noticias y feeds de redes sociales (`clima`, `deportes`, `finanzas`, etc.)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="sentiment-analysis")
 >>> preds = classifier("Hugging Face is the best thing since sliced bread!")
@@ -190,7 +190,7 @@ Dos tipos comunes de clasificación de tokens son:
 * etiquetado de partes del discurso (POS, por sus siglas en inglés): etiquetar un token según su parte del discurso, como sustantivo, verbo o adjetivo. POS es útil para ayudar a los sistemas de traducción a comprender cómo dos palabras idénticas son gramaticalmente diferentes (por ejemplo, "corte" como sustantivo versus "corte" como verbo)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline(task="ner")
 >>> preds = classifier("Hugging Face is a French company based in New York City.")
@@ -225,7 +225,7 @@ Hay dos tipos comunes de respuestas a preguntas:
 * abstractivas: dada una pregunta y algún contexto, la respuesta se genera a partir del contexto; este enfoque lo maneja la [`Text2TextGenerationPipeline`] en lugar del [`QuestionAnsweringPipeline`] que se muestra a continuación
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> question_answerer = pipeline(task="question-answering")
 >>> preds = question_answerer(
@@ -248,7 +248,7 @@ Al igual que en las respuestas a preguntas, hay dos tipos de resumen:
 * abstractiva: genera el resumen objetivo (que puede incluir nuevas palabras no presentes en el documento de entrada) a partir del texto original; el [`SummarizationPipeline`] utiliza el enfoque abstractivo
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> summarizer = pipeline(task="summarization")
 >>> summarizer(
@@ -264,7 +264,7 @@ La traducción convierte una secuencia de texto en un idioma a otro. Es importan
 En sus primeros días, los modelos de traducción eran principalmente monolingües, pero recientemente ha habido un creciente interés en modelos multilingües que pueden traducir entre muchas combinaciones de idiomas.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> text = "translate English to French: Hugging Face is a community-based open-source platform for machine learning."
 >>> translator = pipeline(task="translation", model="t5-small")
@@ -281,7 +281,7 @@ Hay dos tipos de modelado de lenguaje:
 * causal: el objetivo del modelo es predecir el próximo token en una secuencia, y los tokens futuros están enmascarados
 
     ```py
-    >>> from transformers import pipeline
+    >>> from transformers_openvla_oft import pipeline
 
     >>> prompt = "Hugging Face is a community-based open-source platform for machine learning."
     >>> generator = pipeline(task="text-generation")
@@ -321,7 +321,7 @@ Aunque los modelos multimodales trabajan con diferentes tipos de datos o modalid
 Las respuestas a preguntas de documentos es una tarea que responde preguntas en lenguaje natural a partir de un documento. A diferencia de una tarea de respuestas a preguntas a nivel de token que toma texto como entrada, las respuestas a preguntas de documentos toman una imagen de un documento como entrada junto con una pregunta sobre el documento y devuelven una respuesta. Las respuestas a preguntas de documentos pueden usarse para analizar documentos estructurados y extraer información clave de ellos. En el ejemplo a continuación, el monto total y el cambio debido se pueden extraer de un recibo.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> from PIL import Image
 >>> import requests
 

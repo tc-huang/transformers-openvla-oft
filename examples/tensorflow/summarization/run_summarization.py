@@ -34,8 +34,8 @@ import tensorflow as tf
 from datasets import load_dataset
 from filelock import FileLock
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     AutoConfig,
     AutoTokenizer,
     DataCollatorForSeq2Seq,
@@ -47,9 +47,9 @@ from transformers import (
     create_optimizer,
     set_seed,
 )
-from transformers.trainer_utils import get_last_checkpoint
-from transformers.utils import check_min_version, is_offline_mode, send_example_telemetry
-from transformers.utils.versions import require_version
+from transformers_openvla_oft.trainer_utils import get_last_checkpoint
+from transformers_openvla_oft.utils import check_min_version, is_offline_mode, send_example_telemetry
+from transformers_openvla_oft.utils.versions import require_version
 
 
 # region Checking dependencies
@@ -292,7 +292,7 @@ summarization_name_mapping = {
 
 def main():
     # region Argument parsing
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 
@@ -326,7 +326,7 @@ def main():
     )
     logger.setLevel(logging.INFO)
     datasets.utils.logging.set_verbosity(logging.INFO)
-    transformers.utils.logging.set_verbosity(logging.INFO)
+    transformers_openvla_oft.utils.logging.set_verbosity(logging.INFO)
 
     # Log on each process the small summary:
     logger.info(f"Training/evaluation parameters {training_args}")

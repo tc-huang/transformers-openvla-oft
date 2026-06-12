@@ -58,7 +58,7 @@ pip install transformers[deepspeed]
 Before you begin, it is a good idea to check whether you have enough GPU and CPU memory to fit your model. DeepSpeed provides a tool for estimating the required CPU/GPU memory. For example, to estimate the memory requirements for the [bigscience/T0_3B](bigscience/T0_3B) model on a single GPU:
 
 ```bash
-$ python -c 'from transformers import AutoModel; \
+$ python -c 'from transformers_openvla_oft import AutoModel; \
 from deepspeed.runtime.zero.stage3 import estimate_zero3_model_states_mem_needs_all_live; \
 model = AutoModel.from_pretrained("bigscience/T0_3B"); \
 estimate_zero3_model_states_mem_needs_all_live(model, num_gpus_per_node=1, num_nodes=1)'
@@ -262,7 +262,7 @@ ZeRO-3 shards the optimizer, gradient, and parameters across GPUs. Unlike ZeRO-2
 You can use the [`deepspeed.zero.Init`](https://deepspeed.readthedocs.io/en/latest/zero3.html#deepspeed.zero.Init) context manager to initialize a model faster:
 
 ```py
-from transformers import T5ForConditionalGeneration, T5Config
+from transformers_openvla_oft import T5ForConditionalGeneration, T5Config
 import deepspeed
 
 with deepspeed.zero.Init():
@@ -273,7 +273,7 @@ with deepspeed.zero.Init():
 For pretrained models, the DeepSped config file needs to have `is_deepspeed_zero3_enabled: true` setup in [`TrainingArguments`] and it needs a ZeRO configuration enabled. The [`TrainingArguments`] object must be created **before** calling the model [`~PreTrainedModel.from_pretrained`].
 
 ```py
-from transformers import AutoModel, Trainer, TrainingArguments
+from transformers_openvla_oft import AutoModel, Trainer, TrainingArguments
 
 training_args = TrainingArguments(..., deepspeed=ds_config)
 model = AutoModel.from_pretrained("google-t5/t5-small")
@@ -844,7 +844,7 @@ The full precision weights shouldn't be saved during training because it can req
 You must have saved at least one checkpoint to load the latest checkpoint as shown in the following:
 
 ```py
-from transformers.trainer_utils import get_last_checkpoint
+from transformers_openvla_oft.trainer_utils import get_last_checkpoint
 from deepspeed.utils.zero_to_fp32 import load_state_dict_from_zero_checkpoint
 
 checkpoint_dir = get_last_checkpoint(trainer.args.output_dir)
@@ -942,8 +942,8 @@ To efficiently deploy ZeRO-3, you must instantiate the [`HfDeepSpeedConfig`] obj
 <hfoption id="pretrained model">
 
 ```py
-from transformers.integrations import HfDeepSpeedConfig
-from transformers import AutoModel
+from transformers_openvla_oft.integrations import HfDeepSpeedConfig
+from transformers_openvla_oft import AutoModel
 import deepspeed
 
 ds_config = {...}  # deepspeed config object or path to the file
@@ -959,8 +959,8 @@ engine = deepspeed.initialize(model=model, config_params=ds_config, ...)
 [`HfDeepSpeedConfig`] is not required for ZeRO-1 or ZeRO-2.
 
 ```py
-from transformers.integrations import HfDeepSpeedConfig
-from transformers import AutoModel, AutoConfig
+from transformers_openvla_oft.integrations import HfDeepSpeedConfig
+from transformers_openvla_oft import AutoModel, AutoConfig
 import deepspeed
 
 ds_config = {...}  # deepspeed config object or path to the file
@@ -1020,8 +1020,8 @@ Take a look at the following script to get a better idea of how to run ZeRO Infe
 # or:
 # python -m torch.distributed.run --nproc_per_node=2 t0.py
 
-from transformers import AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
-from transformers.integrations import HfDeepSpeedConfig
+from transformers_openvla_oft import AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
+from transformers_openvla_oft.integrations import HfDeepSpeedConfig
 import deepspeed
 import os
 import torch
@@ -1155,7 +1155,7 @@ For issues related to the Transformers integration, please provide the following
 
 ```bash
 python -c 'import torch; print(f"torch: {torch.__version__}")'
-python -c 'import transformers; print(f"transformers: {transformers.__version__}")'
+python -c 'import transformers_openvla_oft; print(f"transformers: {transformers_openvla_oft.__version__}")'
 python -c 'import deepspeed; print(f"deepspeed: {deepspeed.__version__}")'
 ```
 

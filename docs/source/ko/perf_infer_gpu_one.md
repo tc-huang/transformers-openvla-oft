@@ -64,7 +64,7 @@ PyTorch 2.0부터는 어텐션 패스트패스가 인코더와 디코더 모두�
 다음 코드를 실행하여 단일 GPU에서 빠르게 FP4 모델을 실행할 수 있습니다.
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_name = "bigscience/bloom-2b5"
 model_4bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_4bit=True)
@@ -127,7 +127,7 @@ Int8 혼합 정밀도 행렬 분해는 행렬 곱셈을 두 개의 스트림으�
 필요한 라이브러리를 설치한 후 혼합 8비트 모델을 가져오는 방법은 다음과 같습니다:
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_name = "bigscience/bloom-2b5"
 model_8bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_8bit=True)
@@ -141,7 +141,7 @@ model_8bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto",
 다음은 간단한 예입니다:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model_name = "bigscience/bloom-2b5"
 tokenizer = AutoTokenizer.from_pretrained(model_name)

@@ -39,7 +39,7 @@ custom class of model `NewModel`, make sure you have a `NewModelConfig` then you
 classes like this:
 
 ```python
-from transformers import AutoConfig, AutoModel
+from transformers_openvla_oft import AutoConfig, AutoModel
 
 AutoConfig.register("new-model", NewModelConfig)
 AutoModel.register(NewModelConfig, NewModel)
@@ -49,7 +49,7 @@ You will then be able to use the auto classes like you would usually do!
 
 <Tip warning={true}>
 
-If your `NewModelConfig` is a subclass of [`~transformers.PretrainedConfig`], make sure its
+If your `NewModelConfig` is a subclass of [`~transformers_openvla_oft.PretrainedConfig`], make sure its
 `model_type` attribute is set to the same key you use when registering the config (here `"new-model"`).
 
 Likewise, if your `NewModel` is a subclass of [`PreTrainedModel`], make sure its

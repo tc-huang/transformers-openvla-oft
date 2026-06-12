@@ -34,8 +34,8 @@ from pplm_classification_head import ClassificationHead
 from torch import nn
 from tqdm import trange
 
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from transformers.file_utils import cached_path
+from transformers_openvla_oft import GPT2LMHeadModel, GPT2Tokenizer
+from transformers_openvla_oft.file_utils import cached_path
 
 
 PPLM_BOW = 1

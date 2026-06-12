@@ -20,9 +20,9 @@ import unittest
 
 import requests
 
-from transformers import SamConfig, SamMaskDecoderConfig, SamPromptEncoderConfig, SamVisionConfig, pipeline
-from transformers.testing_utils import backend_empty_cache, require_torch, slow, torch_device
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft import SamConfig, SamMaskDecoderConfig, SamPromptEncoderConfig, SamVisionConfig, pipeline
+from transformers_openvla_oft.testing_utils import backend_empty_cache, require_torch, slow, torch_device
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, floats_tensor
@@ -33,7 +33,7 @@ if is_torch_available():
     import torch
     from torch import nn
 
-    from transformers import SamModel, SamProcessor
+    from transformers_openvla_oft import SamModel, SamProcessor
 
 
 if is_vision_available():

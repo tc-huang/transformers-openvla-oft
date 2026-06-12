@@ -23,8 +23,8 @@ import unittest
 
 import numpy as np
 
-from transformers.testing_utils import require_tf, require_vision, slow
-from transformers.utils import is_tf_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_tf, require_vision, slow
+from transformers_openvla_oft.utils import is_tf_available, is_vision_available
 
 from ...test_modeling_tf_common import floats_tensor, ids_tensor, random_attention_mask
 from ..bert.test_modeling_tf_bert import TFBertModelTester
@@ -35,7 +35,7 @@ from ..vit.test_modeling_tf_vit import TFViTModelTester
 
 
 if is_tf_available():
-    from transformers import (
+    from transformers_openvla_oft import (
         TFBertModel,
         TFCLIPVisionModel,
         TFDeiTModel,
@@ -48,7 +48,7 @@ if is_tf_available():
 if is_vision_available():
     from PIL import Image
 
-    from transformers import VisionTextDualEncoderProcessor
+    from transformers_openvla_oft import VisionTextDualEncoderProcessor
 
 
 # Inspired by

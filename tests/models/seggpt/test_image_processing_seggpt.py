@@ -18,8 +18,8 @@ import unittest
 import numpy as np
 from datasets import load_dataset
 
-from transformers.testing_utils import require_torch, require_vision, slow
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_torch, require_vision, slow
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_image_processing_common import ImageProcessingTestMixin, prepare_image_inputs
 
@@ -27,10 +27,10 @@ from ...test_image_processing_common import ImageProcessingTestMixin, prepare_im
 if is_torch_available():
     import torch
 
-    from transformers.models.seggpt.modeling_seggpt import SegGptImageSegmentationOutput
+    from transformers_openvla_oft.models.seggpt.modeling_seggpt import SegGptImageSegmentationOutput
 
 if is_vision_available():
-    from transformers import SegGptImageProcessor
+    from transformers_openvla_oft import SegGptImageProcessor
 
 
 class SegGptImageProcessingTester(unittest.TestCase):

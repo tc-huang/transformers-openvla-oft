@@ -231,7 +231,7 @@ For additional information on tf32 vs other precisions, please refer to the foll
 
 ## Flash Attention 2
 
-You can speedup the training throughput by using Flash Attention 2 integration in transformers. Check out the appropriate section in the [single GPU section](./perf_infer_gpu_one#Flash-Attention-2) to learn more about how to load a model with Flash Attention 2 modules. 
+You can speedup the training throughput by using Flash Attention 2 integration in transformers_openvla_oft. Check out the appropriate section in the [single GPU section](./perf_infer_gpu_one#Flash-Attention-2) to learn more about how to load a model with Flash Attention 2 modules. 
 
 ## Optimizer choice
 
@@ -293,7 +293,7 @@ Next you need to initialize the optimizer. This involves two steps:
 ```py
 import bitsandbytes as bnb
 from torch import nn
-from transformers.trainer_pt_utils import get_parameter_names
+from transformers_openvla_oft.trainer_pt_utils import get_parameter_names
 
 training_args = TrainingArguments(per_device_train_batch_size=4, **default_args)
 

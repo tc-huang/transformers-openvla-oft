@@ -16,8 +16,8 @@ from torch.utils.data import IterableDataset
 from torch.utils.data.dataloader import DataLoader
 from torch.utils.data.datapipes.iter.combinatorics import ShufflerIterDataPipe
 
-import transformers
-from transformers import AutoModelForCausalLM, AutoTokenizer, HfArgumentParser, get_scheduler, set_seed
+import transformers_openvla_oft
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, HfArgumentParser, get_scheduler, set_seed
 
 
 class ConstantLengthDataset(IterableDataset):
@@ -112,12 +112,12 @@ def setup_logging(args):
         run_name = accelerator.trackers[0].run.name
         logger.setLevel(logging.INFO)
         datasets.utils.logging.set_verbosity_info()
-        transformers.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
     else:
         run_name = ""
         logger.setLevel(logging.ERROR)
         datasets.utils.logging.set_verbosity_error()
-        transformers.utils.logging.set_verbosity_error()
+        transformers_openvla_oft.utils.logging.set_verbosity_error()
     return logger, run_name
 
 

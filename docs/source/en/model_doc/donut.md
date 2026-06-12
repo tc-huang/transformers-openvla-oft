@@ -56,7 +56,7 @@ into a single instance to both extract the input features and decode the predict
 ```py
 >>> import re
 
->>> from transformers import DonutProcessor, VisionEncoderDecoderModel
+>>> from transformers_openvla_oft import DonutProcessor, VisionEncoderDecoderModel
 >>> from datasets import load_dataset
 >>> import torch
 
@@ -99,7 +99,7 @@ into a single instance to both extract the input features and decode the predict
 ```py
 >>> import re
 
->>> from transformers import DonutProcessor, VisionEncoderDecoderModel
+>>> from transformers_openvla_oft import DonutProcessor, VisionEncoderDecoderModel
 >>> from datasets import load_dataset
 >>> import torch
 
@@ -142,7 +142,7 @@ into a single instance to both extract the input features and decode the predict
 ```py
 >>> import re
 
->>> from transformers import DonutProcessor, VisionEncoderDecoderModel
+>>> from transformers_openvla_oft import DonutProcessor, VisionEncoderDecoderModel
 >>> from datasets import load_dataset
 >>> import torch
 

@@ -15,8 +15,8 @@
 
 import unittest
 
-from transformers.testing_utils import CaptureStdout
-from transformers.tools.python_interpreter import evaluate
+from transformers_openvla_oft.testing_utils import CaptureStdout
+from transformers_openvla_oft.tools.python_interpreter import evaluate
 
 
 # Fake function we will use as tool

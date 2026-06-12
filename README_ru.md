@@ -127,7 +127,7 @@ Hugging Face Hub. Мы хотим, чтобы Transformers позволил ра
 создавать проекты своей мечты.
 
 Чтобы отпраздновать 100 тысяч звезд Transformers, мы решили сделать акцент на сообществе, и создали страницу [awesome-transformers](./awesome-transformers.md), на которой перечислены 100
-невероятных проектов, созданных с помощью transformers.
+невероятных проектов, созданных с помощью transformers_openvla_oft.
 
 Если вы являетесь владельцем или пользователем проекта, который, по вашему мнению, должен быть включен в этот список, пожалуйста, откройте PR для его добавления!
 
@@ -142,11 +142,11 @@ Hugging Face Hub. Мы хотим, чтобы Transformers позволил ра
 Для использования модели на заданном входе (текст, изображение, звук, ...) мы предоставляем API `pipeline`. Конвейеры объединяют предварительно обученную модель с препроцессингом, который использовался при ее обучении. Вот как можно быстро использовать конвейер для классификации положительных и отрицательных текстов:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Выделение конвейера для анализа настроений
 >>> classifier = pipeline('sentiment-analysis')
->>> classifier('Мы очень рады представить конвейер в transformers.')
+>>> classifier('Мы очень рады представить конвейер в transformers_openvla_oft.')
 [{'label': 'POSITIVE', 'score': 0.9996980428695679}]
 ```
 
@@ -157,7 +157,7 @@ Hugging Face Hub. Мы хотим, чтобы Transformers позволил ра
 ``` python
 >>> import requests
 >>> from PIL import Image
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # Скачиваем изображение с милыми котиками
 >>> url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/coco_sample.png"
@@ -195,7 +195,7 @@ Hugging Face Hub. Мы хотим, чтобы Transformers позволил ра
 
 В дополнение к `pipeline`, для загрузки и использования любой из предварительно обученных моделей в заданной задаче достаточно трех строк кода. Вот версия для PyTorch:
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -206,7 +206,7 @@ Hugging Face Hub. Мы хотим, чтобы Transformers позволил ра
 
 А вот эквивалентный код для TensorFlow:
 ```python
->>> from transformers import AutoTokenizer, TFAutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

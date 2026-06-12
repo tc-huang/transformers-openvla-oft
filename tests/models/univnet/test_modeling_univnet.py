@@ -19,8 +19,8 @@ import unittest
 
 from datasets import Audio, load_dataset
 
-from transformers import UnivNetConfig, UnivNetFeatureExtractor
-from transformers.testing_utils import (
+from transformers_openvla_oft import UnivNetConfig, UnivNetFeatureExtractor
+from transformers_openvla_oft.testing_utils import (
     is_torch_available,
     require_torch,
     require_torch_gpu,
@@ -38,7 +38,7 @@ from ...test_modeling_common import (
 if is_torch_available():
     import torch
 
-    from transformers import UnivNetModel
+    from transformers_openvla_oft import UnivNetModel
 
 
 class UnivNetModelTester:

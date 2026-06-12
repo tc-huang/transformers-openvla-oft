@@ -17,8 +17,8 @@ import copy
 import inspect
 import tempfile
 
-from transformers.testing_utils import require_torch, torch_device
-from transformers.utils.backbone_utils import BackboneType
+from transformers_openvla_oft.testing_utils import require_torch, torch_device
+from transformers_openvla_oft.utils.backbone_utils import BackboneType
 
 
 @require_torch

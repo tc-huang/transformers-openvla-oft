@@ -3,7 +3,7 @@ import jax.numpy as jnp
 from bigbird_flax import FlaxBigBirdForNaturalQuestions
 from datasets import load_from_disk
 
-from transformers import BigBirdTokenizerFast
+from transformers_openvla_oft import BigBirdTokenizerFast
 
 
 CATEGORY_MAPPING = {0: "null", 1: "short", 2: "long", 3: "yes", 4: "no"}

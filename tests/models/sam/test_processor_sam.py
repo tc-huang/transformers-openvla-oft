@@ -17,20 +17,20 @@ import unittest
 
 import numpy as np
 
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     is_pt_tf_cross_test,
     require_tf,
     require_torch,
     require_torchvision,
     require_vision,
 )
-from transformers.utils import is_tf_available, is_torch_available, is_vision_available
+from transformers_openvla_oft.utils import is_tf_available, is_torch_available, is_vision_available
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import AutoProcessor, SamImageProcessor, SamProcessor
+    from transformers_openvla_oft import AutoProcessor, SamImageProcessor, SamProcessor
 
 if is_torch_available():
     import torch

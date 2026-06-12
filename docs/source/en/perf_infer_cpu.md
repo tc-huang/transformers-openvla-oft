@@ -39,7 +39,7 @@ Before you start, make sure you have 🤗 Optimum [installed](https://huggingfac
 Enable BetterTransformer with the [`PreTrainedModel.to_bettertransformer`] method:
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained("bigcode/starcoder")
 model.to_bettertransformer()
@@ -111,7 +111,7 @@ ONNX Runtime (ORT) is a model accelerator that runs inference on CPUs by default
 For example, if you're running inference on a question answering task, load the [optimum/roberta-base-squad2](https://huggingface.co/optimum/roberta-base-squad2) checkpoint which contains a `model.onnx` file:
 
 ```py
-from transformers import AutoTokenizer, pipeline
+from transformers_openvla_oft import AutoTokenizer, pipeline
 from optimum.onnxruntime import ORTModelForQuestionAnswering
 
 model = ORTModelForQuestionAnswering.from_pretrained("optimum/roberta-base-squad2")

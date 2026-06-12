@@ -121,7 +121,7 @@ checkpoint: जाँच बिंदु
 हम त्वरित उपयोग के लिए मॉडल प्रदान करते हैं `pipeline` (पाइपलाइन) एपीआई। पाइपलाइन पूर्व-प्रशिक्षित मॉडल और संबंधित पाठ प्रीप्रोसेसिंग को एकत्रित करती है। सकारात्मक और नकारात्मक भावना को निर्धारित करने के लिए पाइपलाइनों का उपयोग करने का एक त्वरित उदाहरण यहां दिया गया है:
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # भावना विश्लेषण पाइपलाइन का उपयोग करना
 >>> classifier = pipeline('sentiment-analysis')
@@ -134,7 +134,7 @@ checkpoint: जाँच बिंदु
 कई एनएलपी कार्यों में आउट ऑफ़ द बॉक्स पाइपलाइनों का पूर्व-प्रशिक्षण होता है। उदाहरण के लिए, हम किसी दिए गए पाठ से किसी प्रश्न का उत्तर आसानी से निकाल सकते हैं:
 
 ``` python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 # प्रश्नोत्तर पाइपलाइन का उपयोग करना
 >>> question_answerer = pipeline('question-answering')
@@ -150,7 +150,7 @@ checkpoint: जाँच बिंदु
 
 अपने कार्य पर किसी भी पूर्व-प्रशिक्षित मॉडल को डाउनलोड करना और उसका उपयोग करना भी कोड की तीन पंक्तियों की तरह सरल है। यहाँ PyTorch संस्करण के लिए एक उदाहरण दिया गया है:
 ```python
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = AutoModel.from_pretrained("google-bert/bert-base-uncased")
@@ -160,7 +160,7 @@ checkpoint: जाँच बिंदु
 ```
 यहाँ समकक्ष है TensorFlow कोड:
 ```python
->>> from transformers import AutoTokenizer, TFAutoModel
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 >>> model = TFAutoModel.from_pretrained("google-bert/bert-base-uncased")

@@ -83,7 +83,7 @@ O `ner_tag` descreve uma entidade, como uma organização, local ou pessoa. A le
 Carregue o tokenizer do DistilBERT para processar os `tokens`:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -139,14 +139,14 @@ Use o [`DataCollatorForTokenClassification`] para criar um batch de exemplos. El
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DataCollatorForTokenClassification
+>>> from transformers_openvla_oft import DataCollatorForTokenClassification
 
 >>> data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DataCollatorForTokenClassification
+>>> from transformers_openvla_oft import DataCollatorForTokenClassification
 
 >>> data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer, return_tensors="tf")
 ```
@@ -160,7 +160,7 @@ Use o [`DataCollatorForTokenClassification`] para criar um batch de exemplos. El
 Carregue o DistilBERT com o [`AutoModelForTokenClassification`] junto com o número de rótulos esperados:
 
 ```py
->>> from transformers import AutoModelForTokenClassification, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForTokenClassification, TrainingArguments, Trainer
 
 >>> model = AutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased", num_labels=14)
 ```
@@ -228,7 +228,7 @@ Se você não estiver familiarizado com o fine-tuning de um modelo com o Keras, 
 Configure o otimizador e alguns hiperparâmetros de treinamento:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_train_epochs = 3
@@ -244,7 +244,7 @@ Configure o otimizador e alguns hiperparâmetros de treinamento:
 Carregue o DistilBERT com o [`TFAutoModelForTokenClassification`] junto com o número de rótulos esperados:
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased", num_labels=2)
 ```

@@ -29,9 +29,9 @@ from typing import List, Tuple
 
 from datasets import Dataset
 
-from transformers import is_tf_available, is_torch_available
-from transformers.models.auto import get_values
-from transformers.testing_utils import (  # noqa: F401
+from transformers_openvla_oft import is_tf_available, is_torch_available
+from transformers_openvla_oft.models.auto import get_values
+from transformers_openvla_oft.testing_utils import (  # noqa: F401
     CaptureLogger,
     _tf_gpu_memory_limit,
     is_pt_tf_cross_test,
@@ -40,8 +40,8 @@ from transformers.testing_utils import (  # noqa: F401
     slow,
     torch_device,
 )
-from transformers.utils import CONFIG_NAME, GENERATION_CONFIG_NAME, logging
-from transformers.utils.generic import ModelOutput
+from transformers_openvla_oft.utils import CONFIG_NAME, GENERATION_CONFIG_NAME, logging
+from transformers_openvla_oft.utils.generic import ModelOutput
 
 
 logger = logging.get_logger(__name__)
@@ -51,7 +51,7 @@ if is_tf_available():
     import numpy as np
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         TF_MODEL_FOR_CAUSAL_LM_MAPPING,
         TF_MODEL_FOR_DOCUMENT_QUESTION_ANSWERING_MAPPING,
         TF_MODEL_FOR_IMAGE_CLASSIFICATION_MAPPING,
@@ -70,7 +70,7 @@ if is_tf_available():
         TFAutoModelForSequenceClassification,
         TFSharedEmbeddings,
     )
-    from transformers.generation import (
+    from transformers_openvla_oft.generation import (
         TFBeamSampleDecoderOnlyOutput,
         TFBeamSampleEncoderDecoderOutput,
         TFBeamSearchDecoderOnlyOutput,
@@ -80,7 +80,7 @@ if is_tf_available():
         TFSampleDecoderOnlyOutput,
         TFSampleEncoderDecoderOutput,
     )
-    from transformers.modeling_tf_utils import keras
+    from transformers_openvla_oft.modeling_tf_utils import keras
 
     tf.config.experimental.enable_tensor_float_32_execution(False)
 
@@ -621,7 +621,7 @@ class TFModelTesterMixin:
 
     @is_pt_tf_cross_test
     def test_pt_tf_model_equivalence(self, allow_missing_keys=False):
-        import transformers
+        import transformers_openvla_oft
 
         for model_class in self.all_model_classes:
             config, inputs_dict = self.model_tester.prepare_config_and_inputs_for_common()
@@ -655,10 +655,10 @@ class TFModelTesterMixin:
                 tf_inputs_dict_with_labels = None
 
             # Check we can load pt model in tf and vice-versa with model => model functions
-            tf_model = transformers.load_pytorch_model_in_tf2_model(
+            tf_model = transformers_openvla_oft.load_pytorch_model_in_tf2_model(
                 tf_model, pt_model, tf_inputs=tf_inputs_dict, allow_missing_keys=allow_missing_keys
             )
-            pt_model = transformers.load_tf2_model_in_pytorch_model(
+            pt_model = transformers_openvla_oft.load_tf2_model_in_pytorch_model(
                 pt_model, tf_model, allow_missing_keys=allow_missing_keys
             )
 
@@ -672,13 +672,13 @@ class TFModelTesterMixin:
             with tempfile.TemporaryDirectory() as tmpdirname:
                 pt_checkpoint_path = os.path.join(tmpdirname, "pt_model.bin")
                 torch.save(pt_model.state_dict(), pt_checkpoint_path)
-                tf_model = transformers.load_pytorch_checkpoint_in_tf2_model(
+                tf_model = transformers_openvla_oft.load_pytorch_checkpoint_in_tf2_model(
                     tf_model, pt_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
                 tf_checkpoint_path = os.path.join(tmpdirname, "tf_model.h5")
                 tf_model.save_weights(tf_checkpoint_path)
-                pt_model = transformers.load_tf2_checkpoint_in_pytorch_model(
+                pt_model = transformers_openvla_oft.load_tf2_checkpoint_in_pytorch_model(
                     pt_model, tf_checkpoint_path, allow_missing_keys=allow_missing_keys
                 )
 
@@ -1625,7 +1625,7 @@ class TFModelTesterMixin:
                     with self.assertRaises(ValueError):
                         new_model_without_prefix = TFAutoModel.from_pretrained(tmp_dir, vocab_size=10)
 
-                    logger = logging.get_logger("transformers.modeling_tf_utils")
+                    logger = logging.get_logger("transformers_openvla_oft.modeling_tf_utils")
                     with CaptureLogger(logger) as cl:
                         new_model = TFAutoModelForSequenceClassification.from_pretrained(
                             tmp_dir, num_labels=42, ignore_mismatched_sizes=True

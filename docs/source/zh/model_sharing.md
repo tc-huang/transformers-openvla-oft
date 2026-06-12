@@ -140,7 +140,7 @@ pip install huggingface_hub
 ... )
 ```
 
-在您微调完模型后，在[`Trainer`]上调用[`~transformers.Trainer.push_to_hub`]将训练好的模型推送到Hub。🤗 Transformers甚至会自动将训练超参数、训练结果和框架版本添加到你的模型卡片中！
+在您微调完模型后，在[`Trainer`]上调用[`~transformers_openvla_oft.Trainer.push_to_hub`]将训练好的模型推送到Hub。🤗 Transformers甚至会自动将训练超参数、训练结果和框架版本添加到你的模型卡片中！
 
 ```py
 >>> trainer.push_to_hub()
@@ -156,7 +156,7 @@ pip install huggingface_hub
 
 
 ```py
->>> from transformers import PushToHubCallback
+>>> from transformers_openvla_oft import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="./your_model_save_path", tokenizer=tokenizer, hub_model_id="your-username/my-awesome-model"
@@ -184,7 +184,7 @@ pip install huggingface_hub
 这会在您的用户名下创建一个名为`my-awesome-model`的仓库。用户现在可以使用`from_pretrained`函数加载您的模型：
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> model = AutoModel.from_pretrained("your_username/my-awesome-model")
 ```

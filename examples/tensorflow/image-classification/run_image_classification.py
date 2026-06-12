@@ -33,8 +33,8 @@ import tensorflow as tf
 from datasets import load_dataset
 from PIL import Image
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     TF_MODEL_FOR_IMAGE_CLASSIFICATION_MAPPING,
     AutoConfig,
     AutoImageProcessor,
@@ -46,11 +46,11 @@ from transformers import (
     create_optimizer,
     set_seed,
 )
-from transformers.keras_callbacks import KerasMetricCallback
-from transformers.modeling_tf_utils import keras
-from transformers.trainer_utils import get_last_checkpoint, is_main_process
-from transformers.utils import check_min_version, send_example_telemetry
-from transformers.utils.versions import require_version
+from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
+from transformers_openvla_oft.modeling_tf_utils import keras
+from transformers_openvla_oft.trainer_utils import get_last_checkpoint, is_main_process
+from transformers_openvla_oft.utils import check_min_version, send_example_telemetry
+from transformers_openvla_oft.utils.versions import require_version
 
 
 logger = logging.getLogger(__name__)
@@ -233,7 +233,7 @@ def random_resized_crop(image, size, scale=(0.08, 1.0), ratio=(3.0 / 4.0, 4.0 / 
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
     parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TFTrainingArguments))
@@ -286,9 +286,9 @@ def main():
 
     # Set the verbosity to info of the Transformers logger (on main process only):
     if is_main_process(training_args.local_rank):
-        transformers.utils.logging.set_verbosity_info()
-        transformers.utils.logging.enable_default_handler()
-        transformers.utils.logging.enable_explicit_format()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.enable_default_handler()
+        transformers_openvla_oft.utils.logging.enable_explicit_format()
     logger.info(f"Training/evaluation parameters {training_args}")
 
     # region Dataset and labels

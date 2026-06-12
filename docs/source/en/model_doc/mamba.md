@@ -41,7 +41,7 @@ The original code can be found [here](https://github.com/state-spaces/mamba).
 
 ### A simple generation example: 
 ```python 
-from transformers import MambaConfig, MambaForCausalLM, AutoTokenizer
+from transformers_openvla_oft import MambaConfig, MambaForCausalLM, AutoTokenizer
 import torch
 
 tokenizer = AutoTokenizer.from_pretrained("state-spaces/mamba-130m-hf")
@@ -59,7 +59,7 @@ The slow version is not very stable for training, and the fast one needs `float3
 from datasets import load_dataset
 from trl import SFTTrainer
 from peft import LoraConfig
-from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments
+from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM, TrainingArguments
 model_id = "state-spaces/mamba-130m-hf"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id)

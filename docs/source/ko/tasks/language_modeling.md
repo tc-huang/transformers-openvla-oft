@@ -102,7 +102,7 @@ pip install transformers datasets evaluate
 다음 단계는 `text` 필드를 전처리하기 위해 DistilGPT2 토크나이저를 불러오는 것입니다.
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 ```
@@ -186,7 +186,7 @@ pip install transformers datasets evaluate
 패딩 토큰으로 종결 토큰을 사용하고 `mlm=False`로 설정하세요. 이렇게 하면 입력을 오른쪽으로 한 칸씩 시프트한 값을 레이블로 사용합니다:
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> tokenizer.pad_token = tokenizer.eos_token
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
@@ -197,7 +197,7 @@ pip install transformers datasets evaluate
 패딩 토큰으로 종결 토큰을 사용하고 `mlm=False`로 설정하세요. 이렇게 하면 입력을 오른쪽으로 한 칸씩 시프트한 값을 레이블로 사용합니다:
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False, return_tensors="tf")
 ```
@@ -219,7 +219,7 @@ pip install transformers datasets evaluate
 이제 모델을 훈련하기 준비가 되었습니다! [`AutoModelForCausalLM`]를 사용하여 DistilGPT2를 불러옵니다:
 
 ```py
->>> from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, TrainingArguments, Trainer
 
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
@@ -250,7 +250,7 @@ pip install transformers datasets evaluate
 >>> trainer.train()
 ```
 
-훈련이 완료되면 [`~transformers.Trainer.evaluate`] 메소드를 사용하여 모델을 평가하고 퍼플렉서티를 얻을 수 있습니다:
+훈련이 완료되면 [`~transformers_openvla_oft.Trainer.evaluate`] 메소드를 사용하여 모델을 평가하고 퍼플렉서티를 얻을 수 있습니다:
 
 ```py
 >>> import math
@@ -260,7 +260,7 @@ pip install transformers datasets evaluate
 Perplexity: 49.61
 ```
 
-그런 다음 [`~transformers.Trainer.push_to_hub`] 메소드를 사용하여 모델을 허브에 공유하세요. 이렇게 하면 누구나 모델을 사용할 수 있습니다:
+그런 다음 [`~transformers_openvla_oft.Trainer.push_to_hub`] 메소드를 사용하여 모델을 허브에 공유하세요. 이렇게 하면 누구나 모델을 사용할 수 있습니다:
 
 ```py
 >>> trainer.push_to_hub()
@@ -275,7 +275,7 @@ Keras를 사용하여 모델을 미세 조정하는 방법에 익숙하지 않�
 TensorFlow에서 모델을 미세 조정하려면, 먼저 옵티마이저 함수, 학습률 스케줄 및 일부 훈련 하이퍼파라미터를 설정하세요:
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -283,12 +283,12 @@ TensorFlow에서 모델을 미세 조정하려면, 먼저 옵티마이저 함수
 그런 다음 [`TFAutoModelForCausalLM`]를 사용하여 DistilGPT2를 불러옵니다:
 
 ```py
->>> from transformers import TFAutoModelForCausalLM
+>>> from transformers_openvla_oft import TFAutoModelForCausalLM
 
 >>> model = TFAutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`]을 사용하여 데이터 세트를 `tf.data.Dataset` 형식으로 변환하세요:
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]을 사용하여 데이터 세트를 `tf.data.Dataset` 형식으로 변환하세요:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -314,10 +314,10 @@ TensorFlow에서 모델을 미세 조정하려면, 먼저 옵티마이저 함수
 >>> model.compile(optimizer=optimizer)  # 별도로 loss 인자를 넣지 않았어요!
 ```
 
-[`~transformers.PushToHubCallback`]에서 모델과 토크나이저를 업로드할 위치를 지정할 수 있습니다:
+[`~transformers_openvla_oft.PushToHubCallback`]에서 모델과 토크나이저를 업로드할 위치를 지정할 수 있습니다:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> callback = PushToHubCallback(
 ...     output_dir="my_awesome_eli5_clm-model",
@@ -354,7 +354,7 @@ TensorFlow에서 모델을 미세 조정하려면, 먼저 옵티마이저 함수
 추론을 위해 미세 조정된 모델을 간단히 사용하는 가장 간단한 방법은 [`pipeline`]에서 사용하는 것입니다. 모델과 함께 텍스트 생성을 위한 `pipeline`을 인스턴스화하고 텍스트를 전달하세요:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline("text-generation", model="my_awesome_eli5_clm-model")
 >>> generator(prompt)
@@ -366,16 +366,16 @@ TensorFlow에서 모델을 미세 조정하려면, 먼저 옵티마이저 함수
 텍스트를 토큰화하고 `input_ids`를 PyTorch 텐서로 반환하세요:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_eli5_clm-model")
 >>> inputs = tokenizer(prompt, return_tensors="pt").input_ids
 ```
 
-[`~transformers.generation_utils.GenerationMixin.generate`] 메소드를 사용하여 텍스트를 생성하세요. 생성을 제어하는 다양한 텍스트 생성 전략과 매개변수에 대한 자세한 내용은 [텍스트 생성 전략](../generation_strategies) 페이지를 확인하세요.
+[`~transformers_openvla_oft.generation_utils.GenerationMixin.generate`] 메소드를 사용하여 텍스트를 생성하세요. 생성을 제어하는 다양한 텍스트 생성 전략과 매개변수에 대한 자세한 내용은 [텍스트 생성 전략](../generation_strategies) 페이지를 확인하세요.
 
 ```py
->>> from transformers import AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoModelForCausalLM
 
 >>> model = AutoModelForCausalLM.from_pretrained("my_awesome_eli5_clm-model")
 >>> outputs = model.generate(inputs, max_new_tokens=100, do_sample=True, top_k=50, top_p=0.95)
@@ -392,16 +392,16 @@ TensorFlow에서 모델을 미세 조정하려면, 먼저 옵티마이저 함수
 텍스트를 토큰화하고 `input_ids`를 TensorFlow 텐서로 반환하세요:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_eli5_clm-model")
 >>> inputs = tokenizer(prompt, return_tensors="tf").input_ids
 ```
 
-[`~transformers.generation_tf_utils.TFGenerationMixin.generate`] 메소드를 사용하여 요약을 생성하세요. 생성을 제어하는 다양한 텍스트 생성 전략과 매개변수에 대한 자세한 내용은 [텍스트 생성 전략](../generation_strategies) 페이지를 확인하세요.
+[`~transformers_openvla_oft.generation_tf_utils.TFGenerationMixin.generate`] 메소드를 사용하여 요약을 생성하세요. 생성을 제어하는 다양한 텍스트 생성 전략과 매개변수에 대한 자세한 내용은 [텍스트 생성 전략](../generation_strategies) 페이지를 확인하세요.
 
 ```py
->>> from transformers import TFAutoModelForCausalLM
+>>> from transformers_openvla_oft import TFAutoModelForCausalLM
 
 >>> model = TFAutoModelForCausalLM.from_pretrained("my_awesome_eli5_clm-model")
 >>> outputs = model.generate(input_ids=inputs, max_new_tokens=100, do_sample=True, top_k=50, top_p=0.95)

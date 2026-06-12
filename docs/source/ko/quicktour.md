@@ -76,7 +76,7 @@ pip install tensorflow
 먼저 [`pipeline`]의 인스턴스를 생성하고 사용할 작업을 지정합니다. 이 가이드에서는 감정 분석을 위해 [`pipeline`]을 사용하는 예제를 보여드리겠습니다:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline("sentiment-analysis")
 ```
@@ -102,7 +102,7 @@ label: NEGATIVE, with score: 0.5309
 
 ```py
 >>> import torch
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> speech_recognizer = pipeline("automatic-speech-recognition", model="facebook/wav2vec2-base-960h")
 ```
@@ -144,7 +144,7 @@ label: NEGATIVE, with score: 0.5309
 [`AutoModelForSequenceClassification`]과 [`AutoTokenizer`]를 사용하여 사전 훈련된 모델과 관련된 토크나이저를 로드하세요 (다음 섹션에서 [`AutoClass`]에 대해 더 자세히 알아보겠습니다):
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained(model_name)
 >>> tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -154,7 +154,7 @@ label: NEGATIVE, with score: 0.5309
 [`TFAutoModelForSequenceClassification`]과 [`AutoTokenizer`]를 사용하여 사전 훈련된 모델과 관련된 토크나이저를 로드하세요 (다음 섹션에서 [`TFAutoClass`]에 대해 더 자세히 알아보겠습니다):
 
 ```py
->>> from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained(model_name)
 >>> tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -187,7 +187,7 @@ label: NEGATIVE, with score: 0.5309
 [`AutoTokenizer`]로 토크나이저를 로드하세요:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -250,7 +250,7 @@ label: NEGATIVE, with score: 0.5309
 🤗 Transformers는 사전 훈련된 인스턴스를 간단하고 통합된 방법으로 로드할 수 있습니다. 즉, [`AutoTokenizer`]처럼 [`AutoModel`]을 로드할 수 있습니다. 유일한 차이점은 과업에 알맞은 [`AutoModel`]을 선택해야 한다는 점입니다. 텍스트 (또는 시퀀스) 분류의 경우 [`AutoModelForSequenceClassification`]을 로드해야 합니다:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> pt_model = AutoModelForSequenceClassification.from_pretrained(model_name)
@@ -283,7 +283,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 🤗 Transformers는 사전 훈련된 인스턴스를 간단하고 통합된 방법으로 로드할 수 있습니다. 즉, [`AutoTokenizer`]처럼 [`TFAutoModel`]을 로드할 수 있습니다. 유일한 차이점은 과업에 알맞은 [`TFAutoModel`]을 선택해야 한다는 점입니다. 텍스트 (또는 시퀀스) 분류의 경우 [`TFAutoModelForSequenceClassification`]을 로드해야 합니다:
 
 ```py
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> tf_model = TFAutoModelForSequenceClassification.from_pretrained(model_name)
@@ -359,7 +359,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 <pt>
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained(tf_save_directory)
 >>> pt_model = AutoModelForSequenceClassification.from_pretrained(tf_save_directory, from_tf=True)
@@ -368,7 +368,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 <tf>
 
 ```py
->>> from transformers import TFAutoModel
+>>> from transformers_openvla_oft import TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained(pt_save_directory)
 >>> tf_model = TFAutoModelForSequenceClassification.from_pretrained(pt_save_directory, from_pt=True)
@@ -383,7 +383,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 먼저 [`AutoConfig`]를 가져오고 수정하고 싶은 사전학습된 모델을 로드하세요. [`AutoConfig.from_pretrained`] 내부에서 (어텐션 헤드 수와 같이) 변경하려는 속성를 지정할 수 있습니다:
 
 ```py
->>> from transformers import AutoConfig
+>>> from transformers_openvla_oft import AutoConfig
 
 >>> my_config = AutoConfig.from_pretrained("distilbert/distilbert-base-uncased", n_heads=12)
 ```
@@ -393,7 +393,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 [`AutoModel.from_config`]를 사용하여 바꾼 구성대로 모델을 생성하세요:
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> my_model = AutoModel.from_config(my_config)
 ```
@@ -402,7 +402,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 [`TFAutoModel.from_config`]를 사용하여 바꾼 구성대로 모델을 생성하세요:
 
 ```py
->>> from transformers import TFAutoModel
+>>> from transformers_openvla_oft import TFAutoModel
 
 >>> my_model = TFAutoModel.from_config(my_config)
 ```
@@ -420,7 +420,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 1. [`PreTrainedModel`] 또는 [`torch.nn.Module`](https://pytorch.org/docs/stable/nn.html#torch.nn.Module)로 시작합니다:
 
    ```py
-   >>> from transformers import AutoModelForSequenceClassification
+   >>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
    >>> model = AutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
    ```
@@ -428,7 +428,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 2. [`TrainingArguments`]는 학습률, 배치 크기, 훈련할 에포크 수와 같은 모델 하이퍼파라미터를 포함합니다. 훈련 인자를 지정하지 않으면 기본값이 사용됩니다:
 
    ```py
-   >>> from transformers import TrainingArguments
+   >>> from transformers_openvla_oft import TrainingArguments
 
    >>> training_args = TrainingArguments(
    ...     output_dir="path/to/save/folder/",
@@ -442,7 +442,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 3. 토크나이저, 이미지 프로세서, 특징 추출기(feature extractor) 또는 프로세서와 전처리 클래스를 로드하세요:
 
    ```py
-   >>> from transformers import AutoTokenizer
+   >>> from transformers_openvla_oft import AutoTokenizer
 
    >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
    ```
@@ -471,7 +471,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 6. [`DataCollatorWithPadding`]을 사용하여 데이터셋의 표본 묶음을 만드세요:
 
    ```py
-   >>> from transformers import DataCollatorWithPadding
+   >>> from transformers_openvla_oft import DataCollatorWithPadding
 
    >>> data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
    ```
@@ -479,7 +479,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 이제 위의 모든 클래스를 [`Trainer`]로 모으세요:
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -514,7 +514,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 1. [`TFPreTrainedModel`] 또는 [`tf.keras.Model`](https://www.tensorflow.org/api_docs/python/tf/keras/Model)로 시작합니다:
 
    ```py
-   >>> from transformers import TFAutoModelForSequenceClassification
+   >>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
    >>> model = TFAutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
    ```
@@ -522,7 +522,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 2. 토크나이저, 이미지 프로세서, 특징 추출기(feature extractor) 또는 프로세서와 같은 전처리 클래스를 로드하세요:
 
    ```py
-   >>> from transformers import AutoTokenizer
+   >>> from transformers_openvla_oft import AutoTokenizer
 
    >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
    ```

@@ -72,18 +72,18 @@ class BertModel(BertPreTrainedModel):
 
 MOCK_BERT_COPY_CODE = """from ...modeling_utils import PreTrainedModel
 
-# Copied from transformers.models.bert.modeling_bert.bert_function
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.bert_function
 def bert_copy_function(x):
     return x
 
 
-# Copied from transformers.models.bert.modeling_bert.BertAttention
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertAttention
 class BertCopyAttention(nn.Module):
     def __init__(self, config):
         super().__init__()
 
 
-# Copied from transformers.models.bert.modeling_bert.BertModel with Bert->BertCopy all-casing
+# Copied from transformers_openvla_oft.models.bert.modeling_bert.BertModel with Bert->BertCopy all-casing
 class BertCopyModel(BertCopyPreTrainedModel):
     def __init__(self, config):
         super().__init__()
@@ -104,7 +104,7 @@ class BertDummyModel:
         self.a = a
         self.b = b
 
-    # Copied from transformers.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
+    # Copied from transformers_openvla_oft.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
     def forward(self, c):
         return 1
 
@@ -117,7 +117,7 @@ class BertDummyModel:
 
 
 MOCK_DUMMY_ROBERTA_CODE_MATCH = """
-# Copied from transformers.models.dummy_bert_match.modeling_dummy_bert_match.BertDummyModel with BertDummy->RobertaBertDummy
+# Copied from transformers_openvla_oft.models.dummy_bert_match.modeling_dummy_bert_match.BertDummyModel with BertDummy->RobertaBertDummy
 class RobertaBertDummyModel:
 
     attr_1 = 1
@@ -131,7 +131,7 @@ class RobertaBertDummyModel:
     def only_in_roberta_to_be_ignored(self, c):
         return 3
 
-    # Copied from transformers.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
+    # Copied from transformers_openvla_oft.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
     def forward(self, c):
         return 1
 
@@ -153,7 +153,7 @@ class BertDummyModel:
         self.a = a
         self.b = b
 
-    # Copied from transformers.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
+    # Copied from transformers_openvla_oft.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
     def forward(self, c):
         return 1
 
@@ -172,7 +172,7 @@ class BertDummyModel:
 
 
 MOCK_DUMMY_ROBERTA_CODE_NO_MATCH = """
-# Copied from transformers.models.dummy_bert_no_match.modeling_dummy_bert_no_match.BertDummyModel with BertDummy->RobertaBertDummy
+# Copied from transformers_openvla_oft.models.dummy_bert_no_match.modeling_dummy_bert_no_match.BertDummyModel with BertDummy->RobertaBertDummy
 class RobertaBertDummyModel:
 
     attr_1 = 1
@@ -186,7 +186,7 @@ class RobertaBertDummyModel:
     def only_in_roberta_to_be_ignored(self, c):
         return 3
 
-    # Copied from transformers.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
+    # Copied from transformers_openvla_oft.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
     def forward(self, c):
         return 1
 
@@ -206,7 +206,7 @@ class RobertaBertDummyModel:
 
 
 EXPECTED_REPLACED_CODE = """
-# Copied from transformers.models.dummy_bert_no_match.modeling_dummy_bert_no_match.BertDummyModel with BertDummy->RobertaBertDummy
+# Copied from transformers_openvla_oft.models.dummy_bert_no_match.modeling_dummy_bert_no_match.BertDummyModel with BertDummy->RobertaBertDummy
 class RobertaBertDummyModel:
     attr_1 = 1
     attr_2 = 2
@@ -215,7 +215,7 @@ class RobertaBertDummyModel:
         self.a = a
         self.b = b
 
-    # Copied from transformers.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
+    # Copied from transformers_openvla_oft.models.dummy_gpt2.modeling_dummy_gpt2.GPT2DummyModel.forward
     def forward(self, c):
         return 1
 

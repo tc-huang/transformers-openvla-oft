@@ -35,13 +35,13 @@ git clone git@github.com:Helsinki-NLP/Tatoeba-Challenge.git
 
 To convert a few models, call the conversion script from command line:
 ```bash
-python src/transformers/models/marian/convert_marian_tatoeba_to_pytorch.py --models heb-eng eng-heb --save_dir converted
+python src/transformers_openvla_oft/models/marian/convert_marian_tatoeba_to_pytorch.py --models heb-eng eng-heb --save_dir converted
 ```
 
 To convert lots of models you can pass your list of Tatoeba model names to `resolver.convert_models` in a python client or script.
 
 ```python
-from transformers.convert_marian_tatoeba_to_pytorch import TatoebaConverter
+from transformers_openvla_oft.convert_marian_tatoeba_to_pytorch import TatoebaConverter
 resolver = TatoebaConverter(save_dir='converted')
 resolver.convert_models(['heb-eng', 'eng-heb'])
 ```

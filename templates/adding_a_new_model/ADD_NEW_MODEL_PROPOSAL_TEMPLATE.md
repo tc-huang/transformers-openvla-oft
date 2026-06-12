@@ -535,7 +535,7 @@ to make your debugging environment as efficient as possible.
     due to multiple dropout layers in the model. Make sure that the
     forward pass in your debugging environment is **deterministic** so
     that the dropout layers are not used. Or use
-    `transformers.utils.set_seed` if the old and new
+    `transformers_openvla_oft.utils.set_seed` if the old and new
     implementations are in the same framework.
 
 #### More details on how to create a debugging environment for [camelcase name of model] 
@@ -644,11 +644,11 @@ feel free to ping [name of mentor] by Slack or email.
 
 At first, we will focus only on the model itself and not care about the
 tokenizer. All the relevant code should be found in the generated files
-`src/transformers/models/[lowercase name of model]/modeling_[lowercase name of model].py` and
-`src/transformers/models/[lowercase name of model]/configuration_[lowercase name of model].py`.
+`src/transformers_openvla_oft/models/[lowercase name of model]/modeling_[lowercase name of model].py` and
+`src/transformers_openvla_oft/models/[lowercase name of model]/configuration_[lowercase name of model].py`.
 
 Now you can finally start coding :). The generated code in
-`src/transformers/models/[lowercase name of model]/modeling_[lowercase name of model].py` will
+`src/transformers_openvla_oft/models/[lowercase name of model]/modeling_[lowercase name of model].py` will
 either have the same architecture as BERT if it's an encoder-only model
 or BART if it's an encoder-decoder model. At this point, you should
 remind yourself what you've learned in the beginning about the
@@ -662,7 +662,7 @@ model should be implemented.
 **Note** that at this point, you don't have to be very sure that your
 code is fully correct or clean. Rather, it is advised to add a first
 *unclean*, copy-pasted version of the original code to
-`src/transformers/models/[lowercase name of model]/modeling_[lowercase name of model].py`
+`src/transformers_openvla_oft/models/[lowercase name of model]/modeling_[lowercase name of model].py`
 until you feel like all the necessary code is added. From our
 experience, it is much more efficient to quickly add a first version of
 the required code and improve/correct the code iteratively with the
@@ -672,7 +672,7 @@ implementation of *[camelcase name of model]*, *i.e.* the following command
 should work:
 
 ```python
-from transformers import [camelcase name of model]Model, [camelcase name of model]Config
+from transformers_openvla_oft import [camelcase name of model]Model, [camelcase name of model]Config
 model = [camelcase name of model]Model([camelcase name of model]Config())
 ```
 
@@ -700,10 +700,10 @@ similar already existing conversion script for your model.
 
 -   If you are porting a model from TensorFlow to PyTorch, a good
     starting point might be BERT's conversion script
-    [here](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers/models/bert/modeling_bert.py#L91)
+    [here](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers_openvla_oft/models/bert/modeling_bert.py#L91)
 -   If you are porting a model from PyTorch to PyTorch, a good starting
     point might be BART's conversion script
-    [here](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
+    [here](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
 
 In the following, we'll quickly explain how PyTorch models store layer
 weights and define layer names. In PyTorch, the name of a layer is
@@ -1012,7 +1012,7 @@ the original repository, an analogous script for 🤗 Transformers should
 be created. It should look similar to this:
 
 ```python
-from transformers import [camelcase name of model]Tokenizer
+from transformers_openvla_oft import [camelcase name of model]Tokenizer
 input_str = "This is a long example input string containing special characters .$?-, numbers 2872 234 12 and words."
 
 tokenizer = [camelcase name of model]Tokenizer.from_pretrained("/path/to/tokenizer/folder/")
@@ -1061,7 +1061,7 @@ model should be used. Don't hesitate to ping [name of mentor]
 regarding the docstrings.
 
 Next, make sure that the docstring added to
-`src/transformers/models/[lowercase name of model]/modeling_[lowercase name of model].py` is
+`src/transformers_openvla_oft/models/[lowercase name of model]/modeling_[lowercase name of model].py` is
 correct and included all necessary inputs and outputs. It is always to
 good to remind oneself that documentation should be treated at least as
 carefully as the code in 🤗 Transformers since the documentation is

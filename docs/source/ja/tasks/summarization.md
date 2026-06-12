@@ -90,7 +90,7 @@ pip install transformers datasets evaluate rouge_score
 次のステップでは、T5 トークナイザーをロードして「text」と`summary`を処理します。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> checkpoint = "google-t5/t5-small"
 >>> tokenizer = AutoTokenizer.from_pretrained(checkpoint)
@@ -128,7 +128,7 @@ pip install transformers datasets evaluate rouge_score
 <pt>
 
 ```py
->>> from transformers import DataCollatorForSeq2Seq
+>>> from transformers_openvla_oft import DataCollatorForSeq2Seq
 
 >>> data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=checkpoint)
 ```
@@ -136,7 +136,7 @@ pip install transformers datasets evaluate rouge_score
 <tf>
 
 ```py
->>> from transformers import DataCollatorForSeq2Seq
+>>> from transformers_openvla_oft import DataCollatorForSeq2Seq
 
 >>> data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=checkpoint, return_tensors="tf")
 ```
@@ -190,7 +190,7 @@ pip install transformers datasets evaluate rouge_score
 
 
 ```py
->>> from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 ```
@@ -229,7 +229,7 @@ pip install transformers datasets evaluate rouge_score
 >>> trainer.train()
 ```
 
-トレーニングが完了したら、 [`~transformers.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
+トレーニングが完了したら、 [`~transformers_openvla_oft.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
 
 ```py
 >>> trainer.push_to_hub()
@@ -244,7 +244,7 @@ Keras を使用したモデルの微調整に慣れていない場合は、[こ�
 TensorFlow でモデルを微調整するには、オプティマイザー関数、学習率スケジュール、およびいくつかのトレーニング ハイパーパラメーターをセットアップすることから始めます。
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -253,12 +253,12 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 
 
 ```py
->>> from transformers import TFAutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import TFAutoModelForSeq2SeqLM
 
 >>> model = TFAutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -286,18 +286,18 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 
 トレーニングを開始する前にセットアップする最後の 2 つのことは、予測から ROUGE スコアを計算し、モデルをハブにプッシュする方法を提供することです。どちらも [Keras コールバック](../main_classes/keras_callbacks) を使用して行われます。
 
-`compute_metrics` 関数を [`~transformers.KerasMetricCallback`] に渡します。
+`compute_metrics` 関数を [`~transformers_openvla_oft.KerasMetricCallback`] に渡します。
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_validation_set)
 ```
 
-Specify where to push your model and tokenizer in the [`~transformers.PushToHubCallback`]:
+Specify where to push your model and tokenizer in the [`~transformers_openvla_oft.PushToHubCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="my_awesome_billsum_model",
@@ -343,7 +343,7 @@ Specify where to push your model and tokenizer in the [`~transformers.PushToHubC
 推論用に微調整されたモデルを試す最も簡単な方法は、それを [`pipeline`] で使用することです。モデルを使用して要約用の `pipeline` をインスタンス化し、テキストをそれに渡します。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> summarizer = pipeline("summarization", model="stevhliu/my_awesome_billsum_model")
 >>> summarizer(text)
@@ -357,16 +357,16 @@ Specify where to push your model and tokenizer in the [`~transformers.PushToHubC
 Tokenize the text and return the `input_ids` as PyTorch tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_billsum_model")
 >>> inputs = tokenizer(text, return_tensors="pt").input_ids
 ```
 
-[`~transformers.generation_utils.GenerationMixin.generate`] メソッドを使用して要約を作成します。さまざまなテキスト生成戦略と生成を制御するためのパラメーターの詳細については、[Text Generation](../main_classes/text_generation) API を確認してください。
+[`~transformers_openvla_oft.generation_utils.GenerationMixin.generate`] メソッドを使用して要約を作成します。さまざまなテキスト生成戦略と生成を制御するためのパラメーターの詳細については、[Text Generation](../main_classes/text_generation) API を確認してください。
 
 ```py
->>> from transformers import AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM
 
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("stevhliu/my_awesome_billsum_model")
 >>> outputs = model.generate(inputs, max_new_tokens=100, do_sample=False)
@@ -384,16 +384,16 @@ Tokenize the text and return the `input_ids` as PyTorch tensors:
 テキストをトークン化し、`input_ids`を TensorFlow テンソルとして返します。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_billsum_model")
 >>> inputs = tokenizer(text, return_tensors="tf").input_ids
 ```
 
-[`~transformers.generation_tf_utils.TFGenerationMixin.generate`] メソッドを使用して要約を作成します。さまざまなテキスト生成戦略と生成を制御するためのパラメーターの詳細については、[Text Generation](../main_classes/text_generation) API を確認してください。
+[`~transformers_openvla_oft.generation_tf_utils.TFGenerationMixin.generate`] メソッドを使用して要約を作成します。さまざまなテキスト生成戦略と生成を制御するためのパラメーターの詳細については、[Text Generation](../main_classes/text_generation) API を確認してください。
 
 ```py
->>> from transformers import TFAutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import TFAutoModelForSeq2SeqLM
 
 >>> model = TFAutoModelForSeq2SeqLM.from_pretrained("stevhliu/my_awesome_billsum_model")
 >>> outputs = model.generate(inputs, max_new_tokens=100, do_sample=False)

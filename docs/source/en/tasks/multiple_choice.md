@@ -88,7 +88,7 @@ While it looks like there are a lot of fields here, it is actually pretty straig
 The next step is to load a BERT tokenizer to process the sentence starts and the four possible endings:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -131,7 +131,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 <pt>
 ```py
 >>> from dataclasses import dataclass
->>> from transformers.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
+>>> from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
 >>> from typing import Optional, Union
 >>> import torch
 
@@ -173,7 +173,7 @@ tokenized_swag = swag.map(preprocess_function, batched=True)
 <tf>
 ```py
 >>> from dataclasses import dataclass
->>> from transformers.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
+>>> from transformers_openvla_oft.tokenization_utils_base import PreTrainedTokenizerBase, PaddingStrategy
 >>> from typing import Optional, Union
 >>> import tensorflow as tf
 
@@ -251,7 +251,7 @@ If you aren't familiar with finetuning a model with the [`Trainer`], take a look
 You're ready to start training your model now! Load BERT with [`AutoModelForMultipleChoice`]:
 
 ```py
->>> from transformers import AutoModelForMultipleChoice, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForMultipleChoice, TrainingArguments, Trainer
 
 >>> model = AutoModelForMultipleChoice.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -289,7 +289,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [`~transformers.Trainer.push_to_hub`] method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [`~transformers_openvla_oft.Trainer.push_to_hub`] method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -304,7 +304,7 @@ If you aren't familiar with finetuning a model with Keras, take a look at the ba
 To finetune a model in TensorFlow, start by setting up an optimizer function, learning rate schedule, and some training hyperparameters:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_train_epochs = 2
@@ -315,12 +315,12 @@ To finetune a model in TensorFlow, start by setting up an optimizer function, le
 Then you can load BERT with [`TFAutoModelForMultipleChoice`]:
 
 ```py
->>> from transformers import TFAutoModelForMultipleChoice
+>>> from transformers_openvla_oft import TFAutoModelForMultipleChoice
 
 >>> model = TFAutoModelForMultipleChoice.from_pretrained("google-bert/bert-base-uncased")
 ```
 
-Convert your datasets to the `tf.data.Dataset` format with [`~transformers.TFPreTrainedModel.prepare_tf_dataset`]:
+Convert your datasets to the `tf.data.Dataset` format with [`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]:
 
 ```py
 >>> data_collator = DataCollatorForMultipleChoice(tokenizer=tokenizer)
@@ -347,18 +347,18 @@ Configure the model for training with [`compile`](https://keras.io/api/models/mo
 
 The last two things to setup before you start training is to compute the accuracy from the predictions, and provide a way to push your model to the Hub. Both are done by using [Keras callbacks](../main_classes/keras_callbacks).
 
-Pass your `compute_metrics` function to [`~transformers.KerasMetricCallback`]:
+Pass your `compute_metrics` function to [`~transformers_openvla_oft.KerasMetricCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_validation_set)
 ```
 
-Specify where to push your model and tokenizer in the [`~transformers.PushToHubCallback`]:
+Specify where to push your model and tokenizer in the [`~transformers_openvla_oft.PushToHubCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="my_awesome_model",
@@ -408,7 +408,7 @@ Come up with some text and two candidate answers:
 Tokenize each prompt and candidate answer pair and return PyTorch tensors. You should also create some `labels`:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_swag_model")
 >>> inputs = tokenizer([[prompt, candidate1], [prompt, candidate2]], return_tensors="pt", padding=True)
@@ -418,7 +418,7 @@ Tokenize each prompt and candidate answer pair and return PyTorch tensors. You s
 Pass your inputs and labels to the model and return the `logits`:
 
 ```py
->>> from transformers import AutoModelForMultipleChoice
+>>> from transformers_openvla_oft import AutoModelForMultipleChoice
 
 >>> model = AutoModelForMultipleChoice.from_pretrained("my_awesome_swag_model")
 >>> outputs = model(**{k: v.unsqueeze(0) for k, v in inputs.items()}, labels=labels)
@@ -437,7 +437,7 @@ Get the class with the highest probability:
 Tokenize each prompt and candidate answer pair and return TensorFlow tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_swag_model")
 >>> inputs = tokenizer([[prompt, candidate1], [prompt, candidate2]], return_tensors="tf", padding=True)
@@ -446,7 +446,7 @@ Tokenize each prompt and candidate answer pair and return TensorFlow tensors:
 Pass your inputs to the model and return the `logits`:
 
 ```py
->>> from transformers import TFAutoModelForMultipleChoice
+>>> from transformers_openvla_oft import TFAutoModelForMultipleChoice
 
 >>> model = TFAutoModelForMultipleChoice.from_pretrained("my_awesome_swag_model")
 >>> inputs = {k: tf.expand_dims(v, 0) for k, v in inputs.items()}

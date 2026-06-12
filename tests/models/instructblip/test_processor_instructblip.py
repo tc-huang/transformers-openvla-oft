@@ -18,14 +18,14 @@ import unittest
 import numpy as np
 import pytest
 
-from transformers.testing_utils import require_vision
-from transformers.utils import is_vision_available
+from transformers_openvla_oft.testing_utils import require_vision
+from transformers_openvla_oft.utils import is_vision_available
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoProcessor,
         BertTokenizerFast,
         BlipImageProcessor,

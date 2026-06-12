@@ -31,8 +31,8 @@ from huggingface_hub import HfApi
 from torch.utils.data.dataloader import DataLoader
 from tqdm.auto import tqdm
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     AdamW,
     SchedulerType,
     Wav2Vec2Config,
@@ -42,8 +42,8 @@ from transformers import (
     is_wandb_available,
     set_seed,
 )
-from transformers.models.wav2vec2.modeling_wav2vec2 import _compute_mask_indices, _sample_negative_indices
-from transformers.utils import send_example_telemetry
+from transformers_openvla_oft.models.wav2vec2.modeling_wav2vec2 import _compute_mask_indices, _sample_negative_indices
+from transformers_openvla_oft.utils import send_example_telemetry
 
 
 logger = get_logger(__name__)
@@ -283,12 +283,12 @@ class DataCollatorForWav2Vec2Pretraining:
     for self-supervised pretraining.
 
     Args:
-        model (:class:`~transformers.Wav2Vec2ForPreTraining`):
+        model (:class:`~transformers_openvla_oft.Wav2Vec2ForPreTraining`):
             The Wav2Vec2 model used for pretraining. The data collator needs to have access
             to config and ``_get_feat_extract_output_lengths`` function for correct padding.
-        feature_extractor (:class:`~transformers.Wav2Vec2FeatureExtractor`):
+        feature_extractor (:class:`~transformers_openvla_oft.Wav2Vec2FeatureExtractor`):
             The processor used for proccessing the data.
-        padding (:obj:`bool`, :obj:`str` or :class:`~transformers.tokenization_utils_base.PaddingStrategy`, `optional`, defaults to :obj:`True`):
+        padding (:obj:`bool`, :obj:`str` or :class:`~transformers_openvla_oft.tokenization_utils_base.PaddingStrategy`, `optional`, defaults to :obj:`True`):
             Select a strategy to pad the returned sequences (according to the model's padding side and padding index)
             among:
             * :obj:`True` or :obj:`'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
@@ -386,7 +386,7 @@ def get_grad_norm(params, scale=1):
 
 
 def main():
-    # See all possible arguments in src/transformers/args.py
+    # See all possible arguments in src/transformers_openvla_oft/args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
     args = parse_args()
@@ -400,7 +400,7 @@ def main():
     logger.info(accelerator.state, main_process_only=False)
     if accelerator.is_local_main_process:
         datasets.utils.logging.set_verbosity_warning()
-        transformers.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
 
         # set up weights and biases if available
         if is_wandb_available():
@@ -409,7 +409,7 @@ def main():
             wandb.init(project=args.output_dir.split("/")[-1])
     else:
         datasets.utils.logging.set_verbosity_error()
-        transformers.utils.logging.set_verbosity_error()
+        transformers_openvla_oft.utils.logging.set_verbosity_error()
 
     # If passed along, set the training seed now.
     if args.seed is not None:

@@ -112,7 +112,7 @@ and description of the tool:
 Let's verify this quickly by loading the document_qa tool and printing out the name and description.
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 document_qa = load_tool("document-question-answering")
 print(f"- {document_qa.name}: {document_qa.description}")
@@ -166,7 +166,7 @@ what it intends to do, and finally the generated code. Every example that is par
 pattern, thus making sure that the agent will reproduce exactly the same pattern when generating new tokens.
 
 The prompt examples are curated by the Transformers team and rigorously evaluated on a set of 
-[problem statements](https://github.com/huggingface/transformers/blob/main/src/transformers/tools/evaluate_agent.py)
+[problem statements](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/tools/evaluate_agent.py)
 to ensure that the agent's prompt is as good as possible to solve real use cases of the agent.
 
 The final part of the prompt corresponds to:
@@ -249,7 +249,7 @@ the correct sequences of tools to run. Let's look at a common failure case, here
 the code to analyze it.
 
 ```py
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
 
@@ -447,7 +447,7 @@ In this section, we'll be leveraging two existing custom tools that are specific
 We'll start by loading the custom tools with the convenient [`load_tool`] function:
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 controlnet_transformer = load_tool("diffusers/controlnet-canny-tool")
 upscaler = load_tool("diffusers/latent-upscaler-tool")
@@ -601,7 +601,7 @@ How do we convert this to a tool that the agent can leverage? All tools depend o
 main attributes necessary. We'll create a class that inherits from it:
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 
 
 class HFModelDownloadsTool(Tool):
@@ -620,7 +620,7 @@ This class has a few needs:
 Here's what our class looks like now:
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 from huggingface_hub import list_models
 
 
@@ -663,7 +663,7 @@ You now have your code on the Hub! Let's take a look at the final step, which is
 We now have our tool that lives on the Hub which can be instantiated as such (change the user name for your tool):
 
 ```python
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 tool = load_tool("lysandre/hf-model-downloads")
 ```
@@ -671,7 +671,7 @@ tool = load_tool("lysandre/hf-model-downloads")
 In order to use it in the agent, simply pass it in the `additional_tools` parameter of the agent initialization method:
 
 ```python
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder", additional_tools=[tool])
 
@@ -710,7 +710,7 @@ name and description of the tool is paramount to having it be leveraged by the a
 Replacing existing tools can be done simply by assigning a new item to the agent's toolbox. Here's how one would do so:
 
 ```python
-from transformers import HfAgent, load_tool
+from transformers_openvla_oft import HfAgent, load_tool
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
 agent.toolbox["image-transformation"] = load_tool("diffusers/controlnet-canny-tool")
@@ -744,7 +744,7 @@ gradio_tool = StableDiffusionPromptGeneratorTool()
 We pass that instance to the `Tool.from_gradio` method:
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 
 tool = Tool.from_gradio(gradio_tool)
 ```
@@ -753,7 +753,7 @@ Now we can manage it exactly as we would a usual custom tool. We leverage it to 
 ` a rabbit wearing a space suit`:
 
 ```python
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder", additional_tools=[tool])
 

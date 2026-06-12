@@ -23,8 +23,8 @@ from pathlib import Path
 from huggingface_hub import HfFolder, delete_repo
 from requests.exceptions import HTTPError
 
-from transformers import AutoFeatureExtractor, Wav2Vec2FeatureExtractor
-from transformers.testing_utils import TOKEN, USER, get_tests_dir, is_staging_test
+from transformers_openvla_oft import AutoFeatureExtractor, Wav2Vec2FeatureExtractor
+from transformers_openvla_oft.testing_utils import TOKEN, USER, get_tests_dir, is_staging_test
 
 
 sys.path.append(str(Path(__file__).parent.parent / "utils"))

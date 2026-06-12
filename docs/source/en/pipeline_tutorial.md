@@ -39,7 +39,7 @@ speech-to-text.
 1. Start by creating a [`pipeline`] and specify the inference task:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> transcriber = pipeline(task="automatic-speech-recognition")
 ```
@@ -150,7 +150,7 @@ Pipelines can also alleviate some of the complexities of batching because, for s
 ### Task specific parameters
 
 All tasks provide task specific parameters which allow for additional flexibility and options to help you get your job done.
-For instance, the [`transformers.AutomaticSpeechRecognitionPipeline.__call__`] method has a `return_timestamps` parameter which sounds promising for subtitling videos:
+For instance, the [`transformers_openvla_oft.AutomaticSpeechRecognitionPipeline.__call__`] method has a `return_timestamps` parameter which sounds promising for subtitling videos:
 
 
 ```py
@@ -162,7 +162,7 @@ For instance, the [`transformers.AutomaticSpeechRecognitionPipeline.__call__`] m
 As you can see, the model inferred the text and also outputted **when** the various sentences were pronounced.
 
 There are many parameters available for each task, so check out each task's API reference to see what you can tinker with!
-For instance, the [`~transformers.AutomaticSpeechRecognitionPipeline`] has a `chunk_length_s` parameter which is helpful 
+For instance, the [`~transformers_openvla_oft.AutomaticSpeechRecognitionPipeline`] has a `chunk_length_s` parameter which is helpful 
 for working on really long audio files (for example, subtitling entire movies or hour-long videos) that a model typically 
 cannot handle on its own:
 
@@ -203,7 +203,7 @@ The simplest way to iterate over a dataset is to just load one from 🤗 [Datase
 
 ```py
 # KeyDataset is a util that will just output the item we're interested in.
-from transformers.pipelines.pt_utils import KeyDataset
+from transformers_openvla_oft.pipelines.pt_utils import KeyDataset
 from datasets import load_dataset
 
 pipe = pipeline(model="hf-internal-testing/tiny-random-wav2vec2", device=0)
@@ -232,7 +232,7 @@ Specify your task and pass your image to the classifier. The image can be a link
 ![pipeline-cat-chonk](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vision_classifier = pipeline(model="google/vit-base-patch16-224")
 >>> preds = vision_classifier(
@@ -248,7 +248,7 @@ Specify your task and pass your image to the classifier. The image can be a link
 Using a [`pipeline`] for NLP tasks is practically identical.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> # This model is a `zero-shot-classification` model.
 >>> # It will classify text, except you are free to choose any label you might imagine
@@ -267,7 +267,7 @@ The [`pipeline`] supports more than one modality. For example, a visual question
 For example, if you use this [invoice image](https://huggingface.co/spaces/impira/docquery/resolve/2359223c1837a7587402bda0f2643382a6eefeab/invoice.png):
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vqa = pipeline(model="impira/layoutlm-document-qa")
 >>> output = vqa(
@@ -299,7 +299,7 @@ First load your model using `device_map="auto"`! We will use `facebook/opt-1.3b`
 ```py
 # pip install accelerate
 import torch
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline(model="facebook/opt-1.3b", torch_dtype=torch.bfloat16, device_map="auto")
 output = pipe("This is a cool example!", do_sample=True, top_p=0.95)
@@ -310,7 +310,7 @@ You can also pass 8-bit loaded models if you install `bitsandbytes` and add the 
 ```py
 # pip install accelerate bitsandbytes
 import torch
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline(model="facebook/opt-1.3b", device_map="auto", model_kwargs={"load_in_8bit": True})
 output = pipe("This is a cool example!", do_sample=True, top_p=0.95)
@@ -329,7 +329,7 @@ pip install gradio
 Then, you can create a web demo around an image classification pipeline (or any other pipeline) in a single line of code by calling Gradio's [`Interface.from_pipeline`](https://www.gradio.app/docs/interface#interface-from-pipeline) function to launch the pipeline. This creates an intuitive drag-and-drop interface in your browser:
 
 ```py
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 import gradio as gr
 
 pipe = pipeline("image-classification", model="google/vit-base-patch16-224")

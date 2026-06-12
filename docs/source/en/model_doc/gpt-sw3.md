@@ -35,7 +35,7 @@ This model was contributed by [AI Sweden Models](https://huggingface.co/AI-Swede
 ## Usage example
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM
 
 >>> tokenizer = AutoTokenizer.from_pretrained("AI-Sweden-Models/gpt-sw3-356m")
 >>> model = AutoModelForCausalLM.from_pretrained("AI-Sweden-Models/gpt-sw3-356m")

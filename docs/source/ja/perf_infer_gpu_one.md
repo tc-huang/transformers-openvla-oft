@@ -49,7 +49,7 @@ Flash Attention 2は、モデルのdtypeが`fp16`または`bf16`の場合にの�
 
 ```python
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
 
 model_id = "tiiuae/falcon-7b"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -106,7 +106,7 @@ Flash Attentionは、アテンション計算をよりメモリ効率の良い�
 
 ```python
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
 
 model_id = "tiiuae/falcon-7b"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -124,7 +124,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ```python
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
 
 model_id = "tiiuae/falcon-7b"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -142,7 +142,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ```python
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, LlamaForCausalLM
 from peft import LoraConfig
 
 model_id = "tiiuae/falcon-7b"
@@ -205,7 +205,7 @@ BetterTransformer APIを使ったエンコーダーモデルの可能性につ�
 モデルをBetterTransformerに変換するには、以下の手順を実行してください：
 
 ```python
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m")
 # convert the model to BetterTransformer
@@ -219,7 +219,7 @@ SDPAは、ハードウェアや問題のサイズに応じて[Flash Attention](h
 
 ```diff
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("facebook/opt-350m")
 model = AutoModelForCausalLM.from_pretrained("facebook/opt-350m", torch_dtype=torch.float16).to("cuda")
@@ -289,7 +289,7 @@ Note that this feature can also be used in a multi GPU setup.
 
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_name = "bigscience/bloom-2b5"
 model_4bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_4bit=True)
@@ -357,7 +357,7 @@ Int8混合精度行列分解は、行列乗算を2つのストリームに分割
 必要なライブラリをインストールした後、ミックス 8 ビットモデルを読み込む方法は次の通りです：
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_name = "bigscience/bloom-2b5"
 model_8bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_8bit=True)
@@ -370,7 +370,7 @@ model_8bit = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto",
 
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model_name = "bigscience/bloom-2b5"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -421,7 +421,7 @@ In this example, the first GPU will use 1GB of memory and the second 2GB.
 
 ```py
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 quantization_config = BitsAndBytesConfig(
     load_in_4bit=True,

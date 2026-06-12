@@ -18,12 +18,12 @@ from __future__ import annotations
 
 import unittest
 
-from transformers import is_tf_available, is_torch_available
-from transformers.testing_utils import DUMMY_UNKNOWN_IDENTIFIER, SMALL_MODEL_IDENTIFIER, is_pt_tf_cross_test, slow
+from transformers_openvla_oft import is_tf_available, is_torch_available
+from transformers_openvla_oft.testing_utils import DUMMY_UNKNOWN_IDENTIFIER, SMALL_MODEL_IDENTIFIER, is_pt_tf_cross_test, slow
 
 
 if is_tf_available():
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoConfig,
         BertConfig,
         GPT2Config,
@@ -47,7 +47,7 @@ if is_tf_available():
     )
 
 if is_torch_available():
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoModel,
         AutoModelForCausalLM,
         AutoModelForMaskedLM,

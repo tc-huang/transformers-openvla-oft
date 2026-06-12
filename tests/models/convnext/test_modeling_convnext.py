@@ -17,9 +17,9 @@
 
 import unittest
 
-from transformers import ConvNextConfig
-from transformers.testing_utils import require_torch, require_vision, slow, torch_device
-from transformers.utils import cached_property, is_torch_available, is_vision_available
+from transformers_openvla_oft import ConvNextConfig
+from transformers_openvla_oft.testing_utils import require_torch, require_vision, slow, torch_device
+from transformers_openvla_oft.utils import cached_property, is_torch_available, is_vision_available
 
 from ...test_backbone_common import BackboneTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -30,13 +30,13 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import ConvNextBackbone, ConvNextForImageClassification, ConvNextModel
+    from transformers_openvla_oft import ConvNextBackbone, ConvNextForImageClassification, ConvNextModel
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import AutoImageProcessor
+    from transformers_openvla_oft import AutoImageProcessor
 
 
 class ConvNextModelTester:

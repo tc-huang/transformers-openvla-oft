@@ -41,7 +41,7 @@ Transformerエンコーダーに画像を与えるには、各画像を固定サ
 >>> from PIL import Image
 >>> import requests
 
->>> from transformers import AltCLIPModel, AltCLIPProcessor
+>>> from transformers_openvla_oft import AltCLIPModel, AltCLIPProcessor
 
 >>> model = AltCLIPModel.from_pretrained("BAAI/AltCLIP")
 >>> processor = AltCLIPProcessor.from_pretrained("BAAI/AltCLIP")

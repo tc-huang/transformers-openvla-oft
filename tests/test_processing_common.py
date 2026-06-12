@@ -18,19 +18,19 @@ import json
 import tempfile
 import unittest
 
-from transformers import CLIPTokenizerFast, ProcessorMixin
-from transformers.models.auto.processing_auto import processor_class_from_name
-from transformers.testing_utils import (
+from transformers_openvla_oft import CLIPTokenizerFast, ProcessorMixin
+from transformers_openvla_oft.models.auto.processing_auto import processor_class_from_name
+from transformers_openvla_oft.testing_utils import (
     check_json_file_has_correct_format,
     require_tokenizers,
     require_torch,
     require_vision,
 )
-from transformers.utils import is_vision_available
+from transformers_openvla_oft.utils import is_vision_available
 
 
 if is_vision_available():
-    from transformers import CLIPImageProcessor
+    from transformers_openvla_oft import CLIPImageProcessor
 
 
 @require_torch

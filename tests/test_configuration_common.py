@@ -18,7 +18,7 @@ import json
 import os
 import tempfile
 
-from transformers import is_torch_available
+from transformers_openvla_oft import is_torch_available
 
 from .test_configuration_utils import config_common_kwargs
 

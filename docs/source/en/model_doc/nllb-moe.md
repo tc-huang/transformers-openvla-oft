@@ -64,7 +64,7 @@ Note that we're using the BCP-47 code for French `fra_Latn`. See [here](https://
 for the list of all BCP-47 in the Flores 200 dataset.
 
 ```python
->>> from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-moe-54b")
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-moe-54b")
@@ -87,7 +87,7 @@ you should specify the BCP-47 code in the `src_lang` keyword argument of the tok
 See example below for a translation from romanian to german:
 
 ```python
->>> from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForSeq2SeqLM, AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-moe-54b", src_lang="ron_Latn")
 >>> model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-moe-54b")

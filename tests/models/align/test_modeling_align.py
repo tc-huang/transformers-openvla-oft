@@ -22,15 +22,15 @@ import unittest
 
 import requests
 
-from transformers import AlignConfig, AlignProcessor, AlignTextConfig, AlignVisionConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft import AlignConfig, AlignProcessor, AlignTextConfig, AlignVisionConfig
+from transformers_openvla_oft.testing_utils import (
     is_flax_available,
     require_torch,
     require_vision,
     slow,
     torch_device,
 )
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import (
@@ -46,7 +46,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AlignModel,
         AlignTextModel,
         AlignVisionModel,

@@ -24,7 +24,7 @@ Al igual que con la tokenización, diferentes modelos esperan formatos de entrad
 Vamos a hacer esto con un ejemplo concreto utilizando el modelo `BlenderBot`. BlenderBot tiene una plantilla predeterminada extremadamente simple, que principalmente solo agrega espacios en blanco entre rondas de diálogo:
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> tokenizer = AutoTokenizer.from_pretrained("facebook/blenderbot-400M-distill")
 
 >>> chat = [
@@ -40,7 +40,7 @@ Vamos a hacer esto con un ejemplo concreto utilizando el modelo `BlenderBot`. Bl
 Observa cómo todo el chat se condensa en una sola cadena. Si usamos `tokenize=True`, que es la configuración predeterminada, esa cadena también será tokenizada para nosotros. Sin embargo, para ver una plantilla más compleja en acción, usemos el modelo `mistralai/Mistral-7B-Instruct-v0.1`
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
 
 >>> chat = [
@@ -62,7 +62,7 @@ Como puedes ver en el ejemplo anterior, las plantillas de chat son fáciles de u
 Aquí tienes un ejemplo de cómo preparar la entrada para `model.generate()` utilizando el modelo de asistente `Zephyr`:
 
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 checkpoint = "HuggingFaceH4/zephyr-7b-beta"
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
@@ -114,7 +114,7 @@ Matey, I'm afraid I must inform ye that humans cannot eat helicopters. Helicopte
 Sí, lo hay! Nuestros canales de generación de texto admiten entradas de chat, cual facilita más facíl utilizar los modelos de chat. En el pasado, solíamos utilizar una clase dedicada "ConversationalPipeline", pero ahora ha quedado obsoleta y su funcionalidad se ha fusionado en [`TextGenerationPipeline`]. Este pipeline está diseñado para facilitar el uso de modelos de chat. Intentemos el ejemplo de `Zephyr` de nuevo, pero esta vez utilizando el pipeline:
 
 ```python
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline("conversational", "HuggingFaceH4/zephyr-7b-beta")
 messages = [
@@ -182,7 +182,7 @@ No todos los modelos requieren "generation prompts". Algunos modelos, como Blend
 ¡Sí! Recomendamos que apliques la plantilla de chat como un paso de preprocesamiento para tu conjunto de datos. Después de esto, simplemente puedes continuar como cualquier otra tarea de entrenamiento de modelos de lenguaje. Durante el entrenamiento, generalmente deberías establecer `add_generation_prompt=False`, porque los tokens añadidos para solicitar una respuesta del asistente no serán útiles durante el entrenamiento. Veamos un ejemplo:
 
 ```python
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 from datasets import Dataset
 
 tokenizer = AutoTokenizer.from_pretrained("HuggingFaceH4/zephyr-7b-beta")
@@ -217,7 +217,7 @@ Desde aquí, simplemente continúa el entrenamiento como lo harías con una tare
 La plantilla de chat para un modelo se almacena en el atributo `tokenizer.chat_template`. Si no se establece ninguna plantilla de chat, se utiliza en su lugar la plantilla predeterminada para esa clase de modelo. Echemos un vistazo a la plantilla para `BlenderBot`:
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> tokenizer = AutoTokenizer.from_pretrained("facebook/blenderbot-400M-distill")
 
 >>> tokenizer.default_chat_template

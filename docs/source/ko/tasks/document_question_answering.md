@@ -157,7 +157,7 @@ DatasetDict({
 이미지 데이터를 처리할 수 있는 이미지 프로세서와 텍스트 데이터를 인코딩할 수 있는 토크나이저를 결합한 [`LayoutLMv2Processor`]를 가져오는 것부터 시작해 보겠습니다.
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained(model_checkpoint)
 ```
@@ -364,7 +364,7 @@ end_index 18
 * [`~Trainer.train`]을 호출해서 모델을 미세 조정합니다.
 
 ```py
->>> from transformers import AutoModelForDocumentQuestionAnswering
+>>> from transformers_openvla_oft import AutoModelForDocumentQuestionAnswering
 
 >>> model = AutoModelForDocumentQuestionAnswering.from_pretrained(model_checkpoint)
 ```
@@ -374,7 +374,7 @@ end_index 18
 이 경우 `output_dir`은 모델의 체크포인트를 푸시할 레포지토리의 이름이 됩니다.
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> # 본인의 레포지토리 ID로 바꾸세요
 >>> repo_id = "MariaK/layoutlmv2-base-uncased_finetuned_docvqa"
@@ -396,7 +396,7 @@ end_index 18
 간단한 데이터 콜레이터를 정의하여 예제를 함께 배치합니다.
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
@@ -404,7 +404,7 @@ end_index 18
 마지막으로, 모든 것을 한 곳에 모아 [`~Trainer.train`]을 호출합니다:
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -444,7 +444,7 @@ end_index 18
 그 다음, 모델로 문서 질의 응답을 하기 위해 파이프라인을 인스턴스화하고 이미지 + 질문 조합을 전달합니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> qa_pipeline = pipeline("document-question-answering", model="MariaK/layoutlmv2-base-uncased_finetuned_docvqa")
 >>> qa_pipeline(image, question)
@@ -463,8 +463,8 @@ end_index 18
 
 ```py
 >>> import torch
->>> from transformers import AutoProcessor
->>> from transformers import AutoModelForDocumentQuestionAnswering
+>>> from transformers_openvla_oft import AutoProcessor
+>>> from transformers_openvla_oft import AutoModelForDocumentQuestionAnswering
 
 >>> processor = AutoProcessor.from_pretrained("MariaK/layoutlmv2-base-uncased_finetuned_docvqa")
 >>> model = AutoModelForDocumentQuestionAnswering.from_pretrained("MariaK/layoutlmv2-base-uncased_finetuned_docvqa")

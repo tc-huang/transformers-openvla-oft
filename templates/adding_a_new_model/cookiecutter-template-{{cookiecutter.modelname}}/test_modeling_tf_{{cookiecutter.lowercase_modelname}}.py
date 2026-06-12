@@ -17,8 +17,8 @@
 
 import unittest
 
-from transformers import is_tf_available, {{cookiecutter.camelcase_modelname}}Config
-from transformers.testing_utils import require_tf, slow
+from transformers_openvla_oft import is_tf_available, {{cookiecutter.camelcase_modelname}}Config
+from transformers_openvla_oft.testing_utils import require_tf, slow
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_tf_common import TFModelTesterMixin, floats_tensor, ids_tensor, random_attention_mask
@@ -27,7 +27,7 @@ from ...test_modeling_tf_common import TFModelTesterMixin, floats_tensor, ids_te
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         TF{{cookiecutter.camelcase_modelname}}ForCausalLM,
         TF{{cookiecutter.camelcase_modelname}}ForMaskedLM,
         TF{{cookiecutter.camelcase_modelname}}ForMultipleChoice,
@@ -704,12 +704,12 @@ class TF{{cookiecutter.camelcase_modelname}}ModelIntegrationTest(unittest.TestCa
 {% else %}
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     is_tf_available,
     {{cookiecutter.camelcase_modelname}}Config,
     {{cookiecutter.camelcase_modelname}}Tokenizer,
 )
-from transformers.testing_utils import require_sentencepiece, require_tf, require_tokenizers, slow
+from transformers_openvla_oft.testing_utils import require_sentencepiece, require_tf, require_tokenizers, slow
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_tf_common import TFModelTesterMixin, ids_tensor
@@ -718,7 +718,7 @@ from ...test_modeling_tf_common import TFModelTesterMixin, ids_tensor
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import (
+    from transformers_openvla_oft import (
         TF{{cookiecutter.camelcase_modelname}}ForConditionalGeneration,
         TF{{cookiecutter.camelcase_modelname}}Model,
     )

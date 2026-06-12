@@ -16,7 +16,7 @@ import os
 
 import pytest
 
-from transformers.dynamic_module_utils import get_imports
+from transformers_openvla_oft.dynamic_module_utils import get_imports
 
 
 TOP_LEVEL_IMPORT = """

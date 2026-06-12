@@ -17,9 +17,9 @@
 import os
 import unittest
 
-from transformers import MPNetTokenizerFast
-from transformers.models.mpnet.tokenization_mpnet import VOCAB_FILES_NAMES, MPNetTokenizer
-from transformers.testing_utils import require_tokenizers, slow
+from transformers_openvla_oft import MPNetTokenizerFast
+from transformers_openvla_oft.models.mpnet.tokenization_mpnet import VOCAB_FILES_NAMES, MPNetTokenizer
+from transformers_openvla_oft.testing_utils import require_tokenizers, slow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_TABLE_QUESTION_ANSWERING_MAPPING,
     AutoModelForTableQuestionAnswering,
     AutoTokenizer,
@@ -23,7 +23,7 @@ from transformers import (
     is_torch_available,
     pipeline,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     is_pipeline_test,
     require_pandas,
     require_tensorflow_probability,
@@ -34,7 +34,7 @@ from transformers.testing_utils import (
 
 
 if is_torch_available():
-    from transformers.pytorch_utils import is_torch_greater_or_equal_than_1_12
+    from transformers_openvla_oft.pytorch_utils import is_torch_greater_or_equal_than_1_12
 else:
     is_torch_greater_or_equal_than_1_12 = False
 

@@ -65,7 +65,7 @@ from git import Repo
 
 PATH_TO_REPO = Path(__file__).parent.parent.resolve()
 PATH_TO_EXAMPLES = PATH_TO_REPO / "examples"
-PATH_TO_TRANFORMERS = PATH_TO_REPO / "src/transformers"
+PATH_TO_TRANFORMERS = PATH_TO_REPO / "src/transformers_openvla_oft"
 PATH_TO_TESTS = PATH_TO_REPO / "tests"
 
 # The value is just a heuristic to determine if we `guess` all models are impacted.
@@ -325,7 +325,7 @@ def get_impacted_files_from_tiny_model_summary(diff_with_last_commit: bool = Fal
         # get the module where the model classes are defined. We want to use the main `__init__` file, but it requires
         # all the framework being installed, which is not ideal for a simple script like test fetcher.
         # So we create a temporary and modified main `__init__` and access its `_import_structure`.
-        with open(folder / "src/transformers/__init__.py") as fp:
+        with open(folder / "src/transformers_openvla_oft/__init__.py") as fp:
             lines = fp.readlines()
             new_lines = []
             # Get all the code related to `_import_structure`
@@ -506,7 +506,7 @@ def get_all_doctest_files() -> List[str]:
     test_files_to_run = py_files + md_files
     # change to use "/" as path separator
     test_files_to_run = ["/".join(Path(x).parts) for x in test_files_to_run]
-    # don't run doctest for files in `src/transformers/models/deprecated`
+    # don't run doctest for files in `src/transformers_openvla_oft/models/deprecated`
     test_files_to_run = [x for x in test_files_to_run if "models/deprecated" not in x]
 
     # only include files in `src` or `docs/source/en/`
@@ -609,13 +609,13 @@ _re_single_line_relative_imports = re.compile(r"(?:^|\n)\s*from\s+(\.+\S+)\s+imp
 # yyy will take multiple lines otherwise there wouldn't be parenthesis.
 _re_multi_line_relative_imports = re.compile(r"(?:^|\n)\s*from\s+(\.+\S+)\s+import\s+\(([^\)]+)\)")
 # (:?^|\n) -> Non-catching group for the beginning of the doc or a new line.
-# \s*from\s+transformers(\S*)\s+import\s+([^\n]+) -> Line only contains from transformers.xxx import yyy and we catch
+# \s*from\s+transformers(\S*)\s+import\s+([^\n]+) -> Line only contains from transformers_openvla_oft.xxx import yyy and we catch
 #           .xxx and yyy
 # (?=\n) -> Look-ahead to a new line. We can't just put \n here or using find_all on this re will only catch every
 #           other import.
 _re_single_line_direct_imports = re.compile(r"(?:^|\n)\s*from\s+transformers(\S*)\s+import\s+([^\n]+)(?=\n)")
 # (:?^|\n) -> Non-catching group for the beginning of the doc or a new line.
-# \s*from\s+transformers(\S*)\s+import\s+\(([^\)]+)\) -> Line continues with from transformers.xxx import (yyy) and we
+# \s*from\s+transformers(\S*)\s+import\s+\(([^\)]+)\) -> Line continues with from transformers_openvla_oft.xxx import (yyy) and we
 # catch .xxx and yyy. yyy will take multiple lines otherwise there wouldn't be parenthesis.
 _re_multi_line_direct_imports = re.compile(r"(?:^|\n)\s*from\s+transformers(\S*)\s+import\s+\(([^\)]+)\)")
 

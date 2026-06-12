@@ -17,9 +17,9 @@
 
 import unittest
 
-from transformers import BitConfig
-from transformers.testing_utils import require_torch, require_vision, slow, torch_device
-from transformers.utils import cached_property, is_torch_available, is_vision_available
+from transformers_openvla_oft import BitConfig
+from transformers_openvla_oft.testing_utils import require_torch, require_vision, slow, torch_device
+from transformers_openvla_oft.utils import cached_property, is_torch_available, is_vision_available
 
 from ...test_backbone_common import BackboneTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -31,7 +31,7 @@ if is_torch_available():
     import torch
     from torch import nn
 
-    from transformers import BitBackbone, BitForImageClassification, BitImageProcessor, BitModel
+    from transformers_openvla_oft import BitBackbone, BitForImageClassification, BitImageProcessor, BitModel
 
 
 if is_vision_available():

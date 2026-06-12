@@ -1,4 +1,4 @@
-from transformers import CLIPImageProcessor
+from transformers_openvla_oft import CLIPImageProcessor
 
 
 class CustomImageProcessor(CLIPImageProcessor):

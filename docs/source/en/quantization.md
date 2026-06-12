@@ -59,7 +59,7 @@ Now you can quantize a model by passing [`QuantoConfig`] object in the [`~PreTra
 The integration with transformers only supports weights quantization. For the more complex use case such as activation quantization, calibration and quantization aware training, you should use [quanto](https://github.com/huggingface/quanto) library instead. 
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer, QuantoConfig
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, QuantoConfig
 
 model_id = "facebook/opt-125m"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -153,7 +153,7 @@ AWQ-quantized models can be identified by checking the `quantization_config` att
 A quantized model is loaded with the [`~PreTrainedModel.from_pretrained`] method. If you loaded your model on the CPU, make sure to move it to a GPU device first. Use the `device_map` parameter to specify where to place the model:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model_id = "TheBloke/zephyr-7B-alpha-AWQ"
 model = AutoModelForCausalLM.from_pretrained(model_id, device_map="cuda:0")
@@ -162,7 +162,7 @@ model = AutoModelForCausalLM.from_pretrained(model_id, device_map="cuda:0")
 Loading an AWQ-quantized model automatically sets other weights to fp16 by default for performance reasons. If you want to load these other weights in a different format, use the `torch_dtype` parameter:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model_id = "TheBloke/zephyr-7B-alpha-AWQ"
 model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float32)
@@ -171,7 +171,7 @@ model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float32
 AWQ quantization can also be combined with [FlashAttention-2](perf_infer_gpu_one#flashattention-2) to further accelerate inference:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model = AutoModelForCausalLM.from_pretrained("TheBloke/zephyr-7B-alpha-AWQ", attn_implementation="flash_attention_2", device_map="cuda:0")
 ```
@@ -195,7 +195,7 @@ For example, to fuse the AWQ modules of the [TheBloke/Mistral-7B-OpenOrca-AWQ](h
 
 ```python
 import torch
-from transformers import AwqConfig, AutoModelForCausalLM
+from transformers_openvla_oft import AwqConfig, AutoModelForCausalLM
 
 model_id = "TheBloke/Mistral-7B-OpenOrca-AWQ"
 
@@ -215,7 +215,7 @@ For architectures that don't support fused modules yet, you need to create a cus
 
 ```python
 import torch
-from transformers import AwqConfig, AutoModelForCausalLM
+from transformers_openvla_oft import AwqConfig, AutoModelForCausalLM
 
 model_id = "TheBloke/Yi-34B-AWQ"
 
@@ -261,7 +261,7 @@ Get started by passing an `AwqConfig()` with `version="exllama"`.
 
 ```python
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, AwqConfig
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, AwqConfig
 
 quantization_config = AwqConfig(version="exllama")
 
@@ -310,7 +310,7 @@ pip install --upgrade accelerate
 To quantize a model (currently only supported for text models), you need to create a [`GPTQConfig`] class and set the number of bits to quantize to, a dataset to calibrate the weights for quantization, and a tokenizer to prepare the dataset.
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer, GPTQConfig
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, GPTQConfig
 
 model_id = "facebook/opt-125m"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -363,7 +363,7 @@ quantized_model.save_pretrained("opt-125m-gptq")
 Reload a quantized model with the [`~PreTrainedModel.from_pretrained`] method, and set `device_map="auto"` to automatically distribute the model on all available GPUs to load the model faster without using more memory than needed.
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained("{your_username}/opt-125m-gptq", device_map="auto")
 ```
@@ -374,7 +374,7 @@ model = AutoModelForCausalLM.from_pretrained("{your_username}/opt-125m-gptq", de
 
 ```py
 import torch
-from transformers import AutoModelForCausalLM, GPTQConfig
+from transformers_openvla_oft import AutoModelForCausalLM, GPTQConfig
 
 gptq_config = GPTQConfig(bits=4, exllama_config={"version":2})
 model = AutoModelForCausalLM.from_pretrained("{your_username}/opt-125m-gptq", device_map="auto", quantization_config=gptq_config)
@@ -390,7 +390,7 @@ The ExLlama kernels are only supported when the entire model is on the GPU. If y
 
 ```py
 import torch
-from transformers import AutoModelForCausalLM, GPTQConfig
+from transformers_openvla_oft import AutoModelForCausalLM, GPTQConfig
 gptq_config = GPTQConfig(bits=4, use_exllama=False)
 model = AutoModelForCausalLM.from_pretrained("{your_username}/opt-125m-gptq", device_map="cpu", quantization_config=gptq_config)
 ```
@@ -428,7 +428,7 @@ Now you can quantize a model with the `load_in_8bit` or `load_in_4bit` parameter
 Quantizing a model in 8-bit halves the memory-usage, and for large models, set `device_map="auto"` to efficiently use the GPUs available:
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_8bit = AutoModelForCausalLM.from_pretrained("bigscience/bloom-1b7", device_map="auto", load_in_8bit=True)
 ```
@@ -437,7 +437,7 @@ By default, all the other modules such as `torch.nn.LayerNorm` are converted to 
 
 ```py
 import torch
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_8bit = AutoModelForCausalLM.from_pretrained("facebook/opt-350m", load_in_8bit=True, torch_dtype=torch.float32)
 model_8bit.model.decoder.layers[-1].final_layer_norm.weight.dtype
@@ -446,7 +446,7 @@ model_8bit.model.decoder.layers[-1].final_layer_norm.weight.dtype
 Once a model is quantized to 8-bit, you can't push the quantized weights to the Hub unless you're using the latest version of Transformers and bitsandbytes. If you have the latest versions, then you can push the 8-bit model to the Hub with the [`~PreTrainedModel.push_to_hub`] method. The quantization config.json file is pushed first, followed by the quantized model weights.
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model = AutoModelForCausalLM.from_pretrained("bigscience/bloom-560m", device_map="auto", load_in_8bit=True)
 tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom-560m")
@@ -460,7 +460,7 @@ model.push_to_hub("bloom-560m-8bit")
 Quantizing a model in 4-bit reduces your memory-usage by 4x, and for large models, set `device_map="auto"` to efficiently use the GPUs available:
 
 ```py
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_4bit = AutoModelForCausalLM.from_pretrained("bigscience/bloom-1b7", device_map="auto", load_in_4bit=True)
 ```
@@ -469,7 +469,7 @@ By default, all the other modules such as `torch.nn.LayerNorm` are converted to 
 
 ```py
 import torch
-from transformers import AutoModelForCausalLM
+from transformers_openvla_oft import AutoModelForCausalLM
 
 model_4bit = AutoModelForCausalLM.from_pretrained("facebook/opt-350m", load_in_4bit=True, torch_dtype=torch.float32)
 model_4bit.model.decoder.layers[-1].final_layer_norm.weight.dtype
@@ -495,7 +495,7 @@ print(model.get_memory_footprint())
 Quantized models can be loaded from the [`~PreTrainedModel.from_pretrained`] method without needing to specify the `load_in_8bit` or `load_in_4bit` parameters:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 model = AutoModelForCausalLM.from_pretrained("{your_username}/bloom-560m-8bit", device_map="auto")
 ```
@@ -515,7 +515,7 @@ This section explores some of the specific features of 8-bit models, such as off
 8-bit models can offload weights between the CPU and GPU to support fitting very large models into memory. The weights dispatched to the CPU are actually stored in **float32**, and aren't converted to 8-bit. For example, to enable offloading for the [bigscience/bloom-1b7](https://huggingface.co/bigscience/bloom-1b7) model, start by creating a [`BitsAndBytesConfig`]:
 
 ```py
-from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+from transformers_openvla_oft import AutoModelForCausalLM, BitsAndBytesConfig
 
 quantization_config = BitsAndBytesConfig(llm_int8_enable_fp32_cpu_offload=True)
 ```
@@ -549,7 +549,7 @@ An "outlier" is a hidden state value greater than a certain threshold, and these
 To find the best threshold for your model, we recommend experimenting with the `llm_int8_threshold` parameter in [`BitsAndBytesConfig`]:
 
 ```py
-from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+from transformers_openvla_oft import AutoModelForCausalLM, BitsAndBytesConfig
 
 model_id = "bigscience/bloom-1b7"
 
@@ -569,7 +569,7 @@ model_8bit = AutoModelForCausalLM.from_pretrained(
 For some models, like [Jukebox](model_doc/jukebox), you don't need to quantize every module to 8-bit which can actually cause instability. With Jukebox, there are several `lm_head` modules that should be skipped using the `llm_int8_skip_modules` parameter in [`BitsAndBytesConfig`]:
 
 ```py
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 model_id = "bigscience/bloom-1b7"
 
@@ -605,7 +605,7 @@ To speedup computation, you can change the data type from float32 (the default v
 
 ```py
 import torch
-from transformers import BitsAndBytesConfig
+from transformers_openvla_oft import BitsAndBytesConfig
 
 quantization_config = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16)
 ```
@@ -615,7 +615,7 @@ quantization_config = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dty
 NF4 is a 4-bit data type from the [QLoRA](https://hf.co/papers/2305.14314) paper, adapted for weights initialized from a normal distribution. You should use NF4 for training 4-bit base models. This can be configured with the `bnb_4bit_quant_type` parameter in the [`BitsAndBytesConfig`]:
 
 ```py
-from transformers import BitsAndBytesConfig
+from transformers_openvla_oft import BitsAndBytesConfig
 
 nf4_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -632,7 +632,7 @@ For inference, the `bnb_4bit_quant_type` does not have a huge impact on performa
 Nested quantization is a technique that can save additional memory at no additional performance cost. This feature performs a second quantization of the already quantized weights to save an addition 0.4 bits/parameter. For example, with nested quantization, you can finetune a [Llama-13b](https://huggingface.co/meta-llama/Llama-2-13b) model on a 16GB NVIDIA T4 GPU with a sequence length of 1024, a batch size of 1, and enabling gradient accumulation with 4 steps.
 
 ```py
-from transformers import BitsAndBytesConfig
+from transformers_openvla_oft import BitsAndBytesConfig
 
 double_quant_config = BitsAndBytesConfig(
     load_in_4bit=True,

@@ -332,7 +332,7 @@ The model can be used directly (without a language model) as follows:
 import torch
 import torchaudio
 from datasets import load_dataset
-from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
+from transformers_openvla_oft import Wav2Vec2ForCTC, Wav2Vec2Processor
 
 test_dataset = load_dataset("common_voice", "{lang_id}", split="test[:2%]") #TODO: replace {lang_id} in your language code here. Make sure the code is one of the *ISO codes* of [this](https://huggingface.co/languages) site.
 
@@ -370,7 +370,7 @@ The model can be evaluated as follows on the {language} test data of Common Voic
 import torch
 import torchaudio
 from datasets import load_dataset, load_metric
-from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
+from transformers_openvla_oft import Wav2Vec2ForCTC, Wav2Vec2Processor
 import re
 
 test_dataset = load_dataset("common_voice", "{lang_id}", split="test") #TODO: replace {lang_id} in your language code here. Make sure the code is one of the *ISO codes* of [this](https://huggingface.co/languages) site.

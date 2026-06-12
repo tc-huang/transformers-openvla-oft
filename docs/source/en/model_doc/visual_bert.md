@@ -70,7 +70,7 @@ The following example shows how to get the last hidden state using [`VisualBertM
 
 ```python
 >>> import torch
->>> from transformers import BertTokenizer, VisualBertModel
+>>> from transformers_openvla_oft import BertTokenizer, VisualBertModel
 
 >>> model = VisualBertModel.from_pretrained("uclanlp/visualbert-vqa-coco-pre")
 >>> tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")

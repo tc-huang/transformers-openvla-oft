@@ -55,7 +55,7 @@ ByT5 は教師なしで事前トレーニングされているため、単一タ
 ByT5 は生の UTF-8 バイトで動作するため、トークナイザーなしで使用できます。
 
 ```python
->>> from transformers import T5ForConditionalGeneration
+>>> from transformers_openvla_oft import T5ForConditionalGeneration
 >>> import torch
 
 >>> model = T5ForConditionalGeneration.from_pretrained("google/byt5-small")
@@ -77,7 +77,7 @@ ByT5 は生の UTF-8 バイトで動作するため、トークナイザーな�
 
 
 ```python
->>> from transformers import T5ForConditionalGeneration, AutoTokenizer
+>>> from transformers_openvla_oft import T5ForConditionalGeneration, AutoTokenizer
 
 >>> model = T5ForConditionalGeneration.from_pretrained("google/byt5-small")
 >>> tokenizer = AutoTokenizer.from_pretrained("google/byt5-small")
@@ -102,7 +102,7 @@ ByT5 は生の UTF-8 バイトで動作するため、トークナイザーな�
 わたしたちのため。
 
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 >>> import torch
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google/byt5-base")

@@ -75,7 +75,7 @@ If you're interested in submitting a resource to be included here, please feel f
 
 ## ViTMAEForPreTraining
 
-[[autodoc]] transformers.ViTMAEForPreTraining
+[[autodoc]] transformers_openvla_oft.ViTMAEForPreTraining
     - forward
 
 </pt>
@@ -88,7 +88,7 @@ If you're interested in submitting a resource to be included here, please feel f
 
 ## TFViTMAEForPreTraining
 
-[[autodoc]] transformers.TFViTMAEForPreTraining
+[[autodoc]] transformers_openvla_oft.TFViTMAEForPreTraining
     - call
 
 </tf>

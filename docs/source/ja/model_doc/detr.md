@@ -43,7 +43,7 @@ DETR は、オブジェクトとグローバル イメージ コンテキスト�
 
 ## How DETR works
 
-[`~transformers.DetrForObjectDetection`] がどのように機能するかを説明する TLDR は次のとおりです。
+[`~transformers_openvla_oft.DetrForObjectDetection`] がどのように機能するかを説明する TLDR は次のとおりです。
 
 まず、事前にトレーニングされた畳み込みバックボーンを通じて画像が送信されます (論文では、著者らは次のように使用しています)。
 ResNet-50/ResNet-101)。バッチ ディメンションも追加すると仮定します。これは、バックボーンへの入力が
@@ -74,9 +74,9 @@ N 個のクエリのそれぞれから N 個の注釈のそれぞれへの最適
 境界ボックス) は、モデルのパラメーターを最適化するために使用されます。
 
 DETR は、パノプティック セグメンテーション (セマンティック セグメンテーションとインスタンスを統合する) を実行するように自然に拡張できます。
-セグメンテーション）。 [`~transformers.DetrForSegmentation`] はセグメンテーション マスク ヘッドを上に追加します
-[`~transformers.DetrForObjectDetection`]。マスク ヘッドは、共同でトレーニングすることも、2 段階のプロセスでトレーニングすることもできます。
-ここで、最初に [`~transformers.DetrForObjectDetection`] モデルをトレーニングして、両方の周囲の境界ボックスを検出します。
+セグメンテーション）。 [`~transformers_openvla_oft.DetrForSegmentation`] はセグメンテーション マスク ヘッドを上に追加します
+[`~transformers_openvla_oft.DetrForObjectDetection`]。マスク ヘッドは、共同でトレーニングすることも、2 段階のプロセスでトレーニングすることもできます。
+ここで、最初に [`~transformers_openvla_oft.DetrForObjectDetection`] モデルをトレーニングして、両方の周囲の境界ボックスを検出します。
 「もの」（インスタンス）と「もの」（木、道路、空などの背景のもの）をすべて凍結し、すべての重みをフリーズしてのみトレーニングします。
 25 エポックのマスクヘッド。実験的には、これら 2 つのアプローチは同様の結果をもたらします。ボックスの予測は
 ハンガリー語のマッチングはボックス間の距離を使用して計算されるため、トレーニングを可能にするためにはこれが必要です。
@@ -85,36 +85,36 @@ DETR は、パノプティック セグメンテーション (セマンティッ
 
 - DETR は、いわゆる **オブジェクト クエリ** を使用して、画像内のオブジェクトを検出します。クエリの数によって最大値が決まります
   単一の画像内で検出できるオブジェクトの数。デフォルトでは 100 に設定されます (パラメーターを参照)
-  [`~transformers.DetrConfig`] の `num_queries`)。ある程度の余裕があるのは良いことです (COCO では、
+  [`~transformers_openvla_oft.DetrConfig`] の `num_queries`)。ある程度の余裕があるのは良いことです (COCO では、
   著者は 100 を使用しましたが、COCO イメージ内のオブジェクトの最大数は約 70 です)。
 - DETR のデコーダーは、クエリの埋め込みを並行して更新します。これは GPT-2 のような言語モデルとは異なります。
   並列ではなく自己回帰デコードを使用します。したがって、因果的注意マスクは使用されません。
 - DETR は、投影前に各セルフアテンション層とクロスアテンション層の隠れ状態に位置埋め込みを追加します。
   クエリとキーに。画像の位置埋め込みについては、固定正弦波または学習済みのどちらかを選択できます。
   絶対位置埋め込み。デフォルトでは、パラメータ `position_embedding_type` は
-  [`~transformers.DetrConfig`] は `"sine"` に設定されます。
+  [`~transformers_openvla_oft.DetrConfig`] は `"sine"` に設定されます。
 - DETR の作成者は、トレーニング中に、特にデコーダで補助損失を使用すると役立つことに気づきました。
   モデルは各クラスの正しい数のオブジェクトを出力します。パラメータ `auxiliary_loss` を設定すると、
-  [`~transformers.DetrConfig`] を`True`に設定し、フィードフォワード ニューラル ネットワークとハンガリー損失を予測します
+  [`~transformers_openvla_oft.DetrConfig`] を`True`に設定し、フィードフォワード ニューラル ネットワークとハンガリー損失を予測します
   は各デコーダ層の後に追加されます (FFN がパラメータを共有する)。
 - 複数のノードにわたる分散環境でモデルをトレーニングする場合は、
   _modeling_detr.py_ の _DetrLoss_ クラスの _num_boxes_ 変数。複数のノードでトレーニングする場合、これは次のようにする必要があります
   元の実装で見られるように、すべてのノードにわたるターゲット ボックスの平均数に設定されます [こちら](https://github.com/facebookresearch/detr/blob/a54b77800eb8e64e3ad0d8237789fcbf2f8350c5/models/detr.py#L227-L232) 。
-- [`~transformers.DetrForObjectDetection`] および [`~transformers.DetrForSegmentation`] は次のように初期化できます。
+- [`~transformers_openvla_oft.DetrForObjectDetection`] および [`~transformers_openvla_oft.DetrForSegmentation`] は次のように初期化できます。
   [timm ライブラリ](https://github.com/rwightman/pytorch-image-models) で利用可能な畳み込みバックボーン。
   たとえば、MobileNet バックボーンを使用した初期化は、次の `backbone` 属性を設定することで実行できます。
-  [`~transformers.DetrConfig`] を `"tf_mobilenetv3_small_075"` に設定し、それを使用してモデルを初期化します。
+  [`~transformers_openvla_oft.DetrConfig`] を `"tf_mobilenetv3_small_075"` に設定し、それを使用してモデルを初期化します。
   構成。
 - DETR は、最短辺が一定のピクセル数以上になり、最長辺が一定量以上になるように入力画像のサイズを変更します。
   最大 1333 ピクセル。トレーニング時に、最短辺がランダムに に設定されるようにスケール拡張が使用されます。
   最小 480、最大 800 ピクセル。推論時には、最短辺が 800 に設定されます。
 
 使用できます
-  [`~transformers.DetrImageProcessor`] 用の画像 (およびオプションの COCO 形式の注釈) を準備します。
+  [`~transformers_openvla_oft.DetrImageProcessor`] 用の画像 (およびオプションの COCO 形式の注釈) を準備します。
   モデル。このサイズ変更により、バッチ内の画像のサイズが異なる場合があります。 DETR は、画像を最大までパディングすることでこの問題を解決します。
   どのピクセルが実数でどのピクセルがパディングであるかを示すピクセル マスクを作成することによって、バッチ内の最大サイズを決定します。
   あるいは、画像をバッチ処理するためにカスタムの `collat​​e_fn` を定義することもできます。
-  [`~transformers.DetrImageProcessor.pad_and_create_pixel_mask`]。
+  [`~transformers_openvla_oft.DetrImageProcessor.pad_and_create_pixel_mask`]。
 - 画像のサイズによって使用されるメモリの量が決まり、したがって「batch_size」も決まります。
   GPU あたり 2 のバッチ サイズを使用することをお勧めします。詳細については、[この Github スレッド](https://github.com/facebookresearch/detr/issues/150) を参照してください。
 
@@ -123,7 +123,7 @@ DETR モデルをインスタンス化するには 3 つの方法があります
 オプション 1: モデル全体の事前トレーニングされた重みを使用して DETR をインスタンス化する
 
 ```py
->>> from transformers import DetrForObjectDetection
+>>> from transformers_openvla_oft import DetrForObjectDetection
 
 >>> model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50")
 ```
@@ -131,7 +131,7 @@ DETR モデルをインスタンス化するには 3 つの方法があります
 オプション 2: Transformer についてはランダムに初期化された重みを使用して DETR をインスタンス化しますが、バックボーンについては事前にトレーニングされた重みを使用します
 
 ```py
->>> from transformers import DetrConfig, DetrForObjectDetection
+>>> from transformers_openvla_oft import DetrConfig, DetrForObjectDetection
 
 >>> config = DetrConfig()
 >>> model = DetrForObjectDetection(config)
@@ -147,16 +147,16 @@ DETR モデルをインスタンス化するには 3 つの方法があります
 | Task | Object detection | Instance segmentation | Panoptic segmentation |
 |------|------------------|-----------------------|-----------------------|
 | **Description** |画像内のオブジェクトの周囲の境界ボックスとクラス ラベルを予測する | 画像内のオブジェクト (つまりインスタンス) の周囲のマスクを予測する | 画像内のオブジェクト (インスタンス) と「もの」 (木や道路などの背景) の両方の周囲のマスクを予測します |
-| **Model** | [`~transformers.DetrForObjectDetection`] | [`~transformers.DetrForSegmentation`] | [`~transformers.DetrForSegmentation`] |
+| **Model** | [`~transformers_openvla_oft.DetrForObjectDetection`] | [`~transformers_openvla_oft.DetrForSegmentation`] | [`~transformers_openvla_oft.DetrForSegmentation`] |
 | **Example dataset** | COCO detection | COCO detection, COCO panoptic | COCO panoptic  |                                                                        |
-| **Format of annotations to provide to**  [`~transformers.DetrImageProcessor`] | {'image_id': `int`, 'annotations': `List[Dict]`} each Dict being a COCO object annotation  | {'image_id': `int`, 'annotations': `List[Dict]`}  (in case of COCO detection) or {'file_name': `str`, 'image_id': `int`, 'segments_info': `List[Dict]`} (in case of COCO panoptic) | {'file_name': `str`, 'image_id': `int`, 'segments_info': `List[Dict]`} and masks_path (path to directory containing PNG files of the masks) |
-| **Postprocessing** (i.e. converting the output of the model to Pascal VOC format) | [`~transformers.DetrImageProcessor.post_process`] | [`~transformers.DetrImageProcessor.post_process_segmentation`] | [`~transformers.DetrImageProcessor.post_process_segmentation`], [`~transformers.DetrImageProcessor.post_process_panoptic`] |
+| **Format of annotations to provide to**  [`~transformers_openvla_oft.DetrImageProcessor`] | {'image_id': `int`, 'annotations': `List[Dict]`} each Dict being a COCO object annotation  | {'image_id': `int`, 'annotations': `List[Dict]`}  (in case of COCO detection) or {'file_name': `str`, 'image_id': `int`, 'segments_info': `List[Dict]`} (in case of COCO panoptic) | {'file_name': `str`, 'image_id': `int`, 'segments_info': `List[Dict]`} and masks_path (path to directory containing PNG files of the masks) |
+| **Postprocessing** (i.e. converting the output of the model to Pascal VOC format) | [`~transformers_openvla_oft.DetrImageProcessor.post_process`] | [`~transformers_openvla_oft.DetrImageProcessor.post_process_segmentation`] | [`~transformers_openvla_oft.DetrImageProcessor.post_process_segmentation`], [`~transformers_openvla_oft.DetrImageProcessor.post_process_panoptic`] |
 | **evaluators** | `CocoEvaluator` with `iou_types="bbox"` | `CocoEvaluator` with `iou_types="bbox"` or `"segm"` | `CocoEvaluator` with `iou_tupes="bbox"` or `"segm"`, `PanopticEvaluator` |
 
 つまり、COCO 検出または COCO パノプティック形式でデータを準備してから、次を使用する必要があります。
-[`~transformers.DetrImageProcessor`] `pixel_values`、`pixel_mask`、およびオプションを作成します。
+[`~transformers_openvla_oft.DetrImageProcessor`] `pixel_values`、`pixel_mask`、およびオプションを作成します。
 「ラベル」。これを使用してモデルをトレーニング (または微調整) できます。評価するには、まず、
-[`~transformers.DetrImageProcessor`] の後処理メソッドの 1 つを使用したモデルの出力。これらはできます
+[`~transformers_openvla_oft.DetrImageProcessor`] の後処理メソッドの 1 つを使用したモデルの出力。これらはできます
 `CocoEvaluator` または `PanopticEvaluator` のいずれかに提供され、次のようなメトリクスを計算できます。
 平均平均精度 (mAP) とパノラマ品質 (PQ)。後者のオブジェクトは [元のリポジトリ](https://github.com/facebookresearch/detr) に実装されています。評価の詳細については、[サンプル ノートブック](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/DETR) を参照してください。
 

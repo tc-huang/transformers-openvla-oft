@@ -40,13 +40,13 @@ Ciò introduce due modifiche sostanziali:
 
 Nella versione `v3.x`:
 ```py
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 ```
 per ottenere lo stesso nella versione `v4.x`:
 ```py
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased", use_fast=False)
 ```
@@ -83,7 +83,7 @@ pip install transformers stentencepiece
 ```
 #### 3. L'architettura delle repo è stato aggiornata in modo che ogni modello abbia la propria cartella
 
-Con l’aggiunta di nuovi modelli, il numero di file nella cartella `src/transformers` continua a crescere e diventa più difficile navigare e capire. Abbiamo fatto la scelta di inserire ogni modello e i file che lo accompagnano nelle proprie sottocartelle.
+Con l’aggiunta di nuovi modelli, il numero di file nella cartella `src/transformers_openvla_oft` continua a crescere e diventa più difficile navigare e capire. Abbiamo fatto la scelta di inserire ogni modello e i file che lo accompagnano nelle proprie sottocartelle.
 
 Si tratta di una modifica sostanziale in quanto l'importazione di layer intermedi utilizzando direttamente il modulo di un modello deve essere eseguita tramite un percorso diverso.
 
@@ -93,11 +93,11 @@ Per ottenere lo stesso comportamento della versione `v3.x`, devi aggiornare il p
 
 Nella versione `v3.x`:
 ```bash
-from transformers.modeling_bert import BertLayer
+from transformers_openvla_oft.modeling_bert import BertLayer
 ```
 per ottenere lo stesso nella versione `v4.x`:
 ```bash
-from transformers.models.bert.modeling_bert import BertLayer
+from transformers_openvla_oft.models.bert.modeling_bert import BertLayer
 ```
 
 #### 4. Impostare l'argomento `return_dict` su `True` per impostazione predefinita

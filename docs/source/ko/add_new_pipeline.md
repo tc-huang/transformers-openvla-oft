@@ -30,7 +30,7 @@ rendered properly in your Markdown viewer.
 
 
 ```python
-from transformers import Pipeline
+from transformers_openvla_oft import Pipeline
 
 
 class MyPipeline(Pipeline):
@@ -116,7 +116,7 @@ def _sanitize_parameters(self, **kwargs):
 `new-task`를 지원되는 작업 목록에 등록하려면 `PIPELINE_REGISTRY`에 추가해야 합니다:
 
 ```python
-from transformers.pipelines import PIPELINE_REGISTRY
+from transformers_openvla_oft.pipelines import PIPELINE_REGISTRY
 
 PIPELINE_REGISTRY.register_pipeline(
     "new-task",
@@ -145,7 +145,7 @@ Hub에 사용자 정의 파이프라인을 공유하려면 `Pipeline` 하위 클
 ```py
 import numpy as np
 
-from transformers import Pipeline
+from transformers_openvla_oft import Pipeline
 
 
 def softmax(outputs):
@@ -183,8 +183,8 @@ class PairClassificationPipeline(Pipeline):
 
 ```py
 from pair_classification import PairClassificationPipeline
-from transformers.pipelines import PIPELINE_REGISTRY
-from transformers import AutoModelForSequenceClassification, TFAutoModelForSequenceClassification
+from transformers_openvla_oft.pipelines import PIPELINE_REGISTRY
+from transformers_openvla_oft import AutoModelForSequenceClassification, TFAutoModelForSequenceClassification
 
 PIPELINE_REGISTRY.register_pipeline(
     "pair-classification",
@@ -198,7 +198,7 @@ PIPELINE_REGISTRY.register_pipeline(
 예를 들어, `sgugger/finetuned-bert-mrpc`은 MRPC 데이터 세트에서 미세 조정되어 문장 쌍을 패러프레이즈인지 아닌지를 분류합니다.
 
 ```py
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 classifier = pipeline("pair-classification", model="sgugger/finetuned-bert-mrpc")
 ```
@@ -213,7 +213,7 @@ classifier.push_to_hub("test-dynamic-pipeline")
 이후에는 `trust_remote_code=True` 옵션만 제공하면 누구나 사용할 수 있습니다.
 
 ```py
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 classifier = pipeline(model="{your_username}/test-dynamic-pipeline", trust_remote_code=True)
 ```

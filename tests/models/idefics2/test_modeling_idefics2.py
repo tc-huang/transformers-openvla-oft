@@ -21,7 +21,7 @@ from io import BytesIO
 
 import requests
 
-from transformers import (
+from transformers_openvla_oft import (
     AutoProcessor,
     Idefics2Config,
     Idefics2ForConditionalGeneration,
@@ -29,7 +29,7 @@ from transformers import (
     is_torch_available,
     is_vision_available,
 )
-from transformers.testing_utils import require_bitsandbytes, require_torch, slow, torch_device
+from transformers_openvla_oft.testing_utils import require_bitsandbytes, require_torch, slow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester

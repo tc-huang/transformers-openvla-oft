@@ -16,8 +16,8 @@
 import os
 import unittest
 
-from transformers import ElectraTokenizerFast
-from transformers.models.electra.tokenization_electra import (
+from transformers_openvla_oft import ElectraTokenizerFast
+from transformers_openvla_oft.models.electra.tokenization_electra import (
     VOCAB_FILES_NAMES,
     BasicTokenizer,
     ElectraTokenizer,
@@ -26,7 +26,7 @@ from transformers.models.electra.tokenization_electra import (
     _is_punctuation,
     _is_whitespace,
 )
-from transformers.testing_utils import require_tokenizers, slow
+from transformers_openvla_oft.testing_utils import require_tokenizers, slow
 
 from ...test_tokenization_common import TokenizerTesterMixin, filter_non_english
 

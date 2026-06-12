@@ -17,14 +17,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from transformers import AutoConfig, is_tf_available
-from transformers.testing_utils import require_tf
+from transformers_openvla_oft import AutoConfig, is_tf_available
+from transformers_openvla_oft.testing_utils import require_tf
 
 
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import TensorFlowBenchmark, TensorFlowBenchmarkArguments
+    from transformers_openvla_oft import TensorFlowBenchmark, TensorFlowBenchmarkArguments
 
 
 @require_tf

@@ -23,8 +23,8 @@ import unittest
 import numpy as np
 import requests
 
-from transformers import Owlv2Config, Owlv2TextConfig, Owlv2VisionConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft import Owlv2Config, Owlv2TextConfig, Owlv2VisionConfig
+from transformers_openvla_oft.testing_utils import (
     require_torch,
     require_torch_accelerator,
     require_torch_fp16,
@@ -32,7 +32,7 @@ from transformers.testing_utils import (
     slow,
     torch_device,
 )
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import (
@@ -49,13 +49,13 @@ if is_torch_available():
     import torch
     from torch import nn
 
-    from transformers import Owlv2ForObjectDetection, Owlv2Model, Owlv2TextModel, Owlv2VisionModel
+    from transformers_openvla_oft import Owlv2ForObjectDetection, Owlv2Model, Owlv2TextModel, Owlv2VisionModel
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import OwlViTProcessor
+    from transformers_openvla_oft import OwlViTProcessor
 
 
 # Copied from tests.models.owlvit.test_modeling_owlvit.OwlViTVisionModelTester with OwlViT->Owlv2

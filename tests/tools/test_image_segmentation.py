@@ -16,8 +16,8 @@
 import unittest
 from pathlib import Path
 
-from transformers import is_vision_available, load_tool
-from transformers.testing_utils import get_tests_dir
+from transformers_openvla_oft import is_vision_available, load_tool
+from transformers_openvla_oft.testing_utils import get_tests_dir
 
 from .test_tools_common import ToolTesterMixin
 

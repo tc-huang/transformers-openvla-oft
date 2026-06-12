@@ -94,7 +94,7 @@ To export a `BertModel` with TorchScript, instantiate `BertModel` from the `Bert
 class and then save it to disk under the filename `traced_bert.pt`:
 
 ```python
-from transformers import BertModel, BertTokenizer, BertConfig
+from transformers_openvla_oft import BertModel, BertTokenizer, BertConfig
 import torch
 
 enc = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
@@ -210,7 +210,7 @@ Python](torchscript#using-torchscript-in-python) to trace a `BertModel`. Import 
 Python API:
 
 ```python
-from transformers import BertModel, BertTokenizer, BertConfig
+from transformers_openvla_oft import BertModel, BertTokenizer, BertConfig
 import torch
 import torch.neuron
 ```

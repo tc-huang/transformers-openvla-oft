@@ -21,21 +21,21 @@ from typing import List
 
 import numpy as np
 
-from transformers import (
+from transformers_openvla_oft import (
     PreTrainedTokenizer,
     PreTrainedTokenizerBase,
     PreTrainedTokenizerFast,
     UdopTokenizer,
     UdopTokenizerFast,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     require_pytesseract,
     require_sentencepiece,
     require_tokenizers,
     require_torch,
     slow,
 )
-from transformers.utils import FEATURE_EXTRACTOR_NAME, cached_property, is_pytesseract_available, is_torch_available
+from transformers_openvla_oft.utils import FEATURE_EXTRACTOR_NAME, cached_property, is_pytesseract_available, is_torch_available
 
 
 if is_torch_available():
@@ -45,7 +45,7 @@ if is_torch_available():
 if is_pytesseract_available():
     from PIL import Image
 
-    from transformers import LayoutLMv3ImageProcessor, UdopProcessor
+    from transformers_openvla_oft import LayoutLMv3ImageProcessor, UdopProcessor
 
 
 @require_pytesseract

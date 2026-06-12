@@ -40,7 +40,7 @@ Esponendo un grafico con operatori e tipi di dati standardizzati, ONNX rende
 più facile passare da un framework all'altro. Ad esempio, un modello allenato in PyTorch può
 essere esportato in formato ONNX e quindi importato in TensorFlow (e viceversa).
 
-🤗 Transformers fornisce un pacchetto `transformers.onnx` che ti consente di
+🤗 Transformers fornisce un pacchetto `transformers_openvla_oft.onnx` che ti consente di
 convertire i checkpoint del modello in un grafico ONNX sfruttando gli oggetti di configurazione.
 Questi oggetti di configurazione sono già pronti per una serie di architetture di modelli,
 e sono progettati per essere facilmente estensibili ad altre architetture.
@@ -87,7 +87,7 @@ Le configurazioni pronte includono le seguenti architetture:
 
 Nelle prossime due sezioni, ti mostreremo come:
 
-* Esporta un modello supportato usando il pacchetto `transformers.onnx`.
+* Esporta un modello supportato usando il pacchetto `transformers_openvla_oft.onnx`.
 * Esporta un modello personalizzato per un'architettura non supportata.
 
 ### Esportazione di un modello in ONNX
@@ -99,10 +99,10 @@ dipendenze extra:
 pip install transformers[onnx]
 ```
 
-Il pacchetto `transformers.onnx` può essere usato come modulo Python:
+Il pacchetto `transformers_openvla_oft.onnx` può essere usato come modulo Python:
 
 ```bash
-python -m transformers.onnx --help
+python -m transformers_openvla_oft.onnx --help
 
 usage: Hugging Face Transformers ONNX exporter [-h] -m MODEL [--feature {causal-lm, ...}] [--opset OPSET] [--atol ATOL] output
 
@@ -122,7 +122,7 @@ optional arguments:
 L'esportazione di un checkpoint utilizzando una configurazione già pronta può essere eseguita come segue:
 
 ```bash
-python -m transformers.onnx --model=distilbert/distilbert-base-uncased onnx/
+python -m transformers_openvla_oft.onnx --model=distilbert/distilbert-base-uncased onnx/
 ```
 
 che dovrebbe mostrare i seguenti log:
@@ -146,7 +146,7 @@ lo standard ONNX. Ad esempio, possiamo caricare ed eseguire il modello con [ONNX
 Runtime](https://onnxruntime.ai/) come segue:
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> from onnxruntime import InferenceSession
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
@@ -161,7 +161,7 @@ dando un'occhiata alla configurazione ONNX di ogni modello. Ad esempio, per
 DistilBERT abbiamo:
 
 ```python
->>> from transformers.models.distilbert import DistilBertConfig, DistilBertOnnxConfig
+>>> from transformers_openvla_oft.models.distilbert import DistilBertConfig, DistilBertOnnxConfig
 
 >>> config = DistilBertConfig()
 >>> onnx_config = DistilBertOnnxConfig(config)
@@ -174,7 +174,7 @@ possiamo esportare un checkpoint TensorFlow puro da [Keras
 organizzazione](https://huggingface.co/keras-io) come segue:
 
 ```bash
-python -m transformers.onnx --model=keras-io/transformers-qa onnx/
+python -m transformers_openvla_oft.onnx --model=keras-io/transformers-qa onnx/
 ```
 
 Per esportare un modello memorizzato localmente, devi disporre dei pesi del modello
@@ -184,7 +184,7 @@ checkpoint come segue:
 <frameworkcontent>
 <pt>
 ```python
->>> from transformers import AutoTokenizer, AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSequenceClassification
 
 >>> # Load tokenizer and PyTorch weights form the Hub
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
@@ -195,15 +195,15 @@ checkpoint come segue:
 ```
 
 Una volta salvato il checkpoint, possiamo esportarlo su ONNX puntando l'argomento `--model`
-del pacchetto `transformers.onnx` nella directory desiderata:
+del pacchetto `transformers_openvla_oft.onnx` nella directory desiderata:
 
 ```bash
-python -m transformers.onnx --model=local-pt-checkpoint onnx/
+python -m transformers_openvla_oft.onnx --model=local-pt-checkpoint onnx/
 ```
 </pt>
 <tf>
 ```python
->>> from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModelForSequenceClassification
 
 >>> # Load tokenizer and TensorFlow weights from the Hub
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
@@ -214,10 +214,10 @@ python -m transformers.onnx --model=local-pt-checkpoint onnx/
 ```
 
 Once the checkpoint is saved, we can export it to ONNX by pointing the `--model`
-argument of the `transformers.onnx` package to the desired directory:
+argument of the `transformers_openvla_oft.onnx` package to the desired directory:
 
 ```bash
-python -m transformers.onnx --model=local-tf-checkpoint onnx/
+python -m transformers_openvla_oft.onnx --model=local-tf-checkpoint onnx/
 ```
 </tf>
 </frameworkcontent>
@@ -242,7 +242,7 @@ Per ciascuna configurazione, puoi trovare l'elenco delle funzionalità supportat
 `FeaturesManager`. Ad esempio, per DistilBERT abbiamo:
 
 ```python
->>> from transformers.onnx.features import FeaturesManager
+>>> from transformers_openvla_oft.onnx.features import FeaturesManager
 
 >>> distilbert_features = list(FeaturesManager.get_supported_features_for_model_type("distilbert").keys())
 >>> print(distilbert_features)
@@ -250,11 +250,11 @@ Per ciascuna configurazione, puoi trovare l'elenco delle funzionalità supportat
 ```
 
 Puoi quindi passare una di queste funzionalità all'argomento `--feature` nel
-pacchetto `transformers.onnx`. Ad esempio, per esportare un modello di classificazione del testo
+pacchetto `transformers_openvla_oft.onnx`. Ad esempio, per esportare un modello di classificazione del testo
 possiamo scegliere un modello ottimizzato dall'Hub ed eseguire:
 
 ```bash
-python -m transformers.onnx --model=distilbert/distilbert-base-uncased-finetuned-sst-2-english \
+python -m transformers_openvla_oft.onnx --model=distilbert/distilbert-base-uncased-finetuned-sst-2-english \
                             --feature=sequence-classification onnx/
 ```
 
@@ -317,7 +317,7 @@ Poiché DistilBERT è un modello basato su encoder, la sua configurazione eredit
 
 ```python
 >>> from typing import Mapping, OrderedDict
->>> from transformers.onnx import OnnxConfig
+>>> from transformers_openvla_oft.onnx import OnnxConfig
 
 
 >>> class DistilBertOnnxConfig(OnnxConfig):
@@ -352,7 +352,7 @@ Dopo aver implementato una configurazione ONNX, è possibile istanziarla
 fornendo alla configurazione del modello base come segue:
 
 ```python
->>> from transformers import AutoConfig
+>>> from transformers_openvla_oft import AutoConfig
 
 >>> config = AutoConfig.from_pretrained("distilbert/distilbert-base-uncased")
 >>> onnx_config = DistilBertOnnxConfig(config)
@@ -384,7 +384,7 @@ volevamo esportare DistilBERT con una testa di classificazione per sequenze, pot
 usare:
 
 ```python
->>> from transformers import AutoConfig
+>>> from transformers_openvla_oft import AutoConfig
 
 >>> config = AutoConfig.from_pretrained("distilbert/distilbert-base-uncased")
 >>> onnx_config_for_seq_clf = DistilBertOnnxConfig(config, task="sequence-classification")
@@ -404,13 +404,13 @@ altre classi di configurazione possono essere sovrascritte se necessario. Guarda
 
 Una volta implementata la configurazione ONNX, il passaggio successivo consiste nell'esportare il
 modello. Qui possiamo usare la funzione `export()` fornita dal
-pacchetto `transformers.onnx`. Questa funzione prevede la configurazione ONNX, insieme
+pacchetto `transformers_openvla_oft.onnx`. Questa funzione prevede la configurazione ONNX, insieme
 con il modello base e il tokenizer e il percorso per salvare il file esportato:
 
 ```python
 >>> from pathlib import Path
->>> from transformers.onnx import export
->>> from transformers import AutoTokenizer, AutoModel
+>>> from transformers_openvla_oft.onnx import export
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModel
 
 >>> onnx_path = Path("model.onnx")
 >>> model_ckpt = "distilbert/distilbert-base-uncased"
@@ -447,11 +447,11 @@ per istruzioni su come caricare modelli con dati esterni.
 
 Il passaggio finale consiste nel convalidare gli output dal modello di base e quello esportato
 corrispondere entro una soglia di tolleranza assoluta. Qui possiamo usare la
-Funzione `validate_model_outputs()` fornita dal pacchetto `transformers.onnx`
+Funzione `validate_model_outputs()` fornita dal pacchetto `transformers_openvla_oft.onnx`
 come segue:
 
 ```python
->>> from transformers.onnx import validate_model_outputs
+>>> from transformers_openvla_oft.onnx import validate_model_outputs
 
 >>> validate_model_outputs(
 ...     onnx_config, tokenizer, base_model, onnx_path, onnx_outputs, onnx_config.atol_for_validation
@@ -546,7 +546,7 @@ Questo frammento di codice mostra come usare TorchScript per esportare un `BertM
 una classe `BertConfig` e quindi salvato su disco con il nome del file `traced_bert.pt`
 
 ```python
-from transformers import BertModel, BertTokenizer, BertConfig
+from transformers_openvla_oft import BertModel, BertTokenizer, BertConfig
 import torch
 
 enc = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
@@ -652,7 +652,7 @@ per tracciare un "BertModel", importi l'estensione del framework `torch.neuron` 
 i componenti di Neuron SDK tramite un'API Python.
 
 ```python
-from transformers import BertModel, BertTokenizer, BertConfig
+from transformers_openvla_oft import BertModel, BertTokenizer, BertConfig
 import torch
 import torch.neuron
 ```

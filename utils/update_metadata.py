@@ -39,12 +39,12 @@ import pandas as pd
 from datasets import Dataset
 from huggingface_hub import hf_hub_download, upload_folder
 
-from transformers.utils import direct_transformers_import
+from transformers_openvla_oft.utils import direct_transformers_import
 
 
 # All paths are set with the intent you should run this script from the root of the repo with the command
 # python utils/update_metadata.py
-TRANSFORMERS_PATH = "src/transformers"
+TRANSFORMERS_PATH = "src/transformers_openvla_oft"
 
 
 # This is to make sure the transformers module imported is the one in the repo.

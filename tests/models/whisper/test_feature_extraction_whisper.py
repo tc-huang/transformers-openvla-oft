@@ -23,9 +23,9 @@ import unittest
 import numpy as np
 from datasets import load_dataset
 
-from transformers import WhisperFeatureExtractor
-from transformers.testing_utils import check_json_file_has_correct_format, require_torch, require_torch_gpu
-from transformers.utils.import_utils import is_torch_available
+from transformers_openvla_oft import WhisperFeatureExtractor
+from transformers_openvla_oft.testing_utils import check_json_file_has_correct_format, require_torch, require_torch_gpu
+from transformers_openvla_oft.utils.import_utils import is_torch_available
 
 from ...test_sequence_feature_extraction_common import SequenceFeatureExtractionTestMixin
 
@@ -228,7 +228,7 @@ class WhisperFeatureExtractionTest(SequenceFeatureExtractionTestMixin, unittest.
         self.assertEqual(input_features.shape, (1, 80, 3000))
         self.assertTrue(torch.allclose(input_features[0, 0, :30], EXPECTED_INPUT_FEATURES, atol=1e-4))
 
-    @unittest.mock.patch("transformers.models.whisper.feature_extraction_whisper.is_torch_available", lambda: False)
+    @unittest.mock.patch("transformers_openvla_oft.models.whisper.feature_extraction_whisper.is_torch_available", lambda: False)
     def test_numpy_integration(self):
         # fmt: off
         EXPECTED_INPUT_FEATURES = np.array(

@@ -46,7 +46,7 @@ pip install -q transformers
 [Hugging Face Hub에 업로드된 체크포인트](https://huggingface.co/models?pipeline_tag=zero-shot-image-classification&sort=downloads)에서 파이프라인을 인스턴스화합니다.
 
 ```python
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> checkpoint = "openai/clip-vit-large-patch14"
 >>> detector = pipeline(model=checkpoint, task="zero-shot-image-classification")
@@ -89,7 +89,7 @@ pip install -q transformers
 여기서는 이전과 동일한 체크포인트를 사용하겠습니다:
 
 ```py
->>> from transformers import AutoProcessor, AutoModelForZeroShotImageClassification
+>>> from transformers_openvla_oft import AutoProcessor, AutoModelForZeroShotImageClassification
 
 >>> model = AutoModelForZeroShotImageClassification.from_pretrained(checkpoint)
 >>> processor = AutoProcessor.from_pretrained(checkpoint)

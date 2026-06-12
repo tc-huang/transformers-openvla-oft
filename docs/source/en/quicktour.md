@@ -72,7 +72,7 @@ For a complete list of available tasks, check out the [pipeline API reference](.
 Start by creating an instance of [`pipeline`] and specifying a task you want to use it for. In this guide, you'll use the [`pipeline`] for sentiment analysis as an example:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline("sentiment-analysis")
 ```
@@ -98,7 +98,7 @@ The [`pipeline`] can also iterate over an entire dataset for any task you like. 
 
 ```py
 >>> import torch
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> speech_recognizer = pipeline("automatic-speech-recognition", model="facebook/wav2vec2-base-960h")
 ```
@@ -142,7 +142,7 @@ The [`pipeline`] can accommodate any model from the [Hub](https://huggingface.co
 Use [`AutoModelForSequenceClassification`] and [`AutoTokenizer`] to load the pretrained model and it's associated tokenizer (more on an `AutoClass` in the next section):
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained(model_name)
 >>> tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -152,7 +152,7 @@ Use [`AutoModelForSequenceClassification`] and [`AutoTokenizer`] to load the pre
 Use [`TFAutoModelForSequenceClassification`] and [`AutoTokenizer`] to load the pretrained model and it's associated tokenizer (more on an `TFAutoClass` in the next section):
 
 ```py
->>> from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoTokenizer, TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained(model_name)
 >>> tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -185,7 +185,7 @@ A tokenizer is responsible for preprocessing text into an array of numbers as in
 Load a tokenizer with [`AutoTokenizer`]:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -248,7 +248,7 @@ Check out the [preprocess](./preprocessing) tutorial for more details about toke
 🤗 Transformers provides a simple and unified way to load pretrained instances. This means you can load an [`AutoModel`] like you would load an [`AutoTokenizer`]. The only difference is selecting the correct [`AutoModel`] for the task. For text (or sequence) classification, you should load [`AutoModelForSequenceClassification`]:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> pt_model = AutoModelForSequenceClassification.from_pretrained(model_name)
@@ -281,7 +281,7 @@ tensor([[0.0021, 0.0018, 0.0115, 0.2121, 0.7725],
 🤗 Transformers provides a simple and unified way to load pretrained instances. This means you can load an [`TFAutoModel`] like you would load an [`AutoTokenizer`]. The only difference is selecting the correct [`TFAutoModel`] for the task. For text (or sequence) classification, you should load [`TFAutoModelForSequenceClassification`]:
 
 ```py
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 >>> tf_model = TFAutoModelForSequenceClassification.from_pretrained(model_name)
@@ -358,7 +358,7 @@ One particularly cool 🤗 Transformers feature is the ability to save a model a
 <pt>
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained(tf_save_directory)
 >>> pt_model = AutoModelForSequenceClassification.from_pretrained(tf_save_directory, from_tf=True)
@@ -367,7 +367,7 @@ One particularly cool 🤗 Transformers feature is the ability to save a model a
 <tf>
 
 ```py
->>> from transformers import TFAutoModel
+>>> from transformers_openvla_oft import TFAutoModel
 
 >>> tokenizer = AutoTokenizer.from_pretrained(pt_save_directory)
 >>> tf_model = TFAutoModelForSequenceClassification.from_pretrained(pt_save_directory, from_pt=True)
@@ -382,7 +382,7 @@ You can modify the model's configuration class to change how a model is built. T
 Start by importing [`AutoConfig`], and then load the pretrained model you want to modify. Within [`AutoConfig.from_pretrained`], you can specify the attribute you want to change, such as the number of attention heads:
 
 ```py
->>> from transformers import AutoConfig
+>>> from transformers_openvla_oft import AutoConfig
 
 >>> my_config = AutoConfig.from_pretrained("distilbert/distilbert-base-uncased", n_heads=12)
 ```
@@ -392,7 +392,7 @@ Start by importing [`AutoConfig`], and then load the pretrained model you want t
 Create a model from your custom configuration with [`AutoModel.from_config`]:
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> my_model = AutoModel.from_config(my_config)
 ```
@@ -401,7 +401,7 @@ Create a model from your custom configuration with [`AutoModel.from_config`]:
 Create a model from your custom configuration with [`TFAutoModel.from_config`]:
 
 ```py
->>> from transformers import TFAutoModel
+>>> from transformers_openvla_oft import TFAutoModel
 
 >>> my_model = TFAutoModel.from_config(my_config)
 ```
@@ -419,7 +419,7 @@ Depending on your task, you'll typically pass the following parameters to [`Trai
 1. You'll start with a [`PreTrainedModel`] or a [`torch.nn.Module`](https://pytorch.org/docs/stable/nn.html#torch.nn.Module):
 
    ```py
-   >>> from transformers import AutoModelForSequenceClassification
+   >>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
    >>> model = AutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
    ```
@@ -427,7 +427,7 @@ Depending on your task, you'll typically pass the following parameters to [`Trai
 2. [`TrainingArguments`] contains the model hyperparameters you can change like learning rate, batch size, and the number of epochs to train for. The default values are used if you don't specify any training arguments:
 
    ```py
-   >>> from transformers import TrainingArguments
+   >>> from transformers_openvla_oft import TrainingArguments
 
    >>> training_args = TrainingArguments(
    ...     output_dir="path/to/save/folder/",
@@ -441,7 +441,7 @@ Depending on your task, you'll typically pass the following parameters to [`Trai
 3. Load a preprocessing class like a tokenizer, image processor, feature extractor, or processor:
 
    ```py
-   >>> from transformers import AutoTokenizer
+   >>> from transformers_openvla_oft import AutoTokenizer
 
    >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
    ```
@@ -470,7 +470,7 @@ Depending on your task, you'll typically pass the following parameters to [`Trai
 6. A [`DataCollatorWithPadding`] to create a batch of examples from your dataset:
 
    ```py
-   >>> from transformers import DataCollatorWithPadding
+   >>> from transformers_openvla_oft import DataCollatorWithPadding
 
    >>> data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
    ```
@@ -478,7 +478,7 @@ Depending on your task, you'll typically pass the following parameters to [`Trai
 Now gather all these classes in [`Trainer`]:
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -513,7 +513,7 @@ All models are a standard [`tf.keras.Model`](https://www.tensorflow.org/api_docs
 1. You'll start with a [`TFPreTrainedModel`] or a [`tf.keras.Model`](https://www.tensorflow.org/api_docs/python/tf/keras/Model):
 
    ```py
-   >>> from transformers import TFAutoModelForSequenceClassification
+   >>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
    >>> model = TFAutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
    ```
@@ -521,7 +521,7 @@ All models are a standard [`tf.keras.Model`](https://www.tensorflow.org/api_docs
 2. Load a preprocessing class like a tokenizer, image processor, feature extractor, or processor:
 
    ```py
-   >>> from transformers import AutoTokenizer
+   >>> from transformers_openvla_oft import AutoTokenizer
 
    >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
    ```

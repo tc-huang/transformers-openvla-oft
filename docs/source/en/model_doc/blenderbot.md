@@ -44,7 +44,7 @@ rather than the left.
 An example:
 
 ```python
->>> from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
+>>> from transformers_openvla_oft import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 
 >>> mname = "facebook/blenderbot-400M-distill"
 >>> model = BlenderbotForConditionalGeneration.from_pretrained(mname)
@@ -91,14 +91,14 @@ An example:
 
 ## BlenderbotModel
 
-See [`~transformers.BartModel`] for arguments to *forward* and *generate*
+See [`~transformers_openvla_oft.BartModel`] for arguments to *forward* and *generate*
 
 [[autodoc]] BlenderbotModel
     - forward
 
 ## BlenderbotForConditionalGeneration
 
-See [`~transformers.BartForConditionalGeneration`] for arguments to *forward* and *generate*
+See [`~transformers_openvla_oft.BartForConditionalGeneration`] for arguments to *forward* and *generate*
 
 [[autodoc]] BlenderbotForConditionalGeneration
     - forward

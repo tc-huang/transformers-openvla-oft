@@ -98,7 +98,7 @@ There are several important fields here:
 The next step is to load a DistilBERT tokenizer to process the `question` and `context` fields:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -177,14 +177,14 @@ Now create a batch of examples using [`DefaultDataCollator`]. Unlike other data 
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator(return_tensors="tf")
 ```
@@ -204,7 +204,7 @@ If you aren't familiar with finetuning a model with the [`Trainer`], take a look
 You're ready to start training your model now! Load DistilBERT with [`AutoModelForQuestionAnswering`]:
 
 ```py
->>> from transformers import AutoModelForQuestionAnswering, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForQuestionAnswering, TrainingArguments, Trainer
 
 >>> model = AutoModelForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -239,7 +239,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [`~transformers.Trainer.push_to_hub`] method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [`~transformers_openvla_oft.Trainer.push_to_hub`] method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -254,7 +254,7 @@ If you aren't familiar with finetuning a model with Keras, take a look at the ba
 To finetune a model in TensorFlow, start by setting up an optimizer function, learning rate schedule, and some training hyperparameters:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_epochs = 2
@@ -269,12 +269,12 @@ To finetune a model in TensorFlow, start by setting up an optimizer function, le
 Then you can load DistilBERT with [`TFAutoModelForQuestionAnswering`]:
 
 ```py
->>> from transformers import TFAutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import TFAutoModelForQuestionAnswering
 
 >>> model = TFAutoModelForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
 
-Convert your datasets to the `tf.data.Dataset` format with [`~transformers.TFPreTrainedModel.prepare_tf_dataset`]:
+Convert your datasets to the `tf.data.Dataset` format with [`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -300,10 +300,10 @@ Configure the model for training with [`compile`](https://keras.io/api/models/mo
 >>> model.compile(optimizer=optimizer)
 ```
 
-The last thing to setup before you start training is to provide a way to push your model to the Hub. This can be done by specifying where to push your model and tokenizer in the [`~transformers.PushToHubCallback`]:
+The last thing to setup before you start training is to provide a way to push your model to the Hub. This can be done by specifying where to push your model and tokenizer in the [`~transformers_openvla_oft.PushToHubCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> callback = PushToHubCallback(
 ...     output_dir="my_awesome_qa_model",
@@ -348,7 +348,7 @@ Come up with a question and some context you'd like the model to predict:
 The simplest way to try out your finetuned model for inference is to use it in a [`pipeline`]. Instantiate a `pipeline` for question answering with your model, and pass your text to it:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> question_answerer = pipeline("question-answering", model="my_awesome_qa_model")
 >>> question_answerer(question=question, context=context)
@@ -365,7 +365,7 @@ You can also manually replicate the results of the `pipeline` if you'd like:
 Tokenize the text and return PyTorch tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_qa_model")
 >>> inputs = tokenizer(question, context, return_tensors="pt")
@@ -375,7 +375,7 @@ Pass your inputs to the model and return the `logits`:
 
 ```py
 >>> import torch
->>> from transformers import AutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import AutoModelForQuestionAnswering
 
 >>> model = AutoModelForQuestionAnswering.from_pretrained("my_awesome_qa_model")
 >>> with torch.no_grad():
@@ -401,7 +401,7 @@ Decode the predicted tokens to get the answer:
 Tokenize the text and return TensorFlow tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("my_awesome_qa_model")
 >>> inputs = tokenizer(question, text, return_tensors="tf")
@@ -410,7 +410,7 @@ Tokenize the text and return TensorFlow tensors:
 Pass your inputs to the model and return the `logits`:
 
 ```py
->>> from transformers import TFAutoModelForQuestionAnswering
+>>> from transformers_openvla_oft import TFAutoModelForQuestionAnswering
 
 >>> model = TFAutoModelForQuestionAnswering.from_pretrained("my_awesome_qa_model")
 >>> outputs = model(**inputs)

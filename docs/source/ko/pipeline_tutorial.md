@@ -35,7 +35,7 @@ rendered properly in your Markdown viewer.
 1. 먼저 [`pipeline`]을 생성하고 태스크를 지정하세요.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline(task="automatic-speech-recognition")
 ```
@@ -128,7 +128,7 @@ texts = generator(audio_filenames)
 ### 특정 태스크용 매개변수[[task-specific-parameters]]
 
 각 태스크마다 구현할 때 유연성과 옵션을 제공하기 위해 태스크용 매개변수가 있습니다.
-예를 들어 [`transformers.AutomaticSpeechRecognitionPipeline.__call__`] 메서드에는 동영상의 자막을 넣을 때 유용할 것 같은 `return_timestamps` 매개변수가 있습니다. 
+예를 들어 [`transformers_openvla_oft.AutomaticSpeechRecognitionPipeline.__call__`] 메서드에는 동영상의 자막을 넣을 때 유용할 것 같은 `return_timestamps` 매개변수가 있습니다. 
 
 ```py
 >>> # Not using whisper, as it cannot provide timestamps.
@@ -140,7 +140,7 @@ texts = generator(audio_filenames)
 보시다시피 모델이 텍스트를 추론할 뿐만 아니라 각 단어를 말한 시점까지도 출력했습니다.
 
 태스크마다 다양한 매개변수를 가지고 있는데요. 원하는 태스크의 API를 참조해서 바꿔볼 수 있는 여러 매개변수를 살펴보세요!
-지금까지 다뤄본 [`~transformers.AutomaticSpeechRecognitionPipeline`]에는 `chunk_length_s` 매개변수가 있습니다. 영화나 1시간 분량의 동영상의 자막 작업을 할 때처럼, 일반적으로 모델이 자체적으로 처리할 수 없는 매우 긴 오디오 파일을 처리할 때 유용하죠.
+지금까지 다뤄본 [`~transformers_openvla_oft.AutomaticSpeechRecognitionPipeline`]에는 `chunk_length_s` 매개변수가 있습니다. 영화나 1시간 분량의 동영상의 자막 작업을 할 때처럼, 일반적으로 모델이 자체적으로 처리할 수 없는 매우 긴 오디오 파일을 처리할 때 유용하죠.
 
 
 도움이 될 만한 매개변수를 찾지 못했다면 언제든지 [요청](https://github.com/huggingface/transformers/issues/new?assignees=&labels=feature&template=feature-request.yml)해주세요!
@@ -170,7 +170,7 @@ for out in pipe(data()):
 
 ```py
 # KeyDataset is a util that will just output the item we're interested in.
-from transformers.pipelines.pt_utils import KeyDataset
+from transformers_openvla_oft.pipelines.pt_utils import KeyDataset
 
 pipe = pipeline(model="hf-internal-testing/tiny-random-wav2vec2", device=0)
 dataset = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation[:10]")
@@ -197,7 +197,7 @@ for out in pipe(KeyDataset(dataset["audio"])):
 ![pipeline-cat-chonk](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vision_classifier = pipeline(model="google/vit-base-patch16-224")
 >>> preds = vision_classifier(
@@ -213,7 +213,7 @@ for out in pipe(KeyDataset(dataset["audio"])):
 NLP 태스크를 위해 [`pipeline`]을 사용하는 일도 거의 동일합니다.
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> # This model is a `zero-shot-classification` model.
 >>> # It will classify text, except you are free to choose any label you might imagine
@@ -232,7 +232,7 @@ NLP 태스크를 위해 [`pipeline`]을 사용하는 일도 거의 동일합니�
 예를 들어 이 [거래명세서 사진](https://huggingface.co/spaces/impira/docquery/resolve/2359223c1837a7587402bda0f2643382a6eefeab/invoice.png)에서 거래명세서 번호를 묻고 싶다면,
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vqa = pipeline(model="impira/layoutlm-document-qa")
 >>> vqa(

@@ -167,7 +167,7 @@ DatasetDict({
 モデルの期待に従って前処理されます。まず、[`LayoutLMv2Processor`] をロードします。これは、画像データを処理できる画像プロセッサとテキスト データをエンコードできるトークナイザーを内部で組み合わせています。
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained(model_checkpoint)
 ```
@@ -382,7 +382,7 @@ end_index 18
 * [`~Trainer.train`] を呼び出してモデルを微調整します。
 
 ```py
->>> from transformers import AutoModelForDocumentQuestionAnswering
+>>> from transformers_openvla_oft import AutoModelForDocumentQuestionAnswering
 
 >>> model = AutoModelForDocumentQuestionAnswering.from_pretrained(model_checkpoint)
 ```
@@ -392,7 +392,7 @@ end_index 18
 この場合、`output_dir`はモデルのチェックポイントがプッシュされるリポジトリの名前にもなります。
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> # REPLACE THIS WITH YOUR REPO ID
 >>> repo_id = "MariaK/layoutlmv2-base-uncased_finetuned_docvqa"
@@ -414,7 +414,7 @@ end_index 18
 サンプルをまとめてバッチ処理するための単純なデータ照合器を定義します。
 
 ```py
->>> from transformers import DefaultDataCollator
+>>> from transformers_openvla_oft import DefaultDataCollator
 
 >>> data_collator = DefaultDataCollator()
 ```
@@ -422,7 +422,7 @@ end_index 18
 最後に、すべてをまとめて、[`~Trainer.train`] を呼び出します。
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -463,7 +463,7 @@ LayoutLMv2 モデルを微調整し、🤗 ハブにアップロードしたの�
 モデルを使用して質問への回答を文書化し、画像と質問の組み合わせをモデルに渡します。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> qa_pipeline = pipeline("document-question-answering", model="MariaK/layoutlmv2-base-uncased_finetuned_docvqa")
 >>> qa_pipeline(image, question)
@@ -483,8 +483,8 @@ LayoutLMv2 モデルを微調整し、🤗 ハブにアップロードしたの�
 
 ```py
 >>> import torch
->>> from transformers import AutoProcessor
->>> from transformers import AutoModelForDocumentQuestionAnswering
+>>> from transformers_openvla_oft import AutoProcessor
+>>> from transformers_openvla_oft import AutoModelForDocumentQuestionAnswering
 
 >>> processor = AutoProcessor.from_pretrained("MariaK/layoutlmv2-base-uncased_finetuned_docvqa")
 >>> model = AutoModelForDocumentQuestionAnswering.from_pretrained("MariaK/layoutlmv2-base-uncased_finetuned_docvqa")

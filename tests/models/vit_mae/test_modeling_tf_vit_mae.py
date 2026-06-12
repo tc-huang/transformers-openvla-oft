@@ -28,9 +28,9 @@ from importlib import import_module
 
 import numpy as np
 
-from transformers import ViTMAEConfig
-from transformers.file_utils import cached_property, is_tf_available, is_vision_available
-from transformers.testing_utils import require_tf, require_vision, slow
+from transformers_openvla_oft import ViTMAEConfig
+from transformers_openvla_oft.file_utils import cached_property, is_tf_available, is_vision_available
+from transformers_openvla_oft.testing_utils import require_tf, require_vision, slow
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_tf_common import TFModelTesterMixin, floats_tensor, ids_tensor
@@ -40,14 +40,14 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_tf_available():
     import tensorflow as tf
 
-    from transformers import TFViTMAEForPreTraining, TFViTMAEModel
-    from transformers.modeling_tf_utils import keras
+    from transformers_openvla_oft import TFViTMAEForPreTraining, TFViTMAEModel
+    from transformers_openvla_oft.modeling_tf_utils import keras
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import ViTImageProcessor
+    from transformers_openvla_oft import ViTImageProcessor
 
 
 class TFViTMAEModelTester:

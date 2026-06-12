@@ -41,19 +41,19 @@ from difflib import get_close_matches
 from pathlib import Path
 from typing import List, Tuple
 
-from transformers import is_flax_available, is_tf_available, is_torch_available
-from transformers.models.auto import get_values
-from transformers.models.auto.configuration_auto import CONFIG_MAPPING_NAMES
-from transformers.models.auto.feature_extraction_auto import FEATURE_EXTRACTOR_MAPPING_NAMES
-from transformers.models.auto.image_processing_auto import IMAGE_PROCESSOR_MAPPING_NAMES
-from transformers.models.auto.processing_auto import PROCESSOR_MAPPING_NAMES
-from transformers.models.auto.tokenization_auto import TOKENIZER_MAPPING_NAMES
-from transformers.utils import ENV_VARS_TRUE_VALUES, direct_transformers_import
+from transformers_openvla_oft import is_flax_available, is_tf_available, is_torch_available
+from transformers_openvla_oft.models.auto import get_values
+from transformers_openvla_oft.models.auto.configuration_auto import CONFIG_MAPPING_NAMES
+from transformers_openvla_oft.models.auto.feature_extraction_auto import FEATURE_EXTRACTOR_MAPPING_NAMES
+from transformers_openvla_oft.models.auto.image_processing_auto import IMAGE_PROCESSOR_MAPPING_NAMES
+from transformers_openvla_oft.models.auto.processing_auto import PROCESSOR_MAPPING_NAMES
+from transformers_openvla_oft.models.auto.tokenization_auto import TOKENIZER_MAPPING_NAMES
+from transformers_openvla_oft.utils import ENV_VARS_TRUE_VALUES, direct_transformers_import
 
 
 # All paths are set with the intent you should run this script from the root of the repo with the command
 # python utils/check_repo.py
-PATH_TO_TRANSFORMERS = "src/transformers"
+PATH_TO_TRANSFORMERS = "src/transformers_openvla_oft"
 PATH_TO_TESTS = "tests"
 PATH_TO_DOC = "docs/source/en"
 
@@ -377,9 +377,9 @@ def check_missing_backends():
 
 def check_model_list():
     """
-    Checks the model listed as subfolders of `models` match the models available in `transformers.models`.
+    Checks the model listed as subfolders of `models` match the models available in `transformers_openvla_oft.models`.
     """
-    # Get the models from the directory structure of `src/transformers/models/`
+    # Get the models from the directory structure of `src/transformers_openvla_oft/models/`
     models_dir = os.path.join(PATH_TO_TRANSFORMERS, "models")
     _models = []
     for model in os.listdir(models_dir):
@@ -389,8 +389,8 @@ def check_model_list():
         if os.path.isdir(model_dir) and "__init__.py" in os.listdir(model_dir):
             _models.append(model)
 
-    # Get the models in the submodule `transformers.models`
-    models = [model for model in dir(transformers.models) if not model.startswith("__")]
+    # Get the models in the submodule `transformers_openvla_oft.models`
+    models = [model for model in dir(transformers_openvla_oft.models) if not model.startswith("__")]
 
     missing_models = sorted(set(_models).difference(models))
     if missing_models:
@@ -427,12 +427,12 @@ def get_model_modules() -> List[str]:
         "modeling_vision_encoder_decoder",
     ]
     modules = []
-    for model in dir(transformers.models):
+    for model in dir(transformers_openvla_oft.models):
         # There are some magic dunder attributes in the dir, we ignore them
         if model == "deprecated" or model.startswith("__"):
             continue
 
-        model_module = getattr(transformers.models, model)
+        model_module = getattr(transformers_openvla_oft.models, model)
         for submodule in dir(model_module):
             if submodule.startswith("modeling") and submodule not in _ignore_modules:
                 modeling_module = getattr(model_module, submodule)
@@ -455,7 +455,7 @@ def get_models(module: types.ModuleType, include_pretrained: bool = False) -> Li
         List[Tuple[str, type]]: List of models as tuples (class name, actual class).
     """
     models = []
-    model_classes = (transformers.PreTrainedModel, transformers.TFPreTrainedModel, transformers.FlaxPreTrainedModel)
+    model_classes = (transformers_openvla_oft.PreTrainedModel, transformers_openvla_oft.TFPreTrainedModel, transformers_openvla_oft.FlaxPreTrainedModel)
     for attr_name in dir(module):
         if not include_pretrained and ("Pretrained" in attr_name or "PreTrained" in attr_name):
             continue
@@ -637,17 +637,17 @@ def get_all_auto_configured_models() -> List[str]:
     """Return the list of all models in at least one auto class."""
     result = set()  # To avoid duplicates we concatenate all model classes in a set.
     if is_torch_available():
-        for attr_name in dir(transformers.models.auto.modeling_auto):
+        for attr_name in dir(transformers_openvla_oft.models.auto.modeling_auto):
             if attr_name.startswith("MODEL_") and attr_name.endswith("MAPPING_NAMES"):
-                result = result | set(get_values(getattr(transformers.models.auto.modeling_auto, attr_name)))
+                result = result | set(get_values(getattr(transformers_openvla_oft.models.auto.modeling_auto, attr_name)))
     if is_tf_available():
-        for attr_name in dir(transformers.models.auto.modeling_tf_auto):
+        for attr_name in dir(transformers_openvla_oft.models.auto.modeling_tf_auto):
             if attr_name.startswith("TF_MODEL_") and attr_name.endswith("MAPPING_NAMES"):
-                result = result | set(get_values(getattr(transformers.models.auto.modeling_tf_auto, attr_name)))
+                result = result | set(get_values(getattr(transformers_openvla_oft.models.auto.modeling_tf_auto, attr_name)))
     if is_flax_available():
-        for attr_name in dir(transformers.models.auto.modeling_flax_auto):
+        for attr_name in dir(transformers_openvla_oft.models.auto.modeling_flax_auto):
             if attr_name.startswith("FLAX_MODEL_") and attr_name.endswith("MAPPING_NAMES"):
-                result = result | set(get_values(getattr(transformers.models.auto.modeling_flax_auto, attr_name)))
+                result = result | set(get_values(getattr(transformers_openvla_oft.models.auto.modeling_flax_auto, attr_name)))
     return list(result)
 
 
@@ -717,7 +717,7 @@ def check_all_auto_object_names_being_defined():
 
     # Each auto modeling files contains multiple mappings. Let's get them in a dynamic way.
     for module_name in ["modeling_auto", "modeling_tf_auto", "modeling_flax_auto"]:
-        module = getattr(transformers.models.auto, module_name, None)
+        module = getattr(transformers_openvla_oft.models.auto, module_name, None)
         if module is None:
             continue
         # all mappings in a single auto modeling file
@@ -761,7 +761,7 @@ def check_all_auto_mapping_names_in_config_mapping_names():
 
     # Each auto modeling files contains multiple mappings. Let's get them in a dynamic way.
     for module_name in ["modeling_auto", "modeling_tf_auto", "modeling_flax_auto"]:
-        module = getattr(transformers.models.auto, module_name, None)
+        module = getattr(transformers_openvla_oft.models.auto, module_name, None)
         if module is None:
             continue
         # all mappings in a single auto modeling file
@@ -788,7 +788,7 @@ def check_all_auto_mappings_importable():
     mappings_to_check = {}
     # Each auto modeling files contains multiple mappings. Let's get them in a dynamic way.
     for module_name in ["modeling_auto", "modeling_tf_auto", "modeling_flax_auto"]:
-        module = getattr(transformers.models.auto, module_name, None)
+        module = getattr(transformers_openvla_oft.models.auto, module_name, None)
         if module is None:
             continue
         # all mappings in a single auto modeling file
@@ -904,7 +904,7 @@ def find_all_documented_objects() -> List[str]:
     for doc_file in Path(PATH_TO_DOC).glob("**/*.rst"):
         with open(doc_file, "r", encoding="utf-8", newline="\n") as f:
             content = f.read()
-        raw_doc_objs = re.findall(r"(?:autoclass|autofunction):: transformers.(\S+)\s+", content)
+        raw_doc_objs = re.findall(r"(?:autoclass|autofunction):: transformers_openvla_oft.(\S+)\s+", content)
         documented_obj += [obj.split(".")[-1] for obj in raw_doc_objs]
     for doc_file in Path(PATH_TO_DOC).glob("**/*.md"):
         with open(doc_file, "r", encoding="utf-8", newline="\n") as f:
@@ -1048,7 +1048,7 @@ def ignore_undocumented(name: str) -> bool:
 def check_all_objects_are_documented():
     """Check all models are properly documented."""
     documented_objs = find_all_documented_objects()
-    modules = transformers._modules
+    modules = transformers_openvla_oft._modules
     objects = [c for c in dir(transformers) if c not in modules and not c.startswith("_")]
     undocumented_objs = [c for c in objects if c not in documented_objs and not ignore_undocumented(c)]
     if len(undocumented_objs) > 0:
@@ -1065,7 +1065,7 @@ def check_model_type_doc_match():
     model_doc_folder = Path(PATH_TO_DOC) / "model_doc"
     model_docs = [m.stem for m in model_doc_folder.glob("*.md")]
 
-    model_types = list(transformers.models.auto.configuration_auto.MODEL_NAMES_MAPPING.keys())
+    model_types = list(transformers_openvla_oft.models.auto.configuration_auto.MODEL_NAMES_MAPPING.keys())
     model_types = [MODEL_TYPE_TO_DOC_MAPPING[m] if m in MODEL_TYPE_TO_DOC_MAPPING else m for m in model_types]
 
     errors = []
@@ -1138,7 +1138,7 @@ def check_deprecated_constant_is_up_to_date():
     deprecated_folder = os.path.join(PATH_TO_TRANSFORMERS, "models", "deprecated")
     deprecated_models = [m for m in os.listdir(deprecated_folder) if not m.startswith("_")]
 
-    constant_to_check = transformers.models.auto.configuration_auto.DEPRECATED_MODELS
+    constant_to_check = transformers_openvla_oft.models.auto.configuration_auto.DEPRECATED_MODELS
     message = []
     missing_models = sorted(set(deprecated_models) - set(constant_to_check))
     if len(missing_models) != 0:

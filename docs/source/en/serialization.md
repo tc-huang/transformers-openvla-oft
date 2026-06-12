@@ -106,7 +106,7 @@ standard. For example, we can load and run the model with [ONNX
 Runtime](https://onnxruntime.ai/) as follows:
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> from optimum.onnxruntime import ORTModelForQuestionAnswering
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert_base_uncased_squad_onnx")
@@ -128,7 +128,7 @@ Alternative to CLI, you can export a 🤗 Transformers model to ONNX programmati
 
 ```python
 >>> from optimum.onnxruntime import ORTModelForSequenceClassification
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> model_checkpoint = "distilbert_base_uncased_squad"
 >>> save_directory = "onnx/"
@@ -149,7 +149,7 @@ supported in [`optimum.exporters.onnx`](https://huggingface.co/docs/optimum/expo
 and if it is not, [contribute to 🤗 Optimum](https://huggingface.co/docs/optimum/exporters/onnx/usage_guides/contribute)
 directly.
 
-### Exporting a model with `transformers.onnx`
+### Exporting a model with `transformers_openvla_oft.onnx`
 
 <Tip warning={true}>
 
@@ -163,10 +163,10 @@ To export a 🤗 Transformers model to ONNX with `tranformers.onnx`, install ext
 pip install transformers[onnx]
 ```
 
-Use `transformers.onnx` package as a Python module to export a checkpoint using a ready-made configuration:
+Use `transformers_openvla_oft.onnx` package as a Python module to export a checkpoint using a ready-made configuration:
 
 ```bash
-python -m transformers.onnx --model=distilbert/distilbert-base-uncased onnx/
+python -m transformers_openvla_oft.onnx --model=distilbert/distilbert-base-uncased onnx/
 ```
 
 This exports an ONNX graph of the checkpoint defined by the `--model` argument. Pass any checkpoint on the 🤗 Hub or one that's stored locally.
@@ -174,7 +174,7 @@ The resulting `model.onnx` file can then be run on one of the many accelerators 
 load and run the model with ONNX Runtime as follows:
 
 ```python
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 >>> from onnxruntime import InferenceSession
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
@@ -188,7 +188,7 @@ The required output names (like `["last_hidden_state"]`) can be obtained by taki
 each model. For example, for DistilBERT we have:
 
 ```python
->>> from transformers.models.distilbert import DistilBertConfig, DistilBertOnnxConfig
+>>> from transformers_openvla_oft.models.distilbert import DistilBertConfig, DistilBertOnnxConfig
 
 >>> config = DistilBertConfig()
 >>> onnx_config = DistilBertOnnxConfig(config)
@@ -199,12 +199,12 @@ each model. For example, for DistilBERT we have:
 The process is identical for TensorFlow checkpoints on the Hub. For example, export a pure TensorFlow checkpoint like so:
 
 ```bash
-python -m transformers.onnx --model=keras-io/transformers-qa onnx/
+python -m transformers_openvla_oft.onnx --model=keras-io/transformers-qa onnx/
 ```
 
 To export a model that's stored locally, save the model's weights and tokenizer files in the same directory (e.g. `local-pt-checkpoint`), 
-then export it to ONNX by pointing the `--model` argument of the `transformers.onnx` package to the desired directory:
+then export it to ONNX by pointing the `--model` argument of the `transformers_openvla_oft.onnx` package to the desired directory:
 
 ```bash
-python -m transformers.onnx --model=local-pt-checkpoint onnx/
+python -m transformers_openvla_oft.onnx --model=local-pt-checkpoint onnx/
 ```

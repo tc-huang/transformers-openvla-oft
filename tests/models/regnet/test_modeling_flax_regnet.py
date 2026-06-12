@@ -16,9 +16,9 @@
 import inspect
 import unittest
 
-from transformers import RegNetConfig, is_flax_available
-from transformers.testing_utils import require_flax, slow
-from transformers.utils import cached_property, is_vision_available
+from transformers_openvla_oft import RegNetConfig, is_flax_available
+from transformers_openvla_oft.testing_utils import require_flax, slow
+from transformers_openvla_oft.utils import cached_property, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_flax_common import FlaxModelTesterMixin, floats_tensor
@@ -28,12 +28,12 @@ if is_flax_available():
     import jax
     import jax.numpy as jnp
 
-    from transformers.models.regnet.modeling_flax_regnet import FlaxRegNetForImageClassification, FlaxRegNetModel
+    from transformers_openvla_oft.models.regnet.modeling_flax_regnet import FlaxRegNetForImageClassification, FlaxRegNetModel
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import AutoImageProcessor
+    from transformers_openvla_oft import AutoImageProcessor
 
 
 class FlaxRegNetModelTester(unittest.TestCase):

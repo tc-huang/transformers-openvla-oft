@@ -20,14 +20,14 @@ import math
 import re
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     GroundingDinoConfig,
     SwinConfig,
     is_torch_available,
     is_vision_available,
 )
-from transformers.file_utils import cached_property
-from transformers.testing_utils import (
+from transformers_openvla_oft.file_utils import cached_property
+from transformers_openvla_oft.testing_utils import (
     require_timm,
     require_torch,
     require_torch_gpu,
@@ -44,14 +44,14 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import GroundingDinoForObjectDetection, GroundingDinoModel
-    from transformers.pytorch_utils import id_tensor_storage
+    from transformers_openvla_oft import GroundingDinoForObjectDetection, GroundingDinoModel
+    from transformers_openvla_oft.pytorch_utils import id_tensor_storage
 
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import AutoProcessor
+    from transformers_openvla_oft import AutoProcessor
 
 
 class GroundingDinoModelTester:

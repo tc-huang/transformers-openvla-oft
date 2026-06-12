@@ -16,8 +16,8 @@
 import tempfile
 import unittest
 
-from transformers import RoFormerTokenizer, RoFormerTokenizerFast
-from transformers.testing_utils import require_rjieba, require_tokenizers
+from transformers_openvla_oft import RoFormerTokenizer, RoFormerTokenizerFast
+from transformers_openvla_oft.testing_utils import require_rjieba, require_tokenizers
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

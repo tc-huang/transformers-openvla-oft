@@ -32,7 +32,7 @@ rendered properly in your Markdown viewer.
 访问 [`DistilBertConfig`] 以更近一步了解 [DistilBERT](model_doc/distilbert)，检查它的属性：
 
 ```py
->>> from transformers import DistilBertConfig
+>>> from transformers_openvla_oft import DistilBertConfig
 
 >>> config = DistilBertConfig()
 >>> print(config)
@@ -117,7 +117,7 @@ DistilBertConfig {
 将自定义配置属性加载到模型中：
 
 ```py
->>> from transformers import DistilBertModel
+>>> from transformers_openvla_oft import DistilBertModel
 
 >>> my_config = DistilBertConfig.from_pretrained("./your_model_save_path/config.json")
 >>> model = DistilBertModel(my_config)
@@ -141,7 +141,7 @@ DistilBertConfig {
 将自定义配置属性加载到模型中：
 
 ```py
->>> from transformers import TFDistilBertModel
+>>> from transformers_openvla_oft import TFDistilBertModel
 
 >>> my_config = DistilBertConfig.from_pretrained("./your_model_save_path/my_config.json")
 >>> tf_model = TFDistilBertModel(my_config)
@@ -172,7 +172,7 @@ DistilBertConfig {
 例如，[`DistilBertForSequenceClassification`] 是一个带有序列分类头（sequence classification head）的基础 DistilBERT 模型。序列分类头是池化输出之上的线性层。
 
 ```py
->>> from transformers import DistilBertForSequenceClassification
+>>> from transformers_openvla_oft import DistilBertForSequenceClassification
 
 >>> model = DistilBertForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -180,7 +180,7 @@ DistilBertConfig {
 通过切换到不同的模型头，可以轻松地将此检查点重复用于其他任务。对于问答任务，你可以使用 [`DistilBertForQuestionAnswering`] 模型头。问答头（question answering head）与序列分类头类似，不同点在于它是隐藏状态输出之上的线性层。
 
 ```py
->>> from transformers import DistilBertForQuestionAnswering
+>>> from transformers_openvla_oft import DistilBertForQuestionAnswering
 
 >>> model = DistilBertForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -189,7 +189,7 @@ DistilBertConfig {
 例如，[`TFDistilBertForSequenceClassification`] 是一个带有序列分类头（sequence classification head）的基础 DistilBERT 模型。序列分类头是池化输出之上的线性层。
 
 ```py
->>> from transformers import TFDistilBertForSequenceClassification
+>>> from transformers_openvla_oft import TFDistilBertForSequenceClassification
 
 >>> tf_model = TFDistilBertForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -197,7 +197,7 @@ DistilBertConfig {
 通过切换到不同的模型头,可以轻松地将此检查点重复用于其他任务。对于问答任务，你可以使用 [`TFDistilBertForQuestionAnswering`] 模型头。问答头（question answering head）与序列分类头类似，不同点在于它是隐藏状态输出之上的线性层。
 
 ```py
->>> from transformers import TFDistilBertForQuestionAnswering
+>>> from transformers_openvla_oft import TFDistilBertForQuestionAnswering
 
 >>> tf_model = TFDistilBertForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -222,7 +222,7 @@ DistilBertConfig {
 如果您训练了自己的分词器，则可以从*词表*文件创建一个分词器：
 
 ```py
->>> from transformers import DistilBertTokenizer
+>>> from transformers_openvla_oft import DistilBertTokenizer
 
 >>> my_tokenizer = DistilBertTokenizer(vocab_file="my_vocab_file.txt", do_lower_case=False, padding_side="left")
 ```
@@ -230,7 +230,7 @@ DistilBertConfig {
 请务必记住，自定义分词器生成的词表与预训练模型分词器生成的词表是不同的。如果使用预训练模型，则需要使用预训练模型的词表，否则输入将没有意义。 使用 [`DistilBertTokenizer`] 类创建具有预训练模型词表的分词器：
 
 ```py
->>> from transformers import DistilBertTokenizer
+>>> from transformers_openvla_oft import DistilBertTokenizer
 
 >>> slow_tokenizer = DistilBertTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -238,7 +238,7 @@ DistilBertConfig {
 使用 [`DistilBertTokenizerFast`] 类创建快速分词器：
 
 ```py
->>> from transformers import DistilBertTokenizerFast
+>>> from transformers_openvla_oft import DistilBertTokenizerFast
 
 >>> fast_tokenizer = DistilBertTokenizerFast.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -256,7 +256,7 @@ DistilBertConfig {
 要使用它，需要创建一个与你使用的模型关联的图像处理器。例如，如果你使用 [ViT](model_doc/vit) 进行图像分类，可以创建一个默认的 [`ViTImageProcessor`]：
 
 ```py
->>> from transformers import ViTImageProcessor
+>>> from transformers_openvla_oft import ViTImageProcessor
 
 >>> vit_extractor = ViTImageProcessor()
 >>> print(vit_extractor)
@@ -288,7 +288,7 @@ ViTImageProcessor {
 修改任何 [`ViTImageProcessor`] 参数以创建自定义图像处理器：
 
 ```py
->>> from transformers import ViTImageProcessor
+>>> from transformers_openvla_oft import ViTImageProcessor
 
 >>> my_vit_extractor = ViTImageProcessor(resample="PIL.Image.BOX", do_normalize=False, image_mean=[0.3, 0.3, 0.3])
 >>> print(my_vit_extractor)
@@ -318,7 +318,7 @@ ViTImageProcessor {
 要使用它，创建一个与你使用的模型关联的特征提取器。例如，如果你使用 [Wav2Vec2](model_doc/wav2vec2) 进行音频分类，可以创建一个默认的 [`Wav2Vec2FeatureExtractor`]：
 
 ```py
->>> from transformers import Wav2Vec2FeatureExtractor
+>>> from transformers_openvla_oft import Wav2Vec2FeatureExtractor
 
 >>> w2v2_extractor = Wav2Vec2FeatureExtractor()
 >>> print(w2v2_extractor)
@@ -342,7 +342,7 @@ Wav2Vec2FeatureExtractor {
 修改任何 [`Wav2Vec2FeatureExtractor`] 参数以创建自定义特征提取器：
 
 ```py
->>> from transformers import Wav2Vec2FeatureExtractor
+>>> from transformers_openvla_oft import Wav2Vec2FeatureExtractor
 
 >>> w2v2_extractor = Wav2Vec2FeatureExtractor(sampling_rate=8000, do_normalize=False)
 >>> print(w2v2_extractor)
@@ -365,7 +365,7 @@ Wav2Vec2FeatureExtractor {
 创建一个特征提取器来处理音频输入：
 
 ```py
->>> from transformers import Wav2Vec2FeatureExtractor
+>>> from transformers_openvla_oft import Wav2Vec2FeatureExtractor
 
 >>> feature_extractor = Wav2Vec2FeatureExtractor(padding_value=1.0, do_normalize=True)
 ```
@@ -373,7 +373,7 @@ Wav2Vec2FeatureExtractor {
 创建一个分词器来处理文本输入：
 
 ```py
->>> from transformers import Wav2Vec2CTCTokenizer
+>>> from transformers_openvla_oft import Wav2Vec2CTCTokenizer
 
 >>> tokenizer = Wav2Vec2CTCTokenizer(vocab_file="my_vocab_file.txt")
 ```
@@ -381,7 +381,7 @@ Wav2Vec2FeatureExtractor {
 将特征提取器和分词器合并到 [`Wav2Vec2Processor`] 中：
 
 ```py
->>> from transformers import Wav2Vec2Processor
+>>> from transformers_openvla_oft import Wav2Vec2Processor
 
 >>> processor = Wav2Vec2Processor(feature_extractor=feature_extractor, tokenizer=tokenizer)
 ```

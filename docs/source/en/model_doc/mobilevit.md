@@ -18,7 +18,7 @@ rendered properly in your Markdown viewer.
 
 ## Overview
 
-The MobileViT model was proposed in [MobileViT: Light-weight, General-purpose, and Mobile-friendly Vision Transformer](https://arxiv.org/abs/2110.02178) by Sachin Mehta and Mohammad Rastegari. MobileViT introduces a new layer that replaces local processing in convolutions with global processing using transformers.
+The MobileViT model was proposed in [MobileViT: Light-weight, General-purpose, and Mobile-friendly Vision Transformer](https://arxiv.org/abs/2110.02178) by Sachin Mehta and Mohammad Rastegari. MobileViT introduces a new layer that replaces local processing in convolutions with global processing using transformers_openvla_oft.
 
 The abstract from the paper is the following:
 
@@ -38,7 +38,7 @@ This model was contributed by [matthijs](https://huggingface.co/Matthijs). The T
   TensorFlow Lite model:
 
 ```py
-from transformers import TFMobileViTForImageClassification
+from transformers_openvla_oft import TFMobileViTForImageClassification
 import tensorflow as tf
 
 

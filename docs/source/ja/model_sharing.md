@@ -158,7 +158,7 @@ Pass your training arguments as usual to [`Trainer`]:
 ... )
 ```
 
-ファインチューニングが完了したら、[`Trainer`]で[`~transformers.Trainer.push_to_hub`]を呼び出して、トレーニング済みモデルをHubにプッシュします。🤗 Transformersは、トレーニングのハイパーパラメータ、トレーニング結果、およびフレームワークのバージョンを自動的にモデルカードに追加します！
+ファインチューニングが完了したら、[`Trainer`]で[`~transformers_openvla_oft.Trainer.push_to_hub`]を呼び出して、トレーニング済みモデルをHubにプッシュします。🤗 Transformersは、トレーニングのハイパーパラメータ、トレーニング結果、およびフレームワークのバージョンを自動的にモデルカードに追加します！
 
 ```py
 >>> trainer.push_to_hub()
@@ -174,7 +174,7 @@ Pass your training arguments as usual to [`Trainer`]:
 - `hub_model_id`、つまりHubのユーザー名とモデル名。
 
 ```python
->>> from transformers import PushToHubCallback
+>>> from transformers_openvla_oft import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="./your_model_save_path", tokenizer=tokenizer, hub_model_id="your-username/my-awesome-model"
@@ -203,7 +203,7 @@ Pass your training arguments as usual to [`Trainer`]:
 ユーザーは、`from_pretrained` 関数を使用してモデルをロードできます：
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> model = AutoModel.from_pretrained("your_username/my-awesome-model")
 ```

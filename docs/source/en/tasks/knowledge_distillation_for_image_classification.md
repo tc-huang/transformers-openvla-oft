@@ -40,7 +40,7 @@ dataset = load_dataset("beans")
 We can use an image processor from either of the models, as in this case they return the same output with same resolution. We will use the `map()` method of `dataset` to apply the preprocessing to every split of the dataset. 
 
 ```python
-from transformers import AutoImageProcessor
+from transformers_openvla_oft import AutoImageProcessor
 teacher_processor = AutoImageProcessor.from_pretrained("merve/beans-vit-224")
 
 def process(examples):
@@ -54,7 +54,7 @@ Essentially, we want the student model (a randomly initialized MobileNet) to mim
 
 
 ```python
-from transformers import TrainingArguments, Trainer
+from transformers_openvla_oft import TrainingArguments, Trainer
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -104,7 +104,7 @@ notebook_login()
 Let's set the `TrainingArguments`, the teacher model and the student model. 
 
 ```python
-from transformers import AutoModelForImageClassification, MobileNetV2Config, MobileNetV2ForImageClassification
+from transformers_openvla_oft import AutoModelForImageClassification, MobileNetV2Config, MobileNetV2ForImageClassification
 
 training_args = TrainingArguments(
     output_dir="my-awesome-model",
@@ -154,7 +154,7 @@ def compute_metrics(eval_pred):
 Let's initialize the `Trainer` with the training arguments we defined. We will also initialize our data collator.
 
 ```python
-from transformers import DefaultDataCollator
+from transformers_openvla_oft import DefaultDataCollator
 
 data_collator = DefaultDataCollator()
 trainer = ImageDistilTrainer(

@@ -192,7 +192,7 @@ RUN_SLOW=1 pytest -m accelerate_tests tests/models/opt/test_modeling_opt.py
 ### 문서 테스트 실행[[run-documentation-tests]]
 
 예시 문서가 올바른지 테스트하려면 `doctests`가 통과하는지 확인해야 합니다.
-예를 들어, [`WhisperModel.forward`'s docstring](https://github.com/huggingface/transformers/blob/main/src/transformers/models/whisper/modeling_whisper.py#L1017-L1035)를 사용해 봅시다:
+예를 들어, [`WhisperModel.forward`'s docstring](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/whisper/modeling_whisper.py#L1017-L1035)를 사용해 봅시다:
 
 ```python 
 r"""
@@ -201,7 +201,7 @@ Returns:
 Example:
     ```python
     >>> import torch
-    >>> from transformers import WhisperModel, WhisperFeatureExtractor
+    >>> from transformers_openvla_oft import WhisperModel, WhisperFeatureExtractor
     >>> from datasets import load_dataset
 
     >>> model = WhisperModel.from_pretrained("openai/whisper-base")
@@ -506,7 +506,7 @@ def test_integration_foo():
 - 사용 가능한 GPU 수:
 
 ```python
-from transformers.testing_utils import get_gpu_count
+from transformers_openvla_oft.testing_utils import get_gpu_count
 
 n_gpu = get_gpu_count()  #torch와 tf와 함께 작동
 ```
@@ -696,7 +696,7 @@ pytest test_this2.py::test_floor[negative--1.5--2.0] test_this2.py::test_floor[i
 
 테스트에서 종종 현재 테스트 파일과 관련된 상대적인 위치를 알아야 하는 경우가 있습니다. 
 테스트가 여러 디렉터리에서 호출되거나 깊이가 다른 하위 디렉터리에 있을 수 있기 때문에 그 위치를 아는 것은 간단하지 않습니다.
-`transformers.test_utils.TestCasePlus`라는 헬퍼 클래스는 모든 기본 경로를 처리하고 간단한 액세서를 제공하여 이 문제를 해결합니다:
+`transformers_openvla_oft.test_utils.TestCasePlus`라는 헬퍼 클래스는 모든 기본 경로를 처리하고 간단한 액세서를 제공하여 이 문제를 해결합니다:
 
 
 - `pathlib` 객체(완전히 정해진 경로)
@@ -717,11 +717,11 @@ pytest test_this2.py::test_floor[negative--1.5--2.0] test_this2.py::test_floor[i
   - `repo_root_dir_str`
   - `src_dir_str`
 
-위의 내용을 사용하려면 테스트가 'transformers.test_utils.TestCasePlus'의 서브클래스에 있는지 확인해야 합니다. 
+위의 내용을 사용하려면 테스트가 'transformers_openvla_oft.test_utils.TestCasePlus'의 서브클래스에 있는지 확인해야 합니다. 
 예를 들어 다음과 같습니다:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class PathExampleTest(TestCasePlus):
@@ -733,7 +733,7 @@ class PathExampleTest(TestCasePlus):
 예를 들어 다음과 같습니다:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class PathExampleTest(TestCasePlus):
@@ -750,13 +750,13 @@ class PathExampleTest(TestCasePlus):
 그러나 테스트를 디버깅할 때는 임시 파일이나 디렉터리에 들어가는 내용을 확인할 수 있어야 하며, 
 재실행되는 각 테스트마다 임시 파일이나 디렉터리의 경로에 대해 무작위 값이 아닌 정확한 값을 알고 싶을 것입니다.
 
-`transformers.test_utils.TestCasePlus`라는 도우미 클래스는 이러한 목적에 가장 적합합니다. 
+`transformers_openvla_oft.test_utils.TestCasePlus`라는 도우미 클래스는 이러한 목적에 가장 적합합니다. 
 이 클래스는 `unittest.TestCase`의 하위 클래스이므로, 우리는 이것을 테스트 모듈에서 쉽게 상속할 수 있습니다.
 
 다음은 해당 클래스를 사용하는 예시입니다:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class ExamplesTests(TestCasePlus):
@@ -817,7 +817,7 @@ def test_whatever(self):
 
 ```python
 import os
-from transformers.testing_utils import ExtendSysPath
+from transformers_openvla_oft.testing_utils import ExtendSysPath
 
 bindir = os.path.abspath(os.path.dirname(__file__))
 with ExtendSysPath(f"{bindir}/.."):
@@ -925,7 +925,7 @@ class TestClass():
 따라서 필수 테스트를 위한 일부 예외를 제외하고 느린 테스트는 다음과 같이 표시해야 합니다.
 
 ```python no-style
-from transformers.testing_utils import slow
+from transformers_openvla_oft.testing_utils import slow
 @slow
 def test_integration_foo():
 ```
@@ -1069,7 +1069,7 @@ def test_result_and_stdout():
 출력에 `\r`이 포함되어 있는지의 여부에 관계없이 모든 것을 자동으로 처리하므로 편리합니다.
 
 ```python
-from transformers.testing_utils import CaptureStdout
+from transformers_openvla_oft.testing_utils import CaptureStdout
 
 with CaptureStdout() as cs:
     function_that_writes_to_stdout()
@@ -1079,7 +1079,7 @@ print(cs.out)
 다음은 전체 테스트 예제입니다.
 
 ```python
-from transformers.testing_utils import CaptureStdout
+from transformers_openvla_oft.testing_utils import CaptureStdout
 
 msg = "Secret message\r"
 final = "Hello World"
@@ -1091,7 +1091,7 @@ assert cs.out == final + "\n", f"captured: {cs.out}, expecting {final}"
 `stderr`를 캡처하고 싶다면, 대신 `CaptureStderr` 클래스를 사용하세요.
 
 ```python
-from transformers.testing_utils import CaptureStderr
+from transformers_openvla_oft.testing_utils import CaptureStderr
 
 with CaptureStderr() as cs:
     function_that_writes_to_stderr()
@@ -1101,7 +1101,7 @@ print(cs.err)
 두 스트림을 동시에 캡처해야 한다면, 부모 `CaptureStd` 클래스를 사용하세요.
 
 ```python
-from transformers.testing_utils import CaptureStd
+from transformers_openvla_oft.testing_utils import CaptureStd
 
 with CaptureStd() as cs:
     function_that_writes_to_stdout_and_stderr()
@@ -1117,12 +1117,12 @@ print(cs.err, cs.out)
 로거 출력을 검증해야 하는 경우 `CaptureLogger`를 사용할 수 있습니다.
 
 ```python
-from transformers import logging
-from transformers.testing_utils import CaptureLogger
+from transformers_openvla_oft import logging
+from transformers_openvla_oft.testing_utils import CaptureLogger
 
 msg = "Testing 1, 2, 3"
 logging.set_verbosity_info()
-logger = logging.get_logger("transformers.models.bart.tokenization_bart")
+logger = logging.get_logger("transformers_openvla_oft.models.bart.tokenization_bart")
 with CaptureLogger(logger) as cl:
     logger.info(msg)
 assert cl.out, msg + "\n"
@@ -1131,10 +1131,10 @@ assert cl.out, msg + "\n"
 ### 환경 변수를 이용하여 테스트[[testing-with-environment-variables]]
 
 특정 테스트의 환경 변수 영향을 검증하려면 
-`transformers.testing_utils.mockenv`라는 도우미 데코레이터를 사용할 수 있습니다.
+`transformers_openvla_oft.testing_utils.mockenv`라는 도우미 데코레이터를 사용할 수 있습니다.
 
 ```python
-from transformers.testing_utils import mockenv
+from transformers_openvla_oft.testing_utils import mockenv
 
 
 class HfArgumentParserTest(unittest.TestCase):
@@ -1144,10 +1144,10 @@ class HfArgumentParserTest(unittest.TestCase):
 ```
 
 일부 경우에는 외부 프로그램을 호출해야할 수도 있는데, 이 때에는 여러 개의 로컬 경로를 포함하는 `os.environ`에서 `PYTHONPATH`의 설정이 필요합니다.  
-헬퍼 클래스 `transformers.test_utils.TestCasePlus`가 도움이 됩니다:
+헬퍼 클래스 `transformers_openvla_oft.test_utils.TestCasePlus`가 도움이 됩니다:
 
 ```python
-from transformers.testing_utils import TestCasePlus
+from transformers_openvla_oft.testing_utils import TestCasePlus
 
 
 class EnvExampleTest(TestCasePlus):

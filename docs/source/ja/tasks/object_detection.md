@@ -182,7 +182,7 @@ DETR モデルをトレーニングできる「ラベル」。画像プロセッ
 微調整するモデルと同じチェックポイントからイメージ プロセッサをインスタンス化します。
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> checkpoint = "facebook/detr-resnet-50"
 >>> image_processor = AutoImageProcessor.from_pretrained(checkpoint)
@@ -332,7 +332,7 @@ DETR モデルをトレーニングできる「ラベル」。画像プロセッ
 および `id2label` マップは、以前にデータセットのメタデータから作成したものです。さらに、`ignore_mismatched_sizes=True`を指定して、既存の分類頭部を新しい分類頭部に置き換えます。
 
 ```py
->>> from transformers import AutoModelForObjectDetection
+>>> from transformers_openvla_oft import AutoModelForObjectDetection
 
 >>> model = AutoModelForObjectDetection.from_pretrained(
 ...     checkpoint,
@@ -349,7 +349,7 @@ DETR モデルをトレーニングできる「ラベル」。画像プロセッ
 顔に向かってモデルをアップロードします）。
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(
 ...     output_dir="detr-resnet-50_finetuned_cppe5",
@@ -366,10 +366,10 @@ DETR モデルをトレーニングできる「ラベル」。画像プロセッ
 ... )
 ```
 
-最後に、すべてをまとめて、[`~transformers.Trainer.train`] を呼び出します。
+最後に、すべてをまとめて、[`~transformers_openvla_oft.Trainer.train`] を呼び出します。
 
 ```py
->>> from transformers import Trainer
+>>> from transformers_openvla_oft import Trainer
 
 >>> trainer = Trainer(
 ...     model=model,
@@ -383,7 +383,7 @@ DETR モデルをトレーニングできる「ラベル」。画像プロセッ
 ```
 
 `training_args`で`push_to_hub`を`True`に設定した場合、トレーニング チェックポイントは
-ハグフェイスハブ。トレーニングが完了したら、[`~transformers.Trainer.push_to_hub`] メソッドを呼び出して、最終モデルもハブにプッシュします。
+ハグフェイスハブ。トレーニングが完了したら、[`~transformers_openvla_oft.Trainer.push_to_hub`] メソッドを呼び出して、最終モデルもハブにプッシュします。
 
 ```py
 >>> trainer.push_to_hub()
@@ -542,7 +542,7 @@ IoU metric: bbox
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.590
 ```
 
-これらの結果は、[`~transformers.TrainingArguments`] のハイパーパラメータを調整することでさらに改善できます。試してごらん！
+これらの結果は、[`~transformers_openvla_oft.TrainingArguments`] のハイパーパラメータを調整することでさらに改善できます。試してごらん！
 
 ## Inference
 
@@ -552,7 +552,7 @@ DETR モデルを微調整して評価し、Hugging Face Hub にアップロー�
 
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 >>> import requests
 
 >>> url = "https://i.imgur.com/2lnWoly.jpg"

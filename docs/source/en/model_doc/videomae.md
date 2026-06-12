@@ -68,10 +68,10 @@ to fine-tune a VideoMAE model on a custom dataset.
 
 `VideoMAEForPreTraining` includes the decoder on top for self-supervised pre-training.
 
-[[autodoc]] transformers.VideoMAEForPreTraining
+[[autodoc]] transformers_openvla_oft.VideoMAEForPreTraining
     - forward
 
 ## VideoMAEForVideoClassification
 
-[[autodoc]] transformers.VideoMAEForVideoClassification
+[[autodoc]] transformers_openvla_oft.VideoMAEForVideoClassification
     - forward

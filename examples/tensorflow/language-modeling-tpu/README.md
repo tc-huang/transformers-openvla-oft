@@ -79,7 +79,7 @@ If you had specified a `hub_model_id` while launching training, then your model 
 Once the model is trained, you can use 🤗 Pipelines to perform inference:
 
 ```python
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 model_id = "tf-tpu/roberta-base-epochs-500-no-wd"
 unmasker = pipeline("fill-mask", model=model_id, framework="tf")

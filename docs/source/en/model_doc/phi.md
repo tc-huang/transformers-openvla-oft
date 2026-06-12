@@ -82,7 +82,7 @@ Phi-2 has been integrated in the development version (4.37.0.dev) of `transforme
 </Tip>
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer
 
 >>> model = AutoModelForCausalLM.from_pretrained("microsoft/phi-2")
 >>> tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-2")
@@ -100,7 +100,7 @@ Company B
 ### Example :
 
 ```python
->>> from transformers import PhiForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import PhiForCausalLM, AutoTokenizer
 
 >>> # define the model and tokenizer.
 >>> model = PhiForCausalLM.from_pretrained("microsoft/phi-1_5")
@@ -133,7 +133,7 @@ To load and run a model using Flash Attention 2, refer to the snippet below:
 
 ```python
 >>> import torch
->>> from transformers import PhiForCausalLM, AutoTokenizer
+>>> from transformers_openvla_oft import PhiForCausalLM, AutoTokenizer
 
 >>> # define the model and tokenizer and push the model and tokens to the GPU.
 >>> model = PhiForCausalLM.from_pretrained("microsoft/phi-1_5", torch_dtype=torch.float16, attn_implementation="flash_attention_2").to("cuda")  # doctest: +SKIP

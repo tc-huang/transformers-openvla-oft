@@ -31,9 +31,9 @@ from datasets import load_dataset, load_metric
 from torch.utils.data import DataLoader
 from utils_qa import postprocess_qa_predictions
 
-import transformers
-from transformers import AutoTokenizer, EvalPrediction, default_data_collator, set_seed
-from transformers.trainer_pt_utils import nested_concat, nested_truncate
+import transformers_openvla_oft
+from transformers_openvla_oft import AutoTokenizer, EvalPrediction, default_data_collator, set_seed
+from transformers_openvla_oft.trainer_pt_utils import nested_concat, nested_truncate
 
 
 TRT_LOGGER = trt.Logger(trt.Logger.WARNING)
@@ -251,10 +251,10 @@ logging.basicConfig(
 logger.setLevel(logging.INFO if accelerator.is_local_main_process else logging.ERROR)
 if accelerator.is_local_main_process:
     datasets.utils.logging.set_verbosity_warning()
-    transformers.utils.logging.set_verbosity_info()
+    transformers_openvla_oft.utils.logging.set_verbosity_info()
 else:
     datasets.utils.logging.set_verbosity_error()
-    transformers.utils.logging.set_verbosity_error()
+    transformers_openvla_oft.utils.logging.set_verbosity_error()
 
 # If passed along, set the training seed now.
 if args.seed is not None:

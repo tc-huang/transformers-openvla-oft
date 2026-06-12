@@ -18,8 +18,8 @@ import unittest
 
 import numpy as np
 
-from transformers import is_flax_available
-from transformers.testing_utils import require_flax
+from transformers_openvla_oft import is_flax_available
+from transformers_openvla_oft.testing_utils import require_flax
 
 from ..test_modeling_flax_common import ids_tensor
 
@@ -28,7 +28,7 @@ if is_flax_available():
     import jax
     import jax.numpy as jnp
 
-    from transformers.generation import (
+    from transformers_openvla_oft.generation import (
         FlaxForcedBOSTokenLogitsProcessor,
         FlaxForcedEOSTokenLogitsProcessor,
         FlaxLogitsProcessorList,

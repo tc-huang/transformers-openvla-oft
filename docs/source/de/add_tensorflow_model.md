@@ -44,7 +44,7 @@ Sind Sie unsicher, ob das Modell, das Sie verwenden möchten, bereits eine entsp
 Überprüfen Sie das Feld `model_type` in der `config.json` des Modells Ihrer Wahl
 ([Beispiel](https://huggingface.co/google-bert/bert-base-uncased/blob/main/config.json#L14)). Wenn der entsprechende Modellordner in
 🤗 Transformers eine Datei hat, deren Name mit "modeling_tf" beginnt, bedeutet dies, dass es eine entsprechende TensorFlow
-Architektur hat ([Beispiel](https://github.com/huggingface/transformers/tree/main/src/transformers/models/bert)).
+Architektur hat ([Beispiel](https://github.com/huggingface/transformers/tree/main/src/transformers_openvla_oft/models/bert)).
 
 </Tip>
 
@@ -187,7 +187,7 @@ ermutigen wir Sie, alle dringenden Fragen in unserem [Forum](https://discuss.hug
 ### 4. Implementierung des Modells
 
 Jetzt ist es an der Zeit, endlich mit dem Programmieren zu beginnen. Als Ausgangspunkt empfehlen wir die PyTorch-Datei selbst: Kopieren Sie den Inhalt von
-`modeling_brand_new_bert.py` in `src/transformers/models/brand_new_bert/` nach
+`modeling_brand_new_bert.py` in `src/transformers_openvla_oft/models/brand_new_bert/` nach
 `modeling_tf_brand_new_bert.py`. Das Ziel dieses Abschnitts ist es, die Datei zu ändern und die Importstruktur von
 🤗 Transformers zu aktualisieren, so dass Sie `TFBrandNewBert` und
 `TFBrandNewBert.from_pretrained(model_repo, from_pt=True)` erfolgreich ein funktionierendes TensorFlow *BrandNewBert* Modell lädt.
@@ -208,29 +208,29 @@ Tipps befolgen, um den Prozess so reibungslos wie möglich zu gestalten:
    und `1e-3` in [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/keras/layers/BatchNormalization)).
    Prüfen Sie die Dokumentation genau!
 - Die Variablen `nn.Parameter` von PyTorch müssen in der Regel innerhalb von TF Layer's `build()` initialisiert werden. Siehe das folgende
-   Beispiel: [PyTorch](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers/models/vit_mae/modeling_vit_mae.py#L212) /
-   [TensorFlow](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers/models/vit_mae/modeling_tf_vit_mae.py#L220)
+   Beispiel: [PyTorch](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers_openvla_oft/models/vit_mae/modeling_vit_mae.py#L212) /
+   [TensorFlow](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers_openvla_oft/models/vit_mae/modeling_tf_vit_mae.py#L220)
 - Wenn das PyTorch-Modell ein `#copied from ...` am Anfang einer Funktion hat, stehen die Chancen gut, dass Ihr TensorFlow-Modell diese Funktion auch
    diese Funktion von der Architektur ausleihen kann, von der sie kopiert wurde, vorausgesetzt, es hat eine TensorFlow-Architektur.
 - Die korrekte Zuweisung des Attributs `name` in TensorFlow-Funktionen ist entscheidend, um das `from_pt=True` Gewicht zu erreichen
    Cross-Loading. Name" ist fast immer der Name der entsprechenden Variablen im PyTorch-Code. Wenn `name` nicht
    nicht richtig gesetzt ist, sehen Sie dies in der Fehlermeldung beim Laden der Modellgewichte.
 - Die Logik der Basismodellklasse, `BrandNewBertModel`, befindet sich in `TFBrandNewBertMainLayer`, einer Keras
-   Schicht-Unterklasse ([Beispiel](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers/models/bert/modeling_tf_bert.py#L719)).
+   Schicht-Unterklasse ([Beispiel](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers_openvla_oft/models/bert/modeling_tf_bert.py#L719)).
    TFBrandNewBertModel" ist lediglich ein Wrapper für diese Schicht.
 - Keras-Modelle müssen erstellt werden, um die vorher trainierten Gewichte zu laden. Aus diesem Grund muss `TFBrandNewBertPreTrainedModel`
    ein Beispiel für die Eingaben in das Modell enthalten, die `dummy_inputs`
-   ([Beispiel](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers/models/bert/modeling_tf_bert.py#L916)).
+   ([Beispiel](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers_openvla_oft/models/bert/modeling_tf_bert.py#L916)).
 - Wenn Sie nicht weiterkommen, fragen Sie nach Hilfe - wir sind für Sie da! 🤗
 
 Neben der Modelldatei selbst müssen Sie auch die Verweise auf die Modellklassen und die zugehörigen
 Dokumentationsseiten hinzufügen. Sie können diesen Teil ganz nach den Mustern in anderen PRs erledigen
 ([Beispiel](https://github.com/huggingface/transformers/pull/18020/files)). Hier ist eine Liste der erforderlichen manuellen
 Änderungen:
-- Fügen Sie alle öffentlichen Klassen von *BrandNewBert* in `src/transformers/__init__.py` ein.
-- Fügen Sie *BrandNewBert* Klassen zu den entsprechenden Auto Klassen in `src/transformers/models/auto/modeling_tf_auto.py` hinzu.
-- Fügen Sie die *BrandNewBert* zugehörigen Klassen für träges Laden in `src/transformers/utils/dummy_tf_objects.py` hinzu.
-- Aktualisieren Sie die Importstrukturen für die öffentlichen Klassen in `src/transformers/models/brand_new_bert/__init__.py`.
+- Fügen Sie alle öffentlichen Klassen von *BrandNewBert* in `src/transformers_openvla_oft/__init__.py` ein.
+- Fügen Sie *BrandNewBert* Klassen zu den entsprechenden Auto Klassen in `src/transformers_openvla_oft/models/auto/modeling_tf_auto.py` hinzu.
+- Fügen Sie die *BrandNewBert* zugehörigen Klassen für träges Laden in `src/transformers_openvla_oft/utils/dummy_tf_objects.py` hinzu.
+- Aktualisieren Sie die Importstrukturen für die öffentlichen Klassen in `src/transformers_openvla_oft/models/brand_new_bert/__init__.py`.
 - Fügen Sie die Dokumentationszeiger auf die öffentlichen Methoden von *BrandNewBert* in `docs/source/de/model_doc/brand_new_bert.md` hinzu.
 - Fügen Sie sich selbst zur Liste der Mitwirkenden an *BrandNewBert* in `docs/source/de/model_doc/brand_new_bert.md` hinzu.
 - Fügen Sie schließlich ein grünes Häkchen ✅ in der TensorFlow-Spalte von *BrandNewBert* in `docs/source/de/index.md` hinzu.

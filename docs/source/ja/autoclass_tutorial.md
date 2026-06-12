@@ -46,7 +46,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 [`AutoTokenizer.from_pretrained`]を使用してトークナイザをロードします：
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-uncased")
 ```
@@ -67,7 +67,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 ビジョンタスクの場合、画像プロセッサが画像を正しい入力形式に変換します。
 
 ```py
->>> from transformers import AutoImageProcessor
+>>> from transformers_openvla_oft import AutoImageProcessor
 
 >>> image_processor = AutoImageProcessor.from_pretrained("google/vit-base-patch16-224")
 ```
@@ -79,7 +79,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 [`AutoFeatureExtractor.from_pretrained`]を使用して特徴量抽出器をロードします.
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained(
 ...     "ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"
@@ -95,7 +95,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 [`AutoProcessor.from_pretrained`]を使用してプロセッサをロードします：
 
 ```py
->>> from transformers import AutoProcessor
+>>> from transformers_openvla_oft import AutoProcessor
 
 >>> processor = AutoProcessor.from_pretrained("microsoft/layoutlmv2-base-uncased")
 ```
@@ -108,7 +108,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 たとえば、[`AutoModelForSequenceClassification.from_pretrained`]を使用してシーケンス分類用のモデルをロードできます：
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -116,7 +116,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 同じチェックポイントを再利用して異なるタスクのアーキテクチャをロードできます：
 
 ```py
->>> from transformers import AutoModelForTokenClassification
+>>> from transformers_openvla_oft import AutoModelForTokenClassification
 
 >>> model = AutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -141,7 +141,7 @@ TensorFlowおよびFlaxのチェックポイントには影響がなく、`from_
 たとえば、[`TFAutoModelForSequenceClassification.from_pretrained`]を使用してシーケンス分類用のモデルをロードできます：
 
 ```py
->>> from transformers import TFAutoModelForSequenceClassification
+>>> from transformers_openvla_oft import TFAutoModelForSequenceClassification
 
 >>> model = TFAutoModelForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -149,7 +149,7 @@ TensorFlowおよびFlaxのチェックポイントには影響がなく、`from_
 同じチェックポイントを再利用して異なるタスクのアーキテクチャをロードできます：
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```

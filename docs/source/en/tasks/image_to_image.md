@@ -35,7 +35,7 @@ pip install transformers
 We can now initialize the pipeline with a [Swin2SR model](https://huggingface.co/caidas/swin2SR-lightweight-x2-64). We can then infer with the pipeline by calling it with an image. As of now, only [Swin2SR models](https://huggingface.co/models?sort=trending&search=swin2sr) are supported in this pipeline. 
 
 ```python
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 pipe = pipeline(task="image-to-image", model="caidas/swin2SR-lightweight-x2-64", device=device)
@@ -69,10 +69,10 @@ print(upscaled.size)
 # (1072, 880)
 ```
 
-If you wish to do inference yourself with no pipeline, you can use the `Swin2SRForImageSuperResolution` and `Swin2SRImageProcessor` classes of transformers. We will use the same model checkpoint for this. Let's initialize the model and the processor.
+If you wish to do inference yourself with no pipeline, you can use the `Swin2SRForImageSuperResolution` and `Swin2SRImageProcessor` classes of transformers_openvla_oft. We will use the same model checkpoint for this. Let's initialize the model and the processor.
 
 ```python
-from transformers import Swin2SRForImageSuperResolution, Swin2SRImageProcessor 
+from transformers_openvla_oft import Swin2SRForImageSuperResolution, Swin2SRImageProcessor 
 
 model = Swin2SRForImageSuperResolution.from_pretrained("caidas/swin2SR-lightweight-x2-64").to(device)
 processor = Swin2SRImageProcessor("caidas/swin2SR-lightweight-x2-64")

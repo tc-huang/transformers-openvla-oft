@@ -43,7 +43,7 @@ from igf.igf import (
 )
 from torch.utils.data import DataLoader, RandomSampler
 
-from transformers import GPT2LMHeadModel
+from transformers_openvla_oft import GPT2LMHeadModel
 
 
 def generate_n_pairs(

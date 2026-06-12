@@ -1,6 +1,6 @@
 from arguments import InitializationArguments
 
-from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer, HfArgumentParser
+from transformers_openvla_oft import AutoConfig, AutoModelForCausalLM, AutoTokenizer, HfArgumentParser
 
 
 # Configuration

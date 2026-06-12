@@ -41,7 +41,7 @@ tarefa.
 1. Comece carregando um [`pipeline`] e especifique uma tarefa de inferência:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline(task="text-generation")
 ```
@@ -83,7 +83,7 @@ carregue-o com as classes `AutoModelFor` e [`AutoTokenizer`] correspondentes. Po
 para uma tarefa de modelagem de linguagem causal:
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForCausalLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForCausalLM
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilgpt2")
 >>> model = AutoModelForCausalLM.from_pretrained("distilbert/distilgpt2")
@@ -92,7 +92,7 @@ para uma tarefa de modelagem de linguagem causal:
 Crie uma [`pipeline`] para a sua tarefa e especifíque o modelo e o tokenizador que foram carregados:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline(task="text-generation", model=model, tokenizer=tokenizer)
 ```
@@ -114,7 +114,7 @@ Encontre um modelo de [audio classification](https://huggingface.co/models?pipel
 reconhecimento de emoções no Model Hub e carregue-o usando o [`pipeline`]:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> audio_classifier = pipeline(
 ...     task="audio-classification", model="ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"
@@ -141,7 +141,7 @@ A imagem pode ser um link ou uma rota local à imagem. Por exemplo, que espécie
 ![pipeline-cat-chonk](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vision_classifier = pipeline(task="image-classification")
 >>> vision_classifier(

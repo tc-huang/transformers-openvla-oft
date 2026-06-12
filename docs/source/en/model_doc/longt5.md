@@ -63,7 +63,7 @@ The complexity of this mechanism is `O(l(r + l/k))`.
 ```python
 >>> import evaluate
 >>> from datasets import load_dataset
->>> from transformers import AutoTokenizer, LongT5ForConditionalGeneration
+>>> from transformers_openvla_oft import AutoTokenizer, LongT5ForConditionalGeneration
 
 >>> dataset = load_dataset("scientific_papers", "pubmed", split="validation")
 >>> model = (

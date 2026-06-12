@@ -17,8 +17,8 @@ import unittest
 
 import numpy as np
 
-from transformers.testing_utils import require_flax, require_tf, require_torch
-from transformers.utils import (
+from transformers_openvla_oft.testing_utils import require_flax, require_tf, require_torch
+from transformers_openvla_oft.utils import (
     expand_dims,
     flatten_dict,
     is_flax_available,

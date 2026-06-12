@@ -99,7 +99,7 @@ pip install transformers datasets evaluate
 マスクされた言語モデリングの場合、次のステップは、`text`サブフィールドを処理するために DistilRoBERTa トークナイザーをロードすることです。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilroberta-base")
 ```
@@ -185,7 +185,7 @@ pip install transformers datasets evaluate
 シーケンス終了トークンをパディング トークンとして使用し、データを反復するたびにランダムにトークンをマスクするために `mlm_probability` を指定します。
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> tokenizer.pad_token = tokenizer.eos_token
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.15)
@@ -197,7 +197,7 @@ pip install transformers datasets evaluate
 
 
 ```py
->>> from transformers import DataCollatorForLanguageModeling
+>>> from transformers_openvla_oft import DataCollatorForLanguageModeling
 
 >>> data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.15, return_tensors="tf")
 ```
@@ -217,7 +217,7 @@ pip install transformers datasets evaluate
 これでモデルのトレーニングを開始する準備が整いました。 [`AutoModelForMaskedLM`] を使用して DistilRoBERTa をロードします。
 
 ```py
->>> from transformers import AutoModelForMaskedLM
+>>> from transformers_openvla_oft import AutoModelForMaskedLM
 
 >>> model = AutoModelForMaskedLM.from_pretrained("distilbert/distilroberta-base")
 ```
@@ -249,7 +249,7 @@ pip install transformers datasets evaluate
 >>> trainer.train()
 ```
 
-トレーニングが完了したら、 [`~transformers.Trainer.evaluate`] メソッドを使用してモデルを評価し、その複雑さを取得します。
+トレーニングが完了したら、 [`~transformers_openvla_oft.Trainer.evaluate`] メソッドを使用してモデルを評価し、その複雑さを取得します。
 
 
 ```py
@@ -260,7 +260,7 @@ pip install transformers datasets evaluate
 Perplexity: 8.76
 ```
 
-次に、 [`~transformers.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
+次に、 [`~transformers_openvla_oft.Trainer.push_to_hub`] メソッドを使用してモデルをハブに共有し、誰もがモデルを使用できるようにします。
 
 ```py
 >>> trainer.push_to_hub()
@@ -277,7 +277,7 @@ Keras を使用したモデルの微調整に慣れていない場合は、[こ�
 TensorFlow でモデルを微調整するには、オプティマイザー関数、学習率スケジュール、およびいくつかのトレーニング ハイパーパラメーターをセットアップすることから始めます。
 
 ```py
->>> from transformers import create_optimizer, AdamWeightDecay
+>>> from transformers_openvla_oft import create_optimizer, AdamWeightDecay
 
 >>> optimizer = AdamWeightDecay(learning_rate=2e-5, weight_decay_rate=0.01)
 ```
@@ -285,12 +285,12 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 次に、[`TFAutoModelForMaskedLM`] を使用して DistilRoBERTa をロードできます。
 
 ```py
->>> from transformers import TFAutoModelForMaskedLM
+>>> from transformers_openvla_oft import TFAutoModelForMaskedLM
 
 >>> model = TFAutoModelForMaskedLM.from_pretrained("distilbert/distilroberta-base")
 ```
 
-[`~transformers.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
+[`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`] を使用して、データセットを `tf.data.Dataset` 形式に変換します。
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -317,10 +317,10 @@ TensorFlow でモデルを微調整するには、オプティマイザー関数
 >>> model.compile(optimizer=optimizer)  # No loss argument!
 ```
 
-This can be done by specifying where to push your model and tokenizer in the [`~transformers.PushToHubCallback`]:
+This can be done by specifying where to push your model and tokenizer in the [`~transformers_openvla_oft.PushToHubCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> callback = PushToHubCallback(
 ...     output_dir="my_awesome_eli5_mlm_model",
@@ -362,7 +362,7 @@ This can be done by specifying where to push your model and tokenizer in the [`~
 推論用に微調整されたモデルを試す最も簡単な方法は、それを [`pipeline`] で使用することです。モデルを使用してフィルマスクの`pipeline`をインスタンス化し、テキストをそれに渡します。必要に応じて、`top_k`パラメータを使用して、返す予測の数を指定できます。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> mask_filler = pipeline("fill-mask", "stevhliu/my_awesome_eli5_mlm_model")
 >>> mask_filler(text, top_k=3)
@@ -386,7 +386,7 @@ This can be done by specifying where to push your model and tokenizer in the [`~
 テキストをトークン化し、`input_ids`を PyTorch テンソルとして返します。 `<mask>` トークンの位置も指定する必要があります。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_eli5_mlm_model")
 >>> inputs = tokenizer(text, return_tensors="pt")
@@ -396,7 +396,7 @@ This can be done by specifying where to push your model and tokenizer in the [`~
 入力をモデルに渡し、マスクされたトークンの`logits`を返します。
 
 ```py
->>> from transformers import AutoModelForMaskedLM
+>>> from transformers_openvla_oft import AutoModelForMaskedLM
 
 >>> model = AutoModelForMaskedLM.from_pretrained("stevhliu/my_awesome_eli5_mlm_model")
 >>> logits = model(**inputs).logits
@@ -421,7 +421,7 @@ The Milky Way is a small galaxy.
 テキストをトークン化し、`input_ids`を TensorFlow テンソルとして返します。 `<mask>` トークンの位置も指定する必要があります。
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_eli5_mlm_model")
 >>> inputs = tokenizer(text, return_tensors="tf")
@@ -432,7 +432,7 @@ The Milky Way is a small galaxy.
 
 
 ```py
->>> from transformers import TFAutoModelForMaskedLM
+>>> from transformers_openvla_oft import TFAutoModelForMaskedLM
 
 >>> model = TFAutoModelForMaskedLM.from_pretrained("stevhliu/my_awesome_eli5_mlm_model")
 >>> logits = model(**inputs).logits

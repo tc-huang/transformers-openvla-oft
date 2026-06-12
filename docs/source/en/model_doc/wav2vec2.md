@@ -108,7 +108,7 @@ Otherwise, [`~Wav2Vec2ProcessorWithLM.batch_decode`] performance will be slower 
 ```python
 >>> # Let's see how to use a user-managed pool for batch decoding multiple audios
 >>> from multiprocessing import get_context
->>> from transformers import AutoTokenizer, AutoProcessor, AutoModelForCTC
+>>> from transformers_openvla_oft import AutoTokenizer, AutoProcessor, AutoModelForCTC
 >>> from datasets import load_dataset
 >>> import datasets
 >>> import torch

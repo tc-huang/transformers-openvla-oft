@@ -16,8 +16,8 @@
 import os
 import unittest
 
-from transformers import RealmTokenizerFast
-from transformers.models.bert.tokenization_bert import (
+from transformers_openvla_oft import RealmTokenizerFast
+from transformers_openvla_oft.models.bert.tokenization_bert import (
     VOCAB_FILES_NAMES,
     BasicTokenizer,
     WordpieceTokenizer,
@@ -25,8 +25,8 @@ from transformers.models.bert.tokenization_bert import (
     _is_punctuation,
     _is_whitespace,
 )
-from transformers.models.realm.tokenization_realm import RealmTokenizer
-from transformers.testing_utils import require_tokenizers, slow
+from transformers_openvla_oft.models.realm.tokenization_realm import RealmTokenizer
+from transformers_openvla_oft.testing_utils import require_tokenizers, slow
 
 from ...test_tokenization_common import TokenizerTesterMixin, filter_non_english
 

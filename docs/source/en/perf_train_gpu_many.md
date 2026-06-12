@@ -584,7 +584,7 @@ So the promise is very attractive - it runs a 30min simulation on the cluster of
 strategy to utilise this specific environment. If you add/remove/replace any parts it'll run and re-optimize the plan 
 for that. And then you can train. A different setup will have its own custom optimization.
 
-🤗 Transformers status: Transformers models are FX-trace-able via [transformers.utils.fx](https://github.com/huggingface/transformers/blob/master/src/transformers/utils/fx.py), 
+🤗 Transformers status: Transformers models are FX-trace-able via [transformers_openvla_oft.utils.fx](https://github.com/huggingface/transformers/blob/master/src/transformers_openvla_oft/utils/fx.py), 
 which is a prerequisite for FlexFlow, however, changes are required on the FlexFlow side to make it work with Transformers models.
 
 ## GPU selection

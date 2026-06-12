@@ -29,8 +29,8 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     MODEL_FOR_QUESTION_ANSWERING_MAPPING,
     WEIGHTS_NAME,
     AdamW,
@@ -40,13 +40,13 @@ from transformers import (
     get_linear_schedule_with_warmup,
     squad_convert_examples_to_features,
 )
-from transformers.data.metrics.squad_metrics import (
+from transformers_openvla_oft.data.metrics.squad_metrics import (
     compute_predictions_log_probs,
     compute_predictions_logits,
     squad_evaluate,
 )
-from transformers.data.processors.squad import SquadResult, SquadV1Processor, SquadV2Processor
-from transformers.trainer_utils import is_main_process
+from transformers_openvla_oft.data.processors.squad import SquadResult, SquadV1Processor, SquadV2Processor
+from transformers_openvla_oft.trainer_utils import is_main_process
 
 
 try:
@@ -728,9 +728,9 @@ def main():
     )
     # Set the verbosity to info of the Transformers logger (on main process only):
     if is_main_process(args.local_rank):
-        transformers.utils.logging.set_verbosity_info()
-        transformers.utils.logging.enable_default_handler()
-        transformers.utils.logging.enable_explicit_format()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.enable_default_handler()
+        transformers_openvla_oft.utils.logging.enable_explicit_format()
     # Set seed
     set_seed(args)
 

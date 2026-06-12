@@ -31,8 +31,8 @@ from datasets import load_dataset
 from huggingface_hub import hf_hub_download
 from torch import nn
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     AutoConfig,
     AutoImageProcessor,
     AutoModelForSemanticSegmentation,
@@ -41,9 +41,9 @@ from transformers import (
     TrainingArguments,
     default_data_collator,
 )
-from transformers.trainer_utils import get_last_checkpoint
-from transformers.utils import check_min_version, send_example_telemetry
-from transformers.utils.versions import require_version
+from transformers_openvla_oft.trainer_utils import get_last_checkpoint
+from transformers_openvla_oft.utils import check_min_version, send_example_telemetry
+from transformers_openvla_oft.utils.versions import require_version
 
 
 """ Finetuning any 🤗 Transformers model supported by AutoModelForSemanticSegmentation for semantic segmentation leveraging the Trainer API."""
@@ -170,7 +170,7 @@ class ModelArguments:
 
 
 def main():
-    # See all possible arguments in src/transformers/training_args.py
+    # See all possible arguments in src/transformers_openvla_oft/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 
@@ -204,13 +204,13 @@ def main():
 
     if training_args.should_log:
         # The default of training_args.log_level is passive, so we set log level at info here to have that default.
-        transformers.utils.logging.set_verbosity_info()
+        transformers_openvla_oft.utils.logging.set_verbosity_info()
 
     log_level = training_args.get_process_log_level()
     logger.setLevel(log_level)
-    transformers.utils.logging.set_verbosity(log_level)
-    transformers.utils.logging.enable_default_handler()
-    transformers.utils.logging.enable_explicit_format()
+    transformers_openvla_oft.utils.logging.set_verbosity(log_level)
+    transformers_openvla_oft.utils.logging.enable_default_handler()
+    transformers_openvla_oft.utils.logging.enable_explicit_format()
 
     # Log on each process the small summary:
     logger.warning(

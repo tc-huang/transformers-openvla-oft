@@ -23,8 +23,8 @@ from pathlib import Path
 
 import pytest
 
-import transformers
-from transformers import (
+import transformers_openvla_oft
+from transformers_openvla_oft import (
     AutoTokenizer,
     BertConfig,
     BertTokenizer,
@@ -37,14 +37,14 @@ from transformers import (
     RobertaTokenizerFast,
     is_tokenizers_available,
 )
-from transformers.models.auto.configuration_auto import CONFIG_MAPPING, AutoConfig
-from transformers.models.auto.tokenization_auto import (
+from transformers_openvla_oft.models.auto.configuration_auto import CONFIG_MAPPING, AutoConfig
+from transformers_openvla_oft.models.auto.tokenization_auto import (
     TOKENIZER_MAPPING,
     get_tokenizer_config,
     tokenizer_class_from_name,
 )
-from transformers.models.roberta.configuration_roberta import RobertaConfig
-from transformers.testing_utils import (
+from transformers_openvla_oft.models.roberta.configuration_roberta import RobertaConfig
+from transformers_openvla_oft.testing_utils import (
     DUMMY_DIFF_TOKENIZER_IDENTIFIER,
     DUMMY_UNKNOWN_IDENTIFIER,
     SMALL_MODEL_IDENTIFIER,
@@ -66,7 +66,7 @@ if is_tokenizers_available():
 
 class AutoTokenizerTest(unittest.TestCase):
     def setUp(self):
-        transformers.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
+        transformers_openvla_oft.dynamic_module_utils.TIME_OUT_REMOTE_CODE = 0
 
     @slow
     def test_tokenizer_from_pretrained(self):
@@ -431,15 +431,15 @@ class AutoTokenizerTest(unittest.TestCase):
 
     def test_init_tokenizer_with_trust(self):
         nop_tokenizer_code = """
-import transformers
+import transformers_openvla_oft
 
-class NopTokenizer(transformers.PreTrainedTokenizer):
+class NopTokenizer(transformers_openvla_oft.PreTrainedTokenizer):
     def get_vocab(self):
         return {}
 """
 
         nop_config_code = """
-from transformers import PretrainedConfig
+from transformers_openvla_oft import PretrainedConfig
 
 class NopConfig(PretrainedConfig):
     model_type = "test_unregistered_dynamic"

@@ -136,7 +136,7 @@ Flax에서 모델을 사용하는 경우, PyTorch에서 Flax로 체크포인트�
 ... )
 ```
 
-모델을 미세 조정한 후, [`Trainer`]에서 [`~transformers.Trainer.push_to_hub`]를 호출하여 훈련된 모델을 허브로 푸시하세요. 🤗 Transformers는 훈련 하이퍼파라미터, 훈련 결과 및 프레임워크 버전을 모델 카드에 자동으로 추가합니다!
+모델을 미세 조정한 후, [`Trainer`]에서 [`~transformers_openvla_oft.Trainer.push_to_hub`]를 호출하여 훈련된 모델을 허브로 푸시하세요. 🤗 Transformers는 훈련 하이퍼파라미터, 훈련 결과 및 프레임워크 버전을 모델 카드에 자동으로 추가합니다!
 
 ```py
 >>> trainer.push_to_hub()
@@ -150,7 +150,7 @@ Flax에서 모델을 사용하는 경우, PyTorch에서 Flax로 체크포인트�
 - `{Hub 사용자 이름}/{모델 이름}` 형식의 `hub_model_id`
 
 ```py
->>> from transformers import PushToHubCallback
+>>> from transformers_openvla_oft import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="./your_model_save_path", tokenizer=tokenizer, hub_model_id="your-username/my-awesome-model"
@@ -178,7 +178,7 @@ Flax에서 모델을 사용하는 경우, PyTorch에서 Flax로 체크포인트�
 이렇게 하면 사용자 이름 아래에 모델 이름 `my-awesome-model`로 저장소가 생성됩니다. 이제 사용자는 `from_pretrained` 함수를 사용하여 모델을 가져올 수 있습니다:
 
 ```py
->>> from transformers import AutoModel
+>>> from transformers_openvla_oft import AutoModel
 
 >>> model = AutoModel.from_pretrained("your_username/my-awesome-model")
 ```

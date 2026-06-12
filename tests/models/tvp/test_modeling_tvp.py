@@ -17,9 +17,9 @@
 
 import unittest
 
-from transformers import ResNetConfig, TvpConfig
-from transformers.testing_utils import require_torch, require_vision, torch_device
-from transformers.utils import cached_property, is_torch_available, is_vision_available
+from transformers_openvla_oft import ResNetConfig, TvpConfig
+from transformers_openvla_oft.testing_utils import require_torch, require_vision, torch_device
+from transformers_openvla_oft.utils import cached_property, is_torch_available, is_vision_available
 
 from ...test_modeling_common import (
     ModelTesterMixin,
@@ -34,12 +34,12 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import TvpForVideoGrounding, TvpModel
+    from transformers_openvla_oft import TvpForVideoGrounding, TvpModel
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import TvpImageProcessor
+    from transformers_openvla_oft import TvpImageProcessor
 
 
 # Copied from test.models.videomae.test_modeling_videomae.VideoMAEModelTester with VideoMAE->TVP

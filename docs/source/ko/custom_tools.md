@@ -105,7 +105,7 @@ I will use the following
 문서 질의응답 도구를 가져오고 이름과 설명을 출력해서 빠르게 확인해 보겠습니다.
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 document_qa = load_tool("document-question-answering")
 print(f"- {document_qa.name}: {document_qa.description}")
@@ -152,7 +152,7 @@ image = image_generator("A banner showing " + answer)
 작업 설명, 에이전트가 수행하려는 작업에 대한 설명, 마지막으로 생성된 코드, 이 세 부분으로 구성된 프롬프트는 모델에 반복하여 제공됩니다. 
 프롬프트의 일부인 모든 예제는 이러한 정확한 패턴으로 되어 있으므로, 에이전트가 새 토큰을 생성할 때 정확히 동일한 패턴을 재현할 수 있습니다.
 
-프롬프트 예제는 Transformers 팀이 선별하고 일련의 [problem statements](https://github.com/huggingface/transformers/blob/main/src/transformers/tools/evaluate_agent.py)에 따라 엄격하게 평가하여 
+프롬프트 예제는 Transformers 팀이 선별하고 일련의 [problem statements](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/tools/evaluate_agent.py)에 따라 엄격하게 평가하여 
 에이전트의 프롬프트가 에이전트의 실제 사용 사례를 최대한 잘 해결할 수 있도록 보장합니다.
 
 프롬프트의 마지막 부분은 다음에 해당합니다:
@@ -226,7 +226,7 @@ Human: <user-input>\n\nAssistant:
 일반적인 실패 사례를 살펴보겠습니다. 여기서는 분석할 코드만 반환하겠습니다.
 
 ```py
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
 
@@ -405,7 +405,7 @@ Hub의 저장소에 사용자 정의 프롬프트를 업로드하여 커뮤니�
 편리한 [`load_tool`] 함수를 사용하여 사용자 정의 도구를 가져오는 것으로 시작하겠습니다:
 
 ```py
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 controlnet_transformer = load_tool("diffusers/controlnet-canny-tool")
 upscaler = load_tool("diffusers/latent-upscaler-tool")
@@ -554,7 +554,7 @@ print(model.id)
 모든 도구는 필요한 주요 속성을 보유하는 슈퍼클래스 `Tool`에 의존합니다. 이를 상속하는 클래스를 만들어 보겠습니다:
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 
 
 class HFModelDownloadsTool(Tool):
@@ -572,7 +572,7 @@ class HFModelDownloadsTool(Tool):
 이제 클래스의 모습은 다음과 같습니다:
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 from huggingface_hub import list_models
 
 
@@ -616,7 +616,7 @@ tool.push_to_hub("hf-model-downloads")
 We now have our tool that lives on the Hub which can be instantiated as such (change the user name for your tool):
 
 ```python
-from transformers import load_tool
+from transformers_openvla_oft import load_tool
 
 tool = load_tool("lysandre/hf-model-downloads")
 ```
@@ -624,7 +624,7 @@ tool = load_tool("lysandre/hf-model-downloads")
 이 도구를 에이전트에서 사용하려면 에이전트 초기화 메소드의 `additional_tools` 매개변수에 전달하기만 하면 됩니다:
 
 ```python
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder", additional_tools=[tool])
 
@@ -663,7 +663,7 @@ LLM에 따라 일부는 매우 취약하기 때문에 제대로 작동하려면 
 에이전트의 도구 상자에 새 항목을 배정하기만 하면 기존 도구를 대체할 수 있습니다. 방법은 다음과 같습니다:
 
 ```python
-from transformers import HfAgent, load_tool
+from transformers_openvla_oft import HfAgent, load_tool
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder")
 agent.toolbox["image-transformation"] = load_tool("diffusers/controlnet-canny-tool")
@@ -696,7 +696,7 @@ gradio_tool = StableDiffusionPromptGeneratorTool()
 해당 인스턴스를 `Tool.from_gradio` 메소드에 전달합니다:
 
 ```python
-from transformers import Tool
+from transformers_openvla_oft import Tool
 
 tool = Tool.from_gradio(gradio_tool)
 ```
@@ -705,7 +705,7 @@ tool = Tool.from_gradio(gradio_tool)
 이를 활용하여 `a rabbit wearing a space suit'(우주복을 입은 토끼)라는 프롬프트를 개선했습니다:
 
 ```python
-from transformers import HfAgent
+from transformers_openvla_oft import HfAgent
 
 agent = HfAgent("https://api-inference.huggingface.co/models/bigcode/starcoder", additional_tools=[tool])
 

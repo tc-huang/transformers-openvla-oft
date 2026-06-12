@@ -21,17 +21,17 @@ from typing import List
 
 import numpy as np
 
-from transformers import PreTrainedTokenizer, PreTrainedTokenizerBase, PreTrainedTokenizerFast
-from transformers.models.layoutlmv2 import LayoutLMv2Tokenizer, LayoutLMv2TokenizerFast
-from transformers.models.layoutlmv2.tokenization_layoutlmv2 import VOCAB_FILES_NAMES
-from transformers.testing_utils import require_pytesseract, require_tokenizers, require_torch, slow
-from transformers.utils import FEATURE_EXTRACTOR_NAME, cached_property, is_pytesseract_available
+from transformers_openvla_oft import PreTrainedTokenizer, PreTrainedTokenizerBase, PreTrainedTokenizerFast
+from transformers_openvla_oft.models.layoutlmv2 import LayoutLMv2Tokenizer, LayoutLMv2TokenizerFast
+from transformers_openvla_oft.models.layoutlmv2.tokenization_layoutlmv2 import VOCAB_FILES_NAMES
+from transformers_openvla_oft.testing_utils import require_pytesseract, require_tokenizers, require_torch, slow
+from transformers_openvla_oft.utils import FEATURE_EXTRACTOR_NAME, cached_property, is_pytesseract_available
 
 
 if is_pytesseract_available():
     from PIL import Image
 
-    from transformers import LayoutLMv2ImageProcessor, LayoutLMv2Processor
+    from transformers_openvla_oft import LayoutLMv2ImageProcessor, LayoutLMv2Processor
 
 
 @require_pytesseract

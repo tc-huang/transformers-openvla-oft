@@ -108,7 +108,7 @@ The letter that prefixes each `ner_tag` indicates the token position of the enti
 The next step is to load a DistilBERT tokenizer to preprocess the `tokens` field:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -165,14 +165,14 @@ Now create a batch of examples using [`DataCollatorWithPadding`]. It's more effi
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import DataCollatorForTokenClassification
+>>> from transformers_openvla_oft import DataCollatorForTokenClassification
 
 >>> data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
 ```
 </pt>
 <tf>
 ```py
->>> from transformers import DataCollatorForTokenClassification
+>>> from transformers_openvla_oft import DataCollatorForTokenClassification
 
 >>> data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer, return_tensors="tf")
 ```
@@ -269,7 +269,7 @@ If you aren't familiar with finetuning a model with the [`Trainer`], take a look
 You're ready to start training your model now! Load DistilBERT with [`AutoModelForTokenClassification`] along with the number of expected labels, and the label mappings:
 
 ```py
->>> from transformers import AutoModelForTokenClassification, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForTokenClassification, TrainingArguments, Trainer
 
 >>> model = AutoModelForTokenClassification.from_pretrained(
 ...     "distilbert/distilbert-base-uncased", num_labels=13, id2label=id2label, label2id=label2id
@@ -309,7 +309,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [`~transformers.Trainer.push_to_hub`] method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [`~transformers_openvla_oft.Trainer.push_to_hub`] method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -324,7 +324,7 @@ If you aren't familiar with finetuning a model with Keras, take a look at the ba
 To finetune a model in TensorFlow, start by setting up an optimizer function, learning rate schedule, and some training hyperparameters:
 
 ```py
->>> from transformers import create_optimizer
+>>> from transformers_openvla_oft import create_optimizer
 
 >>> batch_size = 16
 >>> num_train_epochs = 3
@@ -340,14 +340,14 @@ To finetune a model in TensorFlow, start by setting up an optimizer function, le
 Then you can load DistilBERT with [`TFAutoModelForTokenClassification`] along with the number of expected labels, and the label mappings:
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained(
 ...     "distilbert/distilbert-base-uncased", num_labels=13, id2label=id2label, label2id=label2id
 ... )
 ```
 
-Convert your datasets to the `tf.data.Dataset` format with [`~transformers.TFPreTrainedModel.prepare_tf_dataset`]:
+Convert your datasets to the `tf.data.Dataset` format with [`~transformers_openvla_oft.TFPreTrainedModel.prepare_tf_dataset`]:
 
 ```py
 >>> tf_train_set = model.prepare_tf_dataset(
@@ -375,18 +375,18 @@ Configure the model for training with [`compile`](https://keras.io/api/models/mo
 
 The last two things to setup before you start training is to compute the seqeval scores from the predictions, and provide a way to push your model to the Hub. Both are done by using [Keras callbacks](../main_classes/keras_callbacks).
 
-Pass your `compute_metrics` function to [`~transformers.KerasMetricCallback`]:
+Pass your `compute_metrics` function to [`~transformers_openvla_oft.KerasMetricCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import KerasMetricCallback
+>>> from transformers_openvla_oft.keras_callbacks import KerasMetricCallback
 
 >>> metric_callback = KerasMetricCallback(metric_fn=compute_metrics, eval_dataset=tf_validation_set)
 ```
 
-Specify where to push your model and tokenizer in the [`~transformers.PushToHubCallback`]:
+Specify where to push your model and tokenizer in the [`~transformers_openvla_oft.PushToHubCallback`]:
 
 ```py
->>> from transformers.keras_callbacks import PushToHubCallback
+>>> from transformers_openvla_oft.keras_callbacks import PushToHubCallback
 
 >>> push_to_hub_callback = PushToHubCallback(
 ...     output_dir="my_awesome_wnut_model",
@@ -431,7 +431,7 @@ Grab some text you'd like to run inference on:
 The simplest way to try out your finetuned model for inference is to use it in a [`pipeline`]. Instantiate a `pipeline` for NER with your model, and pass your text to it:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline("ner", model="stevhliu/my_awesome_wnut_model")
 >>> classifier(text)
@@ -474,7 +474,7 @@ You can also manually replicate the results of the `pipeline` if you'd like:
 Tokenize the text and return PyTorch tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_wnut_model")
 >>> inputs = tokenizer(text, return_tensors="pt")
@@ -483,7 +483,7 @@ Tokenize the text and return PyTorch tensors:
 Pass your inputs to the model and return the `logits`:
 
 ```py
->>> from transformers import AutoModelForTokenClassification
+>>> from transformers_openvla_oft import AutoModelForTokenClassification
 
 >>> model = AutoModelForTokenClassification.from_pretrained("stevhliu/my_awesome_wnut_model")
 >>> with torch.no_grad():
@@ -519,7 +519,7 @@ Get the class with the highest probability, and use the model's `id2label` mappi
 Tokenize the text and return TensorFlow tensors:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("stevhliu/my_awesome_wnut_model")
 >>> inputs = tokenizer(text, return_tensors="tf")
@@ -528,7 +528,7 @@ Tokenize the text and return TensorFlow tensors:
 Pass your inputs to the model and return the `logits`:
 
 ```py
->>> from transformers import TFAutoModelForTokenClassification
+>>> from transformers_openvla_oft import TFAutoModelForTokenClassification
 
 >>> model = TFAutoModelForTokenClassification.from_pretrained("stevhliu/my_awesome_wnut_model")
 >>> logits = model(**inputs).logits

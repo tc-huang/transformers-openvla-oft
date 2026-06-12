@@ -47,7 +47,7 @@ Hugging Faceのベンチマークツールは非推奨であり、Transformerモ
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import PyTorchBenchmark, PyTorchBenchmarkArguments
+>>> from transformers_openvla_oft import PyTorchBenchmark, PyTorchBenchmarkArguments
 
 >>> args = PyTorchBenchmarkArguments(models=["google-bert/bert-base-uncased"], batch_sizes=[8], sequence_lengths=[8, 32, 128, 512])
 >>> benchmark = PyTorchBenchmark(args)
@@ -55,7 +55,7 @@ Hugging Faceのベンチマークツールは非推奨であり、Transformerモ
 </pt>
 <tf>
 ```py
->>> from transformers import TensorFlowBenchmark, TensorFlowBenchmarkArguments
+>>> from transformers_openvla_oft import TensorFlowBenchmark, TensorFlowBenchmarkArguments
 
 >>> args = TensorFlowBenchmarkArguments(
 ...     models=["google-bert/bert-base-uncased"], batch_sizes=[8], sequence_lengths=[8, 32, 128, 512]
@@ -72,8 +72,8 @@ Hugging Faceのベンチマークツールは非推奨であり、Transformerモ
 ます。`batch_sizes`と`sequence_lengths`の2つの`リスト`引数は
 モデルのベンチマーク対象となる`input_ids`のサイズを定義します。
 ベンチマーク引数データクラスを介して設定できる他の多くのパラメータがあります。これらの詳細については、直接ファイル
-`src/transformers/benchmark/benchmark_args_utils.py`、
-`src/transformers/benchmark/benchmark_args.py`（PyTorch用）、および`src/transformers/benchmark/benchmark_args_tf.py`（Tensorflow用）
+`src/transformers_openvla_oft/benchmark/benchmark_args_utils.py`、
+`src/transformers_openvla_oft/benchmark/benchmark_args.py`（PyTorch用）、および`src/transformers_openvla_oft/benchmark/benchmark_args_tf.py`（Tensorflow用）
 を参照するか、次のシェルコマンドをルートから実行すると、PyTorchとTensorflowのそれぞれに対して設定可能なすべてのパラメータの記述的なリストが表示されます。
 
 <frameworkcontent>
@@ -208,7 +208,7 @@ google-bert/bert-base-uncased          8              512            1770
 <frameworkcontent>
 <pt>
 ```py
->>> from transformers import PyTorchBenchmark, PyTorchBenchmarkArguments, BertConfig
+>>> from transformers_openvla_oft import PyTorchBenchmark, PyTorchBenchmarkArguments, BertConfig
 
 >>> args = PyTorchBenchmarkArguments(
 ...     models=["bert-base", "bert-384-hid", "bert-6-lay"], batch_sizes=[8], sequence_lengths=[8, 32, 128, 512]
@@ -282,7 +282,7 @@ bert-6-lay                 8              512            1359
 </pt>
 <tf>
 ```py
->>> from transformers import TensorFlowBenchmark, TensorFlowBenchmarkArguments, BertConfig
+>>> from transformers_openvla_oft import TensorFlowBenchmark, TensorFlowBenchmarkArguments, BertConfig
 
 >>> args = TensorFlowBenchmarkArguments(
 ...     models=["bert-base", "bert-384-hid", "bert-6-lay"], batch_sizes=[8], sequence_lengths=[8, 32, 128, 512]

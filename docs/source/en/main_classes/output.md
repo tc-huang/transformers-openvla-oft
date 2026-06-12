@@ -23,7 +23,7 @@ dictionaries.
 Let's see how this looks in an example:
 
 ```python
-from transformers import BertTokenizer, BertForSequenceClassification
+from transformers_openvla_oft import BertTokenizer, BertForSequenceClassification
 import torch
 
 tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")

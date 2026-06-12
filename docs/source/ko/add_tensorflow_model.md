@@ -33,7 +33,7 @@ rendered properly in your Markdown viewer.
 
 사용하려는 모델이 이미 해당하는 TensorFlow 아키텍처가 있는지 확실하지 않나요?
 
-선택한 모델([예](https://huggingface.co/google-bert/bert-base-uncased/blob/main/config.json#L14))의 `config.json`의 `model_type` 필드를 확인해보세요. 🤗 Transformers의 해당 모델 폴더에는 "modeling_tf"로 시작하는 파일이 있는 경우, 해당 모델에는 해당 TensorFlow 아키텍처([예](https://github.com/huggingface/transformers/tree/main/src/transformers/models/bert))가 있다는 의미입니다.
+선택한 모델([예](https://huggingface.co/google-bert/bert-base-uncased/blob/main/config.json#L14))의 `config.json`의 `model_type` 필드를 확인해보세요. 🤗 Transformers의 해당 모델 폴더에는 "modeling_tf"로 시작하는 파일이 있는 경우, 해당 모델에는 해당 TensorFlow 아키텍처([예](https://github.com/huggingface/transformers/tree/main/src/transformers_openvla_oft/models/bert))가 있다는 의미입니다.
 
 </Tip>
 
@@ -153,7 +153,7 @@ git push -u origin add_tf_brand_new_bert
 
 
 이제 드디어 코딩을 시작할 시간입니다. 우리의 제안된 시작점은 PyTorch 파일 자체입니다: `modeling_brand_new_bert.py`의 내용을 
-`src/transformers/models/brand_new_bert/` 내부의
+`src/transformers_openvla_oft/models/brand_new_bert/` 내부의
 `modeling_tf_brand_new_bert.py`에 복사합니다. 이 섹션의 목표는 파일을 수정하고 🤗 Transformers의 import 구조를 업데이트하여 `TFBrandNewBert` 및 `TFBrandNewBert.from_pretrained(model_repo, from_pt=True)`가 성공적으로 작동하는 TensorFlow *BrandNewBert* 모델을 가져올 수 있도록 하는 것입니다.
 
 유감스럽게도, PyTorch 모델을 TensorFlow로 변환하는 규칙은 없습니다. 그러나 프로세스를 가능한한 원활하게 만들기 위해 다음 팁을 따를 수 있습니다.
@@ -163,20 +163,20 @@ git push -u origin add_tf_brand_new_bert
 - 🤗 Transformers 코드베이스에서 패턴을 찾으세요. 직접적인 대체가 없는 특정 작업을 만나면 다른 사람이 이미 동일한 문제를 해결한 경우가 많습니다.
 - 기본적으로 PyTorch와 동일한 변수 이름과 구조를 유지하세요. 이렇게 하면 디버깅과 문제 추적, 그리고 문제 해결 추가가 더 쉬워집니다.
 - 일부 레이어는 각 프레임워크마다 다른 기본값을 가지고 있습니다. 대표적인 예로 배치 정규화 레이어의 epsilon은 [PyTorch](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html#torch.nn.BatchNorm2d)에서 `1e-5`이고 [TensorFlow](https://www.tensorflow.org/api_docs/python/tf/keras/layers/BatchNormalization)에서 `1e-3`입니다. 문서를 모두 확인하세요!
-- PyTorch의 `nn.Parameter` 변수는 일반적으로 TF 레이어의 `build()` 내에서 초기화해야 합니다. 다음 예를 참조하세요: [PyTorch](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers/models/vit_mae/modeling_vit_mae.py#L212) /
-   [TensorFlow](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers/models/vit_mae/modeling_tf_vit_mae.py#L220)
+- PyTorch의 `nn.Parameter` 변수는 일반적으로 TF 레이어의 `build()` 내에서 초기화해야 합니다. 다음 예를 참조하세요: [PyTorch](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers_openvla_oft/models/vit_mae/modeling_vit_mae.py#L212) /
+   [TensorFlow](https://github.com/huggingface/transformers/blob/655f72a6896c0533b1bdee519ed65a059c2425ac/src/transformers_openvla_oft/models/vit_mae/modeling_tf_vit_mae.py#L220)
 - PyTorch 모델의 함수 상단에 `#copied from ...`가 있는 경우, TensorFlow 모델에 TensorFlow 아키텍처가 있다면 TensorFlow 모델이 해당 함수를 복사한 아키텍처에서 사용할 수 있습니다.
 - TensorFlow 함수에서 `name` 속성을 올바르게 할당하는 것은 `from_pt=True` 가중치 교차 로딩을 수행하는 데 중요합니다. `name`은 대부분 PyTorch 코드의 해당 변수의 이름입니다. `name`이 제대로 설정되지 않으면 모델 가중치를 로드할 때 오류 메시지에서 확인할 수 있습니다.
-- 기본 모델 클래스인 `BrandNewBertModel`의 로직은 실제로 Keras 레이어 서브클래스([예시](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers/models/bert/modeling_tf_bert.py#L719))인 `TFBrandNewBertMainLayer`에 있습니다. `TFBrandNewBertModel`은 이 레이어를 감싸기만 하는 래퍼 역할을 합니다.
-- Keras 모델은 사전 훈련된 가중치를 로드하기 위해 빌드되어야 합니다. 따라서 `TFBrandNewBertPreTrainedModel`은 모델의 입력 예제인 `dummy_inputs`([예시](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers/models/bert/modeling_tf_bert.py#L916)) 유지해야 합니다.
+- 기본 모델 클래스인 `BrandNewBertModel`의 로직은 실제로 Keras 레이어 서브클래스([예시](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers_openvla_oft/models/bert/modeling_tf_bert.py#L719))인 `TFBrandNewBertMainLayer`에 있습니다. `TFBrandNewBertModel`은 이 레이어를 감싸기만 하는 래퍼 역할을 합니다.
+- Keras 모델은 사전 훈련된 가중치를 로드하기 위해 빌드되어야 합니다. 따라서 `TFBrandNewBertPreTrainedModel`은 모델의 입력 예제인 `dummy_inputs`([예시](https://github.com/huggingface/transformers/blob/4fd32a1f499e45f009c2c0dea4d81c321cba7e02/src/transformers_openvla_oft/models/bert/modeling_tf_bert.py#L916)) 유지해야 합니다.
 - 도움이 필요한 경우 도움을 요청하세요. 우리는 여기 있어서 도움을 드리기 위해 있는 것입니다! 🤗
 
 모델 파일 자체 외에도 모델 클래스 및 관련 문서 페이지에 대한 포인터를 추가해야 합니다. 이 부분은 다른 PR([예시](https://github.com/huggingface/transformers/pull/18020/files))의 패턴을 따라 완전히 완료할 수 있습니다. 다음은 필요한 수동 변경 목록입니다.
 
-- `src/transformers/__init__.py`에 *BrandNewBert*의 모든 공개 클래스를 포함합니다.
-- `src/transformers/models/auto/modeling_tf_auto.py`에서 *BrandNewBert* 클래스를 해당 Auto 클래스에 추가합니다.
-- `src/transformers/utils/dummy_tf_objects.py`에 *BrandNewBert*와 관련된 레이지 로딩 클래스를 추가합니다.
-- `src/transformers/models/brand_new_bert/__init__.py`에서 공개 클래스에 대한 import 구조를 업데이트합니다.
+- `src/transformers_openvla_oft/__init__.py`에 *BrandNewBert*의 모든 공개 클래스를 포함합니다.
+- `src/transformers_openvla_oft/models/auto/modeling_tf_auto.py`에서 *BrandNewBert* 클래스를 해당 Auto 클래스에 추가합니다.
+- `src/transformers_openvla_oft/utils/dummy_tf_objects.py`에 *BrandNewBert*와 관련된 레이지 로딩 클래스를 추가합니다.
+- `src/transformers_openvla_oft/models/brand_new_bert/__init__.py`에서 공개 클래스에 대한 import 구조를 업데이트합니다.
 - `docs/source/en/model_doc/brand_new_bert.md`에서 *BrandNewBert*의 공개 메서드에 대한 문서 포인터를 추가합니다.
 - `docs/source/en/model_doc/brand_new_bert.md`의 *BrandNewBert* 기여자 목록에 자신을 추가합니다.
 - 마지막으로 ✅ 녹색 체크박스를 TensorFlow 열 docs/source/en/index.md 안 BrandNewBert에 추가합니다.

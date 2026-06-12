@@ -19,8 +19,8 @@ import unittest
 
 from parameterized import parameterized
 
-from transformers import AutoTokenizer, GPTNeoXConfig, is_torch_available, set_seed
-from transformers.testing_utils import require_torch, slow, torch_device
+from transformers_openvla_oft import AutoTokenizer, GPTNeoXConfig, is_torch_available, set_seed
+from transformers_openvla_oft.testing_utils import require_torch, slow, torch_device
 
 from ...generation.test_utils import GenerationTesterMixin
 from ...test_configuration_common import ConfigTester
@@ -31,14 +31,14 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         GPTNeoXForCausalLM,
         GPTNeoXForQuestionAnswering,
         GPTNeoXForSequenceClassification,
         GPTNeoXForTokenClassification,
         GPTNeoXModel,
     )
-    from transformers.models.gpt_neox.modeling_gpt_neox import (
+    from transformers_openvla_oft.models.gpt_neox.modeling_gpt_neox import (
         GPTNeoXDynamicNTKScalingRotaryEmbedding,
         GPTNeoXLinearScalingRotaryEmbedding,
         GPTNeoXRotaryEmbedding,

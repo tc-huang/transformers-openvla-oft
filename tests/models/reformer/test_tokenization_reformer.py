@@ -14,9 +14,9 @@
 
 import unittest
 
-from transformers import SPIECE_UNDERLINE, ReformerTokenizer, ReformerTokenizerFast
-from transformers.testing_utils import get_tests_dir, require_sentencepiece, require_tokenizers, require_torch, slow
-from transformers.utils import cached_property
+from transformers_openvla_oft import SPIECE_UNDERLINE, ReformerTokenizer, ReformerTokenizerFast
+from transformers_openvla_oft.testing_utils import get_tests_dir, require_sentencepiece, require_tokenizers, require_torch, slow
+from transformers_openvla_oft.utils import cached_property
 
 from ...test_tokenization_common import TokenizerTesterMixin
 
@@ -330,7 +330,7 @@ class ReformerTokenizationTest(TokenizerTesterMixin, unittest.TestCase):
     def test_torch_encode_plus_sent_to_model(self):
         import torch
 
-        from transformers import ReformerConfig, ReformerModel
+        from transformers_openvla_oft import ReformerConfig, ReformerModel
 
         # Build sequence
         first_ten_tokens = list(self.big_tokenizer.get_vocab().keys())[:10]

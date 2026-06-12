@@ -1,6 +1,6 @@
 import torch
 
-from transformers import AutoModel
+from transformers_openvla_oft import AutoModel
 
 
 class FSNERModel(torch.nn.Module):

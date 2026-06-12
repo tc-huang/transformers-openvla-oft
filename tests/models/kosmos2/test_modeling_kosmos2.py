@@ -24,10 +24,10 @@ import unittest
 import numpy as np
 import requests
 
-from transformers import AutoModelForVision2Seq, AutoProcessor, Kosmos2Config
-from transformers.models.kosmos2.configuration_kosmos2 import Kosmos2TextConfig, Kosmos2VisionConfig
-from transformers.testing_utils import require_torch, require_vision, slow, torch_device
-from transformers.utils import is_torch_available, is_vision_available
+from transformers_openvla_oft import AutoModelForVision2Seq, AutoProcessor, Kosmos2Config
+from transformers_openvla_oft.models.kosmos2.configuration_kosmos2 import Kosmos2TextConfig, Kosmos2VisionConfig
+from transformers_openvla_oft.testing_utils import require_torch, require_vision, slow, torch_device
+from transformers_openvla_oft.utils import is_torch_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import (
@@ -43,7 +43,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import Kosmos2ForConditionalGeneration, Kosmos2Model
+    from transformers_openvla_oft import Kosmos2ForConditionalGeneration, Kosmos2Model
 
 
 if is_vision_available():

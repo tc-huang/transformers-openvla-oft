@@ -46,7 +46,7 @@ rendered properly in your Markdown viewer.
 텍스트를 처리하고 서로 다른 길이의 시퀀스 패딩 및 잘라내기 전략을 포함하려면 토크나이저가 필요합니다. 데이터셋을 한 번에 처리하려면 🤗 Dataset [`map`](https://huggingface.co/docs/datasets/process#map) 메서드를 사용하여 전체 데이터셋에 전처리 함수를 적용하세요:
 
 ```py
->>> from transformers import AutoTokenizer
+>>> from transformers_openvla_oft import AutoTokenizer
 
 >>> tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 
@@ -82,7 +82,7 @@ rendered properly in your Markdown viewer.
 먼저 모델을 가져오고 예상되는 레이블 수를 지정합니다. Yelp 리뷰 [데이터셋 카드](https://huggingface.co/datasets/yelp_review_full#data-fields)에서 5개의 레이블이 있음을 알 수 있습니다:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -103,7 +103,7 @@ rendered properly in your Markdown viewer.
 훈련에서 체크포인트(checkpoints)를 저장할 위치를 지정합니다:
 
 ```py
->>> from transformers import TrainingArguments
+>>> from transformers_openvla_oft import TrainingArguments
 
 >>> training_args = TrainingArguments(output_dir="test_trainer")
 ```
@@ -132,7 +132,7 @@ rendered properly in your Markdown viewer.
 미세 튜닝 중에 평가 지표를 모니터링하려면 훈련 인수에 `evaluation_strategy` 파라미터를 지정하여 각 에폭이 끝날 때 평가 지표를 확인할 수 있습니다:
 
 ```py
->>> from transformers import TrainingArguments, Trainer
+>>> from transformers_openvla_oft import TrainingArguments, Trainer
 
 >>> training_args = TrainingArguments(output_dir="test_trainer", evaluation_strategy="epoch")
 ```
@@ -151,7 +151,7 @@ rendered properly in your Markdown viewer.
 ... )
 ```
 
-그리고 [`~transformers.Trainer.train`]을 호출하여 모델을 미세 튜닝합니다:
+그리고 [`~transformers_openvla_oft.Trainer.train`]을 호출하여 모델을 미세 튜닝합니다:
 
 ```py
 >>> trainer.train()
@@ -185,7 +185,7 @@ dataset = dataset["train"]  # Just take the training split for now
 다음으로 토크나이저를 로드하고 데이터를 NumPy 배열로 토큰화합니다. 레이블은 이미 0과 1로 된 리스트이기 때문에 토큰화하지 않고 바로 NumPy 배열로 변환할 수 있습니다!
 
 ```py
-from transformers import AutoTokenizer
+from transformers_openvla_oft import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("google-bert/bert-base-cased")
 tokenized_data = tokenizer(dataset["sentence"], return_tensors="np", padding=True)
@@ -198,7 +198,7 @@ labels = np.array(dataset["label"])  # Label is already an array of 0 and 1
 마지막으로 모델을 로드, [`compile`](https://keras.io/api/models/model_training_apis/#compile-method), [`fit`](https://keras.io/api/models/model_training_apis/#fit-method)합니다:
 
 ```py
-from transformers import TFAutoModelForSequenceClassification
+from transformers_openvla_oft import TFAutoModelForSequenceClassification
 from tensorflow.keras.optimizers import Adam
 
 # Load and compile our model
@@ -327,7 +327,7 @@ torch.cuda.empty_cache()
 예측을 위한 레이블 개수를 사용하여 모델을 로드합니다:
 
 ```py
->>> from transformers import AutoModelForSequenceClassification
+>>> from transformers_openvla_oft import AutoModelForSequenceClassification
 
 >>> model = AutoModelForSequenceClassification.from_pretrained("google-bert/bert-base-cased", num_labels=5)
 ```
@@ -345,7 +345,7 @@ torch.cuda.empty_cache()
 [`Trainer`]에서 기본 학습 속도 스케줄러를 생성합니다:
 
 ```py
->>> from transformers import get_scheduler
+>>> from transformers_openvla_oft import get_scheduler
 
 >>> num_epochs = 3
 >>> num_training_steps = num_epochs * len(train_dataloader)

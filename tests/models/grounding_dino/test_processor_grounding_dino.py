@@ -21,21 +21,21 @@ import unittest
 import numpy as np
 import pytest
 
-from transformers import BertTokenizer, BertTokenizerFast, GroundingDinoProcessor
-from transformers.models.bert.tokenization_bert import VOCAB_FILES_NAMES
-from transformers.testing_utils import require_torch, require_vision
-from transformers.utils import IMAGE_PROCESSOR_NAME, is_torch_available, is_vision_available
+from transformers_openvla_oft import BertTokenizer, BertTokenizerFast, GroundingDinoProcessor
+from transformers_openvla_oft.models.bert.tokenization_bert import VOCAB_FILES_NAMES
+from transformers_openvla_oft.testing_utils import require_torch, require_vision
+from transformers_openvla_oft.utils import IMAGE_PROCESSOR_NAME, is_torch_available, is_vision_available
 
 
 if is_torch_available():
     import torch
 
-    from transformers.models.grounding_dino.modeling_grounding_dino import GroundingDinoObjectDetectionOutput
+    from transformers_openvla_oft.models.grounding_dino.modeling_grounding_dino import GroundingDinoObjectDetectionOutput
 
 if is_vision_available():
     from PIL import Image
 
-    from transformers import GroundingDinoImageProcessor
+    from transformers_openvla_oft import GroundingDinoImageProcessor
 
 
 @require_torch

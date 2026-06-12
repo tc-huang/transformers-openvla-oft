@@ -79,17 +79,17 @@ This model was contributed by [weiweishi](https://huggingface.co/weiweishi).
 
 ## RoCBertForSequenceClassification
 
-[[autodoc]] transformers.RoCBertForSequenceClassification
+[[autodoc]] transformers_openvla_oft.RoCBertForSequenceClassification
     - forward
 
 ## RoCBertForMultipleChoice
 
-[[autodoc]] transformers.RoCBertForMultipleChoice
+[[autodoc]] transformers_openvla_oft.RoCBertForMultipleChoice
     - forward
 
 ## RoCBertForTokenClassification
 
-[[autodoc]] transformers.RoCBertForTokenClassification
+[[autodoc]] transformers_openvla_oft.RoCBertForTokenClassification
     - forward
 
 ## RoCBertForQuestionAnswering

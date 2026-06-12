@@ -16,8 +16,8 @@
 
 import unittest
 
-from transformers.models.fastspeech2_conformer import FastSpeech2ConformerTokenizer
-from transformers.testing_utils import require_g2p_en, slow
+from transformers_openvla_oft.models.fastspeech2_conformer import FastSpeech2ConformerTokenizer
+from transformers_openvla_oft.testing_utils import require_g2p_en, slow
 
 from ...test_tokenization_common import TokenizerTesterMixin
 

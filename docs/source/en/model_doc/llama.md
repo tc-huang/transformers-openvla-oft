@@ -29,17 +29,17 @@ This model was contributed by [zphang](https://huggingface.co/zphang) with contr
 ## Usage tips
 
 - Weights for the LLaMA models can be obtained from by filling out [this form](https://docs.google.com/forms/d/e/1FAIpQLSfqNECQnMkycAp2jP4Z9TFX0cGR4uf7b_fBxjY_OjhJILlKGA/viewform?usp=send_form)
-- After downloading the weights, they will need to be converted to the Hugging Face Transformers format using the [conversion script](https://github.com/huggingface/transformers/blob/main/src/transformers/models/llama/convert_llama_weights_to_hf.py). The script can be called with the following (example) command:
+- After downloading the weights, they will need to be converted to the Hugging Face Transformers format using the [conversion script](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/llama/convert_llama_weights_to_hf.py). The script can be called with the following (example) command:
 
 ```bash
-python src/transformers/models/llama/convert_llama_weights_to_hf.py \
+python src/transformers_openvla_oft/models/llama/convert_llama_weights_to_hf.py \
     --input_dir /path/to/downloaded/llama/weights --model_size 7B --output_dir /output/path
 ```
 
 - After conversion, the model and tokenizer can be loaded via:
 
 ```python
-from transformers import LlamaForCausalLM, LlamaTokenizer
+from transformers_openvla_oft import LlamaForCausalLM, LlamaTokenizer
 
 tokenizer = LlamaTokenizer.from_pretrained("/output/path")
 model = LlamaForCausalLM.from_pretrained("/output/path")

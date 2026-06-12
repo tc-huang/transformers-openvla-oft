@@ -69,7 +69,7 @@ transformers-cli env
 你也可以从代码仓库的根目录下运行相同的命令：
 
 ```bash
-python src/transformers/commands/transformers_cli.py env
+python src/transformers_openvla_oft/commands/transformers_cli.py env
 ```
 
 ### 你想要新功能吗？
@@ -240,7 +240,7 @@ python src/transformers/commands/transformers_cli.py env
    - 如果你正在添加一个新的分词器，请编写测试并确保通过以下检查：`RUN_SLOW=1 python -m pytest tests/models/{your_model_name}/test_tokenization_{your_model_name}.py`
    - CircleCI 不会运行时间较长的测试，但 GitHub Actions 每晚会运行所有测试！<br>
 
-☐ 所有公共 method 必须具有信息文档（比如 [`modeling_bert.py`](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py)）。<br>
+☐ 所有公共 method 必须具有信息文档（比如 [`modeling_bert.py`](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bert/modeling_bert.py)）。<br>
 ☐ 由于代码仓库的体积正在迅速增长，请避免添加图像、视频和其他非文本文件，它们会增加仓库的负担。请使用 [`hf-internal-testing`](https://huggingface.co/hf-internal-testing) 等 Hub 仓库来托管这些文件，并通过 URL 引用它们。我们建议将与文档相关的图片放置在以下仓库中：[huggingface/documentation-images](https://huggingface.co/datasets/huggingface/documentation-images)。你可以在这个数据集仓库上创建一个 PR，并请求 Hugging Face 成员进行合并。
 
 要了解更多有关在 Pull request 上运行的检查的信息，请查看我们的 [检查 Pull Request](https://huggingface.co/docs/transformers/pr_checks) 指南。
@@ -284,7 +284,7 @@ RUN_SLOW=yes python -m pytest -n auto --dist=loadfile -s -v ./examples/pytorch/t
 - `RUN_PT_FLAX_CROSS_TESTS`: 启用 PyTorch + Flax 整合的测试。
 - `RUN_PT_TF_CROSS_TESTS`: 启用 TensorFlow + PyTorch 整合的测试。
 
-更多环境变量和额外信息可以在 [testing_utils.py](src/transformers/testing_utils.py) 中找到。
+更多环境变量和额外信息可以在 [testing_utils.py](src/transformers_openvla_oft/testing_utils.py) 中找到。
 
 🤗 Transformers 只是使用 `pytest` 作为测试运行程序，但测试套件本身没用任何与 `pytest` 相关的功能。
 

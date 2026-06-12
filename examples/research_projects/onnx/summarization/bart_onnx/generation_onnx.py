@@ -5,8 +5,8 @@ from typing import List, Optional, Tuple
 import torch
 import torch.nn.functional as F
 
-from transformers import BartConfig
-from transformers.generation import GenerationMixin
+from transformers_openvla_oft import BartConfig
+from transformers_openvla_oft.generation import GenerationMixin
 
 
 def _convert_past_list_to_tuple(past_key_values):
@@ -90,7 +90,7 @@ def _create_traced_decoder(decoder, input_ids, encoder_state, attention_mask, pa
 
 class BartConfigTS(BartConfig, torch.nn.Module):
     """
-    BartConfigTS is a TorchScript-compatible transformers.models.bart.configuration_bart.BartConfig.
+    BartConfigTS is a TorchScript-compatible transformers_openvla_oft.models.bart.configuration_bart.BartConfig.
     TorchScript only supports sub-classes of torch.nn.Module.
     """
 
@@ -101,7 +101,7 @@ class BartConfigTS(BartConfig, torch.nn.Module):
 
 class MinLengthLogitsProcessorTS(torch.nn.Module):
     r"""
-    :class:`transformers.LogitsProcessor` enforcing a min-length by setting EOS probability to 0.
+    :class:`transformers_openvla_oft.LogitsProcessor` enforcing a min-length by setting EOS probability to 0.
 
     Args:
         min_length (:obj:`int`):

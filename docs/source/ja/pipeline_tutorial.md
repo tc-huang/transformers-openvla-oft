@@ -37,7 +37,7 @@ specific language governing permissions and limitations under the License.
 1. [`pipeline`]を作成し、推論タスクを指定して始めます：
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> generator = pipeline(task="automatic-speech-recognition")
 ```
@@ -137,7 +137,7 @@ texts = generator(audio_filenames)
 ### Task specific parameters
 
 すべてのタスクは、タスク固有のパラメータを提供し、追加の柔軟性とオプションを提供して、作業をスムーズに進めるのに役立ちます。
-たとえば、[`transformers.AutomaticSpeechRecognitionPipeline.__call__`]メソッドには、ビデオの字幕作成に有用な`return_timestamps`パラメータがあります。
+たとえば、[`transformers_openvla_oft.AutomaticSpeechRecognitionPipeline.__call__`]メソッドには、ビデオの字幕作成に有用な`return_timestamps`パラメータがあります。
 
 ```py
 >>> # Not using whisper, as it cannot provide timestamps.
@@ -149,7 +149,7 @@ texts = generator(audio_filenames)
 モデルは、テキストを推測し、文の中で各単語がいつ発音されたかを出力しました。
 
 各タスクごとに利用可能な多くのパラメータがありますので、何を調整できるかを確認するために各タスクのAPIリファレンスを確認してください！
-たとえば、[`~transformers.AutomaticSpeechRecognitionPipeline`]には、モデル単体では処理できない非常に長いオーディオファイル（たとえば、映画全体や1時間のビデオの字幕付けなど）で役立つ`chunk_length_s`パラメータがあります。
+たとえば、[`~transformers_openvla_oft.AutomaticSpeechRecognitionPipeline`]には、モデル単体では処理できない非常に長いオーディオファイル（たとえば、映画全体や1時間のビデオの字幕付けなど）で役立つ`chunk_length_s`パラメータがあります。
 
 <!--役立つパラメータが見つからない場合は、[リクエスト](https://github.com/huggingface/transformers/issues/new?assignees=&labels=feature&template=feature-request.yml)してください！-->
 
@@ -180,7 +180,7 @@ for out in pipe(data()):
 
 ```py
 # KeyDataset is a util that will just output the item we're interested in.
-from transformers.pipelines.pt_utils import KeyDataset
+from transformers_openvla_oft.pipelines.pt_utils import KeyDataset
 from datasets import load_dataset
 
 pipe = pipeline(model="hf-internal-testing/tiny-random-wav2vec2", device=0)
@@ -207,7 +207,7 @@ for out in pipe(KeyDataset(dataset, "audio")):
 ![pipeline-cat-chonk](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg)
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vision_classifier = pipeline(model="google/vit-base-patch16-224")
 >>> preds = vision_classifier(
@@ -223,7 +223,7 @@ for out in pipe(KeyDataset(dataset, "audio")):
 [`pipeline`]を使用することは、NLPタスクに対してほぼ同じです。
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> # This model is a `zero-shot-classification` model.
 >>> # It will classify text, except you are free to choose any label you might imagine
@@ -243,7 +243,7 @@ for out in pipe(KeyDataset(dataset, "audio")):
 例えば、この[請求書画像](https://huggingface.co/spaces/impira/docquery/resolve/2359223c1837a7587402bda0f2643382a6eefeab/invoice.png)を使用する場合：
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> vqa = pipeline(model="impira/layoutlm-document-qa")
 >>> output = vqa(
@@ -275,7 +275,7 @@ pip install pytesseract
 ```python
 # pip install accelerate
 import torch
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline(model="facebook/opt-1.3b", torch_dtype=torch.bfloat16, device_map="auto")
 output = pipe("これは素晴らしい例です！", do_sample=True, top_p=0.95)
@@ -286,7 +286,7 @@ output = pipe("これは素晴らしい例です！", do_sample=True, top_p=0.95
 ```py
 # pip install accelerate bitsandbytes
 import torch
-from transformers import pipeline
+from transformers_openvla_oft import pipeline
 
 pipe = pipeline(model="facebook/opt-1.3b", device_map="auto", model_kwargs={"load_in_8bit": True})
 output = pipe("This is a cool example!", do_sample=True, top_p=0.95)

@@ -17,9 +17,9 @@
 import copy
 import unittest
 
-from transformers.models.auto import get_values
-from transformers.testing_utils import require_torch, slow, torch_device
-from transformers.utils import cached_property, is_torch_available, is_vision_available
+from transformers_openvla_oft.models.auto import get_values
+from transformers_openvla_oft.testing_utils import require_torch, slow, torch_device
+from transformers_openvla_oft.utils import cached_property, is_torch_available, is_vision_available
 
 from ...test_configuration_common import ConfigTester
 from ...test_modeling_common import ModelTesterMixin, floats_tensor, ids_tensor, random_attention_mask
@@ -29,7 +29,7 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         MODEL_FOR_MULTIPLE_CHOICE_MAPPING,
         MODEL_FOR_QUESTION_ANSWERING_MAPPING,
         MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING,
@@ -44,7 +44,7 @@ if is_torch_available():
 if is_vision_available():
     from PIL import Image
 
-    from transformers import LayoutLMv3ImageProcessor
+    from transformers_openvla_oft import LayoutLMv3ImageProcessor
 
 
 class LayoutLMv3ModelTester:

@@ -128,7 +128,7 @@ Now you can convert the label id to a label name:
 The next step is to load a Wav2Vec2 feature extractor to process the audio signal:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("facebook/wav2vec2-base")
 ```
@@ -203,7 +203,7 @@ If you aren't familiar with finetuning a model with the [`Trainer`], take a look
 You're ready to start training your model now! Load Wav2Vec2 with [`AutoModelForAudioClassification`] along with the number of expected labels, and the label mappings:
 
 ```py
->>> from transformers import AutoModelForAudioClassification, TrainingArguments, Trainer
+>>> from transformers_openvla_oft import AutoModelForAudioClassification, TrainingArguments, Trainer
 
 >>> num_labels = len(id2label)
 >>> model = AutoModelForAudioClassification.from_pretrained(
@@ -247,7 +247,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [`~transformers.Trainer.push_to_hub`] method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [`~transformers_openvla_oft.Trainer.push_to_hub`] method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -279,7 +279,7 @@ Load an audio file you'd like to run inference on. Remember to resample the samp
 The simplest way to try out your finetuned model for inference is to use it in a [`pipeline`]. Instantiate a `pipeline` for audio classification with your model, and pass your audio file to it:
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> classifier = pipeline("audio-classification", model="stevhliu/my_awesome_minds_model")
 >>> classifier(audio_file)
@@ -299,7 +299,7 @@ You can also manually replicate the results of the `pipeline` if you'd like:
 Load a feature extractor to preprocess the audio file and return the `input` as PyTorch tensors:
 
 ```py
->>> from transformers import AutoFeatureExtractor
+>>> from transformers_openvla_oft import AutoFeatureExtractor
 
 >>> feature_extractor = AutoFeatureExtractor.from_pretrained("stevhliu/my_awesome_minds_model")
 >>> inputs = feature_extractor(dataset[0]["audio"]["array"], sampling_rate=sampling_rate, return_tensors="pt")
@@ -308,7 +308,7 @@ Load a feature extractor to preprocess the audio file and return the `input` as 
 Pass your inputs to the model and return the logits:
 
 ```py
->>> from transformers import AutoModelForAudioClassification
+>>> from transformers_openvla_oft import AutoModelForAudioClassification
 
 >>> model = AutoModelForAudioClassification.from_pretrained("stevhliu/my_awesome_minds_model")
 >>> with torch.no_grad():

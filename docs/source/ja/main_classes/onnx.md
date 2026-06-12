@@ -16,7 +16,7 @@ rendered properly in your Markdown viewer.
 
 # Exporting 🤗 Transformers models to ONNX
 
-🤗 Transformers は `transformers.onnx` パッケージを提供します。
+🤗 Transformers は `transformers_openvla_oft.onnx` パッケージを提供します。
 設定オブジェクトを利用することで、モデルのチェックポイントをONNXグラフに変換することができます。
 
 詳細は[ガイド](../serialization) を参照してください。

@@ -37,7 +37,7 @@ We also provide `StableLM Zephyr 3B`, an instruction fine-tuned version of the m
 The following code snippet demonstrates how to use `StableLM 3B 4E1T` for inference:
 
 ```python
->>> from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, set_seed
 >>> device = "cuda" # the device to load the model onto
 
 >>> set_seed(0)
@@ -68,7 +68,7 @@ Now, to run the model with Flash Attention 2, refer to the snippet below:
 
 ```python
 >>> import torch
->>> from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
+>>> from transformers_openvla_oft import AutoModelForCausalLM, AutoTokenizer, set_seed
 >>> device = "cuda" # the device to load the model onto
 
 >>> set_seed(0)

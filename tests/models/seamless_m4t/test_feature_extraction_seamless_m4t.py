@@ -23,9 +23,9 @@ import unittest
 import numpy as np
 from datasets import load_dataset
 
-from transformers import SeamlessM4TFeatureExtractor, is_speech_available
-from transformers.testing_utils import check_json_file_has_correct_format, require_torch
-from transformers.utils.import_utils import is_torch_available
+from transformers_openvla_oft import SeamlessM4TFeatureExtractor, is_speech_available
+from transformers_openvla_oft.testing_utils import check_json_file_has_correct_format, require_torch
+from transformers_openvla_oft.utils.import_utils import is_torch_available
 
 from ...test_sequence_feature_extraction_common import SequenceFeatureExtractionTestMixin
 

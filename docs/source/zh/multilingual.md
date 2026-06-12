@@ -42,7 +42,7 @@ XLM 有十个不同的检查点，其中只有一个是单语言的。剩下的�
 
 ```py
 >>> import torch
->>> from transformers import XLMTokenizer, XLMWithLMHeadModel
+>>> from transformers_openvla_oft import XLMTokenizer, XLMWithLMHeadModel
 
 >>> tokenizer = XLMTokenizer.from_pretrained("FacebookAI/xlm-clm-enfr-1024")
 >>> model = XLMWithLMHeadModel.from_pretrained("FacebookAI/xlm-clm-enfr-1024")
@@ -116,7 +116,7 @@ XLM-RoBERTa 使用 100 种语言的 2.5TB 新创建和清理的 CommonCrawl 数�
 在此示例中，加载 `facebook/m2m100_418M` 检查点以将中文翻译为英文。你可以在分词器中设置源语言：
 
 ```py
->>> from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+>>> from transformers_openvla_oft import M2M100ForConditionalGeneration, M2M100Tokenizer
 
 >>> en_text = "Do not meddle in the affairs of wizards, for they are subtle and quick to anger."
 >>> chinese_text = "不要插手巫師的事務, 因為他們是微妙的, 很快就會發怒."
@@ -152,7 +152,7 @@ M2M100 强制将目标语言 id 作为第一个生成的标记，以进行到目
 在此示例中，加载  `facebook/mbart-large-50-many-to-many-mmt` 检查点以将芬兰语翻译为英语。 你可以在分词器中设置源语言：
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 
 >>> en_text = "Do not meddle in the affairs of wizards, for they are subtle and quick to anger."
 >>> fi_text = "Älä sekaannu velhojen asioihin, sillä ne ovat hienovaraisia ja nopeasti vihaisia."

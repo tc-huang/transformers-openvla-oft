@@ -15,7 +15,7 @@
 import gc
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_CAUSAL_LM_MAPPING,
     MODEL_FOR_SEQ_TO_SEQ_CAUSAL_LM_MAPPING,
     TF_MODEL_FOR_CAUSAL_LM_MAPPING,
@@ -30,7 +30,7 @@ from transformers import (
     TFAutoModelForCausalLM,
     pipeline,
 )
-from transformers.testing_utils import (
+from transformers_openvla_oft.testing_utils import (
     backend_empty_cache,
     is_pipeline_test,
     is_torch_available,

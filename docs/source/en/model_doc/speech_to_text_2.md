@@ -54,7 +54,7 @@ predicted token ids.
 
 ```python
 >>> import torch
->>> from transformers import Speech2Text2Processor, SpeechEncoderDecoderModel
+>>> from transformers_openvla_oft import Speech2Text2Processor, SpeechEncoderDecoderModel
 >>> from datasets import load_dataset
 >>> import soundfile as sf
 
@@ -83,7 +83,7 @@ predicted token ids.
 
 ```python
 >>> from datasets import load_dataset
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> librispeech_en = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
 >>> asr = pipeline(

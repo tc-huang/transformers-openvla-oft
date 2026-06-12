@@ -53,7 +53,7 @@ The simplest way to try out inference with a model supporting depth estimation i
 Instantiate a pipeline from a [checkpoint on the Hugging Face Hub](https://huggingface.co/models?pipeline_tag=depth-estimation&sort=downloads):
 
 ```py
->>> from transformers import pipeline
+>>> from transformers_openvla_oft import pipeline
 
 >>> checkpoint = "vinvino02/glpn-nyu"
 >>> depth_estimator = pipeline("depth-estimation", model=checkpoint)
@@ -102,7 +102,7 @@ Start by loading the model and associated processor from a [checkpoint on the Hu
 Here we'll use the same checkpoint as before:
 
 ```py
->>> from transformers import AutoImageProcessor, AutoModelForDepthEstimation
+>>> from transformers_openvla_oft import AutoImageProcessor, AutoModelForDepthEstimation
 
 >>> checkpoint = "vinvino02/glpn-nyu"
 

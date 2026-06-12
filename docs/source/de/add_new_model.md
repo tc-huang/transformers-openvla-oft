@@ -100,7 +100,7 @@ wie der Code geschrieben werden sollte :-)
 
 1. Der Vorwärtsdurchlauf Ihres Modells sollte vollständig in die Modellierungsdatei geschrieben werden und dabei völlig unabhängig von anderen
    Modellen in der Bibliothek. Wenn Sie einen Block aus einem anderen Modell wiederverwenden möchten, kopieren Sie den Code und fügen ihn mit einem
-   `# Kopiert von` ein (siehe [hier](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers/models/roberta/modeling_roberta.py#L160)
+   `# Kopiert von` ein (siehe [hier](https://github.com/huggingface/transformers/blob/v4.17.0/src/transformers_openvla_oft/models/roberta/modeling_roberta.py#L160)
    für ein gutes Beispiel und [hier](pr_checks#check-copies) für weitere Dokumentation zu Copied from). 
 2. Der Code sollte vollständig verständlich sein, auch für einen Nicht-Muttersprachler. Das heißt, Sie sollten
    beschreibende Variablennamen wählen und Abkürzungen vermeiden. Ein Beispiel: `activation` ist `act` vorzuziehen.
@@ -387,7 +387,7 @@ wichtig ist. Hier sind einige Ratschläge, um Ihre Debugging-Umgebung so effizie
   Originalcode so ändern müssen, dass Sie die ids direkt eingeben können, anstatt eine Zeichenkette einzugeben.
 - Vergewissern Sie sich, dass sich das Modell in Ihrem Debugging-Setup **nicht** im Trainingsmodus befindet, der oft dazu führt, dass das Modell
   Dies führt häufig zu zufälligen Ergebnissen, da das Modell mehrere Dropout-Schichten enthält. Stellen Sie sicher, dass der Vorwärtsdurchlauf in Ihrer Debugging
-  Umgebung **deterministisch** ist, damit die Dropout-Schichten nicht verwendet werden. Oder verwenden Sie *transformers.utils.set_seed*.
+  Umgebung **deterministisch** ist, damit die Dropout-Schichten nicht verwendet werden. Oder verwenden Sie *transformers_openvla_oft.utils.set_seed*.
   wenn sich die alte und die neue Implementierung im selben Framework befinden.
 
 Im folgenden Abschnitt finden Sie genauere Details/Tipps, wie Sie dies für *brand_new_bert* tun können.
@@ -476,11 +476,11 @@ Hugging Face Team per Slack oder E-Mail zu stellen.
 **5. Passen Sie den Code der generierten Modelle für brand_new_bert** an.
 
 Zunächst werden wir uns nur auf das Modell selbst konzentrieren und uns nicht um den Tokenizer kümmern. Den gesamten relevanten Code sollten Sie
-finden Sie in den generierten Dateien `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` und
-`src/transformers/models/brand_new_bert/configuration_brand_new_bert.py`.
+finden Sie in den generierten Dateien `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` und
+`src/transformers_openvla_oft/models/brand_new_bert/configuration_brand_new_bert.py`.
 
 Jetzt können Sie endlich mit dem Programmieren beginnen :). Der generierte Code in
-`src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` wird entweder die gleiche Architektur wie BERT haben, wenn
+`src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` wird entweder die gleiche Architektur wie BERT haben, wenn
 wenn es sich um ein reines Encoder-Modell handelt oder BART, wenn es sich um ein Encoder-Decoder-Modell handelt. An diesem Punkt sollten Sie sich daran erinnern, was
 was Sie am Anfang über die theoretischen Aspekte des Modells gelernt haben: *Wie unterscheidet sich das Modell von BERT oder
 BART?*". Implementieren Sie diese Änderungen, was oft bedeutet, dass Sie die *Selbstaufmerksamkeitsschicht*, die Reihenfolge der Normalisierungsschicht usw. ändern müssen.
@@ -489,14 +489,14 @@ ein besseres Gefühl dafür zu bekommen, wie Ihr Modell implementiert werden sol
 
 **Beachten Sie**, dass Sie an diesem Punkt nicht sehr sicher sein müssen, dass Ihr Code völlig korrekt oder sauber ist. Vielmehr ist es
 Sie sollten vielmehr eine erste *unbereinigte*, kopierte Version des ursprünglichen Codes in
-src/transformers/models/brand_new_bert/modeling_brand_new_bert.py" hinzuzufügen, bis Sie das Gefühl haben, dass der gesamte notwendige Code
+src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py" hinzuzufügen, bis Sie das Gefühl haben, dass der gesamte notwendige Code
 hinzugefügt wurde. Unserer Erfahrung nach ist es viel effizienter, schnell eine erste Version des erforderlichen Codes hinzuzufügen und
 den Code iterativ mit dem Konvertierungsskript zu verbessern/korrigieren, wie im nächsten Abschnitt beschrieben. Das einzige, was
 zu diesem Zeitpunkt funktionieren muss, ist, dass Sie die 🤗 Transformers-Implementierung von *brand_new_bert* instanziieren können, *d.h.* der
 folgende Befehl sollte funktionieren:
 
 ```python
-from transformers import BrandNewBertModel, BrandNewBertConfig
+from transformers_openvla_oft import BrandNewBertModel, BrandNewBertConfig
 
 model = BrandNewBertModel(BrandNewBertConfig())
 ```
@@ -556,8 +556,8 @@ demselben Framework wie *brand_new_bert* geschrieben wurde. Normalerweise reicht
 es für Ihren Anwendungsfall leicht anzupassen. Zögern Sie nicht, das Hugging Face Team zu bitten, Sie auf ein ähnliches, bereits vorhandenes
 Konvertierungsskript für Ihr Modell zu finden.
 
-- Wenn Sie ein Modell von TensorFlow nach PyTorch portieren, ist ein guter Ausgangspunkt das Konvertierungsskript von BERT [hier](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers/models/bert/modeling_bert.py#L91)
-- Wenn Sie ein Modell von PyTorch nach PyTorch portieren, ist ein guter Ausgangspunkt das Konvertierungsskript von BART [hier](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
+- Wenn Sie ein Modell von TensorFlow nach PyTorch portieren, ist ein guter Ausgangspunkt das Konvertierungsskript von BERT [hier](https://github.com/huggingface/transformers/blob/7acfa95afb8194f8f9c1f4d2c6028224dbed35a2/src/transformers_openvla_oft/models/bert/modeling_bert.py#L91)
+- Wenn Sie ein Modell von PyTorch nach PyTorch portieren, ist ein guter Ausgangspunkt das Konvertierungsskript von BART [hier](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bart/convert_bart_original_pytorch_checkpoint_to_pytorch.py)
 
 Im Folgenden werden wir kurz erklären, wie PyTorch-Modelle Ebenengewichte speichern und Ebenennamen definieren. In PyTorch wird der
 Name einer Ebene durch den Namen des Klassenattributs definiert, das Sie der Ebene geben. Lassen Sie uns ein Dummy-Modell in
@@ -790,7 +790,7 @@ ein funktionierendes Tokenisierungsskript geschrieben, das das ursprüngliche Re
 erstellt werden. Es sollte ähnlich wie dieses aussehen:
 
 ```python
-from transformers import BrandNewBertTokenizer
+from transformers_openvla_oft import BrandNewBertTokenizer
 
 input_str = "This is a long example input string containing special characters .$?-, numbers 2872 234 12 and words."
 
@@ -826,7 +826,7 @@ diese Seite ansehen, bevor sie Ihr Modell verwenden. Daher muss die Dokumentatio
 die Gemeinschaft, einige *Tipps* hinzuzufügen, um zu zeigen, wie das Modell verwendet werden sollte. Zögern Sie nicht, das Hugging Face-Team anzupingen
 bezüglich der Docstrings.
 
-Stellen Sie als nächstes sicher, dass der zu `src/transformers/models/brand_new_bert/modeling_brand_new_bert.py` hinzugefügte docstring
+Stellen Sie als nächstes sicher, dass der zu `src/transformers_openvla_oft/models/brand_new_bert/modeling_brand_new_bert.py` hinzugefügte docstring
 korrekt ist und alle erforderlichen Eingaben und Ausgaben enthält. Wir haben eine ausführliche Anleitung zum Schreiben von Dokumentationen und unserem Docstring-Format [hier](writing-documentation). Es ist immer gut, sich daran zu erinnern, dass die Dokumentation
 mindestens so sorgfältig behandelt werden sollte wie der Code in 🤗 Transformers, denn die Dokumentation ist in der Regel der erste Kontaktpunkt der
 Berührungspunkt der Community mit dem Modell ist.

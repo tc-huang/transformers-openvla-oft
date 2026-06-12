@@ -14,13 +14,13 @@
 
 import unittest
 
-from transformers import (
+from transformers_openvla_oft import (
     MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING,
     TF_MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING,
     TextClassificationPipeline,
     pipeline,
 )
-from transformers.testing_utils import is_pipeline_test, nested_simplify, require_tf, require_torch, slow, torch_device
+from transformers_openvla_oft.testing_utils import is_pipeline_test, nested_simplify, require_tf, require_torch, slow, torch_device
 
 from .test_pipelines_common import ANY
 

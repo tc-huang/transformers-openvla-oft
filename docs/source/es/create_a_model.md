@@ -31,7 +31,7 @@ Una [configuración](main_classes/configuration) es un conjunto de atributos esp
 Puedes echarle un vistazo a [DistilBERT](model_doc/distilbert) y sus atributos accediendo a [`DistilBertConfig`]:
 
 ```py
->>> from transformers import DistilBertConfig
+>>> from transformers_openvla_oft import DistilBertConfig
 
 >>> config = DistilBertConfig()
 >>> print(config)
@@ -117,7 +117,7 @@ El siguiente paso será crear un [modelo](main_classes/models). El modelo, al qu
 Carga los atributos de tu configuración personalizada en el modelo de la siguiente forma:
 
 ```py
->>> from transformers import DistilBertModel
+>>> from transformers_openvla_oft import DistilBertModel
 
 >>> my_config = DistilBertConfig.from_pretrained("./your_model_save_path/my_config.json")
 >>> model = DistilBertModel(my_config)
@@ -142,7 +142,7 @@ Cuando cargues tus pesos del preentrenamiento, el modelo por defecto se carga au
 Carga los atributos de tu configuración personalizada en el modelo de la siguiente forma:
 
 ```py
->>> from transformers import TFDistilBertModel
+>>> from transformers_openvla_oft import TFDistilBertModel
 
 >>> my_config = DistilBertConfig.from_pretrained("./your_model_save_path/my_config.json")
 >>> tf_model = TFDistilBertModel(my_config)
@@ -175,7 +175,7 @@ En este punto del tutorial, tenemos un modelo DistilBERT base que devuelve los *
 Por ejemplo,  [`DistilBertForSequenceClassification`] es un modelo DistilBERT base con una cabeza de clasificación de secuencias. La cabeza de clasificación de secuencias es una capa superior que precede a la recolección de las salidas.
 
 ```py
->>> from transformers import DistilBertForSequenceClassification
+>>> from transformers_openvla_oft import DistilBertForSequenceClassification
 
 >>> model = DistilBertForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -184,7 +184,7 @@ Puedes reutilizar este punto de guardado o *checkpoint* para otra tarea fácilme
 
 
 ```py
->>> from transformers import DistilBertForQuestionAnswering
+>>> from transformers_openvla_oft import DistilBertForQuestionAnswering
 
 >>> model = DistilBertForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -194,7 +194,7 @@ Puedes reutilizar este punto de guardado o *checkpoint* para otra tarea fácilme
 Por ejemplo,  [`TFDistilBertForSequenceClassification`] es un modelo DistilBERT base con una cabeza de clasificación de secuencias. La cabeza de clasificación de secuencias es una capa superior que precede a la recolección de las salidas.
 
 ```py
->>> from transformers import TFDistilBertForSequenceClassification
+>>> from transformers_openvla_oft import TFDistilBertForSequenceClassification
 
 >>> tf_model = TFDistilBertForSequenceClassification.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -203,7 +203,7 @@ Puedes reutilizar este punto de guardado o *checkpoint* para otra tarea fácilme
 
 
 ```py
->>> from transformers import TFDistilBertForQuestionAnswering
+>>> from transformers_openvla_oft import TFDistilBertForQuestionAnswering
 
 >>> tf_model = TFDistilBertForQuestionAnswering.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -228,7 +228,7 @@ No todos los modelos son compatibles con un *tokenizer* rápido. Échale un vist
 Si has entrenado tu propio *tokenizer*, puedes crear uno desde tu archivo de “vocabulario”:
 
 ```py
->>> from transformers import DistilBertTokenizer
+>>> from transformers_openvla_oft import DistilBertTokenizer
 
 >>> my_tokenizer = DistilBertTokenizer(vocab_file="my_vocab_file.txt", do_lower_case=False, padding_side="left")
 ```
@@ -237,7 +237,7 @@ Es importante recordar que los vocabularios que provienen de un *tokenizer* pers
 
 
 ```py
->>> from transformers import DistilBertTokenizer
+>>> from transformers_openvla_oft import DistilBertTokenizer
 
 >>> slow_tokenizer = DistilBertTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -246,7 +246,7 @@ Crea un *tokenizer* rápido con la clase [`DistilBertTokenizerFast`]:
 
 
 ```py
->>> from transformers import DistilBertTokenizerFast
+>>> from transformers_openvla_oft import DistilBertTokenizerFast
 
 >>> fast_tokenizer = DistilBertTokenizerFast.from_pretrained("distilbert/distilbert-base-uncased")
 ```
@@ -265,7 +265,7 @@ Un extractor de características procesa entradas de audio e imagen. Hereda de l
 Dependiendo de si trabajas en una tarea de audio o de video, puedes crear un extractor de características asociado al modelo que estés usando. Por ejemplo, podrías crear un [`ViTFeatureExtractor`] por defecto si estás usando [ViT](model_doc/vit) para clasificación de imágenes:
 
 ```py
->>> from transformers import ViTFeatureExtractor
+>>> from transformers_openvla_oft import ViTFeatureExtractor
 
 >>> vit_extractor = ViTFeatureExtractor()
 >>> print(vit_extractor)
@@ -297,7 +297,7 @@ Si no estás buscando ninguna personalización en específico, usa el método `f
 Puedes modificar cualquier parámetro de [`ViTFeatureExtractor`] para crear tu extractor de características personalizado:
 
 ```py
->>> from transformers import ViTFeatureExtractor
+>>> from transformers_openvla_oft import ViTFeatureExtractor
 
 >>> my_vit_extractor = ViTFeatureExtractor(resample="PIL.Image.BOX", do_normalize=False, image_mean=[0.3, 0.3, 0.3])
 >>> print(my_vit_extractor)
@@ -324,7 +324,7 @@ Para las entradas de audio, puedes crear un [`Wav2Vec2FeatureExtractor`] y perso
 
 
 ```py
->>> from transformers import Wav2Vec2FeatureExtractor
+>>> from transformers_openvla_oft import Wav2Vec2FeatureExtractor
 
 >>> w2v2_extractor = Wav2Vec2FeatureExtractor()
 >>> print(w2v2_extractor)
@@ -347,7 +347,7 @@ Crea un extractor de características para manejar la entrada de audio:
 
 
 ```py
->>> from transformers import Wav2Vec2FeatureExtractor
+>>> from transformers_openvla_oft import Wav2Vec2FeatureExtractor
 
 >>> feature_extractor = Wav2Vec2FeatureExtractor(padding_value=1.0, do_normalize=True)
 ```
@@ -355,7 +355,7 @@ Crea un extractor de características para manejar la entrada de audio:
 Crea un *tokenizer* para manejar la entrada de texto:
 
 ```py
->>> from transformers import Wav2Vec2CTCTokenizer
+>>> from transformers_openvla_oft import Wav2Vec2CTCTokenizer
 
 >>> tokenizer = Wav2Vec2CTCTokenizer(vocab_file="my_vocab_file.txt")
 ```
@@ -364,7 +364,7 @@ Puedes combinar el extractor de características y el *tokenizer* en el [`Wav2Ve
 
 
 ```py
->>> from transformers import Wav2Vec2Processor
+>>> from transformers_openvla_oft import Wav2Vec2Processor
 
 >>> processor = Wav2Vec2Processor(feature_extractor=feature_extractor, tokenizer=tokenizer)
 ```

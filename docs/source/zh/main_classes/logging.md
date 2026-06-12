@@ -23,9 +23,9 @@ rendered properly in your Markdown viewer.
 要更改日志详细程度，只需使用其中一个直接的setter。例如，以下是如何将日志详细程度更改为INFO级别的方法：
 
 ```python
-import transformers
+import transformers_openvla_oft
 
-transformers.logging.set_verbosity_info()
+transformers_openvla_oft.logging.set_verbosity_info()
 ```
 
 您还可以使用环境变量`TRANSFORMERS_VERBOSITY`来覆盖默认的日志详细程度。您可以将其设置为以下级别之一：`debug`、`info`、`warning`、`error`、`critical`。例如：
@@ -43,7 +43,7 @@ TRANSFORMERS_NO_ADVISORY_WARNINGS=1 ./myprogram.py
 以下是如何在您自己的模块或脚本中使用与库相同的logger的示例：
 
 ```python
-from transformers.utils import logging
+from transformers_openvla_oft.utils import logging
 
 logging.set_verbosity_info()
 logger = logging.get_logger("transformers")
@@ -54,11 +54,11 @@ logger.warning("WARN")
 
 此日志模块的所有方法都在下面进行了记录，主要的方法包括 [`logging.get_verbosity`] 用于获取logger当前输出日志详细程度的级别和 [`logging.set_verbosity`] 用于将详细程度设置为您选择的级别。按照顺序（从最不详细到最详细），这些级别（及其相应的整数值）为：
 
-- `transformers.logging.CRITICAL` 或 `transformers.logging.FATAL`（整数值，50）：仅报告最关键的errors。
-- `transformers.logging.ERROR`（整数值，40）：仅报告errors。
-- `transformers.logging.WARNING` 或 `transformers.logging.WARN`（整数值，30）：仅报告error和warnings。这是库使用的默认级别。
-- `transformers.logging.INFO`（整数值，20）：报告error、warnings和基本信息。
-- `transformers.logging.DEBUG`（整数值，10）：报告所有信息。
+- `transformers_openvla_oft.logging.CRITICAL` 或 `transformers_openvla_oft.logging.FATAL`（整数值，50）：仅报告最关键的errors。
+- `transformers_openvla_oft.logging.ERROR`（整数值，40）：仅报告errors。
+- `transformers_openvla_oft.logging.WARNING` 或 `transformers_openvla_oft.logging.WARN`（整数值，30）：仅报告error和warnings。这是库使用的默认级别。
+- `transformers_openvla_oft.logging.INFO`（整数值，20）：报告error、warnings和基本信息。
+- `transformers_openvla_oft.logging.DEBUG`（整数值，10）：报告所有信息。
 
 默认情况下，将在模型下载期间显示`tqdm`进度条。[`logging.disable_progress_bar`] 和 [`logging.enable_progress_bar`] 可用于禁止或启用此行为。
 

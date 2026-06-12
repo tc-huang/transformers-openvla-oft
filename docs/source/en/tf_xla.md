@@ -77,10 +77,10 @@ And then you can run the following code:
 
 ```py
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 # Will error if the minimal version of Transformers is not installed.
-from transformers.utils import check_min_version
+from transformers_openvla_oft.utils import check_min_version
 
 check_min_version("4.21.0")
 
@@ -112,7 +112,7 @@ To ensure `xla_generate()` always operates with the same input shapes, you can s
 
 ```py
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2", padding_side="left", pad_token="</s>")
 model = TFAutoModelForCausalLM.from_pretrained("openai-community/gpt2")
@@ -133,7 +133,7 @@ This way, you can ensure that the inputs to `xla_generate()` will always receive
 ```py
 import time
 import tensorflow as tf
-from transformers import AutoTokenizer, TFAutoModelForCausalLM
+from transformers_openvla_oft import AutoTokenizer, TFAutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2", padding_side="left", pad_token="</s>")
 model = TFAutoModelForCausalLM.from_pretrained("openai-community/gpt2")

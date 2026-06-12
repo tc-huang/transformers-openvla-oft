@@ -131,7 +131,7 @@ remat = nn_partitioning.remat
 
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertEmbeddings with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertEmbeddings with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}Embeddings(nn.Module):
     """Construct the embeddings from word, position and token_type embeddings."""
 
@@ -172,7 +172,7 @@ class Flax{{cookiecutter.camelcase_modelname}}Embeddings(nn.Module):
         return hidden_states
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertSelfAttention with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertSelfAttention with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}SelfAttention(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     causal: bool = False
@@ -214,7 +214,7 @@ class Flax{{cookiecutter.camelcase_modelname}}SelfAttention(nn.Module):
         return hidden_states.reshape(hidden_states.shape[:2] + (self.config.hidden_size,))
 
     @nn.compact
-    # Copied from transformers.models.bart.modeling_flax_bart.FlaxBartAttention._concatenate_to_cache
+    # Copied from transformers_openvla_oft.models.bart.modeling_flax_bart.FlaxBartAttention._concatenate_to_cache
     def _concatenate_to_cache(self, key, value, query, attention_mask):
         """
         This function takes projected key, value states from a single input token and concatenates the states to cached
@@ -344,7 +344,7 @@ class Flax{{cookiecutter.camelcase_modelname}}SelfAttention(nn.Module):
         return outputs
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertSelfOutput with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertSelfOutput with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}SelfOutput(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32  # the dtype of the computation
@@ -365,7 +365,7 @@ class Flax{{cookiecutter.camelcase_modelname}}SelfOutput(nn.Module):
         return hidden_states
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertAttention with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertAttention with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}Attention(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     causal: bool = False
@@ -408,7 +408,7 @@ class Flax{{cookiecutter.camelcase_modelname}}Attention(nn.Module):
         return outputs
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertIntermediate with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertIntermediate with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}Intermediate(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32  # the dtype of the computation
@@ -427,7 +427,7 @@ class Flax{{cookiecutter.camelcase_modelname}}Intermediate(nn.Module):
         return hidden_states
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertOutput with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertOutput with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}Output(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32  # the dtype of the computation
@@ -448,7 +448,7 @@ class Flax{{cookiecutter.camelcase_modelname}}Output(nn.Module):
         return hidden_states
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertLayer with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertLayer with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}Layer(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32  # the dtype of the computation
@@ -506,7 +506,7 @@ class Flax{{cookiecutter.camelcase_modelname}}Layer(nn.Module):
         return outputs
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertLayerCollection with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertLayerCollection with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}LayerCollection(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32  # the dtype of the computation
@@ -588,7 +588,7 @@ class Flax{{cookiecutter.camelcase_modelname}}LayerCollection(nn.Module):
         )
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertEncoder with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertEncoder with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}Encoder(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32  # the dtype of the computation
@@ -624,7 +624,7 @@ class Flax{{cookiecutter.camelcase_modelname}}Encoder(nn.Module):
         )
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertPooler with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertPooler with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}Pooler(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32  # the dtype of the computation
@@ -642,7 +642,7 @@ class Flax{{cookiecutter.camelcase_modelname}}Pooler(nn.Module):
         return nn.tanh(cls_hidden_state)
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertPredictionHeadTransform with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertPredictionHeadTransform with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}PredictionHeadTransform(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32
@@ -658,7 +658,7 @@ class Flax{{cookiecutter.camelcase_modelname}}PredictionHeadTransform(nn.Module)
         return self.LayerNorm(hidden_states)
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertLMPredictionHead with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertLMPredictionHead with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}LMPredictionHead(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32
@@ -681,7 +681,7 @@ class Flax{{cookiecutter.camelcase_modelname}}LMPredictionHead(nn.Module):
         return hidden_states
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertOnlyMLMHead with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertOnlyMLMHead with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}OnlyMLMHead(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32
@@ -694,7 +694,7 @@ class Flax{{cookiecutter.camelcase_modelname}}OnlyMLMHead(nn.Module):
         return hidden_states
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertOnlyNSPHead with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertOnlyNSPHead with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}OnlyNSPHead(nn.Module):
     dtype: jnp.dtype = jnp.float32
 
@@ -705,7 +705,7 @@ class Flax{{cookiecutter.camelcase_modelname}}OnlyNSPHead(nn.Module):
         return self.seq_relationship(pooled_output)
 
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertPreTrainingHeads with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertPreTrainingHeads with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}PreTrainingHeads(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32
@@ -743,7 +743,7 @@ class Flax{{cookiecutter.camelcase_modelname}}PreTrainedModel(FlaxPreTrainedMode
         module = self.module_class(config=config, dtype=dtype, gradient_checkpointing=gradient_checkpointing, **kwargs)
         super().__init__(config, module, input_shape=input_shape, seed=seed, dtype=dtype, _do_init=_do_init)
 
-    # Copied from transformers.models.bert.modeling_flax_bert.FlaxBertPreTrainedModel.enable_gradient_checkpointing
+    # Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertPreTrainedModel.enable_gradient_checkpointing
     def enable_gradient_checkpointing(self):
         self._module = self.module_class(
             config=self.config,
@@ -751,7 +751,7 @@ class Flax{{cookiecutter.camelcase_modelname}}PreTrainedModel(FlaxPreTrainedMode
             gradient_checkpointing=True,
         )
 
-    # Copied from transformers.models.bert.modeling_flax_bert.FlaxBertPreTrainedModel.init_weights with Bert->{{cookiecutter.camelcase_modelname}}
+    # Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertPreTrainedModel.init_weights with Bert->{{cookiecutter.camelcase_modelname}}
     def init_weights(self, rng: jax.random.PRNGKey, input_shape: Tuple, params: FrozenDict = None) -> FrozenDict:
         # init input tensors
         input_ids = jnp.zeros(input_shape, dtype="i4")
@@ -795,7 +795,7 @@ class Flax{{cookiecutter.camelcase_modelname}}PreTrainedModel(FlaxPreTrainedMode
             return random_params
 
 
-    # Copied from transformers.models.bert.modeling_flax_bert.FlaxBertPreTrainedModel.init_cache with Bert->{{cookiecutter.camelcase_modelname}}
+    # Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertPreTrainedModel.init_cache with Bert->{{cookiecutter.camelcase_modelname}}
     def init_cache(self, batch_size, max_length):
         r"""
         Args:
@@ -816,7 +816,7 @@ class Flax{{cookiecutter.camelcase_modelname}}PreTrainedModel(FlaxPreTrainedMode
         return unfreeze(init_variables["cache"])
 
     @add_start_docstrings_to_model_forward({{cookiecutter.uppercase_modelname}}_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
-    # Copied from transformers.models.bert.modeling_flax_bert.FlaxBertPreTrainedModel.__call__ with Bert->{{cookiecutter.camelcase_modelname}}
+    # Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertPreTrainedModel.__call__ with Bert->{{cookiecutter.camelcase_modelname}}
     def __call__(
         self,
         input_ids,
@@ -913,7 +913,7 @@ class Flax{{cookiecutter.camelcase_modelname}}PreTrainedModel(FlaxPreTrainedMode
 
         return outputs
 
-# Copied from transformers.models.bert.modeling_flax_bert.FlaxBertModule with Bert->{{cookiecutter.camelcase_modelname}}
+# Copied from transformers_openvla_oft.models.bert.modeling_flax_bert.FlaxBertModule with Bert->{{cookiecutter.camelcase_modelname}}
 class Flax{{cookiecutter.camelcase_modelname}}Module(nn.Module):
     config: {{cookiecutter.camelcase_modelname}}Config
     dtype: jnp.dtype = jnp.float32  # the dtype of the computation
@@ -2517,7 +2517,7 @@ class Flax{{cookiecutter.camelcase_modelname}}PreTrainedModel(FlaxPreTrainedMode
         Example:
 
         ```python
-        >>> from transformers import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
+        >>> from transformers_openvla_oft import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
 
         >>> model = Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
         >>> tokenizer = {{cookiecutter.camelcase_modelname}}Tokenizer.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
@@ -2584,7 +2584,7 @@ class Flax{{cookiecutter.camelcase_modelname}}PreTrainedModel(FlaxPreTrainedMode
 
         ```python
         >>> import jax.numpy as jnp
-        >>> from transformers import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
+        >>> from transformers_openvla_oft import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
 
         >>> model = Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
         >>> tokenizer = {{cookiecutter.camelcase_modelname}}Tokenizer.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
@@ -2852,7 +2852,7 @@ class Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration(Flax{{coo
 
         ```python
         >>> import jax.numpy as jnp
-        >>> from transformers import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
+        >>> from transformers_openvla_oft import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
 
         >>> model = Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
         >>> tokenizer = {{cookiecutter.camelcase_modelname}}Tokenizer.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
@@ -3008,7 +3008,7 @@ FLAX_{{cookiecutter.uppercase_modelname}}_CONDITIONAL_GENERATION_DOCSTRING = """
     Summarization example:
 
     ```python
-    >>> from transformers import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
+    >>> from transformers_openvla_oft import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
 
     >>> model = Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
     >>> tokenizer = {{cookiecutter.camelcase_modelname}}Tokenizer.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
@@ -3025,7 +3025,7 @@ FLAX_{{cookiecutter.uppercase_modelname}}_CONDITIONAL_GENERATION_DOCSTRING = """
 
     ```python
     >>> import jax
-    >>> from transformers import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
+    >>> from transformers_openvla_oft import {{cookiecutter.camelcase_modelname}}Tokenizer, Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration
 
     >>> model = Flax{{cookiecutter.camelcase_modelname}}ForConditionalGeneration.from_pretrained('{{cookiecutter.checkpoint_identifier}}')
     >>> tokenizer = {{cookiecutter.camelcase_modelname}}Tokenizer.from_pretrained('{{cookiecutter.checkpoint_identifier}}')

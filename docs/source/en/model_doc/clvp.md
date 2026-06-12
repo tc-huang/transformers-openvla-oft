@@ -51,7 +51,7 @@ Example :
 
 ```python
 >>> import datasets
->>> from transformers import ClvpProcessor, ClvpModelForConditionalGeneration
+>>> from transformers_openvla_oft import ClvpProcessor, ClvpModelForConditionalGeneration
 
 >>> # Define the Text and Load the Audio (We are taking an audio example from HuggingFace Hub using `datasets` library).
 >>> text = "This is an example text."

@@ -1,6 +1,6 @@
 import torch
 
-from transformers import PreTrainedModel
+from transformers_openvla_oft import PreTrainedModel
 
 from .custom_configuration import CustomConfig, NoSuperInitConfig
 

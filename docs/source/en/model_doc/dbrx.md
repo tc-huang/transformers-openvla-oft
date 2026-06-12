@@ -39,7 +39,7 @@ This model was contributed by [eitan-turok](https://huggingface.co/eitanturok) a
 The `generate()` method can be used to generate text using DBRX. You can generate using the standard attention implementation, flash-attention, and the PyTorch scaled dot product attention. The last two attention implementations give speed ups.
 
 ```python
-from transformers import DbrxForCausalLM, AutoTokenizer
+from transformers_openvla_oft import DbrxForCausalLM, AutoTokenizer
 import torch
 
 tokenizer = AutoTokenizer.from_pretrained("databricks/dbrx-instruct", token="YOUR_HF_TOKEN")
@@ -60,7 +60,7 @@ print(tokenizer.decode(outputs[0]))
 
 If you have flash-attention installed (`pip install flash-attn`), it is possible to generate faster. (The HuggingFace documentation for flash-attention can be found [here](https://huggingface.co/docs/transformers/perf_infer_gpu_one#flashattention-2).)
 ```python
-from transformers import DbrxForCausalLM, AutoTokenizer
+from transformers_openvla_oft import DbrxForCausalLM, AutoTokenizer
 import torch
 
 tokenizer = AutoTokenizer.from_pretrained("databricks/dbrx-instruct", token="YOUR_HF_TOKEN")
@@ -82,7 +82,7 @@ print(tokenizer.decode(outputs[0]))
 
 You can also generate faster using the PyTorch scaled dot product attention. (The HuggingFace documentation for scaled dot product attention can be found [here](https://huggingface.co/docs/transformers/perf_infer_gpu_one#pytorch-scaled-dot-product-attention).)
 ```python
-from transformers import DbrxForCausalLM, AutoTokenizer
+from transformers_openvla_oft import DbrxForCausalLM, AutoTokenizer
 import torch
 
 tokenizer = AutoTokenizer.from_pretrained("databricks/dbrx-instruct", token="YOUR_HF_TOKEN")

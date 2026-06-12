@@ -307,7 +307,7 @@ if __name__ == "__main__":
     """Running area"""
     from datasets import load_dataset
 
-    from transformers import BigBirdTokenizer
+    from transformers_openvla_oft import BigBirdTokenizer
 
     data = load_dataset("natural_questions")
     tokenizer = BigBirdTokenizer.from_pretrained("google/bigbird-roberta-base")

@@ -48,7 +48,7 @@ XLM에는 10가지 체크포인트(checkpoint)가 있는데, 이 중 하나만 �
 
 ```py
 >>> import torch
->>> from transformers import XLMTokenizer, XLMWithLMHeadModel
+>>> from transformers_openvla_oft import XLMTokenizer, XLMWithLMHeadModel
 
 >>> tokenizer = XLMTokenizer.from_pretrained("FacebookAI/xlm-clm-enfr-1024")
 >>> model = XLMWithLMHeadModel.from_pretrained("FacebookAI/xlm-clm-enfr-1024")
@@ -127,7 +127,7 @@ XLM-RoBERTa는 100개 국어에 대해 새로 생성되고 정제된 2.5TB 규�
 토크나이저에서 번역 대상 언어(source language)를 설정할 수 있습니다:
 
 ```py
->>> from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+>>> from transformers_openvla_oft import M2M100ForConditionalGeneration, M2M100Tokenizer
 
 >>> en_text = "Do not meddle in the affairs of wizards, for they are subtle and quick to anger."
 >>> chinese_text = "不要插手巫師的事務, 因為他們是微妙的, 很快就會發怒."
@@ -165,7 +165,7 @@ M2M100은 번역을 진행하기 위해 첫 번째로 생성되는 토큰은 번
 토크나이저에서 번역 대상 언어(source language)를 설정할 수 있습니다:
 
 ```py
->>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> from transformers_openvla_oft import AutoTokenizer, AutoModelForSeq2SeqLM
 
 >>> en_text = "Do not meddle in the affairs of wizards, for they are subtle and quick to anger."
 >>> fi_text = "Älä sekaannu velhojen asioihin, sillä ne ovat hienovaraisia ja nopeasti vihaisia."

@@ -82,7 +82,7 @@ If you're interested in submitting a resource to be included here, please feel f
 
 ## SwinForImageClassification
 
-[[autodoc]] transformers.SwinForImageClassification
+[[autodoc]] transformers_openvla_oft.SwinForImageClassification
     - forward
 
 </pt>
@@ -100,7 +100,7 @@ If you're interested in submitting a resource to be included here, please feel f
 
 ## TFSwinForImageClassification
 
-[[autodoc]] transformers.TFSwinForImageClassification
+[[autodoc]] transformers_openvla_oft.TFSwinForImageClassification
     - call
 
 </tf>

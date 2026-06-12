@@ -22,9 +22,9 @@ import unittest
 
 import numpy as np
 
-from transformers import ASTFeatureExtractor
-from transformers.testing_utils import check_json_file_has_correct_format, require_torch, require_torchaudio
-from transformers.utils.import_utils import is_torch_available
+from transformers_openvla_oft import ASTFeatureExtractor
+from transformers_openvla_oft.testing_utils import check_json_file_has_correct_format, require_torch, require_torchaudio
+from transformers_openvla_oft.utils.import_utils import is_torch_available
 
 from ...test_sequence_feature_extraction_common import SequenceFeatureExtractionTestMixin
 
@@ -204,7 +204,7 @@ class ASTFeatureExtractionTest(SequenceFeatureExtractionTestMixin, unittest.Test
 # exact same tests than before, except that we simulate that torchaudio is not available
 @require_torch
 @unittest.mock.patch(
-    "transformers.models.audio_spectrogram_transformer.feature_extraction_audio_spectrogram_transformer.is_speech_available",
+    "transformers_openvla_oft.models.audio_spectrogram_transformer.feature_extraction_audio_spectrogram_transformer.is_speech_available",
     lambda: False,
 )
 class ASTFeatureExtractionWithoutTorchaudioTest(ASTFeatureExtractionTest):
@@ -215,7 +215,7 @@ class ASTFeatureExtractionWithoutTorchaudioTest(ASTFeatureExtractionTest):
         self.assertTrue(hasattr(feat_extract, "window"))
         self.assertTrue(hasattr(feat_extract, "mel_filters"))
 
-        from transformers.models.audio_spectrogram_transformer.feature_extraction_audio_spectrogram_transformer import (
+        from transformers_openvla_oft.models.audio_spectrogram_transformer.feature_extraction_audio_spectrogram_transformer import (
             is_speech_available,
         )
 

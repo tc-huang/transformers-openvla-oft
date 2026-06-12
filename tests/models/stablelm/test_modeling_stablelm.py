@@ -19,8 +19,8 @@ import unittest
 
 from parameterized import parameterized
 
-from transformers import StableLmConfig, is_torch_available, set_seed
-from transformers.testing_utils import (
+from transformers_openvla_oft import StableLmConfig, is_torch_available, set_seed
+from transformers_openvla_oft.testing_utils import (
     is_flaky,
     require_bitsandbytes,
     require_flash_attn,
@@ -39,20 +39,20 @@ from ...test_pipeline_mixin import PipelineTesterMixin
 if is_torch_available():
     import torch
 
-    from transformers import (
+    from transformers_openvla_oft import (
         AutoTokenizer,
         StableLmForCausalLM,
         StableLmForSequenceClassification,
         StableLmModel,
     )
-    from transformers.models.stablelm.modeling_stablelm import (
+    from transformers_openvla_oft.models.stablelm.modeling_stablelm import (
         StableLmDynamicNTKScalingRotaryEmbedding,
         StableLmLinearScalingRotaryEmbedding,
         StableLmRotaryEmbedding,
     )
 
 
-# Copied from transformers.tests.models.persimmon.test_modeling_persimmon.PersimmonModelTester with Persimmon -> StableLm
+# Copied from transformers_openvla_oft.tests.models.persimmon.test_modeling_persimmon.PersimmonModelTester with Persimmon -> StableLm
 class StableLmModelTester:
     # Ignore copy
     def __init__(
@@ -284,7 +284,7 @@ class StableLmModelTester:
 
 
 @require_torch
-# Copied from transformers.tests.persimmon.test_modeling_persimmon.PersimmonModelTest with Persimmon -> StableLm
+# Copied from transformers_openvla_oft.tests.persimmon.test_modeling_persimmon.PersimmonModelTest with Persimmon -> StableLm
 class StableLmModelTest(ModelTesterMixin, GenerationTesterMixin, PipelineTesterMixin, unittest.TestCase):
     all_model_classes = (
         (StableLmModel, StableLmForCausalLM, StableLmForSequenceClassification) if is_torch_available() else ()
@@ -534,7 +534,7 @@ class StableLmModelIntegrationTest(unittest.TestCase):
         generated_ids = model.generate(input_ids, max_new_tokens=4, temperature=0)
         self.assertEqual(EXPECTED_OUTPUT_TOKEN_IDS, generated_ids[0][-3:].tolist())
 
-    # Copied from transformers.tests.models.llama.test_modeling_llama.LlamaModelTest.test_eager_matches_sdpa_generate with Llama->StableLm,saibo/llama-1B->stabilityai/stablelm-3b-4e1t
+    # Copied from transformers_openvla_oft.tests.models.llama.test_modeling_llama.LlamaModelTest.test_eager_matches_sdpa_generate with Llama->StableLm,saibo/llama-1B->stabilityai/stablelm-3b-4e1t
     # TODO: @Fxmarty
     @is_flaky(max_attempts=3, description="flaky on some models.")
     @require_torch_sdpa

@@ -59,7 +59,7 @@ REPLACE_PATTERNS = {
 }
 # This maps a type of file to its path in Transformers
 REPLACE_FILES = {
-    "init": "src/transformers/__init__.py",
+    "init": "src/transformers_openvla_oft/__init__.py",
     "setup": "setup.py",
 }
 README_FILE = "README.md"

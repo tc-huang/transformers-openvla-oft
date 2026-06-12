@@ -81,7 +81,7 @@ transformers-cli env
 You can also run the same command from the root of the repository:
 
 ```bash
-python src/transformers/commands/transformers_cli.py env
+python src/transformers_openvla_oft/commands/transformers_cli.py env
 ```
 
 ### Do you want a new feature?
@@ -286,7 +286,7 @@ useful to avoid duplicated work, and to differentiate it from PRs ready to be me
    - CircleCI does not run the slow tests, but GitHub Actions does every night!<br>
 
 ☐ All public methods must have informative docstrings (see
-[`modeling_bert.py`](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py)
+[`modeling_bert.py`](https://github.com/huggingface/transformers/blob/main/src/transformers_openvla_oft/models/bert/modeling_bert.py)
 for an example).<br>
 ☐ Due to the rapidly growing repository, don't add any images, videos and other
 non-text files that'll significantly weigh down the repository. Instead, use a Hub
@@ -343,7 +343,7 @@ Like the slow tests, there are other environment variables available which not e
 - `RUN_PT_FLAX_CROSS_TESTS`: Enables tests for PyTorch + Flax integration.
 - `RUN_PT_TF_CROSS_TESTS`: Enables tests for TensorFlow + PyTorch integration.
 
-More environment variables and additional information can be found in the [testing_utils.py](src/transformers/testing_utils.py).
+More environment variables and additional information can be found in the [testing_utils.py](src/transformers_openvla_oft/testing_utils.py).
 
 🤗 Transformers uses `pytest` as a test runner only. It doesn't use any
 `pytest`-specific features in the test suite itself.
